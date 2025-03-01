@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Moon, Sun } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import RandomQuote from "@/components/RandomQuote"
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false)
@@ -37,6 +38,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900 transition-colors duration-300">
       <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white tracking-wider">KITESTUDIOS</h1>
+      <RandomQuote />
       <Button
         variant="outline"
         size="icon"
