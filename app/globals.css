@@ -2,67 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 0 0% 0%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 60 100% 50%; /* Off-White yellow */
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 0% 0%;
 
-    --radius: 0.5rem;
+    --radius: 0rem;
+
+    /* Futuristic AI colors */
+    --ai-blue: 210 100% 50%;
+    --ai-purple: 270 100% 60%;
+    --ai-cyan: 180 100% 50%;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 100%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 60 100% 50%; /* Off-White yellow */
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 100%;
+
+    /* Futuristic AI colors - brighter in dark mode */
+    --ai-blue: 210 100% 65%;
+    --ai-purple: 270 100% 75%;
+    --ai-cyan: 180 100% 65%;
   }
 }
 
@@ -72,6 +85,367 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
+}
+
+/* Off-White Diagonal Stripes */
+.off-white-stripes {
+  position: relative;
+  overflow: hidden;
+}
+
+.off-white-stripes::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 0, 0, 0.1) 10px,
+    rgba(0, 0, 0, 0.1) 20px
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+.dark .off-white-stripes::before {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.05) 10px,
+    rgba(255, 255, 255, 0.05) 20px
+  );
+}
+
+/* Industrial Text Style */
+.industrial-text {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* Off-White Quotation Style */
+.off-white-quote::before {
+  content: '"';
+  margin-right: 0.1em;
+}
+
+.off-white-quote::after {
+  content: '"';
+  margin-left: 0.1em;
+}
+
+/* Off-White Arrow */
+.off-white-arrow {
+  position: relative;
+  display: inline-block;
+}
+
+.off-white-arrow::after {
+  content: '→';
+  margin-left: 0.5em;
+  font-weight: bold;
+}
+
+/* Off-White X Marker */
+.off-white-x {
+  position: relative;
+  display: inline-block;
+}
+
+.off-white-x::before {
+  content: '×';
+  margin-right: 0.5em;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* Off-White Button */
+.off-white-button {
+  position: relative;
+  display: inline-block;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1rem;
+  border: 2px solid currentColor;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.off-white-button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.off-white-button:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Off-White Label */
+.off-white-label {
+  position: relative;
+  display: inline-block;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid currentColor;
+}
+
+/* Off-White Caution Tape */
+.off-white-caution {
+  position: relative;
+  overflow: hidden;
+}
+
+.off-white-caution::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #ffff00,
+    #ffff00 10px,
+    #000000 10px,
+    #000000 20px
+  );
+  z-index: 10;
+}
+
+.dark .off-white-caution::before {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #ffff00,
+    #ffff00 10px,
+    #ffffff 10px,
+    #ffffff 20px
+  );
+}
+
+/* Off-White Grid */
+.off-white-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.dark .off-white-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* AI-Inspired Styles */
+
+/* Terminal Text */
+.terminal-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+}
+
+/* AI Blink Effect */
+.ai-blink {
+  animation: ai-blink 2s infinite;
+}
+
+@keyframes ai-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* AI Gradient Text */
+.ai-gradient-text {
+  background: linear-gradient(90deg, hsl(var(--ai-blue)), hsl(var(--ai-purple)), hsl(var(--ai-cyan)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+}
+
+/* Futuristic Scan Line */
+.scan-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: hsl(var(--ai-blue) / 0.3);
+  animation: scan 2s linear infinite;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* Glitch Effect */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip: rect(0, 0, 0, 0);
+}
+
+.glitch-text::before {
+  left: -2px;
+  text-shadow: 1px 0 hsl(var(--ai-blue));
+  animation: glitch-animation-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: 2px;
+  text-shadow: -1px 0 hsl(var(--ai-purple));
+  animation: glitch-animation-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-animation-1 {
+  0% { clip: rect(20px, 9999px, 76px, 0); }
+  5% { clip: rect(12px, 9999px, 86px, 0); }
+  10% { clip: rect(54px, 9999px, 96px, 0); }
+  15% { clip: rect(23px, 9999px, 33px, 0); }
+  20% { clip: rect(76px, 9999px, 12px, 0); }
+  25% { clip: rect(46px, 9999px, 25px, 0); }
+  30% { clip: rect(33px, 9999px, 54px, 0); }
+  35% { clip: rect(37px, 9999px, 98px, 0); }
+  40% { clip: rect(21px, 9999px, 45px, 0); }
+  45% { clip: rect(44px, 9999px, 92px, 0); }
+  50% { clip: rect(37px, 9999px, 72px, 0); }
+  55% { clip: rect(61px, 9999px, 32px, 0); }
+  60% { clip: rect(52px, 9999px, 94px, 0); }
+  65% { clip: rect(11px, 9999px, 56px, 0); }
+  70% { clip: rect(83px, 9999px, 19px, 0); }
+  75% { clip: rect(26px, 9999px, 64px, 0); }
+  80% { clip: rect(73px, 9999px, 37px, 0); }
+  85% { clip: rect(81px, 9999px, 52px, 0); }
+  90% { clip: rect(45px, 9999px, 28px, 0); }
+  95% { clip: rect(62px, 9999px, 79px, 0); }
+  100% { clip: rect(19px, 9999px, 46px, 0); }
+}
+
+@keyframes glitch-animation-2 {
+  0% { clip: rect(58px, 9999px, 13px, 0); }
+  5% { clip: rect(24px, 9999px, 65px, 0); }
+  10% { clip: rect(72px, 9999px, 31px, 0); }
+  15% { clip: rect(84px, 9999px, 49px, 0); }
+  20% { clip: rect(37px, 9999px, 92px, 0); }
+  25% { clip: rect(63px, 9999px, 18px, 0); }
+  30% { clip: rect(95px, 9999px, 37px, 0); }
+  35% { clip: rect(26px, 9999px, 52px, 0); }
+  40% { clip: rect(67px, 9999px, 29px, 0); }
+  45% { clip: rect(14px, 9999px, 84px, 0); }
+  50% { clip: rect(58px, 9999px, 36px, 0); }
+  55% { clip: rect(27px, 9999px, 48px, 0); }
+  60% { clip: rect(39px, 9999px, 81px, 0); }
+  65% { clip: rect(73px, 9999px, 42px, 0); }
+  70% { clip: rect(17px, 9999px, 68px, 0); }
+  75% { clip: rect(95px, 9999px, 31px, 0); }
+  80% { clip: rect(42px, 9999px, 87px, 0); }
+  85% { clip: rect(56px, 9999px, 24px, 0); }
+  90% { clip: rect(34px, 9999px, 76px, 0); }
+  95% { clip: rect(82px, 9999px, 48px, 0); }
+  100% { clip: rect(19px, 9999px, 67px, 0); }
+}
+
+/* Futuristic Grid Overlay */
+.future-grid {
+  position: relative;
+}
+
+.future-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  background-size: 30px 30px, 8px 8px;
+  background-position: 0 0, 0 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dark .future-grid::before {
+  background-image: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* AI Badge */
+.ai-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: 1px solid currentColor;
+  overflow: hidden;
+}
+
+.ai-badge::before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: hsl(var(--ai-blue));
+  top: 50%;
+  left: 0.2rem;
+  transform: translateY(-50%);
+  animation: ai-blink 1.5s infinite;
+}
+
+.ai-badge-text {
+  margin-left: 0.8rem;
 }
 

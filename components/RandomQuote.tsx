@@ -49,19 +49,17 @@ export default function RandomQuote() {
 
   if (loading) {
     return (
-      <div className="h-6 w-64 mt-8 relative overflow-hidden">
+      <div className="h-6 w-full relative overflow-hidden">
         <motion.div 
-          className="h-full bg-gray-200 dark:bg-gray-700 rounded absolute inset-0"
+          className="h-full bg-black dark:bg-white opacity-10 absolute inset-0"
           animate={{
-            opacity: [0.2, 0.5, 0.2],
-            width: ["30%", "100%", "30%"],
-            x: ["0%", "70%", "0%"],
+            x: ["-100%", "100%"],
           }}
           transition={{
-            duration: 3,
+            duration: 2,
             ease: "easeInOut",
             repeat: Infinity,
-            repeatType: "reverse",
+            repeatType: "mirror",
           }}
         />
       </div>
@@ -78,15 +76,15 @@ export default function RandomQuote() {
   return (
     <AnimatePresence mode="wait">
       <motion.div 
-        className="text-center mt-8 max-w-md px-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        className="text-center w-full"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{
-          duration: 2,
+          duration: 1.5,
           ease: [0.2, 0.65, 0.3, 0.9],
         }}
       >
-        <div className="text-gray-700 dark:text-gray-300 italic">
+        <div className="text-black dark:text-white uppercase text-sm tracking-wide font-medium">
           {words.map((word, i) => (
             <motion.span
               key={i}
@@ -101,7 +99,7 @@ export default function RandomQuote() {
           ))}
         </div>
         <motion.p 
-          className="text-gray-500 dark:text-gray-400 text-sm mt-3"
+          className="text-black dark:text-white text-xs mt-2 uppercase tracking-wider"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, delay: 2.5 }}
