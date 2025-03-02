@@ -36,7 +36,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900 transition-colors duration-300">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-zinc-900 transition-colors duration-300">
       <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white tracking-wider">KITESTUDIOS</h1>
       <RandomQuote />
       <Button
