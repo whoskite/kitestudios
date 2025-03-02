@@ -449,3 +449,56 @@
   margin-left: 0.8rem;
 }
 
+/* Add styles for the navigation push effect */
+.page-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Navigation sidebar styles */
+.nav-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 280px;
+  z-index: 40;
+  border-right: 2px solid black;
+}
+
+.nav-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #ffff00,
+    #ffff00 10px,
+    #000000 10px,
+    #000000 20px
+  );
+  z-index: 10;
+}
+
+.dark .nav-sidebar {
+  border-right: 2px solid white;
+}
+
+.dark .nav-sidebar::before {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #ffff00,
+    #ffff00 10px,
+    #ffffff 10px,
+    #ffffff 20px
+  );
+}
+
+/* Remove the media query that was pushing content */
+/* Rest of your global styles */
+

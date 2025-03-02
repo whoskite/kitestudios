@@ -1,12 +1,29 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Menu, ChevronRight } from 'lucide-react'
 
 export default function OffWhiteNav() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(-1)
+  const [isMobile, setIsMobile] = useState(true)
+
+  // Check if we're on mobile or desktop
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    // Initial check
+    checkIfMobile()
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile)
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile)
+  }, [])
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -55,6 +72,19 @@ export default function OffWhiteNav() {
     exit: { y: -20, opacity: 0 }
   }
 
+  // Mobile and desktop variants
+  const mobileMenuVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+    exit: { opacity: 0 }
+  }
+
+  const desktopMenuVariants = {
+    hidden: { x: "-100%" },
+    visible: { x: 0 },
+    exit: { x: "-100%" }
+  }
+
   return (
     <>
       <button 
@@ -69,17 +99,29 @@ export default function OffWhiteNav() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={isMobile ? mobileMenuVariants : desktopMenuVariants}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-white dark:bg-black z-40 off-white-grid off-white-caution overflow-auto"
+            className={isMobile 
+              ? 'fixed inset-0 z-40 bg-white dark:bg-black off-white-grid off-white-caution overflow-auto' // Full screen for mobile
+              : 'nav-sidebar bg-white dark:bg-black off-white-grid off-white-caution overflow-auto' // Sidebar for desktop using the new class
+            }
           >
-            <div className="absolute top-6 right-6 text-xs font-bold uppercase tracking-wider px-2 py-1 border-2 border-black dark:border-white">
+            <div className={`text-xs font-bold uppercase tracking-wider px-2 py-1 border-2 border-black dark:border-white ${
+              isMobile 
+                ? 'absolute top-6 right-6' 
+                : 'absolute top-6 right-4'
+            }`}>
               "NAVIGATION"
             </div>
 
-            <div className="flex flex-col items-center justify-center min-h-full py-20">
+            <div className={`flex flex-col items-center ${
+              isMobile 
+                ? 'justify-center min-h-full py-20' // Center content for mobile
+                : 'justify-start min-h-full py-24' // Top-aligned content for desktop
+            }`}>
               <motion.nav 
                 className="flex flex-col items-center w-full px-4"
                 variants={containerVariants}
@@ -90,14 +132,22 @@ export default function OffWhiteNav() {
                 {menuItems.map((item, index) => (
                   <motion.div
                     key={item.label}
-                    className="w-full max-w-md my-2 md:my-3"
+                    className="w-full max-w-md my-2"
                     variants={itemVariants}
                     onMouseEnter={() => handleMouseEnter(index)}
                     onMouseLeave={handleMouseLeave}
                   >
                     <a
                       href={item.href}
-                      className={`industrial-text text-3xl md:text-4xl lg:text-5xl relative group flex items-center justify-between w-full p-3 border-2 ${activeIndex === index ? 'border-[#ffff00]' : 'border-transparent hover:border-black dark:hover:border-white'} transition-all duration-200`}
+                      className={`industrial-text ${
+                        isMobile 
+                          ? 'text-3xl md:text-4xl' // Larger text for mobile
+                          : 'text-2xl' // Smaller text for desktop sidebar
+                      } relative group flex items-center justify-between w-full p-3 border-2 ${
+                        activeIndex === index 
+                          ? 'border-[#ffff00]' 
+                          : 'border-transparent hover:border-black dark:hover:border-white'
+                      } transition-all duration-200`}
                       onClick={toggleMenu}
                     >
                       <div className="flex items-center">
@@ -137,7 +187,9 @@ export default function OffWhiteNav() {
               </motion.nav>
               
               <motion.div 
-                className="absolute bottom-6 left-0 right-0 flex justify-between px-6 border-t-2 border-black dark:border-white pt-4 mt-6"
+                className={`flex justify-between px-6 border-t-2 border-black dark:border-white pt-4 mt-6 w-full ${
+                  isMobile ? 'absolute bottom-6 left-0 right-0' : 'mt-auto mb-6'
+                }`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
