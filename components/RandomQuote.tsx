@@ -87,7 +87,6 @@ export default function RandomQuote() {
         }}
       >
         <div className="text-gray-700 dark:text-gray-300 italic">
-          <motion.span>"</motion.span>
           {words.map((word, i) => (
             <motion.span
               key={i}
@@ -100,7 +99,6 @@ export default function RandomQuote() {
               {word}
             </motion.span>
           ))}
-          <motion.span>"</motion.span>
         </div>
         <motion.p 
           className="text-gray-500 dark:text-gray-400 text-sm mt-3"
