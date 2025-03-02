@@ -72,15 +72,6 @@ export default function Home() {
         
         <div className="absolute top-6 right-6 flex items-center space-x-3">
           <Button
-            onClick={toggleFutureMode}
-            className="border-2 border-black dark:border-white rounded-none"
-            aria-label="Toggle future mode"
-          >
-            <Cpu size={16} className={isFutureMode ? "text-[#ffff00]" : ""} />
-            <span className="ml-2 text-xs uppercase">{isFutureMode ? "AI ACTIVE" : "AI INACTIVE"}</span>
-          </Button>
-          
-          <Button
             variant="outline"
             size="icon"
             onClick={toggleDarkMode}
