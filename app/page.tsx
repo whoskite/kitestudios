@@ -12,6 +12,7 @@ import OffWhiteAIShowcase from "@/components/OffWhiteAIShowcase"
 import Manifesto from "@/components/Manifesto"
 import Community from "@/components/Community"
 import BuildInPublic from "@/components/BuildInPublic"
+import About from '@/components/About'
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false)
@@ -151,6 +152,11 @@ export default function Home() {
             </motion.div>
           </div>
         </main>
+        
+        {/* About Section */}
+        <div id="about">
+          <About />
+        </div>
         
         <div id="manifesto">
           <Manifesto />
