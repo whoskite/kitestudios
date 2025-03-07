@@ -137,7 +137,7 @@ export default function Home() {
             )}
             
             <motion.div 
-              className="absolute bottom-16 left-1/2 transform -translate-x-1/2"
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 mt-16"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ 
