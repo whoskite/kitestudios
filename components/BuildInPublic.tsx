@@ -66,20 +66,20 @@ export default function BuildInPublic() {
       status: "ACTIVE",
       completion: 25,
       lastUpdate: "4 DAYS AGO",
-      description: "A contemporary digital art gallery showcasing limited edition collections from emerging artists, with a focus on innovative presentation and collector experiences.",
+      description: "A high-end streetwear brand by gLYF, blending contemporary fashion with artistic expression through limited edition collections and cultural collaborations.",
       updates: [
         {
           date: "MARCH 12, 2025",
           title: "SMELL THE FLOWERS COLLECTION DROP",
-          content: "Successfully launched our spring-themed digital art collection featuring works from five emerging artists exploring natural themes."
+          content: "Successfully launched our spring-themed streetwear collection featuring floral motifs and sustainable materials across a range of premium garments."
         },
         {
           date: "FEBRUARY 25, 2025",
           title: "FIRST BRANDED PHOTOSHOOT",
-          content: "Completed the inaugural Gallery 82 branded photoshoot, establishing our visual identity and promotional materials."
+          content: "Completed the inaugural Gallery 82 branded photoshoot, establishing our visual identity and showcasing our distinctive streetwear aesthetic."
         }
       ],
-      tags: ["DIGITAL ART", "CURATION", "COLLECTIBLES"],
+      tags: ["FASHION", "STREETWEAR", "GLYF"],
       icon: <Hammer size={24} className="text-black dark:text-[#ffff00]" />
     }
   ]
