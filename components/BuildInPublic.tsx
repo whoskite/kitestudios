@@ -21,7 +21,7 @@ export default function BuildInPublic() {
   const projects = [
     {
       title: "FUNQUOTES",
-      status: "IN PROGRESS",
+      status: "ACTIVE",
       completion: 75,
       lastUpdate: "TODAY",
       description: "A modern quote generator app that delivers inspirational, funny, and thought-provoking quotes with GIF integration, powered by AI and enhanced with social sharing capabilities.",
