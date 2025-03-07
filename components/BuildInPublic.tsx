@@ -46,6 +46,38 @@ export default function BuildInPublic() {
       icon: <MessageCircle size={24} className="text-black dark:text-[#ffff00]" />
     },
     {
+      title: "SNAP RENAME",
+      status: "LAUNCHED",
+      completion: 100,
+      lastUpdate: "LAST MONTH",
+      description: "A powerful bulk file renaming application designed to streamline workflow for photographers, designers, and content creators with intuitive batch processing capabilities.",
+      updates: [
+        {
+          date: "FEBRUARY 2025",
+          title: "LAUNCHED BULK FILE RENAMER APPLICATION",
+          content: "Successfully released the Snap Rename application, providing users with a robust solution for efficiently organizing and renaming large collections of files."
+        }
+      ],
+      tags: ["DESKTOP APP", "PRODUCTIVITY", "FILE MANAGEMENT"],
+      icon: <Eye size={24} className="text-black dark:text-[#ffff00]" />
+    },
+    {
+      title: "CRYPTO JUNKIES V2",
+      status: "UPCOMING",
+      completion: 10,
+      lastUpdate: "RECENTLY",
+      description: "The next evolution of the Crypto Junkies platform, featuring enhanced trading tools, community features, and real-time market analytics for cryptocurrency enthusiasts.",
+      updates: [
+        {
+          date: "APRIL 2025",
+          title: "WEB APPLICATION",
+          content: "Planning and initial architecture for the comprehensive web application that will serve as the central hub for the Crypto Junkies community."
+        }
+      ],
+      tags: ["CRYPTO", "WEB3", "TRADING"],
+      icon: <GitBranch size={24} className="text-black dark:text-[#ffff00]" />
+    },
+    {
       title: "DON THE DOG",
       status: "EARLY STAGE",
       completion: 40,
