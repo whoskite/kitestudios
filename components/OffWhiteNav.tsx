@@ -42,7 +42,7 @@ export default function OffWhiteNav() {
     { label: "HOME", href: "#" },
     { label: "MANIFESTO", href: "#manifesto" },
     { label: "BUILD", href: "#build" },
-    { label: "CONTACT", href: "#" },
+    // { label: "CONTACT", href: "#" }, // Disabled
   ]
 
   // Variants for staggered animations
