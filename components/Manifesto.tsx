@@ -115,7 +115,7 @@ export default function Manifesto() {
           
           <div className="bg-[#ffff00] inline-block">
             <button className="border-2 border-black px-8 py-3 text-black font-bold uppercase tracking-wider transform -translate-x-1 -translate-y-1 hover:translate-x-0 hover:translate-y-0 transition-transform">
-              COMING SOON
+              COMING SOON 🧪
             </button>
           </div>
         </motion.div>

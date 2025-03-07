@@ -12,7 +12,8 @@ import {
   ArrowUpRight,
   GitBranch,
   Hammer,
-  Lightbulb
+  Lightbulb,
+  FlaskConical
 } from 'lucide-react'
 
 export default function BuildInPublic() {
@@ -70,7 +71,7 @@ export default function BuildInPublic() {
     },
     {
       title: "CRYPTO JUNKIES V2",
-      status: "UPCOMING",
+      status: "BUILDING",
       completion: 10,
       lastUpdate: "RECENTLY",
       description: "An immersive community-driven storytelling platform that expands the Crypto Junkie Social Club lore through interactive chapters and community voting on narrative decisions. The project combines web3 elements with collaborative worldbuilding.",
@@ -82,7 +83,7 @@ export default function BuildInPublic() {
         }
       ],
       tags: ["STORYTELLING", "COMMUNITY", "WEB3"],
-      icon: <GitBranch size={24} className="text-black dark:text-[#ffff00]" />
+      icon: <FlaskConical size={24} className="text-black dark:text-[#ffff00]" />
     },
     {
       title: "DON THE DOG",
