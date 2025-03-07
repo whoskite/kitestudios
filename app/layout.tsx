@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   title: "KITESTUDIOS",
   description: "A creative platform exploring the intersection of design, technology, and community.",
   metadataBase: new URL('https://kitestudios.vercel.app'),
+  icons: {
+    icon: '/KITESTUDIOS_ICON.ico',
+    shortcut: '/KITESTUDIOS_ICON.ico',
+    apple: '/KITESTUDIOS_ICON.png',
+  },
   openGraph: {
     title: "KITESTUDIOS",
     description: "A creative platform exploring the intersection of design, technology, and community.",
@@ -45,6 +50,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/KITESTUDIOS_ICON.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/KITESTUDIOS_ICON.png" />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
