@@ -20,67 +20,67 @@ export default function BuildInPublic() {
   
   const projects = [
     {
-      title: "TYPOGRAPHY SYSTEM",
+      title: "FUNQUOTES",
       status: "IN PROGRESS",
-      completion: 65,
-      lastUpdate: "3 DAYS AGO",
-      description: "Creating a modular typography system with industrial influences and variable font technology.",
+      completion: 75,
+      lastUpdate: "TODAY",
+      description: "A modern quote generator app that delivers inspirational, funny, and thought-provoking quotes with GIF integration, powered by AI and enhanced with social sharing capabilities.",
       updates: [
         {
-          date: "MAY 12, 2024",
-          title: "VARIABLE FONT PROTOTYPE",
-          content: "Completed the first variable axis for weight. Working on width variations next."
+          date: "MARCH 6, 2025",
+          title: "CATEGORIES QUOTES UI DESIGN UPDATE",
+          content: "Refreshed the user interface for quote categories with improved visual hierarchy and interaction patterns."
         },
         {
-          date: "MAY 8, 2024",
-          title: "INITIAL SKETCHES",
-          content: "Exploring industrial-inspired letterforms with geometric constraints."
+          date: "FEBRUARY 14, 2025",
+          title: "COMMUNITY'S FIRST OFFICIAL EVENT",
+          content: "Launched the first official community event centered around /funquotes, engaging users in collaborative quote creation."
+        },
+        {
+          date: "DECEMBER 2024",
+          title: "STARTED BUILDING FUNQUOTES",
+          content: "Initiated development of the FunQuotes project, establishing the foundation for the quote generation platform."
         }
       ],
-      tags: ["TYPOGRAPHY", "DESIGN SYSTEM", "VARIABLE FONTS"],
-      icon: <Pencil size={24} className="text-black dark:text-[#ffff00]" />
+      tags: ["NEXT.JS", "FIREBASE", "FARCASTER"],
+      icon: <MessageCircle size={24} className="text-black dark:text-[#ffff00]" />
     },
     {
-      title: "INTERACTIVE GRID SYSTEM",
+      title: "DON THE DOG",
       status: "EARLY STAGE",
-      completion: 30,
+      completion: 40,
       lastUpdate: "YESTERDAY",
-      description: "Developing a responsive grid system that reacts to user interaction and content density.",
+      description: "A playful crypto project featuring a lovable canine mascot, offering unique tokenomics and community-driven development with a focus on accessibility.",
       updates: [
         {
-          date: "MAY 15, 2024",
-          title: "INTERACTION PROTOTYPES",
-          content: "Built first interactive prototype with hover states and content-aware adjustments."
-        },
-        {
-          date: "MAY 10, 2024",
-          title: "CONCEPT DEVELOPMENT",
-          content: "Researching existing grid systems and identifying opportunities for innovation."
+          date: "MARCH 5, 2025",
+          title: "INTEGRATED SWAP TOKEN FEATURE",
+          content: "Successfully implemented token swapping functionality, allowing users to easily exchange Don tokens with other cryptocurrencies."
         }
       ],
-      tags: ["FRONTEND", "INTERACTION", "CSS GRID"],
+      tags: ["CRYPTO", "WEB3", "DEFI"],
       icon: <Code size={24} className="text-black dark:text-[#ffff00]" />
     },
     {
-      title: "MODULAR DESIGN TOOLKIT",
-      status: "PLANNING",
-      completion: 15,
-      lastUpdate: "1 WEEK AGO",
-      description: "Building a comprehensive toolkit of modular design components for rapid prototyping.",
+      title: "GALLERY 82",
+      status: "ACTIVE",
+      completion: 25,
+      lastUpdate: "4 DAYS AGO",
+      description: "A contemporary digital art gallery showcasing limited edition collections from emerging artists, with a focus on innovative presentation and collector experiences.",
       updates: [
         {
-          date: "MAY 5, 2024",
-          title: "COMPONENT INVENTORY",
-          content: "Cataloging essential components and establishing naming conventions."
+          date: "MARCH 12, 2025",
+          title: "SMELL THE FLOWERS COLLECTION DROP",
+          content: "Successfully launched our spring-themed digital art collection featuring works from five emerging artists exploring natural themes."
         },
         {
-          date: "MAY 1, 2024",
-          title: "RESEARCH PHASE",
-          content: "Analyzing existing design systems and identifying gaps to address."
+          date: "FEBRUARY 25, 2025",
+          title: "FIRST BRANDED PHOTOSHOOT",
+          content: "Completed the inaugural Gallery 82 branded photoshoot, establishing our visual identity and promotional materials."
         }
       ],
-      tags: ["DESIGN SYSTEM", "COMPONENTS", "DOCUMENTATION"],
-      icon: <Construction size={24} className="text-black dark:text-[#ffff00]" />
+      tags: ["DIGITAL ART", "CURATION", "COLLECTIBLES"],
+      icon: <Hammer size={24} className="text-black dark:text-[#ffff00]" />
     }
   ]
   

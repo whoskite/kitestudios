@@ -156,10 +156,12 @@ export default function Home() {
           <Manifesto />
         </div>
         
-        {/* Community Section */}
+        {/* Community Section - Disabled */}
+        {/* 
         <div id="community">
           <Community />
         </div>
+        */}
         
         {/* Build In Public Section */}
         <div id="build">

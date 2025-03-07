@@ -41,7 +41,6 @@ export default function OffWhiteNav() {
   const menuItems = [
     { label: "HOME", href: "#" },
     { label: "MANIFESTO", href: "#manifesto" },
-    { label: "COMMUNITY", href: "#community" },
     { label: "BUILD", href: "#build" },
     { label: "CONTACT", href: "#" },
   ]
