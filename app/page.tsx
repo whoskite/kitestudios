@@ -199,18 +199,12 @@ export default function Home() {
               </div>
               
               <div className="grid grid-cols-2 gap-x-12 gap-y-4">
-                <div className={`text-xs uppercase tracking-wider ${isFutureMode ? 'ai-badge' : 'off-white-arrow'}`}>
+                <a href="https://instagram.com/kitestudios6" target="_blank" rel="noopener noreferrer" className={`text-xs uppercase tracking-wider ${isFutureMode ? 'ai-badge' : 'off-white-arrow'}`}>
                   {isFutureMode ? <span className="ai-badge-text">INSTAGRAM</span> : 'INSTAGRAM'}
-                </div>
-                <div className={`text-xs uppercase tracking-wider ${isFutureMode ? 'ai-badge' : 'off-white-arrow'}`}>
+                </a>
+                <a href="http://twitter.com/tomykite" target="_blank" rel="noopener noreferrer" className={`text-xs uppercase tracking-wider ${isFutureMode ? 'ai-badge' : 'off-white-arrow'}`}>
                   {isFutureMode ? <span className="ai-badge-text">TWITTER</span> : 'TWITTER'}
-                </div>
-                <div className={`text-xs uppercase tracking-wider ${isFutureMode ? 'ai-badge' : 'off-white-arrow'}`}>
-                  {isFutureMode ? <span className="ai-badge-text">LINKEDIN</span> : 'LINKEDIN'}
-                </div>
-                <div className={`text-xs uppercase tracking-wider ${isFutureMode ? 'ai-badge' : 'off-white-arrow'}`}>
-                  {isFutureMode ? <span className="ai-badge-text">GITHUB</span> : 'GITHUB'}
-                </div>
+                </a>
               </div>
             </div>
             

@@ -317,26 +317,6 @@ export default function BuildInPublic() {
             </motion.div>
           </div>
         </div>
-        
-        {/* Join the Build Section */}
-        <motion.div 
-          className="mt-20 border-t-2 border-black dark:border-white pt-10 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="industrial-text text-2xl mb-4 off-white-quote">START YOUR OWN BUILD</h3>
-          <p className="max-w-2xl mx-auto mb-8">
-            Ready to share your creative process with the world? Join KITESTUDIOS and document your journey from concept to completion.
-          </p>
-          
-          <div className="bg-[#ffff00] inline-block">
-            <button className="border-2 border-black px-8 py-3 text-black font-bold uppercase tracking-wider transform -translate-x-1 -translate-y-1 hover:translate-x-0 hover:translate-y-0 transition-transform">
-              Begin Building
-            </button>
-          </div>
-        </motion.div>
       </div>
     </section>
   )
