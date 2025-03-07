@@ -94,7 +94,7 @@ export default function Home() {
           <div className="relative z-10 flex flex-col items-center">
             <div className="relative">
               <h1 
-                className={`industrial-text text-6xl md:text-8xl font-bold tracking-tighter mb-2 relative ${isFutureMode ? 'ai-gradient-text' : ''}`}
+                className={`industrial-text text-5xl md:text-7xl font-bold tracking-tighter mb-2 relative ${isFutureMode ? 'ai-gradient-text' : ''}`}
                 data-text="KITESTUDIOS"
               >
                 {isFutureMode ? (
