@@ -137,7 +137,7 @@ export default function Home() {
             )}
             
             <motion.div 
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 mt-16"
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ 
@@ -183,9 +183,9 @@ export default function Home() {
         
         {/* Footer */}
         <footer className={`py-12 border-t-2 border-black dark:border-white ${isFutureMode ? 'future-grid' : ''}`}>
-          <div className="container mx-auto">
+          <div className="container mx-auto px-6 md:px-12">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-              <div className="mb-6 md:mb-0">
+              <div className="mb-6 md:mb-0 pl-4 md:pl-8">
                 <div className={`industrial-text text-2xl mb-2 ${isFutureMode ? 'ai-gradient-text' : ''}`}>
                   {isFutureMode ? (
                     <span className="glitch-text" data-text="KITESTUDIOS">"KITESTUDIOS"</span>
@@ -198,18 +198,21 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-x-12 gap-y-4">
+              <div className="flex flex-col space-y-4">
                 <a href="https://instagram.com/kitestudios6" target="_blank" rel="noopener noreferrer" className={`text-xs uppercase tracking-wider ${isFutureMode ? 'ai-badge' : 'off-white-arrow'}`}>
                   {isFutureMode ? <span className="ai-badge-text">INSTAGRAM</span> : 'INSTAGRAM'}
                 </a>
                 <a href="http://twitter.com/tomykite" target="_blank" rel="noopener noreferrer" className={`text-xs uppercase tracking-wider ${isFutureMode ? 'ai-badge' : 'off-white-arrow'}`}>
                   {isFutureMode ? <span className="ai-badge-text">TWITTER</span> : 'TWITTER'}
                 </a>
+                <a href="#" className={`text-xs uppercase tracking-wider opacity-50 cursor-not-allowed ${isFutureMode ? 'ai-badge opacity-50' : 'off-white-arrow opacity-50'}`}>
+                  {isFutureMode ? <span className="ai-badge-text">DISCORD</span> : 'DISCORD'} <span className="text-[10px]">(COMING SOON)</span>
+                </a>
               </div>
             </div>
             
             <div className="mt-12 pt-6 border-t border-black dark:border-white">
-              <div className="text-xs uppercase tracking-wider text-center">
+              <div className="text-xs uppercase tracking-wider text-center px-4">
                 {isFutureMode ? (
                   '"BUILT BY KITESTUDIOS"'
                 ) : (

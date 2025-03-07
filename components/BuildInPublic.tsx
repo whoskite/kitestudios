@@ -25,6 +25,10 @@ export default function BuildInPublic() {
       completion: 75,
       lastUpdate: "TODAY",
       description: "A modern quote generator app that delivers inspirational, funny, and thought-provoking quotes with GIF integration, powered by AI and enhanced with social sharing capabilities.",
+      url: {
+        main: "https://funquotes.xyz",
+        app: "https://app.funquotes.xyz"
+      },
       updates: [
         {
           date: "MARCH 6, 2025",
@@ -51,6 +55,9 @@ export default function BuildInPublic() {
       completion: 100,
       lastUpdate: "LAST MONTH",
       description: "A powerful bulk file renaming application designed to streamline workflow for photographers, designers, and content creators with intuitive batch processing capabilities.",
+      url: {
+        main: "https://snaprename.vercel.app"
+      },
       updates: [
         {
           date: "FEBRUARY 2025",
@@ -83,6 +90,9 @@ export default function BuildInPublic() {
       completion: 40,
       lastUpdate: "YESTERDAY",
       description: "A playful crypto project featuring a lovable canine mascot, offering unique tokenomics and community-driven development with a focus on accessibility.",
+      url: {
+        main: "https://donthedog.vercel.app"
+      },
       updates: [
         {
           date: "MARCH 5, 2025",
@@ -99,6 +109,9 @@ export default function BuildInPublic() {
       completion: 25,
       lastUpdate: "4 DAYS AGO",
       description: "A high-end streetwear brand by gLYF, blending contemporary fashion with artistic expression through limited edition collections and cultural collaborations.",
+      url: {
+        main: "https://glyfstudio.com"
+      },
       updates: [
         {
           date: "MARCH 12, 2025",
@@ -274,6 +287,31 @@ export default function BuildInPublic() {
                 
                 <h3 className="industrial-text text-2xl mb-2 mt-2">{projects[activeProject].title}</h3>
                 <p className="mb-4">{projects[activeProject].description}</p>
+                
+                {projects[activeProject].url && (
+                  <div className="mb-4">
+                    {projects[activeProject].url.main && (
+                      <a 
+                        href={projects[activeProject].url.main} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center mr-4 bg-[#ffff00] px-3 py-1 text-black text-sm font-medium hover:bg-opacity-80 transition-colors"
+                      >
+                        Visit Website <ArrowUpRight size={14} className="ml-1" />
+                      </a>
+                    )}
+                    {projects[activeProject].url.app && (
+                      <a 
+                        href={projects[activeProject].url.app} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center bg-black dark:bg-white text-white dark:text-black px-3 py-1 text-sm font-medium hover:bg-opacity-80 transition-colors"
+                      >
+                        Open App <ArrowUpRight size={14} className="ml-1" />
+                      </a>
+                    )}
+                  </div>
+                )}
                 
                 <div className="flex flex-wrap">
                   {projects[activeProject].tags.map((tag, index) => (
