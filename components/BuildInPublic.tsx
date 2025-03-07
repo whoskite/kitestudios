@@ -66,15 +66,15 @@ export default function BuildInPublic() {
       status: "UPCOMING",
       completion: 10,
       lastUpdate: "RECENTLY",
-      description: "The next evolution of the Crypto Junkies platform, featuring enhanced trading tools, community features, and real-time market analytics for cryptocurrency enthusiasts.",
+      description: "An immersive community-driven storytelling platform that expands the Crypto Junkie Social Club lore through interactive chapters and community voting on narrative decisions. The project combines web3 elements with collaborative worldbuilding.",
       updates: [
         {
           date: "APRIL 2025",
           title: "WEB APPLICATION",
-          content: "Planning and initial architecture for the comprehensive web application that will serve as the central hub for the Crypto Junkies community."
+          content: "Developing an interactive web platform where community members can explore the evolving lore of Crypto Junkies, participate in story decisions, and contribute to the expanding narrative universe."
         }
       ],
-      tags: ["CRYPTO", "WEB3", "TRADING"],
+      tags: ["STORYTELLING", "COMMUNITY", "WEB3"],
       icon: <GitBranch size={24} className="text-black dark:text-[#ffff00]" />
     },
     {
