@@ -307,29 +307,26 @@ export default function BuildInPublic() {
                         href={projects[activeProject].url.app} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-flex items-center bg-black dark:bg-white text-white dark:text-black px-3 py-1 text-sm font-medium hover:bg-opacity-80 transition-colors"
+                        className="inline-flex items-center mr-4 bg-black dark:bg-white text-white dark:text-black px-3 py-1 text-sm font-medium hover:bg-opacity-80 transition-colors"
                       >
                         Open App <ArrowUpRight size={14} className="ml-1" />
                       </a>
                     )}
-                  </div>
-                )}
-                
-                {projects[activeProject].farcaster && (
-                  <div className="mb-4">
-                    <a 
-                      href={projects[activeProject].farcaster} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center bg-purple-600 text-white px-3 py-1 text-sm font-medium hover:bg-opacity-80 transition-colors"
-                    >
-                      <img 
-                        src="/simple-icons--farcaster.svg" 
-                        alt="Farcaster" 
-                        className="w-4 h-4 mr-2"
-                      />
-                      Follow on Warpcast
-                    </a>
+                    {projects[activeProject].farcaster && (
+                      <a 
+                        href={projects[activeProject].farcaster} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center bg-purple-600 text-white px-3 py-1 text-sm font-medium hover:bg-opacity-80 transition-colors"
+                      >
+                        <img 
+                          src="/simple-icons--farcaster.svg" 
+                          alt="Farcaster" 
+                          className="w-4 h-4 mr-2"
+                        />
+                        Warpcast Community
+                      </a>
+                    )}
                   </div>
                 )}
                 
