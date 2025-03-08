@@ -13,8 +13,7 @@ import {
   GitBranch,
   Hammer,
   Lightbulb,
-  FlaskConical,
-  BookOpen
+  FlaskConical
 } from 'lucide-react'
 
 export default function BuildInPublic() {
@@ -31,6 +30,7 @@ export default function BuildInPublic() {
         main: "https://funquotes.xyz",
         app: "https://app.funquotes.xyz"
       },
+      farcaster: "https://warpcast.com/funquotes",
       updates: [
         {
           date: "MARCH 6, 2025",
@@ -76,7 +76,6 @@ export default function BuildInPublic() {
       completion: 10,
       lastUpdate: "RECENTLY",
       description: "An immersive community-driven storytelling platform that expands the Crypto Junkie Social Club lore through interactive chapters and community voting on narrative decisions. The project combines web3 elements with collaborative worldbuilding.",
-      loreLink: "https://crypto-junkie-social-club.gitbook.io/crypto-junkie-social-club-lore",
       updates: [
         {
           date: "APRIL 2025",
@@ -316,15 +315,20 @@ export default function BuildInPublic() {
                   </div>
                 )}
                 
-                {projects[activeProject].loreLink && (
+                {projects[activeProject].farcaster && (
                   <div className="mb-4">
                     <a 
-                      href={projects[activeProject].loreLink} 
+                      href={projects[activeProject].farcaster} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-flex items-center bg-purple-600 text-white px-3 py-1 text-sm font-medium hover:bg-opacity-80 transition-colors"
                     >
-                      Explore Lore <BookOpen size={14} className="ml-1" />
+                      <img 
+                        src="/simple-icons--farcaster.svg" 
+                        alt="Farcaster" 
+                        className="w-4 h-4 mr-2"
+                      />
+                      Follow on Warpcast
                     </a>
                   </div>
                 )}
