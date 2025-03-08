@@ -30,7 +30,7 @@ export default function BuildInPublic() {
         main: "https://funquotes.xyz",
         app: "https://app.funquotes.xyz"
       },
-      farcaster: "https://warpcast.com/funquotes",
+      farcaster: "https://warpcast.com/~/channel/funquotes",
       updates: [
         {
           date: "MARCH 6, 2025",
