@@ -13,7 +13,8 @@ import {
   GitBranch,
   Hammer,
   Lightbulb,
-  FlaskConical
+  FlaskConical,
+  BookOpen
 } from 'lucide-react'
 
 export default function BuildInPublic() {
@@ -75,6 +76,7 @@ export default function BuildInPublic() {
       completion: 10,
       lastUpdate: "RECENTLY",
       description: "An immersive community-driven storytelling platform that expands the Crypto Junkie Social Club lore through interactive chapters and community voting on narrative decisions. The project combines web3 elements with collaborative worldbuilding.",
+      loreLink: "https://crypto-junkie-social-club.gitbook.io/crypto-junkie-social-club-lore",
       updates: [
         {
           date: "APRIL 2025",
@@ -311,6 +313,19 @@ export default function BuildInPublic() {
                         Open App <ArrowUpRight size={14} className="ml-1" />
                       </a>
                     )}
+                  </div>
+                )}
+                
+                {projects[activeProject].loreLink && (
+                  <div className="mb-4">
+                    <a 
+                      href={projects[activeProject].loreLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center bg-purple-600 text-white px-3 py-1 text-sm font-medium hover:bg-opacity-80 transition-colors"
+                    >
+                      Explore Lore <BookOpen size={14} className="ml-1" />
+                    </a>
                   </div>
                 )}
                 
