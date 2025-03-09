@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { 
   Construction, 
@@ -22,12 +22,20 @@ interface UpdateImage {
   alt: string;
 }
 
+interface PostItNote {
+  content: string;
+  color: string;
+  rotation: number;
+  image?: string;
+}
+
 interface ProjectUpdate {
   date: string;
   title: string;
   content: string;
   detailedContent?: string;
   images?: UpdateImage[];
+  postItNotes?: PostItNote[];
 }
 
 interface Project {
@@ -111,11 +119,127 @@ const getLastUpdateText = (dateString: string): string => {
 export default function BuildInPublic() {
   const [activeProject, setActiveProject] = useState(0)
   const [selectedUpdate, setSelectedUpdate] = useState<{projectIndex: number, updateIndex: number} | null>(null)
+  const [randomizedPositions, setRandomizedPositions] = useState<any[]>([])
+  const [draggedPositions, setDraggedPositions] = useState<any[]>([])
+  const [containerDimensions, setContainerDimensions] = useState({ width: 0, height: 0 })
+  const containerRef = useRef<HTMLDivElement>(null)
+  
+  // Update container dimensions when window resizes
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (containerRef.current) {
+        setContainerDimensions({
+          width: containerRef.current.offsetWidth,
+          height: containerRef.current.offsetHeight
+        })
+      }
+    }
+    
+    // Initial update
+    updateDimensions()
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', updateDimensions)
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', updateDimensions)
+  }, [selectedUpdate])
+  
+  // Randomize positions when the selected update changes
+  useEffect(() => {
+    if (selectedUpdate && 
+        projects[selectedUpdate.projectIndex].title === "GALLERY 82" && 
+        projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].title === "SMELL THE FLOWERS COLLECTION DROP") {
+      
+      // Only generate new positions if we don't already have them
+      if (randomizedPositions.length === 0) {
+        // Generate new random positions for each post-it note
+        const positions = Array.from({ length: projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].postItNotes?.length || 0 }, 
+          () => getRandomPosition());
+        
+        setRandomizedPositions(positions);
+      }
+      
+      // Only reset dragged positions when first opening the modal
+      if (draggedPositions.length === 0) {
+        setDraggedPositions(Array(projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].postItNotes?.length || 0).fill({ x: 0, y: 0 }));
+      }
+    } else {
+      // Reset positions when closing the modal
+      setRandomizedPositions([]);
+      setDraggedPositions([]);
+    }
+  }, [selectedUpdate]);
+  
+  // Function to update a note's position after dragging
+  const updateNotePosition = (index: number, info: any) => {
+    // Use container dimensions instead of window dimensions
+    const containerWidth = containerDimensions.width || window.innerWidth;
+    const containerHeight = containerDimensions.height || window.innerHeight;
+    
+    // Get the container's bounding rectangle
+    const containerRect = containerRef.current?.getBoundingClientRect() || { left: 0, top: 0 };
+    
+    // Calculate the new position relative to the container
+    const relativeX = info.point.x - containerRect.left;
+    const relativeY = info.point.y - containerRect.top;
+    
+    // Ensure the note stays within visible boundaries (with some padding)
+    const padding = 20; // pixels from edge
+    const noteWidth = 180; // width of the note
+    const noteHeight = 150; // approximate height of the note
+    
+    // Constrain to container boundaries
+    const constrainedX = Math.max(padding, Math.min(containerWidth - noteWidth - padding, relativeX));
+    const constrainedY = Math.max(padding, Math.min(containerHeight - noteHeight - padding, relativeY));
+    
+    // Update the position with absolute coordinates
+    const newPositions = [...draggedPositions];
+    newPositions[index] = {
+      x: constrainedX,
+      y: constrainedY,
+      absolute: true // Flag to indicate we're using absolute positioning
+    };
+    
+    setDraggedPositions(newPositions);
+  };
   
   // Function to get the most recent update date from a project
   const getMostRecentUpdateDate = (updates: ProjectUpdate[]): string => {
     if (!updates || updates.length === 0) return "";
     return updates[0].date;
+  };
+  
+  // Function to shuffle an array (for randomizing post-it notes)
+  const shuffleArray = (array: any[]) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
+  
+  // Function to generate random position values for post-it notes
+  const getRandomPosition = () => {
+    // Generate a truly random position across the entire screen
+    const screenSections = [
+      // Left side
+      { left: `${Math.floor(Math.random() * 20)}%`, top: `${Math.floor(Math.random() * 80)}%` },
+      { left: `${Math.floor(Math.random() * 20 + 20)}%`, top: `${Math.floor(Math.random() * 80)}%` },
+      
+      // Right side
+      { right: `${Math.floor(Math.random() * 20)}%`, top: `${Math.floor(Math.random() * 80)}%` },
+      { right: `${Math.floor(Math.random() * 20 + 20)}%`, top: `${Math.floor(Math.random() * 80)}%` },
+      
+      // Top
+      { top: `${Math.floor(Math.random() * 20)}%`, left: `${Math.floor(Math.random() * 60 + 20)}%` },
+      
+      // Bottom
+      { bottom: `${Math.floor(Math.random() * 20)}%`, left: `${Math.floor(Math.random() * 60 + 20)}%` }
+    ];
+    
+    return screenSections[Math.floor(Math.random() * screenSections.length)];
   };
   
   const projectsData: Project[] = [
@@ -264,7 +388,36 @@ export default function BuildInPublic() {
         {
           date: "MARCH 12, 2025",
           title: "SMELL THE FLOWERS COLLECTION DROP",
-          content: "Successfully launched our spring-themed streetwear collection featuring floral motifs and sustainable materials across a range of premium garments."
+          content: "Successfully launched our spring-themed streetwear collection featuring floral motifs and sustainable materials across a range of premium garments.",
+          postItNotes: [
+            {
+              content: "Design inspiration came from Tokyo's cherry blossom season. The pink tones really pop against the black base.",
+              color: "#ffcccc", // Light pink
+              rotation: -3,
+              image: "/placeholder-image-1.jpg"
+            },
+            {
+              content: "Fabric samples arrived late but the quality was worth the wait. 100% organic cotton feels amazing.",
+              color: "#ccffcc", // Light green
+              rotation: 2
+            },
+            {
+              content: "Production team crushed it! Completed the entire run in just 3 weeks despite supply chain issues.",
+              color: "#ffffcc", // Light yellow
+              rotation: -2
+            },
+            {
+              content: "Photoshoot location scouting paid off. The botanical garden backdrop perfectly complemented the collection theme.",
+              color: "#ccccff", // Light blue
+              rotation: 3,
+              image: "/placeholder-image-2.jpg"
+            },
+            {
+              content: "Marketing campaign generated 3x more pre-orders than our winter collection. Social engagement up 47%!",
+              color: "#ffccff", // Light purple
+              rotation: -1
+            }
+          ]
         },
         {
           date: "FEBRUARY 25, 2025",
@@ -571,8 +724,90 @@ export default function BuildInPublic() {
       {/* Update Details Modal */}
       {selectedUpdate !== null && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          {/* Post-it Notes - Only shown for Gallery 82's Smell the Flowers update */}
+          {projects[selectedUpdate.projectIndex].title === "GALLERY 82" && 
+           projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].title === "SMELL THE FLOWERS COLLECTION DROP" &&
+           projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].postItNotes && (
+            <div 
+              ref={containerRef}
+              className="fixed inset-0 pointer-events-none"
+              style={{ 
+                padding: '20px',
+                overflow: 'hidden'
+              }}
+            >
+              <div className="w-full h-full relative">
+                {projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].postItNotes!.map((note, idx) => {
+                  const position = randomizedPositions[idx] || getRandomPosition();
+                  const isDragged = draggedPositions[idx]?.absolute === true;
+                  
+                  return (
+                    <motion.div
+                      key={idx}
+                      className="absolute pointer-events-auto"
+                      style={{
+                        // Use either the original position or just top/left for absolute positioning
+                        ...(isDragged ? { top: 0, left: 0 } : position),
+                        backgroundColor: note.color,
+                        transform: `rotate(${note.rotation}deg)`,
+                        padding: '12px',
+                        boxShadow: '2px 4px 8px rgba(0,0,0,0.2)',
+                        borderRadius: '2px',
+                        width: '180px',
+                        backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                        backgroundSize: '20px 20px',
+                        zIndex: 60
+                      }}
+                      initial={{ opacity: 0 }}
+                      animate={{ 
+                        opacity: 1,
+                        // Use absolute positioning if the note has been dragged
+                        x: isDragged ? draggedPositions[idx].x : 0,
+                        y: isDragged ? draggedPositions[idx].y : 0
+                      }}
+                      transition={{ 
+                        opacity: { duration: 0.3, delay: idx * 0.1 },
+                        x: { type: "spring", stiffness: 500, damping: 50 },
+                        y: { type: "spring", stiffness: 500, damping: 50 }
+                      }}
+                      whileHover={{ scale: 1.05, zIndex: 70, boxShadow: '3px 6px 12px rgba(0,0,0,0.25)' }}
+                      drag
+                      dragMomentum={false}
+                      onDragEnd={(e, info) => updateNotePosition(idx, info)}
+                    >
+                      {/* Tape effect */}
+                      <div 
+                        className="absolute w-10 h-3 bg-gray-200 bg-opacity-70"
+                        style={{ 
+                          top: '-8px', 
+                          left: '50%', 
+                          transform: 'translateX(-50%) rotate(2deg)',
+                          boxShadow: 'inset 0 0 4px rgba(0,0,0,0.1)',
+                          borderRadius: '1px'
+                        }}
+                      ></div>
+                      
+                      {note.image && (
+                        <div className="mb-2 border border-black">
+                          <img src={note.image} alt="Note image" className="w-full h-auto" />
+                        </div>
+                      )}
+                      <p className="text-xs text-black" style={{ 
+                        fontFamily: "'Caveat', 'Comic Sans MS', cursive", 
+                        lineHeight: "1.4",
+                        fontSize: "14px"
+                      }}>
+                        {note.content}
+                      </p>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+          
           <motion.div 
-            className="bg-white dark:bg-black border-2 border-black dark:border-white max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            className="bg-white dark:bg-black border-2 border-black dark:border-white max-w-2xl w-full max-h-[80vh] overflow-y-auto relative z-50"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
