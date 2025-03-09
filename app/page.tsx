@@ -12,6 +12,7 @@ import OffWhiteAIShowcase from "@/components/OffWhiteAIShowcase"
 import Manifesto from "@/components/Manifesto"
 import Community from "@/components/Community"
 import BuildInPublic from "@/components/BuildInPublic"
+import AIChatButton from "@/components/AIChatButton"
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false)
@@ -226,6 +227,12 @@ export default function Home() {
         {/* AI Chat Assistant (only visible in future mode) */}
         {isFutureMode && <OffWhiteAI />}
       </div>
+      
+      {/* AI Chat Button */}
+      <AIChatButton 
+        agentName="Garu" 
+        agentImageSrc="/Garu Profile Image.png" 
+      />
     </div>
   )
 }

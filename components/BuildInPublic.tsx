@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { 
   Construction, 
@@ -16,15 +16,165 @@ import {
   FlaskConical
 } from 'lucide-react'
 
+// Define interfaces for our data structures
+interface UpdateImage {
+  src: string;
+  alt: string;
+}
+
+interface ProjectUpdate {
+  date: string;
+  title: string;
+  content: string;
+  detailedContent?: string;
+  images?: UpdateImage[];
+}
+
+interface Project {
+  title: string;
+  status: string;
+  completion: number;
+  description: string;
+  url?: {
+    main?: string;
+    app?: string;
+  };
+  farcaster?: string;
+  updates: ProjectUpdate[];
+  tags: string[];
+  icon: JSX.Element;
+}
+
+// Helper function to calculate the relative time for lastUpdate
+const getLastUpdateText = (dateString: string): string => {
+  // Handle special case for "Currently building"
+  if (dateString === "Currently building") {
+    return "ONGOING";
+  }
+  
+  // Parse the date string
+  let date: Date | undefined;
+  const currentYear = new Date().getFullYear();
+  
+  // Handle different date formats
+  if (dateString.includes(",")) {
+    // Format: "MONTH DAY, YEAR"
+    date = new Date(dateString);
+  } else if (dateString.includes(" ")) {
+    // Format: "MONTH YEAR" or "MONTH DAY"
+    const parts = dateString.split(" ");
+    if (parts.length === 2) {
+      if (isNaN(parseInt(parts[1]))) {
+        // It's "MONTH YEAR"
+        date = new Date(`${parts[0]} 1, ${parts[1]}`);
+      } else {
+        // It's "MONTH DAY"
+        date = new Date(`${parts[0]} ${parts[1]}, ${currentYear}`);
+      }
+    }
+  } else {
+    // Unknown format, return as is
+    return dateString;
+  }
+  
+  // Check if date is valid
+  if (!date || isNaN(date.getTime())) {
+    return dateString;
+  }
+  
+  // Check if date is in the future
+  const now = new Date();
+  if (date > now) {
+    return "BUILDING";
+  }
+  
+  // Calculate the difference in days
+  const diffTime = Math.abs(now.getTime() - date.getTime());
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  
+  // Format the relative time
+  if (diffDays === 0) {
+    return "TODAY";
+  } else if (diffDays === 1) {
+    return "YESTERDAY";
+  } else if (diffDays < 7) {
+    return `${diffDays} DAYS AGO`;
+  } else if (diffDays < 30) {
+    return "LAST WEEK";
+  } else if (diffDays < 60) {
+    return "LAST MONTH";
+  } else {
+    return "OLDER";
+  }
+};
+
 export default function BuildInPublic() {
   const [activeProject, setActiveProject] = useState(0)
+  const [selectedUpdate, setSelectedUpdate] = useState<{projectIndex: number, updateIndex: number} | null>(null)
   
-  const projects = [
+  // Function to get the most recent update date from a project
+  const getMostRecentUpdateDate = (updates: ProjectUpdate[]): string => {
+    if (!updates || updates.length === 0) return "";
+    return updates[0].date;
+  };
+  
+  const projectsData: Project[] = [
+    {
+      title: "KITESTUDIOS",
+      status: "BUILDING",
+      completion: 50,
+      description: "The official website and digital presence for KITESTUDIOS, showcasing our projects, philosophy, and creative approach to building in public.",
+      url: {
+        main: "https://kitestudios.xyz"
+      },
+      updates: [
+        {
+          date: "FEBRUARY 27",
+          title: "Website Created",
+          content: "Launched the initial version of the KITESTUDIOS website, establishing our digital presence and brand identity.",
+          detailedContent: `
+            <h3 class="text-xl font-bold mb-4">Project Launch Details</h3>
+            <p class="mb-4">The KITESTUDIOS website was created as a central hub for all our creative projects and initiatives. The design philosophy centers around industrial aesthetics combined with modern web technologies.</p>
+            
+            <h4 class="text-lg font-bold mb-2">Technologies Used:</h4>
+            <ul class="list-disc pl-5 mb-4">
+              <li>Next.js 14 for the framework</li>
+              <li>Tailwind CSS for styling</li>
+              <li>Framer Motion for animations</li>
+              <li>TypeScript for type safety</li>
+            </ul>
+            
+            <h4 class="text-lg font-bold mb-2">Design Principles:</h4>
+            <p class="mb-4">The website follows an industrial "off-white" aesthetic inspired by industrial design, technical documentation, and utilitarian interfaces. This approach creates a distinctive visual identity while maintaining excellent usability.</p>
+            
+            <blockquote class="border-l-4 border-[#ffff00] pl-4 py-2 my-4 italic">
+              "We wanted to create a digital space that feels both nostalgic and forward-looking, blending industrial design elements with cutting-edge web technologies."
+            </blockquote>
+          `,
+          images: [
+            {
+              src: "/placeholder-image-1.jpg",
+              alt: "KITESTUDIOS website homepage design"
+            },
+            {
+              src: "/placeholder-image-2.jpg",
+              alt: "KITESTUDIOS mobile responsive view"
+            }
+          ]
+        },
+        {
+          date: "Currently building",
+          title: "The Library",
+          content: "Currently building The Library section to showcase our collection of resources, inspirations, and creative references."
+        }
+      ],
+      tags: ["WEBSITE", "BRANDING", "DESIGN"],
+      icon: <Construction size={24} className="text-black dark:text-[#ffff00]" />
+    },
     {
       title: "FUNQUOTES",
       status: "ACTIVE",
       completion: 75,
-      lastUpdate: "TODAY",
       description: "A modern quote generator app that delivers inspirational, funny, and thought-provoking quotes with GIF integration, powered by AI and enhanced with social sharing capabilities.",
       url: {
         main: "https://funquotes.xyz",
@@ -55,7 +205,6 @@ export default function BuildInPublic() {
       title: "SNAP RENAME",
       status: "LAUNCHED",
       completion: 100,
-      lastUpdate: "LAST MONTH",
       description: "A powerful bulk file renaming application designed to streamline workflow for photographers, designers, and content creators with intuitive batch processing capabilities.",
       url: {
         main: "https://snaprename.vercel.app"
@@ -74,7 +223,6 @@ export default function BuildInPublic() {
       title: "CRYPTO JUNKIES V2",
       status: "BUILDING",
       completion: 10,
-      lastUpdate: "RECENTLY",
       description: "An immersive community-driven storytelling platform that expands the Crypto Junkie Social Club lore through interactive chapters and community voting on narrative decisions. The project combines web3 elements with collaborative worldbuilding.",
       updates: [
         {
@@ -90,7 +238,6 @@ export default function BuildInPublic() {
       title: "DON THE DOG",
       status: "EARLY STAGE",
       completion: 40,
-      lastUpdate: "YESTERDAY",
       description: "A playful crypto project featuring a lovable canine mascot, offering unique tokenomics and community-driven development with a focus on accessibility.",
       url: {
         main: "https://donthedog.vercel.app"
@@ -109,7 +256,6 @@ export default function BuildInPublic() {
       title: "GALLERY 82",
       status: "ACTIVE",
       completion: 25,
-      lastUpdate: "4 DAYS AGO",
       description: "A high-end streetwear brand by gLYF, blending contemporary fashion with artistic expression through limited edition collections and cultural collaborations.",
       url: {
         main: "https://glyfstudio.com"
@@ -130,6 +276,12 @@ export default function BuildInPublic() {
       icon: <Hammer size={24} className="text-black dark:text-[#ffff00]" />
     }
   ]
+  
+  // Add lastUpdate property to each project based on the most recent update
+  const projects = projectsData.map(project => ({
+    ...project,
+    lastUpdate: getLastUpdateText(getMostRecentUpdateDate(project.updates))
+  }));
   
   const insights = [
     {
@@ -312,6 +464,13 @@ export default function BuildInPublic() {
                         Open App <ArrowUpRight size={14} className="ml-1" />
                       </a>
                     )}
+                    {projects[activeProject].title === "KITESTUDIOS" && (
+                      <button 
+                        className="inline-flex items-center mr-4 border-2 border-black dark:border-white px-3 py-1 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                      >
+                        ALREADY HERE
+                      </button>
+                    )}
                     {projects[activeProject].farcaster && (
                       <a 
                         href={projects[activeProject].farcaster} 
@@ -371,11 +530,14 @@ export default function BuildInPublic() {
                       <p className="text-sm mb-4">{update.content}</p>
                       
                       <div className="flex space-x-4 text-xs">
-                        <button className="flex items-center">
+                        <button 
+                          className="flex items-center hover:text-[#ffff00] transition-colors"
+                          onClick={() => setSelectedUpdate({ projectIndex: activeProject, updateIndex: index })}
+                        >
                           <Eye size={14} className="mr-1" />
                           VIEW DETAILS
                         </button>
-                        <button className="flex items-center">
+                        <button className="flex items-center hover:text-[#ffff00] transition-colors">
                           <MessageCircle size={14} className="mr-1" />
                           DISCUSS
                         </button>
@@ -405,6 +567,91 @@ export default function BuildInPublic() {
           </div>
         </div>
       </div>
+      
+      {/* Update Details Modal */}
+      {selectedUpdate !== null && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <motion.div 
+            className="bg-white dark:bg-black border-2 border-black dark:border-white max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+          >
+            <div className="p-6 border-b-2 border-black dark:border-white relative">
+              <button 
+                className="absolute top-4 right-4 text-black dark:text-white hover:text-[#ffff00] dark:hover:text-[#ffff00] transition-colors"
+                onClick={() => setSelectedUpdate(null)}
+              >
+                ✕
+              </button>
+              
+              <div className="bg-[#ffff00] text-black text-xs font-bold px-2 py-1 inline-block mb-2">
+                {projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].date}
+              </div>
+              
+              <h3 className="industrial-text text-2xl mb-4">
+                {projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].title}
+              </h3>
+              
+              <div className="flex items-center mb-4">
+                <div className="w-6 h-6 bg-white dark:bg-black p-1 border-2 border-black dark:border-white rounded-full mr-2 flex items-center justify-center">
+                  {projects[selectedUpdate.projectIndex].icon}
+                </div>
+                <span className="font-bold">{projects[selectedUpdate.projectIndex].title}</span>
+              </div>
+            </div>
+            
+            <div className="p-6">
+              <div className="prose dark:prose-invert max-w-none">
+                <p className="mb-6">{projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].content}</p>
+                
+                {/* Additional content that could be added to the update object */}
+                {projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].detailedContent && (
+                  <div dangerouslySetInnerHTML={{ __html: projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].detailedContent || '' }} />
+                )}
+                
+                {/* Placeholder for when there's no detailed content */}
+                {!projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].detailedContent && (
+                  <div className="border-l-4 border-[#ffff00] pl-4 py-2 my-4 italic">
+                    More detailed information about this update will be available soon.
+                  </div>
+                )}
+              </div>
+              
+              {/* Images section - could be added to the update object */}
+              {projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].images && 
+                projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].images!.length > 0 && (
+                 <div className="mt-8">
+                   <h4 className="text-lg font-bold mb-4">Images</h4>
+                   <div className="grid grid-cols-2 gap-4">
+                     {projects[selectedUpdate.projectIndex].updates[selectedUpdate.updateIndex].images!.map((image: UpdateImage, idx: number) => (
+                       <div key={idx} className="border-2 border-black dark:border-white">
+                         <img src={image.src} alt={image.alt} className="w-full h-auto" />
+                       </div>
+                     ))}
+                   </div>
+                 </div>
+               )}
+            </div>
+            
+            <div className="p-6 border-t-2 border-black dark:border-white bg-black dark:bg-white text-white dark:text-black">
+              <div className="flex justify-between items-center">
+                <button 
+                  className="bg-[#ffff00] text-black px-3 py-1 text-sm font-medium hover:bg-opacity-80 transition-colors"
+                  onClick={() => setSelectedUpdate(null)}
+                >
+                  CLOSE
+                </button>
+                
+                <button className="flex items-center text-white dark:text-black hover:text-[#ffff00] dark:hover:text-[#ffff00] transition-colors text-sm">
+                  <MessageCircle size={14} className="mr-1" />
+                  SHARE FEEDBACK
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </section>
   )
 } 
