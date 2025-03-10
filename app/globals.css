@@ -507,8 +507,6 @@
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 100%;
   overflow: hidden;
-  background: linear-gradient(to bottom, #000000, #111111);
-  color: #fff;
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -520,8 +518,7 @@
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.9));
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
   letter-spacing: 0.05em;
 }
 
@@ -535,24 +532,46 @@
 .file-system-container .folder-row {
   cursor: pointer;
   transition: background-color 0.2s;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
 }
 
 .file-system-container .folder-row:hover {
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(128, 128, 128, 0.08);
   border-left: 2px solid #ffff00;
   padding-left: 14px;
 }
 
 .file-system-container .file-row {
   transition: background-color 0.2s;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
 }
 
 .file-system-container .file-row:hover {
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(128, 128, 128, 0.08);
   border-left: 2px solid #ffff00;
   padding-left: 14px;
+}
+
+/* Dark mode specific styles */
+.bg-black .file-system-container .folder-row,
+.bg-black .file-system-container .file-row {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.bg-black .file-system-container .folder-row:hover,
+.bg-black .file-system-container .file-row:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Light mode specific styles */
+.bg-white .file-system-container .folder-row,
+.bg-white .file-system-container .file-row {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.bg-white .file-system-container .folder-row:hover,
+.bg-white .file-system-container .file-row:hover {
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
 .file-system-container .file-system-column {
@@ -923,7 +942,6 @@
 
 /* Grid View Card Styles */
 .grid-card {
-  background: linear-gradient(to bottom, #000000, #111111);
   transition: all 0.2s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -947,8 +965,12 @@
   background-color: #ffff00;
 }
 
-.grid-card:hover .grid-card-title {
+.bg-black .grid-card:hover .grid-card-title {
   color: #ffff00;
+}
+
+.bg-white .grid-card:hover .grid-card-title {
+  color: #cccc00;
 }
 
 .grid-card .tag {

@@ -300,39 +300,39 @@ Our component library follows industrial design principles with sharp edges, bol
                   placeholder="Search dashboard..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className={`w-full border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-gray-900'} text-white px-3 py-2 pl-10 focus:outline-none focus:border-[#ffff00] transition-colors rounded`}
+                  className={`w-full border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text} px-3 py-2 pl-10 focus:outline-none focus:border-[#ffff00] transition-colors rounded`}
                 />
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 ${uiColors.text} opacity-50`} />
               </div>
               
               {/* Category Filter Buttons */}
               <div className="flex flex-wrap gap-2 w-full md:w-auto justify-center md:justify-start">
                 <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'all' ? `bg-[#ffff00] text-black` : `border ${uiColors.border}`}`}
+                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'all' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
                   onClick={() => setActiveFilter('all')}
                 >
                   ALL
                 </button>
                 <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'design' ? `bg-[#ffff00] text-black` : `border ${uiColors.border}`}`}
+                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'design' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
                   onClick={() => setActiveFilter('design')}
                 >
                   DESIGN
                 </button>
                 <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'code' ? `bg-[#ffff00] text-black` : `border ${uiColors.border}`}`}
+                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'code' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
                   onClick={() => setActiveFilter('code')}
                 >
                   CODE
                 </button>
                 <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'media' ? `bg-[#ffff00] text-black` : `border ${uiColors.border}`}`}
+                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'media' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
                   onClick={() => setActiveFilter('media')}
                 >
                   MEDIA
                 </button>
                 <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'concepts' ? `bg-[#ffff00] text-black` : `border ${uiColors.border}`}`}
+                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'concepts' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
                   onClick={() => setActiveFilter('concepts')}
                 >
                   CONCEPTS
@@ -342,14 +342,14 @@ Our component library follows industrial design principles with sharp edges, bol
               {/* View Toggle */}
               <div className={`flex border ${uiColors.border} w-full md:w-auto justify-center md:justify-start mt-4 md:mt-0 rounded overflow-hidden`}>
                 <button 
-                  className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'grid' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-gray-900'} text-white`}`}
+                  className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'grid' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text}`}`}
                   onClick={() => setViewMode('grid')}
                   aria-label="Grid View"
                 >
                   <Grid className="h-5 w-5 mx-auto" />
                 </button>
                 <button 
-                  className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'file' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-gray-900'} text-white`}`}
+                  className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'file' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text}`}`}
                   onClick={() => setViewMode('file')}
                   aria-label="File View"
                 >
@@ -365,7 +365,7 @@ Our component library follows industrial design principles with sharp edges, bol
                   <div 
                     key={resource.slug}
                     onClick={() => handleOpenDocument(resource)}
-                    className={`grid-card border ${uiColors.border} p-6 flex flex-col h-full cursor-pointer`}
+                    className={`grid-card border ${uiColors.border} ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'} p-6 flex flex-col h-full cursor-pointer`}
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex items-center">
@@ -397,9 +397,9 @@ Our component library follows industrial design principles with sharp edges, bol
                 ))}
               </div>
             ) : (
-              <div className={`file-system-container border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-gray-900'} text-white`}>
+              <div className={`file-system-container border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-white'} ${isDarkMode ? 'text-white' : 'text-black'}`}>
                 {/* File System Header */}
-                <div className="file-system-header">
+                <div className={`file-system-header ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
                   <div className="file-system-column name-column">NAME</div>
                   <div className="file-system-column date-column">DATE ADDED</div>
                   <div className="file-system-column size-column">SIZE</div>
