@@ -47,22 +47,6 @@ export default function Home() {
             c/o 2024
           </div>
           
-          <div className="absolute top-6 right-6 flex items-center space-x-3">
-            {/* Future mode toggle button can remain if needed */}
-            <button
-              onClick={toggleFutureMode}
-              className="text-xs font-bold uppercase tracking-wider border-2 border-black dark:border-white px-3 py-1 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
-            >
-              {isFutureMode ? 'CLASSIC MODE' : 'FUTURE MODE'}
-            </button>
-            <a
-              href="/api/auth/signin/google"
-              className="text-xs font-bold uppercase tracking-wider border-2 border-black dark:border-white px-3 py-1 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
-            >
-              SIGN IN
-            </a>
-          </div>
-          
           <div className="absolute bottom-6 left-6 text-xs font-bold uppercase tracking-wider">
             "FOR DISPLAY ONLY"
           </div>
