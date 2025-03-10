@@ -15,6 +15,21 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    domains: ['localhost'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1337',
+        pathname: '/uploads/**',
+      },
+      // Add your production Strapi URL when deployed
+      // {
+      //   protocol: 'https',
+      //   hostname: 'your-strapi-domain.com',
+      //   pathname: '/uploads/**',
+      // },
+    ],
   },
   experimental: {
     webpackBuildWorker: true,

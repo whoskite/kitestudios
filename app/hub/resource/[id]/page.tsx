@@ -17,6 +17,14 @@ interface ResourcePageProps {
 export async function generateMetadata({ params }: ResourcePageProps): Promise<Metadata> {
   try {
     const { data } = await getResourceById(params.id);
+    
+    if (!data || !data.attributes) {
+      return {
+        title: 'Resource Not Found - Kite Studios Hub',
+        description: 'The requested resource could not be found.',
+      };
+    }
+    
     const resource = data.attributes;
     
     return {
@@ -34,6 +42,35 @@ export async function generateMetadata({ params }: ResourcePageProps): Promise<M
 export default async function ResourceDetailPage({ params }: ResourcePageProps) {
   try {
     const { data } = await getResourceById(params.id);
+    
+    // Handle case where data is null (Strapi not available or resource not found)
+    if (!data || !data.attributes) {
+      return (
+        <div className="container mx-auto px-4 py-8">
+          <div className="mb-8">
+            <Button variant="ghost" asChild>
+              <Link href="/hub/resource" className="flex items-center">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Resources
+              </Link>
+            </Button>
+          </div>
+          
+          <div className="text-center py-12">
+            <h1 className="text-3xl font-bold mb-4">Resource Not Found</h1>
+            <p className="text-muted-foreground mb-8">
+              The resource you're looking for is not available or doesn't exist.
+            </p>
+            <Button asChild>
+              <Link href="/hub/resource">
+                Browse All Resources
+              </Link>
+            </Button>
+          </div>
+        </div>
+      );
+    }
+    
     const resource = data.attributes;
     
     const imageUrl = resource.image?.data?.attributes?.url 

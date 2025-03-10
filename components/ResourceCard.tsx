@@ -16,31 +16,41 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
   
   const imageUrl = image?.data?.attributes?.url 
     ? `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${image.data.attributes.url}`
-    : '/placeholder-image.jpg';
+    : '/images/placeholder-image.jpg';
   
-  const formattedDate = new Date(publishedAt).toLocaleDateString('en-US', {
-    year: 'numeric', 
-    month: 'short', 
-    day: 'numeric'
-  });
+  const formattedDate = publishedAt 
+    ? new Date(publishedAt).toLocaleDateString('en-US', {
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric'
+      })
+    : 'No date';
+
+  const cleanDescription = description 
+    ? description.replace(/<[^>]*>/g, '')
+    : 'No description available';
 
   return (
     <Card className="h-full flex flex-col overflow-hidden">
       <div className="relative w-full h-48">
         <Image 
           src={imageUrl}
-          alt={title}
+          alt={title || 'Resource'}
           fill
           className="object-cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = '/images/placeholder-image.jpg';
+          }}
         />
       </div>
       <CardHeader>
         <div className="flex justify-between items-start mb-2">
-          <Badge>{category}</Badge>
+          <Badge>{category || 'Uncategorized'}</Badge>
           <span className="text-xs text-muted-foreground">{formattedDate}</span>
         </div>
-        <CardTitle className="line-clamp-2">{title}</CardTitle>
-        <CardDescription className="line-clamp-3">{description}</CardDescription>
+        <CardTitle className="line-clamp-2">{title || 'Untitled Resource'}</CardTitle>
+        <CardDescription className="line-clamp-3">{cleanDescription}</CardDescription>
       </CardHeader>
       <CardFooter className="mt-auto pt-4">
         <div className="flex gap-2 w-full">
