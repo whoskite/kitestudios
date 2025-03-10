@@ -167,6 +167,12 @@ export default function Home() {
                 <a href="http://twitter.com/tomykite" target="_blank" rel="noopener noreferrer" className={`text-xs uppercase tracking-wider ${isFutureMode ? 'ai-badge' : 'off-white-arrow'}`}>
                   {isFutureMode ? <span className="ai-badge-text">TWITTER</span> : 'TWITTER'}
                 </a>
+                <a href="https://warpcast.com/kitestudios" target="_blank" rel="noopener noreferrer" className={`text-xs uppercase tracking-wider ${isFutureMode ? 'ai-badge' : 'off-white-arrow'}`}>
+                  {isFutureMode ? <span className="ai-badge-text">WARPCAST</span> : 'WARPCAST'}
+                </a>
+                <a href="https://warpcast.com/~/channel/funquotes" target="_blank" rel="noopener noreferrer" className={`text-xs uppercase tracking-wider ${isFutureMode ? 'ai-badge' : 'off-white-arrow'}`}>
+                  {isFutureMode ? <span className="ai-badge-text">FUNQUOTES</span> : 'FUNQUOTES'} <span className="text-[10px]">(COMMUNITY)</span>
+                </a>
                 <a href="#" className={`text-xs uppercase tracking-wider opacity-50 cursor-not-allowed ${isFutureMode ? 'ai-badge opacity-50' : 'off-white-arrow opacity-50'}`}>
                   {isFutureMode ? <span className="ai-badge-text">DISCORD</span> : 'DISCORD'} <span className="text-[10px]">(COMING SOON)</span>
                 </a>

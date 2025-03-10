@@ -389,9 +389,25 @@ export default function HubPage() {
           </div>
           
           {/* Footer */}
-          <div className={`p-4 border-t ${uiColors.border} grid grid-cols-2`}>
-            <div className="font-bold text-sm">"KITESTUDIOS"</div>
-            <div className="font-bold text-sm text-right">"EST. 2024"</div>
+          <div className={`p-4 border-t ${uiColors.border}`}>
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+              <div className="font-bold text-sm mb-2 md:mb-0">"KITESTUDIOS"</div>
+              <div className="flex flex-wrap gap-4 text-xs">
+                <a href="https://instagram.com/kitestudios6" target="_blank" rel="noopener noreferrer" className={`uppercase hover:opacity-70`}>
+                  INSTAGRAM
+                </a>
+                <a href="http://twitter.com/tomykite" target="_blank" rel="noopener noreferrer" className={`uppercase hover:opacity-70`}>
+                  TWITTER
+                </a>
+                <a href="https://warpcast.com/kitestudios" target="_blank" rel="noopener noreferrer" className={`uppercase hover:opacity-70`}>
+                  WARPCAST
+                </a>
+                <a href="https://warpcast.com/~/channel/funquotes" target="_blank" rel="noopener noreferrer" className={`uppercase hover:opacity-70`}>
+                  FUNQUOTES <span className="text-[10px]">(COMMUNITY)</span>
+                </a>
+              </div>
+              <div className="font-bold text-sm mt-2 md:mt-0">"EST. 2024"</div>
+            </div>
           </div>
         </div>
       </div>
