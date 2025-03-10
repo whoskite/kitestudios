@@ -507,6 +507,10 @@
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 100%;
   overflow: hidden;
+  background: linear-gradient(to bottom, #000000, #111111);
+  color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .file-system-container .file-system-header {
@@ -517,10 +521,8 @@
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.bg-white .file-system-container .file-system-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.9));
+  letter-spacing: 0.05em;
 }
 
 .file-system-container .file-system-row {
@@ -536,16 +538,10 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.bg-white .file-system-container .folder-row {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
 .file-system-container .folder-row:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.bg-white .file-system-container .folder-row:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-left: 2px solid #ffff00;
+  padding-left: 14px;
 }
 
 .file-system-container .file-row {
@@ -553,16 +549,10 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.bg-white .file-system-container .file-row {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
 .file-system-container .file-row:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.bg-white .file-system-container .file-row:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-left: 2px solid #ffff00;
+  padding-left: 14px;
 }
 
 .file-system-container .file-system-column {
@@ -929,5 +919,43 @@
 
 .dark .prose code {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Grid View Card Styles */
+.grid-card {
+  background: linear-gradient(to bottom, #000000, #111111);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.grid-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 0, 0.5);
+}
+
+.grid-card:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background-color: #ffff00;
+}
+
+.grid-card:hover .grid-card-title {
+  color: #ffff00;
+}
+
+.grid-card .tag {
+  transition: all 0.2s ease;
+}
+
+.grid-card:hover .tag {
+  border-color: rgba(255, 255, 0, 0.3);
 }
 

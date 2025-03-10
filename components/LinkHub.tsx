@@ -300,39 +300,39 @@ Our component library follows industrial design principles with sharp edges, bol
                   placeholder="Search dashboard..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className={`w-full border ${uiColors.border} bg-transparent px-3 py-2 pl-10 focus:outline-none focus:border-${isDarkMode ? 'white' : 'black'}`}
+                  className={`w-full border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-gray-900'} text-white px-3 py-2 pl-10 focus:outline-none focus:border-[#ffff00] transition-colors rounded`}
                 />
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               </div>
               
               {/* Category Filter Buttons */}
               <div className="flex flex-wrap gap-2 w-full md:w-auto justify-center md:justify-start">
                 <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase ${activeFilter === 'all' ? `${uiColors.activeBg} ${uiColors.activeText}` : `border ${uiColors.border}`}`}
+                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'all' ? `bg-[#ffff00] text-black` : `border ${uiColors.border}`}`}
                   onClick={() => setActiveFilter('all')}
                 >
                   ALL
                 </button>
                 <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase ${activeFilter === 'design' ? `${uiColors.activeBg} ${uiColors.activeText}` : `border ${uiColors.border}`}`}
+                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'design' ? `bg-[#ffff00] text-black` : `border ${uiColors.border}`}`}
                   onClick={() => setActiveFilter('design')}
                 >
                   DESIGN
                 </button>
                 <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase ${activeFilter === 'code' ? `${uiColors.activeBg} ${uiColors.activeText}` : `border ${uiColors.border}`}`}
+                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'code' ? `bg-[#ffff00] text-black` : `border ${uiColors.border}`}`}
                   onClick={() => setActiveFilter('code')}
                 >
                   CODE
                 </button>
                 <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase ${activeFilter === 'media' ? `${uiColors.activeBg} ${uiColors.activeText}` : `border ${uiColors.border}`}`}
+                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'media' ? `bg-[#ffff00] text-black` : `border ${uiColors.border}`}`}
                   onClick={() => setActiveFilter('media')}
                 >
                   MEDIA
                 </button>
                 <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase ${activeFilter === 'concepts' ? `${uiColors.activeBg} ${uiColors.activeText}` : `border ${uiColors.border}`}`}
+                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'concepts' ? `bg-[#ffff00] text-black` : `border ${uiColors.border}`}`}
                   onClick={() => setActiveFilter('concepts')}
                 >
                   CONCEPTS
@@ -340,16 +340,16 @@ Our component library follows industrial design principles with sharp edges, bol
               </div>
               
               {/* View Toggle */}
-              <div className={`flex border ${uiColors.border} w-full md:w-auto justify-center md:justify-start mt-4 md:mt-0`}>
+              <div className={`flex border ${uiColors.border} w-full md:w-auto justify-center md:justify-start mt-4 md:mt-0 rounded overflow-hidden`}>
                 <button 
-                  className={`p-2 flex-1 md:flex-auto ${viewMode === 'grid' ? `${uiColors.activeBg} ${uiColors.activeText}` : ''}`}
+                  className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'grid' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-gray-900'} text-white`}`}
                   onClick={() => setViewMode('grid')}
                   aria-label="Grid View"
                 >
                   <Grid className="h-5 w-5 mx-auto" />
                 </button>
                 <button 
-                  className={`p-2 flex-1 md:flex-auto ${viewMode === 'file' ? `${uiColors.activeBg} ${uiColors.activeText}` : ''}`}
+                  className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'file' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-gray-900'} text-white`}`}
                   onClick={() => setViewMode('file')}
                   aria-label="File View"
                 >
@@ -365,7 +365,7 @@ Our component library follows industrial design principles with sharp edges, bol
                   <div 
                     key={resource.slug}
                     onClick={() => handleOpenDocument(resource)}
-                    className={`border ${uiColors.border} ${uiColors.hoverBg} transition-colors p-6 flex flex-col h-full cursor-pointer`}
+                    className={`grid-card border ${uiColors.border} p-6 flex flex-col h-full cursor-pointer`}
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex items-center">
@@ -375,13 +375,13 @@ Our component library follows industrial design principles with sharp edges, bol
                       <div className="text-xs opacity-70">{resource.date}</div>
                     </div>
                     
-                    <h3 className="text-xl font-bold mb-2">{resource.title}</h3>
+                    <h3 className="grid-card-title text-xl font-bold mb-2 transition-colors">{resource.title}</h3>
                     <p className="text-sm mb-4 flex-grow opacity-80">{resource.description}</p>
                     
                     <div className="mt-auto">
                       <div className="flex flex-wrap gap-2 mb-3">
                         {resource.tags.map((tag) => (
-                          <span key={tag} className={`text-xs px-2 py-1 border ${uiColors.border}`}>
+                          <span key={tag} className={`tag text-xs px-2 py-1 border ${uiColors.border}`}>
                             {tag}
                           </span>
                         ))}
@@ -397,7 +397,7 @@ Our component library follows industrial design principles with sharp edges, bol
                 ))}
               </div>
             ) : (
-              <div className={`file-system-container border ${uiColors.border}`}>
+              <div className={`file-system-container border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-gray-900'} text-white`}>
                 {/* File System Header */}
                 <div className="file-system-header">
                   <div className="file-system-column name-column">NAME</div>
