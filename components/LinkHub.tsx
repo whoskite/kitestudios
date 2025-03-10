@@ -400,7 +400,7 @@ Our component library follows industrial design principles with sharp edges, bol
               <div className={`file-system-container border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-white'} ${isDarkMode ? 'text-white' : 'text-black'}`}>
                 {/* File System Header */}
                 <div className={`file-system-header ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
-                  <div className="file-system-column name-column font-bold">NAME</div>
+                  <div className="file-system-column name-column">NAME</div>
                   <div className="file-system-column date-column">DATE ADDED</div>
                   <div className="file-system-column size-column">SIZE</div>
                   <div className="file-system-column kind-column">KIND</div>

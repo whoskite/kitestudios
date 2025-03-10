@@ -507,155 +507,71 @@
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 100%;
   overflow: hidden;
-  border-radius: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  position: relative;
-}
-
-/* Add subtle yellow accent to the top of the container */
-.file-system-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #ffff00;
-  z-index: 2;
-}
-
-/* Add subtle grid pattern to container */
-.bg-black .file-system-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 20px 20px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.bg-white .file-system-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-  background-size: 20px 20px;
-  pointer-events: none;
-  z-index: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .file-system-container .file-system-header {
   font-weight: bold;
   text-transform: uppercase;
-  padding: 12px 16px;
+  padding: 8px 16px;
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
   align-items: center;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
   letter-spacing: 0.05em;
-  position: relative;
-  z-index: 1;
-  border-bottom-width: 2px;
-}
-
-/* Add subtle stripe to header */
-.bg-white .file-system-container .file-system-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-image: linear-gradient(to right, #000, #000 4px, transparent 4px, transparent 8px);
-  background-size: 8px 2px;
-}
-
-.bg-black .file-system-container .file-system-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-image: linear-gradient(to right, #fff, #fff 4px, transparent 4px, transparent 8px);
-  background-size: 8px 2px;
 }
 
 .file-system-container .file-system-row {
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
   align-items: center;
-  padding: 10px 16px;
-  position: relative;
-  z-index: 1;
+  padding: 8px 16px;
 }
 
 .file-system-container .folder-row {
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s;
   border-bottom: 1px solid rgba(128, 128, 128, 0.1);
-  border-left: 0px solid #ffff00;
 }
 
 .file-system-container .folder-row:hover {
-  background-color: rgba(128, 128, 128, 0.05);
-  border-left: 3px solid #ffff00;
-  padding-left: 13px;
+  background-color: rgba(128, 128, 128, 0.08);
+  border-left: 2px solid #ffff00;
+  padding-left: 14px;
 }
 
 .file-system-container .file-row {
-  transition: all 0.2s ease;
+  transition: background-color 0.2s;
   border-bottom: 1px solid rgba(128, 128, 128, 0.1);
-  border-left: 0px solid #ffff00;
 }
 
 .file-system-container .file-row:hover {
-  background-color: rgba(128, 128, 128, 0.05);
-  border-left: 3px solid #ffff00;
-  padding-left: 13px;
-}
-
-/* Add subtle animation for row selection */
-@keyframes row-highlight {
-  0% { background-color: rgba(255, 255, 0, 0.1); }
-  100% { background-color: transparent; }
-}
-
-.file-system-container .folder-row:active,
-.file-system-container .file-row:active {
-  animation: row-highlight 0.5s ease;
+  background-color: rgba(128, 128, 128, 0.08);
+  border-left: 2px solid #ffff00;
+  padding-left: 14px;
 }
 
 /* Dark mode specific styles */
 .bg-black .file-system-container .folder-row,
 .bg-black .file-system-container .file-row {
-  border-bottom-color: rgba(255, 255, 255, 0.07);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 .bg-black .file-system-container .folder-row:hover,
 .bg-black .file-system-container .file-row:hover {
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 /* Light mode specific styles */
 .bg-white .file-system-container .folder-row,
 .bg-white .file-system-container .file-row {
-  border-bottom-color: rgba(0, 0, 0, 0.07);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
 }
 
 .bg-white .file-system-container .folder-row:hover,
 .bg-white .file-system-container .file-row:hover {
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
 .file-system-container .file-system-column {
@@ -667,25 +583,6 @@
 .file-system-container .name-column {
   display: flex;
   align-items: center;
-  font-weight: 500;
-}
-
-/* Enhance icons */
-.file-system-container .name-column svg {
-  margin-right: 8px;
-  opacity: 0.8;
-}
-
-.bg-black .file-system-container .folder-row:hover svg,
-.bg-black .file-system-container .file-row:hover svg {
-  color: #ffff00;
-  opacity: 1;
-}
-
-.bg-white .file-system-container .folder-row:hover svg,
-.bg-white .file-system-container .file-row:hover svg {
-  color: #cccc00;
-  opacity: 1;
 }
 
 .file-system-container .date-column,
@@ -693,7 +590,7 @@
 .file-system-container .kind-column,
 .file-system-container .author-column {
   font-size: 0.875rem;
-  opacity: 0.75;
+  opacity: 0.8;
 }
 
 /* Future mode file system styles */
