@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Search, FileIcon, Github, FileText, Video, FolderIcon, ChevronDown, ChevronRight, Grid, List, Plus, User, X } from 'lucide-react'
+import { Search, FileIcon, Github, FileText, Video, FolderIcon, ChevronDown, ChevronRight, Grid, List, Plus, User, X, BookOpen } from 'lucide-react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 
@@ -236,6 +236,18 @@ Our component library follows industrial design principles with sharp edges, bol
   return (
     <section className={`h-full ${uiColors.bg} ${uiColors.text}`}>
       <div className="container mx-auto px-4 h-full py-6">
+        {/* Add Strapi Resources Link - prominently displayed */}
+        <div className="mb-6 border p-4 rounded">
+          <Link 
+            href="/hub/resource" 
+            className={`flex items-center ${uiColors.hoverBg} transition-colors p-2 -m-2 rounded`}
+          >
+            <BookOpen size={18} className="mr-2" />
+            <span className="font-bold">BROWSE HUB RESOURCES</span>
+            <ChevronRight size={18} className="ml-auto" />
+          </Link>
+        </div>
+        
         {selectedDocument ? (
           // Document View
           <div className={`${uiColors.bg} border ${uiColors.border} h-full`}>
