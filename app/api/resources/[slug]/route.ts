@@ -4,6 +4,46 @@ import { NextRequest, NextResponse } from 'next/server'
 // For now, we'll use a mock database
 const mockResources = [
   {
+    slug: 'hello-world',
+    title: 'Hello World',
+    description: 'A simple Hello World document created in the Hub Dashboard.',
+    url: 'https://example.com/hello-world',
+    type: 'document',
+    tags: ['documentation', 'example'],
+    date: '2024-05-15',
+    content: `
+# Hello World
+
+## Introduction
+This is a simple Hello World document created in the KITESTUDIOS Hub Dashboard.
+
+## ASCII Art Globe
+\`\`\`
+         _____
+     ,-:´     \`:-.
+   ,´           \`.
+  /               \\
+ |                 |
+ |                 |
+ |                 |
+  \\               /
+   \`.           ,´
+     \`-._____.-´
+\`\`\`
+
+## Content
+Hello, World! This is a test document to demonstrate the document creation functionality in the Hub Dashboard.
+
+## Purpose
+This document serves as a basic example of content that can be created and shared within the KITESTUDIOS ecosystem.
+
+## Next Steps
+Feel free to edit this document or create new ones to share information, ideas, and resources with the team.
+    `,
+    author: 'KITESTUDIOS Team',
+    size: '1.5 KB'
+  },
+  {
     slug: 'design-system-overview',
     title: 'KITESTUDIOS Design System Overview',
     description: 'Comprehensive documentation of our design system including typography, colors, and components.',

@@ -62,6 +62,46 @@ export default function LinkHub({ isDarkMode }: LinkHubProps) {
   // State for resources - keep only one document
   const [resources, setResources] = useState<Resource[]>([
     {
+      title: "Hello World",
+      description: "A simple Hello World document created in the Hub Dashboard.",
+      url: "https://example.com/hello-world",
+      type: "document",
+      tags: ["documentation", "example"],
+      date: "2024-05-15",
+      size: "1.5 KB",
+      modified: "2024-05-15",
+      slug: "hello-world",
+      category: "design",
+      author: "KITESTUDIOS Team",
+      content: `# Hello World
+
+## Introduction
+This is a simple Hello World document created in the KITESTUDIOS Hub Dashboard.
+
+## ASCII Art Globe
+\`\`\`
+         _____
+     ,-:´     \`:-.
+   ,´           \`.
+  /               \\
+ |                 |
+ |                 |
+ |                 |
+  \\               /
+   \`.           ,´
+     \`-._____.-´
+\`\`\`
+
+## Content
+Hello, World! This is a test document to demonstrate the document creation functionality in the Hub Dashboard.
+
+## Purpose
+This document serves as a basic example of content that can be created and shared within the KITESTUDIOS ecosystem.
+
+## Next Steps
+Feel free to edit this document or create new ones to share information, ideas, and resources with the team.`
+    },
+    {
       title: "KITESTUDIOS Design System Overview",
       description: "Comprehensive documentation of our design system including typography, colors, and components.",
       url: "https://example.com/design-system",
@@ -135,7 +175,7 @@ Our component library follows industrial design principles with sharp edges, bol
 
   // Define folder structure - simplified with just one folder
   const folderStructure: FolderStructure = {
-    "DOCUMENTS": ["design-system-overview"]
+    "DOCUMENTS": ["hello-world", "design-system-overview"]
   };
 
   // Function to toggle folder expansion
