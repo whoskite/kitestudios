@@ -82,10 +82,16 @@ export default function OffWhiteNav() {
       await signOut({ callbackUrl: '/' })
     } else {
       try {
-        await signIn('google', { callbackUrl: '/' })
+        console.log("Attempting to sign in with Google...");
+        // Use redirect: true to ensure a full page redirect
+        await signIn('google', { 
+          callbackUrl: '/',
+          redirect: true
+        });
       } catch (error) {
+        console.error("Sign-in error:", error);
         // If there's an error, redirect to the auth help page
-        window.location.href = '/auth-help'
+        window.location.href = '/auth-help';
       }
     }
   }

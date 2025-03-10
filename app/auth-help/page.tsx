@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import OffWhiteNav from '@/components/OffWhiteNav'
 import Link from 'next/link'
-import { Copy, Check } from 'lucide-react'
+import { Copy, Check, AlertTriangle } from 'lucide-react'
 
 export default function AuthHelpPage() {
   const [baseUrl, setBaseUrl] = useState('')
@@ -31,10 +31,21 @@ export default function AuthHelpPage() {
             <h1 className="text-3xl font-bold mb-8 industrial-text">GOOGLE OAUTH CONFIGURATION</h1>
             
             <div className="border-2 border-black dark:border-white p-8 mb-8">
-              <h2 className="text-xl font-bold mb-4">Error: redirect_uri_mismatch</h2>
+              <div className="flex items-center mb-4">
+                <AlertTriangle className="h-6 w-6 mr-2 text-red-500" />
+                <h2 className="text-xl font-bold">Sign-in Error</h2>
+              </div>
+              
               <p className="mb-4">
-                This error occurs when the redirect URI in your Google Cloud Console doesn't match the one NextAuth is using.
+                There was a problem signing in with Google. This could be due to one of the following reasons:
               </p>
+              
+              <ul className="list-disc pl-5 mb-6 space-y-2">
+                <li>The Google OAuth configuration is incorrect</li>
+                <li>Your email is not in the allowed list</li>
+                <li>There's a network issue</li>
+                <li>The redirect URI doesn't match what's configured in Google Cloud Console</li>
+              </ul>
               
               <h3 className="text-lg font-bold mt-6 mb-2">Your Redirect URI:</h3>
               <div className="flex items-center mb-6">
@@ -67,6 +78,11 @@ export default function AuthHelpPage() {
                   <li>Any other domains where your app will run</li>
                 </ul>
               </div>
+              
+              <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500">
+                <h4 className="font-bold">Try clearing your cookies:</h4>
+                <p>Sometimes authentication issues can be resolved by clearing your browser cookies and cache.</p>
+              </div>
             </div>
             
             <div className="flex justify-between">
@@ -78,7 +94,7 @@ export default function AuthHelpPage() {
               </Link>
               <Link 
                 href="/admin"
-                className="border-2 border-black dark:border-white px-4 py-2 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+                className="border-2 border-black dark:border-white px-4 py-2 bg-black text-white dark:bg-white dark:text-black hover:opacity-90 transition-colors"
               >
                 Try Login Again
               </Link>

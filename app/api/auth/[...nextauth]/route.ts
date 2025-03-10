@@ -19,18 +19,12 @@ const handler = NextAuth({
   // Customize pages
   pages: {
     signIn: '/admin',
-    error: '/admin',
+    error: '/auth-help', // Redirect to auth-help page on error
   },
   // Callbacks
   callbacks: {
     async signIn({ user, account, profile }) {
-      // Only allow specific email domains or users
-      // For example, only allow your company email
-      // This is optional but recommended for security
-      const allowedEmails = process.env.ALLOWED_EMAILS?.split(',') || []
-      if (allowedEmails.length > 0 && user.email) {
-        return allowedEmails.includes(user.email)
-      }
+      // Allow all users to sign in
       return true
     },
     async session({ session, token }) {
@@ -39,6 +33,13 @@ const handler = NextAuth({
         session.user.role = 'admin' // You can implement more complex role logic here
       }
       return session
+    },
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url
+      return baseUrl
     },
   },
   // Enable debug in development
