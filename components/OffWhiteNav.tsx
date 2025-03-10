@@ -1,208 +1,269 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, Menu, ChevronRight } from 'lucide-react'
+import { useSession, signIn, signOut } from "next-auth/react"
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { Menu, X, LogIn, LogOut, User, Lock, Sun, Moon } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
 export default function OffWhiteNav() {
   const [isOpen, setIsOpen] = useState(false)
-  const [activeIndex, setActiveIndex] = useState(-1)
-  const [isMobile, setIsMobile] = useState(true)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const { data: session, status } = useSession()
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
-  // Check if we're on mobile or desktop
+  // After mounting, we can safely show the UI
   useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    
-    // Initial check
-    checkIfMobile()
-    
-    // Add event listener for window resize
-    window.addEventListener('resize', checkIfMobile)
-    
-    // Cleanup
-    return () => window.removeEventListener('resize', checkIfMobile)
+    setMounted(true)
   }, [])
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen)
-    setActiveIndex(-1) // Reset active index when toggling menu
+  // Handle scroll event to change nav background
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Toggle theme function
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
-  const handleMouseEnter = (index: number) => {
-    setActiveIndex(index)
-  }
-
-  const handleMouseLeave = () => {
-    setActiveIndex(-1)
-  }
-
+  // Menu items
   const menuItems = [
-    { label: "HOME", href: "#" },
-    { label: "MANIFESTO", href: "#manifesto" },
-    { label: "BUILD", href: "#build" },
-    // { label: "CONTACT", href: "#" }, // Disabled
+    { label: "HOME", href: "/" },
+    { label: "MANIFESTO", href: "/#manifesto" },
+    { label: "BUILD", href: "/#build" },
+    { 
+      label: "HUB", 
+      href: "/hub",
+      protected: true
+    },
+    // { label: "CONTACT", href: "#contact" },
   ]
 
-  // Variants for staggered animations
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { 
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+  // Animation variants
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      x: "100%",
+      transition: {
+        duration: 0.3,
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+        when: "afterChildren"
       }
     },
-    exit: {
-      opacity: 0,
+    open: {
+      opacity: 1,
+      x: 0,
       transition: {
-        staggerChildren: 0.05,
-        staggerDirection: -1
+        duration: 0.3,
+        staggerChildren: 0.1,
+        staggerDirection: 1,
+        when: "beforeChildren"
       }
     }
   }
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
-    exit: { y: -20, opacity: 0 }
+    closed: { opacity: 0, x: 20 },
+    open: { opacity: 1, x: 0 }
   }
 
-  // Mobile and desktop variants
-  const mobileMenuVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-    exit: { opacity: 0 }
-  }
-
-  const desktopMenuVariants = {
-    hidden: { x: "-100%" },
-    visible: { x: 0 },
-    exit: { x: "-100%" }
+  // Handle login/logout
+  const handleAuth = async () => {
+    if (status === 'authenticated') {
+      await signOut({ callbackUrl: '/' })
+    } else {
+      try {
+        await signIn('google', { callbackUrl: '/' })
+      } catch (error) {
+        // If there's an error, redirect to the auth help page
+        window.location.href = '/auth-help'
+      }
+    }
   }
 
   return (
-    <>
-      <button 
-        onClick={toggleMenu} 
-        className="fixed top-6 left-6 md:left-24 z-50 flex items-center justify-center p-2 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200"
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-      >
-        <span className="text-xs font-bold uppercase tracking-wider mr-2">MENU</span>
-        {isOpen ? <X size={16} /> : <Menu size={16} />}
-      </button>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'py-2 bg-white/90 dark:bg-black/90 backdrop-blur-sm' : 'py-4'}`}>
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <Link href="/" className="industrial-text text-2xl font-bold">
+            "KITESTUDIOS"
+          </Link>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={isMobile ? mobileMenuVariants : desktopMenuVariants}
-            transition={{ duration: 0.3 }}
-            className={isMobile 
-              ? 'fixed inset-0 z-40 bg-white dark:bg-black off-white-grid off-white-caution overflow-auto' // Full screen for mobile
-              : 'nav-sidebar bg-white dark:bg-black off-white-grid off-white-caution overflow-auto' // Sidebar for desktop using the new class
-            }
-          >
-            <div className={`text-xs font-bold uppercase tracking-wider px-2 py-1 border-2 border-black dark:border-white ${
-              isMobile 
-                ? 'absolute top-6 right-6' 
-                : 'absolute top-6 right-4'
-            }`}>
-              "NAVIGATION"
-            </div>
-
-            <div className={`flex flex-col items-center ${
-              isMobile 
-                ? 'justify-center min-h-full py-20' // Center content for mobile
-                : 'justify-start min-h-full py-24' // Top-aligned content for desktop
-            }`}>
-              <motion.nav 
-                className="flex flex-col items-center w-full px-4"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-8">
+            {menuItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-sm font-bold hover:text-[#ffff00] transition-colors flex items-center"
               >
-                {menuItems.map((item, index) => (
-                  <motion.div
-                    key={item.label}
-                    className="w-full max-w-md my-2"
-                    variants={itemVariants}
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <a
-                      href={item.href}
-                      className={`industrial-text ${
-                        isMobile 
-                          ? 'text-3xl md:text-4xl' // Larger text for mobile
-                          : 'text-2xl' // Smaller text for desktop sidebar
-                      } relative group flex items-center justify-between w-full p-3 border-2 ${
-                        activeIndex === index 
-                          ? 'border-[#ffff00]' 
-                          : 'border-transparent hover:border-black dark:hover:border-white'
-                      } transition-all duration-200`}
-                      onClick={toggleMenu}
-                    >
-                      <div className="flex items-center">
-                        <motion.div 
-                          className={`w-2 h-2 mr-3 ${activeIndex === index ? 'bg-[#ffff00]' : 'bg-black dark:bg-white'}`}
-                          animate={{ 
-                            scale: activeIndex === index ? [1, 1.2, 1] : 1
-                          }}
-                          transition={{ 
-                            duration: 0.5, 
-                            repeat: activeIndex === index ? Infinity : 0,
-                            repeatType: "reverse"
-                          }}
-                        />
-                        <span className="off-white-quote">{item.label}</span>
-                      </div>
-                      
-                      <motion.div
-                        animate={{ 
-                          x: activeIndex === index ? [0, 5, 0] : 0,
-                          opacity: activeIndex === index ? 1 : 0
-                        }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <ChevronRight size={20} className={activeIndex === index ? "text-[#ffff00]" : ""} />
-                      </motion.div>
-                      
-                      <motion.div 
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-black dark:bg-white"
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: activeIndex === index ? 1 : 0 }}
-                        transition={{ duration: 0.3 }}
+                {item.label}
+                {item.protected && status !== 'authenticated' && (
+                  <Lock className="ml-1 h-3 w-3" />
+                )}
+              </Link>
+            ))}
+            
+            {/* Auth Button */}
+            <button
+              onClick={handleAuth}
+              className="flex items-center space-x-2 border-2 border-black dark:border-white px-3 py-1 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+            >
+              {status === 'authenticated' ? (
+                <>
+                  <div className="flex items-center">
+                    {session?.user?.image && (
+                      <img 
+                        src={session.user.image} 
+                        alt={session.user.name || 'User'} 
+                        className="w-5 h-5 rounded-full mr-2"
                       />
-                    </a>
-                  </motion.div>
-                ))}
-              </motion.nav>
-              
-              <motion.div 
-                className={`flex justify-between px-6 border-t-2 border-black dark:border-white pt-4 mt-6 w-full ${
-                  isMobile ? 'absolute bottom-6 left-0 right-0' : 'mt-auto mb-6'
-                }`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
+                    )}
+                    <span className="text-xs font-bold mr-2 hidden lg:inline">
+                      {session.user.name?.split(' ')[0]}
+                    </span>
+                    <LogOut className="h-4 w-4" />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <LogIn className="h-4 w-4 mr-1" />
+                  <span className="text-xs font-bold">LOGIN</span>
+                </>
+              )}
+            </button>
+            
+            {/* Theme Toggle Button */}
+            {mounted && (
+              <button
+                onClick={toggleTheme}
+                className="border-2 border-black dark:border-white p-1.5 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+                aria-label="Toggle theme"
               >
-                <div className="text-xs font-bold uppercase tracking-wider">
-                  "KITESTUDIOS"
-                </div>
-                <div className="text-xs font-bold uppercase tracking-wider">
-                  "EST. 2024"
-                </div>
+                {theme === 'dark' ? (
+                  <Sun className="h-4 w-4" />
+                ) : (
+                  <Moon className="h-4 w-4" />
+                )}
+              </button>
+            )}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <motion.div
+        className="fixed inset-y-0 right-0 w-full max-w-sm bg-white dark:bg-black border-l-2 border-black dark:border-white md:hidden"
+        initial="closed"
+        animate={isOpen ? "open" : "closed"}
+        variants={menuVariants}
+      >
+        <div className="flex flex-col h-full p-8">
+          <div className="flex justify-end mb-8">
+            <button
+              onClick={() => setIsOpen(false)}
+              aria-label="Close menu"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+
+          <div className="flex flex-col space-y-6">
+            {menuItems.map((item) => (
+              <motion.div key={item.label} variants={itemVariants}>
+                <Link
+                  href={item.href}
+                  className="text-xl font-bold hover:text-[#ffff00] transition-colors flex items-center"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                  {item.protected && status !== 'authenticated' && (
+                    <Lock className="ml-2 h-4 w-4" />
+                  )}
+                </Link>
               </motion.div>
+            ))}
+            
+            {/* Mobile Auth Button */}
+            <motion.div variants={itemVariants}>
+              <button
+                onClick={handleAuth}
+                className="flex items-center space-x-2 border-2 border-black dark:border-white px-4 py-2 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+              >
+                {status === 'authenticated' ? (
+                  <>
+                    <div className="flex items-center">
+                      {session?.user?.image && (
+                        <img 
+                          src={session.user.image} 
+                          alt={session.user.name || 'User'} 
+                          className="w-6 h-6 rounded-full mr-2"
+                        />
+                      )}
+                      <span className="font-bold mr-2">
+                        {session.user.name}
+                      </span>
+                      <LogOut className="h-4 w-4" />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <LogIn className="h-4 w-4 mr-2" />
+                    <span className="font-bold">LOGIN WITH GOOGLE</span>
+                  </>
+                )}
+              </button>
+            </motion.div>
+            
+            {/* Mobile Theme Toggle */}
+            {mounted && (
+              <motion.div variants={itemVariants} className="flex justify-start">
+                <button
+                  onClick={toggleTheme}
+                  className="flex items-center space-x-2 border-2 border-black dark:border-white px-4 py-2 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+                >
+                  {theme === 'dark' ? (
+                    <>
+                      <Sun className="h-4 w-4 mr-2" />
+                      <span className="font-bold">LIGHT MODE</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="h-4 w-4 mr-2" />
+                      <span className="font-bold">DARK MODE</span>
+                    </>
+                  )}
+                </button>
+              </motion.div>
+            )}
+          </div>
+
+          <div className="mt-auto">
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              © 2024 KITESTUDIOS
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+          </div>
+        </div>
+      </motion.div>
+    </nav>
   )
 } 

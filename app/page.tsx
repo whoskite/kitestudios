@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Moon, Sun, ArrowDown, Cpu } from "lucide-react"
+import { ArrowDown, Cpu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import RandomQuote from "@/components/RandomQuote"
@@ -15,21 +15,10 @@ import BuildInPublic from "@/components/BuildInPublic"
 import AIChatButton from "@/components/AIChatButton"
 
 export default function Home() {
-  const [darkMode, setDarkMode] = useState(false)
   const [isFutureMode, setIsFutureMode] = useState(false)
 
-  // Initialize dark mode from localStorage or system preference
+  // Initialize future mode from localStorage
   useEffect(() => {
-    // Check localStorage first
-    const savedMode = localStorage.getItem("darkMode")
-    if (savedMode !== null) {
-      setDarkMode(savedMode === "true")
-    } else {
-      // Fall back to system preference
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-      setDarkMode(prefersDark)
-    }
-
     // Check for future mode setting
     const futureSetting = localStorage.getItem("futureMode")
     if (futureSetting !== null) {
@@ -37,24 +26,10 @@ export default function Home() {
     }
   }, [])
 
-  // Update class and localStorage when darkMode changes
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-    }
-    localStorage.setItem("darkMode", darkMode.toString())
-  }, [darkMode])
-
   // Store future mode preference
   useEffect(() => {
     localStorage.setItem("futureMode", isFutureMode.toString())
   }, [isFutureMode])
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
 
   const toggleFutureMode = () => {
     setIsFutureMode(!isFutureMode)
@@ -73,15 +48,8 @@ export default function Home() {
           </div>
           
           <div className="absolute top-6 right-6 flex items-center space-x-3">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={toggleDarkMode}
-              className="border-2 border-black dark:border-white rounded-none"
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
+            {/* Future mode toggle button can remain if needed */}
+            {/* Other buttons can be added here if needed */}
           </div>
           
           <div className="absolute bottom-6 left-6 text-xs font-bold uppercase tracking-wider">
@@ -98,15 +66,8 @@ export default function Home() {
                 className={`industrial-text text-5xl md:text-7xl font-bold tracking-tighter mb-2 relative ${isFutureMode ? 'ai-gradient-text' : ''}`}
                 data-text="KITESTUDIOS"
               >
-                {isFutureMode ? (
-                  <span className="glitch-text" data-text="KITESTUDIOS">"KITESTUDIOS"</span>
-                ) : (
-                  '"KITESTUDIOS"'
-                )}
+                KITESTUDIOS
               </h1>
-              <div className={`absolute -top-3 -right-3 text-xs font-bold ${isFutureMode ? 'bg-black dark:bg-white text-[#ffff00]' : 'bg-[#ffff00] text-black'} px-1`}>
-                {isFutureMode ? "AI" : "TM"}
-              </div>
             </div>
             
             <div className={`w-full max-w-md border-t-2 border-b-2 border-black dark:border-white py-2 my-4 ${isFutureMode ? 'scan-line' : ''}`}>
