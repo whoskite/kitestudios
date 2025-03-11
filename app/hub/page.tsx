@@ -119,7 +119,7 @@ export default function HubPage() {
     inputBorder: isDarkMode ? "border-gray-700" : "border-gray-300",
     highlight: isDarkMode ? "bg-indigo-900/30" : "bg-indigo-50",
     listHover: isDarkMode ? "hover:bg-gray-800" : "hover:bg-gray-100",
-    sidebarBg: isDarkMode ? "bg-[#1a1b2a]" : "bg-gray-100",
+    sidebarBg: isDarkMode ? "bg-[#1a1b2a]" : "bg-white",
     activeIcon: isDarkMode ? "text-[#4945ff]" : "text-[#4945ff]",
     activeBg: isDarkMode ? "bg-[#1a1b2a]/40" : "bg-gray-200",
   };
@@ -144,38 +144,39 @@ export default function HubPage() {
     <div className={`page-wrapper ${uiColors.bg} ${uiColors.text} min-h-screen flex`}>
       {/* Enhanced Sidebar Navigation */}
       <aside 
-        className={`${menuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 fixed left-0 top-0 bottom-0 z-40 h-screen w-16 ${uiColors.sidebarBg} border-r ${uiColors.border} transition-transform duration-300 ease-in-out flex flex-col justify-between shadow-lg`}
+        className={`${menuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 fixed left-0 top-0 bottom-0 z-40 h-screen w-[70px] ${uiColors.sidebarBg} border-r ${uiColors.border} transition-transform duration-300 ease-in-out flex flex-col justify-between shadow-md`}
       >
-        {/* Top section with menu toggle and navigation icons */}
+        {/* Top section with logo and navigation icons */}
         <div>
-          <div className="p-3 border-b border-gray-700 flex justify-center">
-            <button 
-              onClick={() => setMenuOpen(!menuOpen)}
-              className={`md:hidden p-2 rounded-full ${uiColors.buttonHover} ${uiColors.iconColor} ${uiColors.iconHover} transition-colors duration-200`}
-              aria-label="Menu"
-            >
-              {menuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
+          <div className="p-4 border-b border-gray-700/50 flex justify-center">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#4945ff] to-[#9f9dff] flex items-center justify-center shadow-md">
+              <span className="text-white font-bold text-lg">K</span>
+            </div>
           </div>
           
-          <nav className="py-6">
-            <ul className="space-y-6">
+          <nav className="py-8">
+            <ul className="space-y-7">
               {sidebarItems.map((item, index) => {
                 const isActive = currentPath === item.href;
                 return (
-                  <li key={index} className="flex justify-center relative">
+                  <li key={index} className="flex justify-center relative group">
                     {isActive && (
-                      <div className="absolute left-0 w-1 h-8 bg-[#4945ff] rounded-r-md"></div>
+                      <div className="absolute left-0 w-1.5 h-8 bg-[#4945ff] rounded-r-full"></div>
                     )}
                     <Link 
                       href={item.href}
-                      className={`p-3 rounded-md ${isActive ? uiColors.activeBg : uiColors.listHover} transition-all duration-200 flex items-center justify-center`}
+                      className={`p-3 rounded-xl ${isActive ? uiColors.activeBg : uiColors.listHover} transition-all duration-200 flex items-center justify-center group-hover:scale-110`}
                       title={item.label}
                     >
-                      <span className={isActive ? uiColors.activeIcon : uiColors.iconColor}>
+                      <span className={`${isActive ? uiColors.activeIcon : uiColors.iconColor} transition-colors duration-200 group-hover:text-[#4945ff]`}>
                         {item.icon}
                       </span>
                     </Link>
+                    
+                    {/* Tooltip */}
+                    <div className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap">
+                      {item.label}
+                    </div>
                   </li>
                 );
               })}
@@ -185,36 +186,46 @@ export default function HubPage() {
         
         {/* Bottom section with theme toggle, settings, and user profile */}
         <div className="mb-8 space-y-6">
-          <div className="flex justify-center">
+          <div className="flex justify-center relative group">
             <button 
               onClick={toggleTheme}
-              className={`p-3 rounded-md ${uiColors.listHover} transition-all duration-200 hover:scale-110`}
+              className={`p-3 rounded-xl ${uiColors.listHover} transition-all duration-200 group-hover:scale-110`}
               aria-label="Toggle theme"
               title="Toggle theme"
             >
               {isDarkMode ? 
-                <Sun size={20} className={`${uiColors.iconColor} transition-transform duration-300 hover:rotate-45`} /> : 
-                <Moon size={20} className={`${uiColors.iconColor} transition-transform duration-300 hover:rotate-12`} />
+                <Sun size={20} className={`${uiColors.iconColor} transition-transform duration-300 group-hover:text-[#4945ff] group-hover:rotate-45`} /> : 
+                <Moon size={20} className={`${uiColors.iconColor} transition-transform duration-300 group-hover:text-[#4945ff] group-hover:rotate-12`} />
               }
             </button>
+            
+            {/* Tooltip */}
+            <div className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap">
+              {isDarkMode ? "Light Mode" : "Dark Mode"}
+            </div>
           </div>
           
-          <div className="flex justify-center">
+          <div className="flex justify-center relative group">
             <button 
               id="settings-button"
               onClick={() => setSettingsOpen(!settingsOpen)}
-              className={`p-3 rounded-md ${uiColors.listHover} transition-all duration-200 hover:scale-110`}
+              className={`p-3 rounded-xl ${uiColors.listHover} transition-all duration-200 group-hover:scale-110`}
               aria-label="Settings"
               title="Settings"
             >
-              <Settings size={20} className={`${uiColors.iconColor} transition-transform duration-300 hover:rotate-90`} />
+              <Settings size={20} className={`${uiColors.iconColor} transition-transform duration-300 group-hover:text-[#4945ff] group-hover:rotate-90`} />
             </button>
+            
+            {/* Tooltip */}
+            <div className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap">
+              Settings
+            </div>
           </div>
           
-          <div className="flex justify-center">
+          <div className="flex justify-center relative group">
             <Link 
               href="/profile"
-              className={`p-3 rounded-md ${uiColors.listHover} transition-all duration-200 hover:scale-110 relative`}
+              className={`p-3 rounded-xl ${uiColors.listHover} transition-all duration-200 group-hover:scale-110 relative`}
               title="Profile"
             >
               {session?.user?.image ? (
@@ -224,18 +235,23 @@ export default function HubPage() {
                   className="w-8 h-8 rounded-full ring-2 ring-[#4945ff] p-0.5"
                 />
               ) : (
-                <div className="w-8 h-8 rounded-full bg-[#4945ff]/20 flex items-center justify-center ring-2 ring-[#4945ff] p-0.5">
-                  <User size={16} className="text-[#4945ff]" />
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#4945ff] to-[#9f9dff] flex items-center justify-center shadow-sm">
+                  <User size={16} className="text-white" />
                 </div>
               )}
               <span className="absolute bottom-0 right-1 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-gray-900"></span>
             </Link>
+            
+            {/* Tooltip */}
+            <div className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap">
+              Profile
+            </div>
           </div>
         </div>
       </aside>
 
       {/* Main Content - Add padding to account for fixed sidebar */}
-      <div className="flex-1 flex flex-col min-h-screen md:ml-16">
+      <div className="flex-1 flex flex-col min-h-screen md:ml-[70px]">
         <div className="container mx-auto px-4 py-6">
           {/* Welcome message */}
           {showWelcome && (
