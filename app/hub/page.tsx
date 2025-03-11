@@ -148,11 +148,16 @@ export default function HubPage() {
       {/* Industrial Sidebar Navigation */}
       <aside 
         className={`${menuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 fixed left-0 top-0 bottom-0 z-40 h-screen w-[70px] ${uiColors.sidebarBg} border-r ${uiColors.border} transition-transform duration-300 ease-in-out flex flex-col justify-between`}
+        style={{
+          backgroundImage: isDarkMode ? 
+            'linear-gradient(rgba(0, 0, 0, 0.97), rgba(0, 0, 0, 0.97)), url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23333333\' fill-opacity=\'0.15\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'1\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'1\'/%3E%3C/g%3E%3C/svg%3E")' : 
+            'linear-gradient(rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.97)), url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'1\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'1\'/%3E%3C/g%3E%3C/svg%3E")'
+        }}
       >
         {/* Top section with logo and navigation icons */}
         <div>
           <div className="p-4 border-b border-zinc-800 flex justify-center">
-            <div className="w-10 h-10 flex items-center justify-center">
+            <div className="w-10 h-10 flex items-center justify-center border border-yellow-400">
               <span className="text-yellow-400 font-bold text-2xl tracking-tighter">K</span>
             </div>
           </div>
@@ -164,11 +169,14 @@ export default function HubPage() {
                 return (
                   <li key={index} className="flex justify-center relative group">
                     {isActive && (
-                      <div className="absolute left-0 w-1 h-8 bg-yellow-400"></div>
+                      <>
+                        <div className="absolute left-0 w-1 h-8 bg-yellow-400"></div>
+                        <div className="absolute -right-1 w-1 h-8 bg-yellow-400"></div>
+                      </>
                     )}
                     <Link 
                       href={item.href}
-                      className={`p-3 ${isActive ? uiColors.activeBg : ''} transition-all duration-200 flex items-center justify-center group-hover:scale-110`}
+                      className={`p-3 ${isActive ? uiColors.activeBg : ''} transition-all duration-200 flex items-center justify-center group-hover:scale-110 border border-transparent group-hover:border-zinc-800`}
                       title={item.label}
                     >
                       <span className={`${isActive ? uiColors.activeIcon : uiColors.iconColor} transition-colors duration-200 group-hover:text-yellow-400`}>
@@ -178,7 +186,10 @@ export default function HubPage() {
                     
                     {/* Industrial Tooltip */}
                     <div className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}>
-                      {item.label}
+                      <div className="flex items-center">
+                        <span className="w-2 h-2 bg-yellow-400 mr-1.5"></span>
+                        {item.label}
+                      </div>
                     </div>
                   </li>
                 );
@@ -188,11 +199,11 @@ export default function HubPage() {
         </div>
         
         {/* Bottom section with theme toggle, settings, and user profile */}
-        <div className="mb-8 space-y-6">
+        <div className="mb-8 space-y-6 border-t border-zinc-800 pt-6">
           <div className="flex justify-center relative group">
             <button 
               onClick={toggleTheme}
-              className={`p-3 transition-all duration-200 group-hover:scale-110`}
+              className={`p-3 transition-all duration-200 group-hover:scale-110 border border-transparent group-hover:border-zinc-800`}
               aria-label="Toggle theme"
               title="Toggle theme"
             >
@@ -204,7 +215,10 @@ export default function HubPage() {
             
             {/* Industrial Tooltip */}
             <div className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}>
-              {isDarkMode ? "LIGHT MODE" : "DARK MODE"}
+              <div className="flex items-center">
+                <span className="w-2 h-2 bg-yellow-400 mr-1.5"></span>
+                {isDarkMode ? "LIGHT MODE" : "DARK MODE"}
+              </div>
             </div>
           </div>
           
@@ -212,7 +226,7 @@ export default function HubPage() {
             <button 
               id="settings-button"
               onClick={() => setSettingsOpen(!settingsOpen)}
-              className={`p-3 transition-all duration-200 group-hover:scale-110`}
+              className={`p-3 transition-all duration-200 group-hover:scale-110 border border-transparent group-hover:border-zinc-800`}
               aria-label="Settings"
               title="Settings"
             >
@@ -221,14 +235,17 @@ export default function HubPage() {
             
             {/* Industrial Tooltip */}
             <div className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}>
-              SETTINGS
+              <div className="flex items-center">
+                <span className="w-2 h-2 bg-yellow-400 mr-1.5"></span>
+                SETTINGS
+              </div>
             </div>
           </div>
           
           <div className="flex justify-center relative group">
             <Link 
               href="/profile"
-              className={`p-3 transition-all duration-200 group-hover:scale-110 relative`}
+              className={`p-3 transition-all duration-200 group-hover:scale-110 relative border border-transparent group-hover:border-zinc-800`}
               title="Profile"
             >
               {session?.user?.image ? (
@@ -247,7 +264,10 @@ export default function HubPage() {
             
             {/* Industrial Tooltip */}
             <div className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}>
-              PROFILE
+              <div className="flex items-center">
+                <span className="w-2 h-2 bg-yellow-400 mr-1.5"></span>
+                PROFILE
+              </div>
             </div>
           </div>
         </div>
