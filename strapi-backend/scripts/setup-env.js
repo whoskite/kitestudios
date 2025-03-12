@@ -1,12 +1,14 @@
 /**
  * This script is for reference only and should be run manually in Railway's dashboard.
  * It shows the environment variables that need to be set for Strapi to work properly.
+ * 
+ * Note: We use SQLite for local development and PostgreSQL for production.
  */
 
 console.log(`
 Required environment variables for Strapi on Railway:
 
-# Database
+# Database (Production - PostgreSQL)
 DATABASE_CLIENT=postgres
 DATABASE_URL=\${{ Postgres.DATABASE_URL }}
 DATABASE_SSL=true
@@ -29,4 +31,5 @@ Instructions:
 3. Go to the Variables tab
 4. Add the above environment variables
 5. Make sure to replace the secret values with your actual secrets from your local .env file
+6. Note: Your local development will continue to use SQLite as configured in .env
 `); 
