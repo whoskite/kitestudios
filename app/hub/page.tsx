@@ -29,7 +29,7 @@ export default function HubPage() {
   const [activeFilter, setActiveFilter] = useState('all') // Add missing state variable for filters
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [selectedDocument, setSelectedDocument] = useState<Document | null>(null)
-  const [documentViewMode, setDocumentViewMode] = useState<'peek' | 'fullscreen' | null>(null)
+  const [documentViewMode, setDocumentViewMode] = useState<'peek' | null>(null)
 
   // After mounting, we can safely show the UI
   useEffect(() => {
@@ -175,11 +175,6 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
     // Set the selected document and view mode to peek
     setSelectedDocument(document);
     setDocumentViewMode('peek');
-  };
-
-  // Function to toggle between peek and fullscreen modes
-  const toggleDocumentViewMode = () => {
-    setDocumentViewMode(documentViewMode === 'peek' ? 'fullscreen' : 'peek');
   };
 
   // Function to close document view
@@ -383,17 +378,6 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
                 </div>
                 <div className="flex items-center gap-2">
                   <button 
-                    onClick={toggleDocumentViewMode}
-                    className={`border ${uiColors.border} p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors`}
-                    aria-label={documentViewMode === 'peek' ? 'Expand to full screen' : 'Collapse to side peek'}
-                  >
-                    {documentViewMode === 'peek' ? (
-                      <Maximize2 className="h-5 w-5" />
-                    ) : (
-                      <Minimize2 className="h-5 w-5" />
-                    )}
-                  </button>
-                  <button 
                     onClick={handleCloseDocument}
                     className={`border ${uiColors.border} p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors`}
                     aria-label="Close document"
@@ -425,7 +409,7 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
           )}
           
           {/* Hub Dashboard View - Always visible */}
-          <div className={documentViewMode === 'fullscreen' ? 'opacity-0 pointer-events-none' : ''}>
+          <div className={documentViewMode === 'peek' ? 'opacity-50 pointer-events-none' : ''}>
             {/* View Toggle */}
             <div className="flex justify-end mb-6">
               <div className={`flex border ${uiColors.border}`}>

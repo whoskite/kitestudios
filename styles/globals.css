@@ -121,13 +121,6 @@ body {
   overflow-y: auto;
 }
 
-/* Full screen mode */
-.document-view.fullscreen {
-  width: 100%;
-  opacity: 1;
-  overflow-y: auto;
-}
-
 /* Document view content container */
 .document-view-content {
   padding: 1.5rem;
