@@ -2,40 +2,20 @@
 
 import { useState, useEffect } from "react"
 import { useSession } from "next-auth/react"
-import { Home, LogOut, Menu, X, Sun, Moon, Settings, User, CreditCard, Bell, Shield, HelpCircle, ChevronRight, FileText, Package, ShoppingBag, Users, Grid, Database, Image, Video, Layers, Star, Download } from "lucide-react"
+import { Home, LogOut, Menu, X, Sun, Moon, Settings, User, CreditCard, Bell, Shield, HelpCircle, ChevronRight, FileText, Package, ShoppingBag, Users, Grid, Database, Image, Video, Layers, Star, Download, BookOpen, Search, List, Folder } from "lucide-react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
-import LinkHub from "@/components/LinkHub"
-import { getHubResources } from "@/lib/strapi"
-import { Resource, StrapiData } from "@/types/strapi"
-import { Button } from "@/components/ui/button"
-
-// Function to fetch featured resources
-async function getFeaturedResources() {
-  const resources = await getHubResources({
-    filters: {
-      featured: {
-        $eq: true
-      }
-    },
-    pagination: {
-      limit: 3
-    }
-  });
-  
-  return resources;
-}
 
 export default function HubPage() {
   const { data: session } = useSession()
-  const [isFutureMode, setIsFutureMode] = useState(false)
-  const [showWelcome, setShowWelcome] = useState(true)
-  const [menuOpen, setMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [showWelcome, setShowWelcome] = useState(true)
   const [isDarkMode, setIsDarkMode] = useState(true) // Default to dark mode for the UI
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [activeSettingsTab, setActiveSettingsTab] = useState('profile')
+  const [activeFilter, setActiveFilter] = useState('all') // Add missing state variable for filters
 
   // After mounting, we can safely show the UI
   useEffect(() => {
@@ -46,6 +26,13 @@ export default function HubPage() {
     if (savedMode !== null) {
       setIsDarkMode(savedMode === "true");
     }
+    
+    // Hide welcome message after 5 seconds
+    const timer = setTimeout(() => {
+      setShowWelcome(false)
+    }, 5000)
+    
+    return () => clearTimeout(timer)
   }, []);
 
   // Close settings panel when clicking outside
@@ -70,31 +57,12 @@ export default function HubPage() {
     };
   }, [settingsOpen]);
 
-  // Initialize future mode setting from localStorage
+  // Save dark mode preference to localStorage
   useEffect(() => {
-    // Check localStorage for future mode setting
-    const futureSetting = localStorage.getItem("futureMode")
-    if (futureSetting !== null) {
-      setIsFutureMode(futureSetting === "true")
+    if (mounted) {
+      localStorage.setItem("hubDarkMode", isDarkMode.toString());
     }
-    
-    // Hide welcome message after 5 seconds
-    const timer = setTimeout(() => {
-      setShowWelcome(false)
-    }, 5000)
-    
-    return () => clearTimeout(timer)
-  }, [])
-
-  // Store future mode preference
-  useEffect(() => {
-    localStorage.setItem("futureMode", isFutureMode.toString())
-  }, [isFutureMode])
-  
-  // Store dark mode preference
-  useEffect(() => {
-    localStorage.setItem("hubDarkMode", isDarkMode.toString())
-  }, [isDarkMode])
+  }, [isDarkMode, mounted]);
 
   // Theme toggle
   const toggleTheme = () => {
@@ -106,25 +74,29 @@ export default function HubPage() {
 
   // Style objects based on dark/light mode
   const uiColors = {
-    bg: isDarkMode ? "bg-gray-900" : "bg-white",
+    bg: isDarkMode ? "bg-black" : "bg-white",
     text: isDarkMode ? "text-white" : "text-gray-900",
-    border: isDarkMode ? "border-gray-700" : "border-gray-200",
-    buttonBg: isDarkMode ? "bg-gray-800" : "bg-gray-100",
-    buttonHover: isDarkMode ? "hover:bg-gray-700" : "hover:bg-gray-200",
+    border: isDarkMode ? "border-zinc-800" : "border-gray-200",
+    buttonBg: isDarkMode ? "bg-zinc-900" : "bg-gray-100",
+    buttonHover: isDarkMode ? "hover:bg-zinc-800" : "hover:bg-gray-200",
     iconColor: isDarkMode ? "text-gray-400" : "text-gray-500",
     iconHover: isDarkMode ? "hover:text-white" : "hover:text-black",
-    cardBg: isDarkMode ? "bg-gray-800" : "bg-white",
-    cardBorder: isDarkMode ? "border-gray-700" : "border-gray-200",
-    inputBg: isDarkMode ? "bg-gray-800" : "bg-gray-100",
-    inputBorder: isDarkMode ? "border-gray-700" : "border-gray-300",
-    highlight: isDarkMode ? "bg-indigo-900/30" : "bg-indigo-50",
-    listHover: isDarkMode ? "hover:bg-gray-800" : "hover:bg-gray-100",
+    cardBg: isDarkMode ? "bg-zinc-900" : "bg-white",
+    cardBorder: isDarkMode ? "border-zinc-800" : "border-gray-200",
+    inputBg: isDarkMode ? "bg-zinc-900" : "bg-gray-100",
+    inputBorder: isDarkMode ? "border-zinc-800" : "border-gray-300",
+    highlight: isDarkMode ? "bg-zinc-900" : "bg-gray-50",
+    listHover: isDarkMode ? "hover:bg-zinc-900" : "hover:bg-gray-100",
     sidebarBg: isDarkMode ? "bg-black" : "bg-white",
     activeIcon: isDarkMode ? "text-yellow-400" : "text-black",
     activeBg: isDarkMode ? "bg-zinc-900" : "bg-gray-100",
     tooltipBg: isDarkMode ? "bg-black" : "bg-black",
     tooltipText: "text-white",
     tooltipBorder: isDarkMode ? "border border-zinc-800" : "border border-black",
+    tableHeaderBg: isDarkMode ? "bg-zinc-900" : "bg-gray-100",
+    tableRowHover: isDarkMode ? "hover:bg-zinc-900/50" : "hover:bg-gray-50",
+    tableRowBorder: isDarkMode ? "border-b border-zinc-800" : "border-b border-gray-200",
+    tableCellBg: isDarkMode ? "bg-black" : "bg-white",
   };
 
   // Sidebar navigation items
@@ -142,6 +114,9 @@ export default function HubPage() {
   useEffect(() => {
     setCurrentPath(window.location.pathname);
   }, []);
+
+  // View mode state
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
 
   return (
     <div className={`page-wrapper ${uiColors.bg} ${uiColors.text} min-h-screen flex`}>
@@ -276,139 +251,195 @@ export default function HubPage() {
       {/* Main Content - Add padding to account for fixed sidebar */}
       <div className="flex-1 flex flex-col min-h-screen md:ml-[70px]">
         <div className="container mx-auto px-4 py-6">
-          {/* Welcome message */}
-          {showWelcome && (
-            <div className={`mb-8 p-6 rounded-lg ${uiColors.highlight} ${uiColors.text}`}>
-              <div className="flex justify-between items-start">
-                <div>
-                  <h1 className="text-2xl font-bold mb-2">Welcome to Kite Studios Hub</h1>
-                  <p className="opacity-80">Your central location for all resources and tools.</p>
+          {/* Browse Hub Resources Button */}
+          <div className="mb-6 border border-zinc-800 p-0">
+            <Link 
+              href="/hub/resource" 
+              className="flex items-center justify-between px-4 py-3 hover:bg-zinc-900 transition-colors"
+            >
+              <div className="flex items-center">
+                <BookOpen size={18} className="mr-2" />
+                <span className="font-bold tracking-wide">BROWSE HUB RESOURCES</span>
+              </div>
+              <ChevronRight size={18} />
+            </Link>
+          </div>
+
+          {/* Search and Filter Bar */}
+          <div className="mb-6 flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div className="relative w-full md:w-64">
+              <input
+                type="text"
+                placeholder="Search dashboard..."
+                className={`w-full border ${uiColors.border} ${uiColors.inputBg} px-3 py-2 pl-10 focus:outline-none focus:border-yellow-400 transition-colors`}
+              />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            </div>
+            
+            <div className="flex space-x-2">
+              <button className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'all' ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}>
+                ALL
+              </button>
+              <button className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'design' ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}>
+                DESIGN
+              </button>
+              <button className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'code' ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}>
+                CODE
+              </button>
+              <button className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'media' ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}>
+                MEDIA
+              </button>
+              <button className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'concepts' ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}>
+                CONCEPTS
+              </button>
+            </div>
+            
+            <div className="flex border border-zinc-800">
+              <button 
+                className={`p-2 transition-colors ${viewMode === 'grid' ? `bg-yellow-400 text-black` : `${uiColors.bg} ${uiColors.text}`}`}
+                onClick={() => setViewMode('grid')}
+                aria-label="Grid View"
+              >
+                <Grid className="h-5 w-5" />
+              </button>
+              <button 
+                className={`p-2 transition-colors ${viewMode === 'list' ? `bg-yellow-400 text-black` : `${uiColors.bg} ${uiColors.text}`}`}
+                onClick={() => setViewMode('list')}
+                aria-label="List View"
+              >
+                <List className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* File System View (List View) */}
+          {viewMode === 'list' && (
+            <div className="w-full">
+              {/* Table Header */}
+              <div className={`grid grid-cols-12 ${uiColors.tableHeaderBg} text-xs font-bold uppercase tracking-wider`}>
+                <div className="col-span-5 px-4 py-3">NAME</div>
+                <div className="col-span-2 px-4 py-3">DATE ADDED</div>
+                <div className="col-span-1 px-4 py-3">SIZE</div>
+                <div className="col-span-2 px-4 py-3">KIND</div>
+                <div className="col-span-2 px-4 py-3">AUTHOR</div>
+              </div>
+              
+              {/* Folder Row */}
+              <div className={`grid grid-cols-12 ${uiColors.tableRowBorder} ${uiColors.tableRowHover} cursor-pointer`}>
+                <div className="col-span-5 px-4 py-3 flex items-center">
+                  <ChevronRight size={16} className="mr-2" />
+                  <Folder size={16} className="mr-2 text-gray-400" />
+                  <span className="font-medium">DOCUMENTS</span>
                 </div>
-                <button 
-                  onClick={() => setShowWelcome(false)}
-                  className={`p-1 ${uiColors.iconColor} ${uiColors.iconHover}`}
-                  aria-label="Close welcome message"
-                >
-                  <X size={20} />
-                </button>
+                <div className="col-span-2 px-4 py-3 text-gray-400">-</div>
+                <div className="col-span-1 px-4 py-3 text-gray-400">-</div>
+                <div className="col-span-2 px-4 py-3 text-gray-400">Folder</div>
+                <div className="col-span-2 px-4 py-3 text-gray-400">-</div>
+              </div>
+              
+              {/* File Rows */}
+              <div className={`grid grid-cols-12 ${uiColors.tableRowBorder} ${uiColors.tableRowHover} cursor-pointer`}>
+                <div className="col-span-5 px-4 py-3 flex items-center">
+                  <div className="w-4 mr-2"></div>
+                  <FileText size={16} className="mr-2 text-gray-400" />
+                  <span>Hello World</span>
+                </div>
+                <div className="col-span-2 px-4 py-3 text-gray-400">2024-05-15</div>
+                <div className="col-span-1 px-4 py-3 text-gray-400">1.5 KB</div>
+                <div className="col-span-2 px-4 py-3 text-gray-400">document</div>
+                <div className="col-span-2 px-4 py-3 text-gray-400">KITESTUDIOS Team</div>
+              </div>
+              
+              <div className={`grid grid-cols-12 ${uiColors.tableRowBorder} ${uiColors.tableRowHover} cursor-pointer`}>
+                <div className="col-span-5 px-4 py-3 flex items-center">
+                  <div className="w-4 mr-2"></div>
+                  <FileText size={16} className="mr-2 text-gray-400" />
+                  <span>KITESTUDIOS Design System Overview</span>
+                </div>
+                <div className="col-span-2 px-4 py-3 text-gray-400">2024-04-15</div>
+                <div className="col-span-1 px-4 py-3 text-gray-400">4.2 MB</div>
+                <div className="col-span-2 px-4 py-3 text-gray-400">document</div>
+                <div className="col-span-2 px-4 py-3 text-gray-400">Thomas Kite</div>
               </div>
             </div>
           )}
 
-          {/* Link Hub Component - Pass the dark mode state */}
-          <LinkHub isDarkMode={isDarkMode} />
-          
-          {/* Featured Resources Section */}
-          <div className="mt-12 mb-8">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">Featured Resources</h2>
-              <Button variant="outline" asChild>
-                <Link href="/hub/resource" className="flex items-center">
-                  View All <ChevronRight className="ml-1 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-            
+          {/* Grid View */}
+          {viewMode === 'grid' && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="rounded-lg overflow-hidden shadow-md transition-all hover:shadow-lg">
-                <Link href="/hub/resource">
-                  <div className="relative h-40 bg-gradient-to-r from-purple-500 to-indigo-600"></div>
-                  <div className="p-4">
-                    <div className="text-xs uppercase tracking-wider mb-1">
-                      Documentation
+              {/* Welcome message */}
+              {showWelcome && (
+                <div className={`mb-8 p-6 ${uiColors.highlight} ${uiColors.text} border ${uiColors.border} col-span-full`}>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h1 className="text-2xl font-bold mb-2">Welcome to Kite Studios Hub</h1>
+                      <p className="opacity-80">Your central location for all resources and tools.</p>
                     </div>
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-1">
-                      Getting Started with Kite Studios
-                    </h3>
-                    <p className="text-sm opacity-70 line-clamp-2">
-                      Learn how to use the Kite Studios platform with our comprehensive guides.
-                    </p>
+                    <button 
+                      onClick={() => setShowWelcome(false)}
+                      className={`p-1 ${uiColors.iconColor} ${uiColors.iconHover}`}
+                      aria-label="Close welcome message"
+                    >
+                      <X size={20} />
+                    </button>
                   </div>
-                </Link>
+                </div>
+              )}
+
+              {/* Document Cards */}
+              <div className={`border ${uiColors.border} p-6 flex flex-col h-full cursor-pointer`}>
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center">
+                    <FileText size={16} className="text-gray-400 mr-2" />
+                    <span className="text-xs font-bold uppercase">document</span>
+                  </div>
+                  <div className="text-xs opacity-70">2024-05-15</div>
+                </div>
+                
+                <h3 className="text-xl font-bold mb-2">Hello World</h3>
+                <p className="text-sm mb-4 flex-grow opacity-80">A simple Hello World document created in the Hub Dashboard.</p>
+                
+                <div className="mt-auto">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className={`text-xs px-2 py-1 border ${uiColors.border}`}>documentation</span>
+                    <span className={`text-xs px-2 py-1 border ${uiColors.border}`}>example</span>
+                  </div>
+                  
+                  <div className={`flex items-center mt-3 pt-3 border-t ${uiColors.border}`}>
+                    <User size={14} className="mr-2" />
+                    <span className="text-xs font-medium">KITESTUDIOS Team</span>
+                  </div>
+                </div>
               </div>
-              
-              <div className="rounded-lg overflow-hidden shadow-md transition-all hover:shadow-lg">
-                <Link href="/hub/resource">
-                  <div className="relative h-40 bg-gradient-to-r from-blue-500 to-cyan-600"></div>
-                  <div className="p-4">
-                    <div className="text-xs uppercase tracking-wider mb-1">
-                      Tutorials
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-1">
-                      Video Production Essentials
-                    </h3>
-                    <p className="text-sm opacity-70 line-clamp-2">
-                      Master the basics of video production with our step-by-step tutorials.
-                    </p>
+
+              <div className={`border ${uiColors.border} p-6 flex flex-col h-full cursor-pointer`}>
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center">
+                    <FileText size={16} className="text-gray-400 mr-2" />
+                    <span className="text-xs font-bold uppercase">document</span>
                   </div>
-                </Link>
-              </div>
-              
-              <div className="rounded-lg overflow-hidden shadow-md transition-all hover:shadow-lg">
-                <Link href="/hub/resource">
-                  <div className="relative h-40 bg-gradient-to-r from-pink-500 to-red-600"></div>
-                  <div className="p-4">
-                    <div className="text-xs uppercase tracking-wider mb-1">
-                      Tools
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-1">
-                      Design Resources Collection
-                    </h3>
-                    <p className="text-sm opacity-70 line-clamp-2">
-                      Access our curated collection of design tools and resources.
-                    </p>
+                  <div className="text-xs opacity-70">2024-04-15</div>
+                </div>
+                
+                <h3 className="text-xl font-bold mb-2">KITESTUDIOS Design System Overview</h3>
+                <p className="text-sm mb-4 flex-grow opacity-80">Comprehensive documentation of our design system including typography, colors, and components.</p>
+                
+                <div className="mt-auto">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className={`text-xs px-2 py-1 border ${uiColors.border}`}>design</span>
+                    <span className={`text-xs px-2 py-1 border ${uiColors.border}`}>documentation</span>
                   </div>
-                </Link>
+                  
+                  <div className={`flex items-center mt-3 pt-3 border-t ${uiColors.border}`}>
+                    <User size={14} className="mr-2" />
+                    <span className="text-xs font-medium">Thomas Kite</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
   )
-}
-
-// Featured Resources Component
-async function FeaturedResources() {
-  const resources = await getFeaturedResources();
-  
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {resources.data.length > 0 ? (
-        resources.data.map((resource: StrapiData<Resource>) => (
-          <div 
-            key={resource.id} 
-            className="rounded-lg overflow-hidden shadow-md transition-all hover:shadow-lg"
-          >
-            <Link href={`/hub/resource/${resource.id}`}>
-              <div className="relative h-40 bg-gradient-to-r from-purple-500 to-indigo-600">
-                {resource.attributes.image?.data?.attributes?.url && (
-                  <img 
-                    src={`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${resource.attributes.image.data.attributes.url}`}
-                    alt={resource.attributes.title}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-              </div>
-              <div className="p-4">
-                <div className="text-xs uppercase tracking-wider mb-1">
-                  {resource.attributes.category}
-                </div>
-                <h3 className="font-semibold text-lg mb-2 line-clamp-1">
-                  {resource.attributes.title}
-                </h3>
-                <p className="text-sm opacity-70 line-clamp-2">
-                  {resource.attributes.description.replace(/<[^>]*>/g, '')}
-                </p>
-              </div>
-            </Link>
-          </div>
-        ))
-      ) : (
-        <div className="col-span-3 text-center py-8">
-          <p className="text-muted-foreground">No featured resources available yet.</p>
-        </div>
-      )}
-    </div>
-  );
 } 
