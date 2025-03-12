@@ -566,7 +566,7 @@ Our component library follows industrial design principles with sharp edges, bol
                                   e.stopPropagation();
                                   handleOpenDocument(resource);
                                 }}
-                                className="file-system-row file-row cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                                className="file-system-row file-row cursor-pointer transition-colors duration-200"
                                 role="button"
                                 tabIndex={0}
                                 aria-label={`Open ${resource.title}`}

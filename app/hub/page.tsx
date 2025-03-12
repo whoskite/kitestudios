@@ -321,7 +321,7 @@ export default function HubPage() {
               </div>
               
               {/* Folder Row */}
-              <div className={`grid grid-cols-12 ${uiColors.tableRowBorder} ${uiColors.tableRowHover} cursor-pointer`}>
+              <div className={`grid grid-cols-12 ${uiColors.tableRowBorder} cursor-pointer hover:bg-yellow-400/5`}>
                 <div className="col-span-5 px-4 py-3 flex items-center">
                   <ChevronRight size={16} className="mr-2" />
                   <Folder size={16} className="mr-2 text-gray-400" />
@@ -334,7 +334,7 @@ export default function HubPage() {
               </div>
               
               {/* File Rows */}
-              <div className={`grid grid-cols-12 ${uiColors.tableRowBorder} ${uiColors.tableRowHover} cursor-pointer`}>
+              <div className={`grid grid-cols-12 ${uiColors.tableRowBorder} cursor-pointer hover:bg-yellow-400/5`}>
                 <div className="col-span-5 px-4 py-3 flex items-center">
                   <div className="w-4 mr-2"></div>
                   <FileText size={16} className="mr-2 text-gray-400" />
@@ -346,7 +346,7 @@ export default function HubPage() {
                 <div className="col-span-2 px-4 py-3 text-gray-400">KITESTUDIOS Team</div>
               </div>
               
-              <div className={`grid grid-cols-12 ${uiColors.tableRowBorder} ${uiColors.tableRowHover} cursor-pointer`}>
+              <div className={`grid grid-cols-12 ${uiColors.tableRowBorder} cursor-pointer hover:bg-yellow-400/5`}>
                 <div className="col-span-5 px-4 py-3 flex items-center">
                   <div className="w-4 mr-2"></div>
                   <FileText size={16} className="mr-2 text-gray-400" />
