@@ -92,3 +92,91 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Document expansion animation */
+.document-view {
+  transform-origin: center;
+  transform: scale(0.95);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.document-view.expanded {
+  transform: scale(1);
+  opacity: 1;
+  max-height: 100vh;
+  overflow: auto;
+}
+
+/* Ensure smooth transitions */
+.document-view {
+  transition: transform 0.3s ease, opacity 0.3s ease, max-height 0.3s ease;
+}
+
+/* Document card hover effects */
+.grid-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.grid-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.grid-card-title {
+  position: relative;
+  display: inline-block;
+}
+
+.grid-card-title::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.grid-card:hover .grid-card-title::after {
+  width: 100%;
+}
+
+.file-system-row.file-row {
+  transition: background-color 0.2s ease;
+}
+
+/* Folder expansion animations */
+.folder-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.folder-content.folder-expanded {
+  max-height: 500px; /* Adjust based on expected content */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.folder-content.folder-closing {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.folder-row {
+  transition: background-color 0.2s ease;
+}
+
+.folder-row:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark .folder-row:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}

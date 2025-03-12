@@ -57,6 +57,16 @@ export default function LinkHub({ isDarkMode }: LinkHubProps) {
   // After mounting, we can safely show the UI
   useEffect(() => {
     setMounted(true);
+    
+    // Initialize expanded folders
+    setTimeout(() => {
+      expandedFolders.forEach(folderName => {
+        const folderContent = document.querySelector(`[data-folder="${folderName}"]`);
+        if (folderContent) {
+          folderContent.classList.add('folder-expanded');
+        }
+      });
+    }, 100);
   }, []);
   
   // State for resources - keep only one document
@@ -181,9 +191,25 @@ Our component library follows industrial design principles with sharp edges, bol
   // Function to toggle folder expansion
   const toggleFolder = (folderName: string) => {
     if (expandedFolders.includes(folderName)) {
-      setExpandedFolders(expandedFolders.filter(name => name !== folderName));
+      // Add animation for closing folder
+      const folderContent = document.querySelector(`[data-folder="${folderName}"]`);
+      if (folderContent) {
+        folderContent.classList.add('folder-closing');
+        setTimeout(() => {
+          setExpandedFolders(expandedFolders.filter(name => name !== folderName));
+        }, 200);
+      } else {
+        setExpandedFolders(expandedFolders.filter(name => name !== folderName));
+      }
     } else {
       setExpandedFolders([...expandedFolders, folderName]);
+      // Add animation for opening folder
+      setTimeout(() => {
+        const folderContent = document.querySelector(`[data-folder="${folderName}"]`);
+        if (folderContent) {
+          folderContent.classList.add('folder-expanded');
+        }
+      }, 10);
     }
   };
 
@@ -226,11 +252,28 @@ Our component library follows industrial design principles with sharp edges, bol
   // Function to handle opening a document
   const handleOpenDocument = (resource: Resource) => {
     setSelectedDocument(resource);
+    // Add animation effect for smooth expansion
+    setTimeout(() => {
+      const documentView = document.querySelector('.document-view');
+      if (documentView) {
+        documentView.classList.add('expanded');
+      }
+    }, 10);
   };
 
   // Function to close document view
   const handleCloseDocument = () => {
-    setSelectedDocument(null);
+    // Add animation for closing
+    const documentView = document.querySelector('.document-view');
+    if (documentView) {
+      documentView.classList.remove('expanded');
+      // Wait for animation to complete before removing from DOM
+      setTimeout(() => {
+        setSelectedDocument(null);
+      }, 300);
+    } else {
+      setSelectedDocument(null);
+    }
   };
 
   return (
@@ -250,7 +293,7 @@ Our component library follows industrial design principles with sharp edges, bol
         
         {selectedDocument ? (
           // Document View
-          <div className={`${uiColors.bg} border ${uiColors.border} h-full`}>
+          <div className={`document-view ${uiColors.bg} border ${uiColors.border} h-full transition-all duration-300`}>
             <div className={`border-b ${uiColors.border} p-4 flex justify-between items-center`}>
               <div>
                 <h2 className="text-2xl font-bold">{selectedDocument.title}</h2>
@@ -377,7 +420,7 @@ Our component library follows industrial design principles with sharp edges, bol
                   <div 
                     key={resource.slug}
                     onClick={() => handleOpenDocument(resource)}
-                    className={`grid-card border ${uiColors.border} ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'} p-6 flex flex-col h-full cursor-pointer`}
+                    className={`grid-card border ${uiColors.border} ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'} p-6 flex flex-col h-full cursor-pointer hover:shadow-md transition-all duration-200`}
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex items-center">
@@ -445,29 +488,31 @@ Our component library follows industrial design principles with sharp edges, bol
                       
                       {/* Folder Contents */}
                       {expandedFolders.includes(folderName) && 
-                        folderStructure[folderName].map((resourceSlug) => {
-                          const resource = resources.find(r => r.slug === resourceSlug);
-                          if (!resource) return null;
-                          
-                          return (
-                            <div 
-                              key={resource.slug}
-                              onClick={() => handleOpenDocument(resource)}
-                              className="file-system-row file-row cursor-pointer"
-                            >
-                              <div className="file-system-column name-column">
-                                <div className="ml-6 flex items-center">
-                                  {getResourceIcon(resource.type)}
-                                  <span className="ml-2">{resource.title}</span>
+                        <div data-folder={folderName} className="folder-content">
+                          {folderStructure[folderName].map((resourceSlug) => {
+                            const resource = resources.find(r => r.slug === resourceSlug);
+                            if (!resource) return null;
+                            
+                            return (
+                              <div 
+                                key={resource.slug}
+                                onClick={() => handleOpenDocument(resource)}
+                                className="file-system-row file-row cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                              >
+                                <div className="file-system-column name-column">
+                                  <div className="ml-6 flex items-center">
+                                    {getResourceIcon(resource.type)}
+                                    <span className="ml-2">{resource.title}</span>
+                                  </div>
                                 </div>
+                                <div className="file-system-column date-column">{resource.date}</div>
+                                <div className="file-system-column size-column">{resource.size || '-'}</div>
+                                <div className="file-system-column kind-column">{resource.type}</div>
+                                <div className="file-system-column author-column">{resource.author}</div>
                               </div>
-                              <div className="file-system-column date-column">{resource.date}</div>
-                              <div className="file-system-column size-column">{resource.size || '-'}</div>
-                              <div className="file-system-column kind-column">{resource.type}</div>
-                              <div className="file-system-column author-column">{resource.author}</div>
-                            </div>
-                          );
-                        })
+                            );
+                          })}
+                        </div>
                       }
                     </div>
                   ))}
