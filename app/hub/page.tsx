@@ -22,7 +22,7 @@ export default function HubPage() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [showWelcome, setShowWelcome] = useState(true)
+  const [showWelcome, setShowWelcome] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(true) // Default to dark mode for the UI
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [activeSettingsTab, setActiveSettingsTab] = useState('profile')
@@ -36,12 +36,7 @@ export default function HubPage() {
     setMounted(true)
     setIsDarkMode(theme === 'dark')
     
-    // Hide welcome message after 5 seconds
-    const timer = setTimeout(() => {
-      setShowWelcome(false)
-    }, 5000)
-    
-    return () => clearTimeout(timer)
+    // No need for welcome message timeout since it's now hidden by default
   }, [theme])
 
   // Close settings panel when clicking outside
