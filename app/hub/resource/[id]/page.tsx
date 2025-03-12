@@ -8,6 +8,24 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
+// Client component for the resource image
+"use client";
+function ResourceDetailImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <Image 
+      src={src}
+      alt={alt}
+      fill
+      className="object-cover"
+      onError={(e) => {
+        const target = e.target as HTMLImageElement;
+        target.src = '/images/placeholder-image.jpg';
+      }}
+    />
+  );
+}
+// End client component
+
 interface ResourcePageProps {
   params: {
     id: string;
@@ -75,7 +93,7 @@ export default async function ResourceDetailPage({ params }: ResourcePageProps) 
     
     const imageUrl = resource.image?.data?.attributes?.url 
       ? `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${resource.image.data.attributes.url}`
-      : '/placeholder-image.jpg';
+      : '/images/placeholder-image.jpg';
     
     const formattedDate = new Date(resource.publishedAt).toLocaleDateString('en-US', {
       year: 'numeric', 
@@ -123,11 +141,9 @@ export default async function ResourceDetailPage({ params }: ResourcePageProps) 
           <div>
             <div className="sticky top-24">
               <div className="relative aspect-video overflow-hidden rounded-lg mb-6">
-                <Image 
+                <ResourceDetailImage 
                   src={imageUrl}
                   alt={resource.title}
-                  fill
-                  className="object-cover"
                 />
               </div>
               

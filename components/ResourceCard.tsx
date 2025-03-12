@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -5,6 +7,22 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import { StrapiData, Resource } from '@/types/strapi';
+
+// Separate client component for the image with error handling
+function ResourceImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <Image 
+      src={src}
+      alt={alt}
+      fill
+      className="object-cover"
+      onError={(e) => {
+        const target = e.target as HTMLImageElement;
+        target.src = '/images/placeholder-image.jpg';
+      }}
+    />
+  );
+}
 
 interface ResourceCardProps {
   resource: StrapiData<Resource>;
@@ -33,15 +51,9 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
   return (
     <Card className="h-full flex flex-col overflow-hidden">
       <div className="relative w-full h-48">
-        <Image 
+        <ResourceImage 
           src={imageUrl}
           alt={title || 'Resource'}
-          fill
-          className="object-cover"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = '/images/placeholder-image.jpg';
-          }}
         />
       </div>
       <CardHeader>
