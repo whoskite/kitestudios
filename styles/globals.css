@@ -100,23 +100,41 @@ body {
 }
 
 .document-view {
-  position: relative;
-  z-index: 10;
-  transform-origin: center;
-  transform: scale(0.95);
+  position: fixed;
+  z-index: 50;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background-color: var(--background);
+  border-left: 1px solid var(--border);
   opacity: 0;
-  max-height: 0;
   overflow: hidden;
-  transition: transform 0.3s ease, opacity 0.3s ease, max-height 0.3s ease;
+  transition: width 0.3s ease, opacity 0.3s ease;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Ensure the document view is above other elements when expanded */
-.document-view.expanded {
-  transform: scale(1);
+/* Side peek mode */
+.document-view.peek {
+  width: 50%;
   opacity: 1;
-  max-height: 100vh;
-  overflow: auto;
-  z-index: 20;
+  overflow-y: auto;
+}
+
+/* Full screen mode */
+.document-view.fullscreen {
+  width: 100%;
+  opacity: 1;
+  overflow-y: auto;
+}
+
+/* Document view content container */
+.document-view-content {
+  padding: 1.5rem;
+  min-height: 100%;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Document card hover effects */

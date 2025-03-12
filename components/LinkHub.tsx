@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Search, FileIcon, Github, FileText, Video, FolderIcon, ChevronDown, ChevronRight, Grid, List, Plus, User, X, BookOpen } from 'lucide-react'
+import { Search, FileIcon, Github, FileText, Video, FolderIcon, ChevronDown, ChevronRight, Grid, List, Plus, User, X, BookOpen, Maximize2, Minimize2 } from 'lucide-react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 
@@ -43,6 +43,7 @@ export default function LinkHub({ isDarkMode }: LinkHubProps) {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState<Resource | null>(null);
+  const [documentViewMode, setDocumentViewMode] = useState<'peek' | 'fullscreen' | null>(null);
   
   // Define UI colors based on dark mode
   const uiColors = {
@@ -67,16 +68,8 @@ export default function LinkHub({ isDarkMode }: LinkHubProps) {
           folderContent.classList.add('folder-expanded');
         }
       });
-      
-      // Initialize document view if a document is selected
-      if (selectedDocument) {
-        const documentView = document.getElementById('document-view');
-        if (documentView) {
-          documentView.classList.add('expanded');
-        }
-      }
     }, 100);
-  }, [expandedFolders, selectedDocument]);
+  }, [expandedFolders]);
   
   // State for resources - keep only one document
   const [resources, setResources] = useState<Resource[]>([
@@ -270,38 +263,28 @@ Our component library follows industrial design principles with sharp edges, bol
 
   // Function to handle opening a document
   const handleOpenDocument = (resource: Resource) => {
-    console.log("Document clicked:", resource.title); // Add debugging
+    console.log("Document clicked:", resource.title);
     
     // Prevent multiple clicks
     if (selectedDocument) return;
     
-    // Set the selected document
+    // Set the selected document and view mode to peek
     setSelectedDocument(resource);
-    
-    // Add animation effect for smooth expansion with a slight delay
-    setTimeout(() => {
-      const documentView = document.querySelector('.document-view');
-      if (documentView) {
-        documentView.classList.add('expanded');
-      } else {
-        console.log("Document view element not found"); // Debug if element not found
-      }
-    }, 50);
+    setDocumentViewMode('peek');
+  };
+
+  // Function to toggle between peek and fullscreen modes
+  const toggleDocumentViewMode = () => {
+    setDocumentViewMode(documentViewMode === 'peek' ? 'fullscreen' : 'peek');
   };
 
   // Function to close document view
   const handleCloseDocument = () => {
-    // Add animation for closing
-    const documentView = document.querySelector('.document-view');
-    if (documentView) {
-      documentView.classList.remove('expanded');
-      // Wait for animation to complete before removing from DOM
-      setTimeout(() => {
-        setSelectedDocument(null);
-      }, 300);
-    } else {
+    setDocumentViewMode(null);
+    // Wait for animation to complete before removing from DOM
+    setTimeout(() => {
       setSelectedDocument(null);
-    }
+    }, 300);
   };
 
   return (
@@ -319,11 +302,11 @@ Our component library follows industrial design principles with sharp edges, bol
           </Link>
         </div>
         
-        {selectedDocument ? (
-          // Document View
-          <div className={`document-view ${uiColors.bg} border ${uiColors.border} h-full transition-all duration-300`} id="document-view">
+        {/* Document View - Now positioned fixed */}
+        {selectedDocument && documentViewMode && (
+          <div className={`document-view ${documentViewMode}`}>
             <div className={`border-b ${uiColors.border} p-4 flex justify-between items-center sticky top-0 ${uiColors.bg} z-10`}>
-              <div>
+              <div className="flex-1">
                 <h2 className="text-2xl font-bold">{selectedDocument.title}</h2>
                 <div className="flex items-center mt-1 text-sm">
                   <User size={14} className="mr-2" />
@@ -332,14 +315,28 @@ Our component library follows industrial design principles with sharp edges, bol
                   <span>{selectedDocument.date}</span>
                 </div>
               </div>
-              <button 
-                onClick={handleCloseDocument}
-                className={`border ${uiColors.border} p-2 ${uiColors.hoverBg} transition-colors`}
-              >
-                <X className="h-5 w-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={toggleDocumentViewMode}
+                  className={`border ${uiColors.border} p-2 ${uiColors.hoverBg} transition-colors`}
+                  aria-label={documentViewMode === 'peek' ? 'Expand to full screen' : 'Collapse to side peek'}
+                >
+                  {documentViewMode === 'peek' ? (
+                    <Maximize2 className="h-5 w-5" />
+                  ) : (
+                    <Minimize2 className="h-5 w-5" />
+                  )}
+                </button>
+                <button 
+                  onClick={handleCloseDocument}
+                  className={`border ${uiColors.border} p-2 ${uiColors.hoverBg} transition-colors`}
+                  aria-label="Close document"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
             </div>
-            <div className="p-6 overflow-y-auto" style={{ maxHeight: "calc(100vh - 200px)" }}>
+            <div className="document-view-content">
               <div className={`prose ${isDarkMode ? 'prose-invert' : ''} max-w-none`}>
                 {selectedDocument.content?.split('\n').map((line, index) => {
                   if (line.startsWith('# ')) {
@@ -371,234 +368,244 @@ Our component library follows industrial design principles with sharp edges, bol
               </div>
             </div>
           </div>
-        ) : (
-          // Hub Dashboard View
-          <>
-            {/* Filter Buttons, Search, and View Toggle */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
-              {/* Search Input - At the top on mobile, in the middle on desktop */}
-              <div className="relative w-full md:w-64 order-first mb-4 md:mb-0">
-                <input
-                  type="text"
-                  placeholder="Search dashboard..."
-                  value={searchQuery}
-                  onChange={(e) => {
-                    console.log("Search query changed:", e.target.value);
-                    setSearchQuery(e.target.value);
-                  }}
-                  className={`w-full border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text} px-3 py-2 pl-10 focus:outline-none focus:border-[#ffff00] transition-colors rounded`}
-                />
-                <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 ${uiColors.text} opacity-50`} />
-              </div>
-              
-              {/* Category Filter Buttons */}
-              <div className="flex flex-wrap gap-2 w-full md:w-auto justify-center md:justify-start">
-                <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'all' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
-                  onClick={() => {
-                    console.log("Filter changed to: all");
-                    setActiveFilter('all');
-                  }}
-                >
-                  ALL
-                </button>
-                <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'design' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
-                  onClick={() => {
-                    console.log("Filter changed to: design");
-                    setActiveFilter('design');
-                  }}
-                >
-                  DESIGN
-                </button>
-                <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'code' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
-                  onClick={() => {
-                    console.log("Filter changed to: code");
-                    setActiveFilter('code');
-                  }}
-                >
-                  CODE
-                </button>
-                <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'media' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
-                  onClick={() => {
-                    console.log("Filter changed to: media");
-                    setActiveFilter('media');
-                  }}
-                >
-                  MEDIA
-                </button>
-                <button 
-                  className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'concepts' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
-                  onClick={() => {
-                    console.log("Filter changed to: concepts");
-                    setActiveFilter('concepts');
-                  }}
-                >
-                  CONCEPTS
-                </button>
-              </div>
-              
-              {/* View Toggle */}
-              <div className={`flex border ${uiColors.border} w-full md:w-auto justify-center md:justify-start mt-4 md:mt-0 rounded overflow-hidden`}>
-                <button 
-                  className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'grid' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text}`}`}
-                  onClick={() => {
-                    console.log("View mode changed to: grid");
-                    setViewMode('grid');
-                  }}
-                  aria-label="Grid View"
-                >
-                  <Grid className="h-5 w-5 mx-auto" />
-                </button>
-                <button 
-                  className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'file' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text}`}`}
-                  onClick={() => {
-                    console.log("View mode changed to: file");
-                    setViewMode('file');
-                  }}
-                  aria-label="File View"
-                >
-                  <List className="h-5 w-5 mx-auto" />
-                </button>
-              </div>
+        )}
+        
+        {/* Hub Dashboard View - Always visible */}
+        <div className={documentViewMode === 'fullscreen' ? 'opacity-0 pointer-events-none' : ''}>
+          {/* Filter Buttons, Search, and View Toggle */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+            {/* Search Input - At the top on mobile, in the middle on desktop */}
+            <div className="relative w-full md:w-64 order-first mb-4 md:mb-0">
+              <input
+                type="text"
+                placeholder="Search dashboard..."
+                value={searchQuery}
+                onChange={(e) => {
+                  console.log("Search query changed:", e.target.value);
+                  setSearchQuery(e.target.value);
+                }}
+                className={`w-full border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text} px-3 py-2 pl-10 focus:outline-none focus:border-[#ffff00] transition-colors rounded`}
+              />
+              <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 ${uiColors.text} opacity-50`} />
             </div>
+            
+            {/* Category Filter Buttons */}
+            <div className="flex flex-wrap gap-2 w-full md:w-auto justify-center md:justify-start">
+              <button 
+                className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'all' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
+                onClick={() => {
+                  console.log("Filter changed to: all");
+                  setActiveFilter('all');
+                }}
+              >
+                ALL
+              </button>
+              <button 
+                className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'design' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
+                onClick={() => {
+                  console.log("Filter changed to: design");
+                  setActiveFilter('design');
+                }}
+              >
+                DESIGN
+              </button>
+              <button 
+                className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'code' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
+                onClick={() => {
+                  console.log("Filter changed to: code");
+                  setActiveFilter('code');
+                }}
+              >
+                CODE
+              </button>
+              <button 
+                className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'media' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
+                onClick={() => {
+                  console.log("Filter changed to: media");
+                  setActiveFilter('media');
+                }}
+              >
+                MEDIA
+              </button>
+              <button 
+                className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'concepts' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
+                onClick={() => {
+                  console.log("Filter changed to: concepts");
+                  setActiveFilter('concepts');
+                }}
+              >
+                CONCEPTS
+              </button>
+            </div>
+            
+            {/* View Toggle */}
+            <div className={`flex border ${uiColors.border} w-full md:w-auto justify-center md:justify-start mt-4 md:mt-0 rounded overflow-hidden`}>
+              <button 
+                className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'grid' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text}`}`}
+                onClick={() => {
+                  console.log("View mode changed to: grid");
+                  setViewMode('grid');
+                }}
+                aria-label="Grid View"
+              >
+                <Grid className="h-5 w-5 mx-auto" />
+              </button>
+              <button 
+                className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'file' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text}`}`}
+                onClick={() => {
+                  console.log("View mode changed to: file");
+                  setViewMode('file');
+                }}
+                aria-label="File View"
+              >
+                <List className="h-5 w-5 mx-auto" />
+              </button>
+            </div>
+          </div>
 
-            {/* Resources Display */}
-            {viewMode === 'grid' ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredResources.map((resource) => (
-                  <div 
-                    key={resource.slug}
-                    onClick={(e) => {
+          {/* Resources Display */}
+          {viewMode === 'grid' ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredResources.map((resource) => (
+                <div 
+                  key={resource.slug}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleOpenDocument(resource);
+                  }}
+                  className={`grid-card border ${uiColors.border} ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'} p-6 flex flex-col h-full cursor-pointer hover:shadow-md transition-all duration-200`}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Open ${resource.title}`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      e.stopPropagation();
                       handleOpenDocument(resource);
-                    }}
-                    className={`grid-card border ${uiColors.border} ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'} p-6 flex flex-col h-full cursor-pointer hover:shadow-md transition-all duration-200`}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`Open ${resource.title}`}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        handleOpenDocument(resource);
-                      }
-                    }}
-                  >
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="flex items-center">
-                        {getResourceIcon(resource.type)}
-                        <span className="text-xs font-bold uppercase ml-2">{resource.type}</span>
-                      </div>
-                      <div className="text-xs opacity-70">{resource.date}</div>
+                    }
+                  }}
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="flex items-center">
+                      {getResourceIcon(resource.type)}
+                      <span className="text-xs font-bold uppercase ml-2">{resource.type}</span>
+                    </div>
+                    <div className="text-xs opacity-70">{resource.date}</div>
+                  </div>
+                  
+                  <h3 className="grid-card-title text-xl font-bold mb-2 transition-colors">{resource.title}</h3>
+                  <p className="text-sm mb-4 flex-grow opacity-80">{resource.description}</p>
+                  
+                  <div className="mt-auto">
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {resource.tags.map((tag) => (
+                        <span key={tag} className={`tag text-xs px-2 py-1 border ${uiColors.border}`}>
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                     
-                    <h3 className="grid-card-title text-xl font-bold mb-2 transition-colors">{resource.title}</h3>
-                    <p className="text-sm mb-4 flex-grow opacity-80">{resource.description}</p>
+                    {/* Author information */}
+                    <div className={`flex items-center mt-3 pt-3 border-t ${uiColors.border}`}>
+                      <User size={14} className="mr-2" />
+                      <span className="text-xs font-medium">{resource.author}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className={`file-system-container border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-white'} ${isDarkMode ? 'text-white' : 'text-black'}`}>
+              {/* File System Header */}
+              <div className={`file-system-header ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                <div className="file-system-column name-column">NAME</div>
+                <div className="file-system-column date-column">DATE ADDED</div>
+                <div className="file-system-column size-column">SIZE</div>
+                <div className="file-system-column kind-column">KIND</div>
+                <div className="file-system-column author-column">AUTHOR</div>
+              </div>
+              
+              {/* File System Content */}
+              <div className="file-system-content">
+                {/* Folders */}
+                {Object.keys(folderStructure).map((folderName) => (
+                  <div key={folderName}>
+                    {/* Folder Row */}
+                    <div 
+                      className="folder-row"
+                      onClick={() => toggleFolder(folderName)}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Toggle folder ${folderName}`}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          toggleFolder(folderName);
+                        }
+                      }}
+                    >
+                      <div className="file-system-column name-column">
+                        <div className="flex items-center">
+                          {expandedFolders.includes(folderName) ? (
+                            <ChevronDown size={16} className="mr-2" />
+                          ) : (
+                            <ChevronRight size={16} className="mr-2" />
+                          )}
+                          <FolderIcon size={16} className="mr-2" />
+                          <span className="font-medium">{folderName}</span>
+                        </div>
+                      </div>
+                      <div className="file-system-column date-column">-</div>
+                      <div className="file-system-column size-column">-</div>
+                      <div className="file-system-column kind-column">Folder</div>
+                      <div className="file-system-column author-column">-</div>
+                    </div>
                     
-                    <div className="mt-auto">
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {resource.tags.map((tag) => (
-                          <span key={tag} className={`tag text-xs px-2 py-1 border ${uiColors.border}`}>
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      {/* Author information */}
-                      <div className={`flex items-center mt-3 pt-3 border-t ${uiColors.border}`}>
-                        <User size={14} className="mr-2" />
-                        <span className="text-xs font-medium">{resource.author}</span>
-                      </div>
+                    {/* Folder Content */}
+                    <div data-folder={folderName} className="folder-content">
+                      {folderStructure[folderName].map((resourceSlug) => {
+                        const resource = resources.find(r => r.slug === resourceSlug);
+                        if (!resource) return null;
+                        
+                        return (
+                          <div 
+                            key={resource.slug}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleOpenDocument(resource);
+                            }}
+                            className="file-system-row file-row cursor-pointer transition-colors duration-200"
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`Open ${resource.title}`}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                handleOpenDocument(resource);
+                              }
+                            }}
+                          >
+                            <div className="file-system-column name-column">
+                              <div className="ml-6 flex items-center">
+                                {getResourceIcon(resource.type)}
+                                <span className="ml-2">{resource.title}</span>
+                              </div>
+                            </div>
+                            <div className="file-system-column date-column">{resource.date}</div>
+                            <div className="file-system-column size-column">{resource.size || '-'}</div>
+                            <div className="file-system-column kind-column">{resource.type}</div>
+                            <div className="file-system-column author-column">{resource.author}</div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 ))}
               </div>
-            ) : (
-              <div className={`file-system-container border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-white'} ${isDarkMode ? 'text-white' : 'text-black'}`}>
-                {/* File System Header */}
-                <div className={`file-system-header ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
-                  <div className="file-system-column name-column">NAME</div>
-                  <div className="file-system-column date-column">DATE ADDED</div>
-                  <div className="file-system-column size-column">SIZE</div>
-                  <div className="file-system-column kind-column">KIND</div>
-                  <div className="file-system-column author-column">AUTHOR</div>
-                </div>
-                
-                {/* File System Content */}
-                <div className="file-system-content">
-                  {/* Folders */}
-                  {Object.keys(folderStructure).map((folderName) => (
-                    <div key={folderName}>
-                      {/* Folder Row */}
-                      <div 
-                        className="file-system-row folder-row"
-                        onClick={() => toggleFolder(folderName)}
-                      >
-                        <div className="file-system-column name-column">
-                          {expandedFolders.includes(folderName) ? 
-                            <ChevronDown size={16} className="mr-1" /> : 
-                            <ChevronRight size={16} className="mr-1" />
-                          }
-                          <FolderIcon size={16} className="mr-2" />
-                          {folderName}
-                        </div>
-                        <div className="file-system-column date-column">-</div>
-                        <div className="file-system-column size-column">-</div>
-                        <div className="file-system-column kind-column">Folder</div>
-                        <div className="file-system-column author-column">-</div>
-                      </div>
-                      
-                      {/* Folder Contents */}
-                      {expandedFolders.includes(folderName) && 
-                        <div data-folder={folderName} className="folder-content">
-                          {folderStructure[folderName].map((resourceSlug) => {
-                            const resource = resources.find(r => r.slug === resourceSlug);
-                            if (!resource) return null;
-                            
-                            return (
-                              <div 
-                                key={resource.slug}
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  handleOpenDocument(resource);
-                                }}
-                                className="file-system-row file-row cursor-pointer transition-colors duration-200"
-                                role="button"
-                                tabIndex={0}
-                                aria-label={`Open ${resource.title}`}
-                                onKeyDown={(e) => {
-                                  if (e.key === 'Enter' || e.key === ' ') {
-                                    e.preventDefault();
-                                    handleOpenDocument(resource);
-                                  }
-                                }}
-                              >
-                                <div className="file-system-column name-column">
-                                  <div className="ml-6 flex items-center">
-                                    {getResourceIcon(resource.type)}
-                                    <span className="ml-2">{resource.title}</span>
-                                  </div>
-                                </div>
-                                <div className="file-system-column date-column">{resource.date}</div>
-                                <div className="file-system-column size-column">{resource.size || '-'}</div>
-                                <div className="file-system-column kind-column">{resource.type}</div>
-                                <div className="file-system-column author-column">{resource.author}</div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      }
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </>
-        )}
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
