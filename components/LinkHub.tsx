@@ -60,14 +60,23 @@ export default function LinkHub({ isDarkMode }: LinkHubProps) {
     
     // Initialize expanded folders
     setTimeout(() => {
+      // Initialize folder content
       expandedFolders.forEach(folderName => {
         const folderContent = document.querySelector(`[data-folder="${folderName}"]`);
         if (folderContent) {
           folderContent.classList.add('folder-expanded');
         }
       });
+      
+      // Initialize document view if a document is selected
+      if (selectedDocument) {
+        const documentView = document.getElementById('document-view');
+        if (documentView) {
+          documentView.classList.add('expanded');
+        }
+      }
     }, 100);
-  }, []);
+  }, [expandedFolders, selectedDocument]);
   
   // State for resources - keep only one document
   const [resources, setResources] = useState<Resource[]>([
@@ -251,14 +260,23 @@ Our component library follows industrial design principles with sharp edges, bol
 
   // Function to handle opening a document
   const handleOpenDocument = (resource: Resource) => {
+    console.log("Document clicked:", resource.title); // Add debugging
+    
+    // Prevent multiple clicks
+    if (selectedDocument) return;
+    
+    // Set the selected document
     setSelectedDocument(resource);
-    // Add animation effect for smooth expansion
+    
+    // Add animation effect for smooth expansion with a slight delay
     setTimeout(() => {
       const documentView = document.querySelector('.document-view');
       if (documentView) {
         documentView.classList.add('expanded');
+      } else {
+        console.log("Document view element not found"); // Debug if element not found
       }
-    }, 10);
+    }, 50);
   };
 
   // Function to close document view
@@ -293,8 +311,8 @@ Our component library follows industrial design principles with sharp edges, bol
         
         {selectedDocument ? (
           // Document View
-          <div className={`document-view ${uiColors.bg} border ${uiColors.border} h-full transition-all duration-300`}>
-            <div className={`border-b ${uiColors.border} p-4 flex justify-between items-center`}>
+          <div className={`document-view ${uiColors.bg} border ${uiColors.border} h-full transition-all duration-300`} id="document-view">
+            <div className={`border-b ${uiColors.border} p-4 flex justify-between items-center sticky top-0 ${uiColors.bg} z-10`}>
               <div>
                 <h2 className="text-2xl font-bold">{selectedDocument.title}</h2>
                 <div className="flex items-center mt-1 text-sm">
@@ -419,8 +437,21 @@ Our component library follows industrial design principles with sharp edges, bol
                 {filteredResources.map((resource) => (
                   <div 
                     key={resource.slug}
-                    onClick={() => handleOpenDocument(resource)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleOpenDocument(resource);
+                    }}
                     className={`grid-card border ${uiColors.border} ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'} p-6 flex flex-col h-full cursor-pointer hover:shadow-md transition-all duration-200`}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Open ${resource.title}`}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleOpenDocument(resource);
+                      }
+                    }}
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex items-center">
@@ -496,8 +527,21 @@ Our component library follows industrial design principles with sharp edges, bol
                             return (
                               <div 
                                 key={resource.slug}
-                                onClick={() => handleOpenDocument(resource)}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  handleOpenDocument(resource);
+                                }}
                                 className="file-system-row file-row cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                                role="button"
+                                tabIndex={0}
+                                aria-label={`Open ${resource.title}`}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    handleOpenDocument(resource);
+                                  }
+                                }}
                               >
                                 <div className="file-system-column name-column">
                                   <div className="ml-6 flex items-center">

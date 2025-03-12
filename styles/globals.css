@@ -93,35 +93,55 @@ body {
   }
 }
 
-/* Document expansion animation */
+/* Z-index handling */
+.file-system-container {
+  position: relative;
+  z-index: 1;
+}
+
 .document-view {
+  position: relative;
+  z-index: 10;
   transform-origin: center;
   transform: scale(0.95);
   opacity: 0;
   max-height: 0;
   overflow: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease, max-height 0.3s ease;
 }
 
+/* Ensure the document view is above other elements when expanded */
 .document-view.expanded {
   transform: scale(1);
   opacity: 1;
   max-height: 100vh;
   overflow: auto;
-}
-
-/* Ensure smooth transitions */
-.document-view {
-  transition: transform 0.3s ease, opacity 0.3s ease, max-height 0.3s ease;
+  z-index: 20;
 }
 
 /* Document card hover effects */
 .grid-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  user-select: none;
 }
 
 .grid-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 2;
+}
+
+.grid-card:active {
+  transform: translateY(-1px);
+  transition: transform 0.1s ease;
+}
+
+.grid-card:focus-visible {
+  outline: 2px solid #ffff00;
+  outline-offset: 2px;
 }
 
 .grid-card-title {
@@ -144,8 +164,16 @@ body {
   width: 100%;
 }
 
+/* File system row styles */
 .file-system-row.file-row {
   transition: background-color 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.file-system-row.file-row:focus-visible {
+  outline: 2px solid #ffff00;
+  outline-offset: -2px;
 }
 
 /* Folder expansion animations */
