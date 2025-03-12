@@ -26,6 +26,8 @@ JWT_SECRET=your_jwt_secret
 ### Other Settings
 ```
 NODE_ENV=production
+PORT=1338
+HOST=0.0.0.0
 ```
 
 ## Steps to Configure Railway
@@ -51,6 +53,14 @@ If your deployment fails with a health check error:
 2. Make sure all environment variables are set correctly
 3. Verify that your PostgreSQL service is running
 4. Try redeploying the application
+
+### Common Issues
+
+1. **Health Check Failure**: We've added a custom health check endpoint at `/health.json` to help with this issue.
+
+2. **Database Connection Issues**: Make sure your PostgreSQL service is running and connected to your Strapi service.
+
+3. **Missing Environment Variables**: Double-check that all required environment variables are set correctly.
 
 ## Local Development
 
