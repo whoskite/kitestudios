@@ -12,14 +12,19 @@ export default withAuth(
     callbacks: {
       // Only require auth for specific paths
       authorized({ req, token }) {
+        // Allow access to login page for authentication
+        if (req.nextUrl.pathname === '/login') {
+          return true
+        }
+        
         // If there's a token, the user is authenticated
         return !!token
       },
     },
-    // Redirect to access denied page if not authenticated
+    // Redirect to login page if not authenticated
     pages: {
-      signIn: '/access-denied',
-      error: '/access-denied',
+      signIn: '/login',
+      error: '/auth-help',
     },
   }
 )
@@ -30,6 +35,7 @@ export const config = {
     '/hub',
     '/hub/:path*',
     '/resource/:path*',
+    '/admin',
     '/admin/:path*',
     '/api/chat/:path*', // Protect chat API routes
   ],

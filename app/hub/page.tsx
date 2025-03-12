@@ -97,11 +97,13 @@ export default function HubPage() {
     highlight: isDarkMode ? "bg-zinc-900" : "bg-gray-50",
     listHover: isDarkMode ? "hover:bg-zinc-900" : "hover:bg-gray-100",
     sidebarBg: isDarkMode ? "bg-black" : "bg-white",
-    activeIcon: isDarkMode ? "text-yellow-400" : "text-black",
-    activeBg: isDarkMode ? "bg-zinc-900" : "bg-gray-100",
-    tooltipBg: isDarkMode ? "bg-black" : "bg-black",
+    activeIcon: isDarkMode ? "text-yellow-400" : "text-yellow-600",
+    activeBg: isDarkMode ? "bg-zinc-900/50" : "bg-gray-100/80",
+    activeHighlight: isDarkMode ? "bg-yellow-400/15" : "bg-yellow-400/10",
+    activeBorder: isDarkMode ? "border-yellow-400/30" : "border-yellow-600/30",
+    tooltipBg: isDarkMode ? "bg-black" : "bg-gray-800",
     tooltipText: "text-white",
-    tooltipBorder: isDarkMode ? "border border-zinc-800" : "border border-black",
+    tooltipBorder: isDarkMode ? "border border-zinc-800" : "border border-gray-200",
     tableHeaderBg: isDarkMode ? "bg-zinc-900" : "bg-gray-100",
     tableRowHover: isDarkMode ? "hover:bg-zinc-900/50" : "hover:bg-gray-50",
     tableRowBorder: isDarkMode ? "border-b border-zinc-800" : "border-b border-gray-200",
@@ -202,8 +204,8 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
       >
         {/* Top section with logo and navigation icons */}
         <div>
-          <div className="p-4 border-b border-zinc-800 flex justify-center">
-            <div className="w-10 h-10 flex items-center justify-center border border-yellow-400">
+          <div className={`p-4 border-b ${uiColors.border} flex justify-center`}>
+            <div className={`w-10 h-10 flex items-center justify-center border ${isDarkMode ? 'border-yellow-400' : 'border-gray-200'}`}>
               <span className="text-yellow-400 font-bold text-2xl tracking-tighter">K</span>
             </div>
           </div>
@@ -222,7 +224,7 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
                     )}
                     <Link 
                       href={item.href}
-                      className={`p-3 ${isActive ? uiColors.activeBg : ''} transition-all duration-200 flex items-center justify-center group-hover:scale-110 border border-transparent group-hover:border-zinc-800`}
+                      className={`p-3 ${isActive ? `${uiColors.activeBg} ${uiColors.activeHighlight}` : ''} transition-all duration-200 flex items-center justify-center group-hover:scale-110 border ${isActive ? uiColors.activeBorder : 'border-transparent'} group-hover:border-zinc-800`}
                       title={item.label}
                     >
                       <span className={`${isActive ? uiColors.activeIcon : uiColors.iconColor} transition-colors duration-200 group-hover:text-yellow-400`}>
@@ -245,7 +247,7 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
         </div>
         
         {/* Bottom section with theme toggle, settings, and user profile */}
-        <div className="mb-8 space-y-6 border-t border-zinc-800 pt-6">
+        <div className={`mb-8 space-y-6 border-t ${uiColors.border} pt-6`}>
           <div className="flex justify-center relative group">
             <button 
               onClick={toggleTheme}
@@ -298,10 +300,10 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
                 <img 
                   src={session.user.image} 
                   alt="Profile" 
-                  className="w-8 h-8 rounded-none border border-zinc-800"
+                  className={`w-8 h-8 rounded-none border ${uiColors.border}`}
                 />
               ) : (
-                <div className="w-8 h-8 border border-zinc-800 flex items-center justify-center">
+                <div className={`w-8 h-8 border ${uiColors.border} flex items-center justify-center`}>
                   <User size={16} className={`${uiColors.iconColor} group-hover:text-yellow-400`} />
                 </div>
               )}
@@ -323,7 +325,7 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
       <div className="flex-1 flex flex-col min-h-screen md:ml-[70px]">
         <div className="container mx-auto px-4 py-6">
           {/* Browse Hub Resources Button */}
-          <div className="mb-6 border border-zinc-800 p-0">
+          <div className={`mb-6 border ${uiColors.border} p-0`}>
             <Link 
               href="/hub/resource" 
               className="flex items-center justify-between px-4 py-3 hover:bg-zinc-900 transition-colors"
@@ -426,7 +428,7 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
           <div className={documentViewMode === 'fullscreen' ? 'opacity-0 pointer-events-none' : ''}>
             {/* View Toggle */}
             <div className="flex justify-end mb-6">
-              <div className="flex border border-zinc-800">
+              <div className={`flex border ${uiColors.border}`}>
                 <button 
                   className={`p-2 transition-colors ${viewMode === 'grid' ? `bg-yellow-400 text-black` : `${uiColors.bg} ${uiColors.text}`}`}
                   onClick={() => setViewMode('grid')}

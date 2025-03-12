@@ -18,13 +18,14 @@ const handler = NextAuth({
   ],
   // Customize pages
   pages: {
-    signIn: '/admin',
+    signIn: '/login',
     error: '/auth-help', // Redirect to auth-help page on error
   },
   // Callbacks
   callbacks: {
     async signIn({ user, account, profile }) {
       // Allow all users to sign in
+      console.log("Sign in callback:", { user: user.email, provider: account?.provider });
       return true
     },
     async session({ session, token }) {
@@ -35,15 +36,50 @@ const handler = NextAuth({
       return session
     },
     async redirect({ url, baseUrl }) {
-      // Allows relative callback URLs
-      if (url.startsWith("/")) return `${baseUrl}${url}`
-      // Allows callback URLs on the same origin
-      else if (new URL(url).origin === baseUrl) return url
-      return baseUrl
+      console.log("Redirect callback:", { url, baseUrl });
+      
+      // Redirect to hub page after sign in
+      if (url.includes('/api/auth/callback')) {
+        console.log("Auth callback detected, redirecting to hub page");
+        return `${baseUrl}/hub`;
+      }
+      
+      // Handle relative URLs (starting with /)
+      if (url.startsWith("/")) {
+        const redirectUrl = `${baseUrl}${url}`;
+        console.log("Redirecting to:", redirectUrl);
+        return redirectUrl;
+      }
+      
+      // Handle absolute URLs on the same origin
+      try {
+        const urlObj = new URL(url);
+        if (urlObj.origin === baseUrl) {
+          console.log("Same origin redirect to:", url);
+          return url;
+        }
+      } catch (error) {
+        console.error("Error parsing URL:", error);
+      }
+      
+      // Default fallback to hub page
+      console.log("Fallback redirect to hub page");
+      return `${baseUrl}/hub`;
     },
   },
   // Enable debug in development
-  debug: process.env.NODE_ENV === 'development',
+  debug: true, // Always enable debug to help troubleshoot
+  logger: {
+    error(code, metadata) {
+      console.error(`NextAuth Error: ${code}`, metadata);
+    },
+    warn(code) {
+      console.warn(`NextAuth Warning: ${code}`);
+    },
+    debug(code, metadata) {
+      console.log(`NextAuth Debug: ${code}`, metadata);
+    },
+  },
 })
 
 export { handler as GET, handler as POST } 
