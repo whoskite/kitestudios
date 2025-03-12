@@ -8,23 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
-// Client component for the resource image
-"use client";
-function ResourceDetailImage({ src, alt }: { src: string; alt: string }) {
-  return (
-    <Image 
-      src={src}
-      alt={alt}
-      fill
-      className="object-cover"
-      onError={(e) => {
-        const target = e.target as HTMLImageElement;
-        target.src = '/images/placeholder-image.jpg';
-      }}
-    />
-  );
-}
-// End client component
+// Import the client component instead of defining it inline
+import ResourceDetailImage from '@/components/ResourceDetailImage';
 
 interface ResourcePageProps {
   params: {
