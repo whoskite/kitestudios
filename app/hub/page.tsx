@@ -102,10 +102,6 @@ export default function HubPage() {
   // Sidebar navigation items
   const sidebarItems = [
     { icon: <Home size={20} />, label: "HOME", href: "/hub" },
-    { icon: <FileText size={20} />, label: "DOCUMENTS", href: "/hub/docs" },
-    { icon: <Image size={20} />, label: "MEDIA", href: "/hub/media" },
-    { icon: <Database size={20} />, label: "DATA", href: "/hub/data" },
-    { icon: <Layers size={20} />, label: "PROJECTS", href: "/hub/projects" },
   ];
 
   // Get current path to determine active link

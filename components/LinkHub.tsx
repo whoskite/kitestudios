@@ -249,7 +249,7 @@ Our component library follows industrial design principles with sharp edges, bol
     const categoryMatch = activeFilter === 'all' || resource.category === activeFilter;
     
     // Filter by search query
-    const searchMatch = 
+    const searchMatch = searchQuery === '' || 
       resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       resource.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       resource.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())) ||
@@ -257,6 +257,16 @@ Our component library follows industrial design principles with sharp edges, bol
     
     return categoryMatch && searchMatch;
   });
+  
+  // Log state changes for debugging
+  useEffect(() => {
+    console.log("State updated:", { 
+      activeFilter, 
+      searchQuery, 
+      viewMode, 
+      filteredResources: filteredResources.length 
+    });
+  }, [activeFilter, searchQuery, viewMode, filteredResources.length]);
 
   // Function to handle opening a document
   const handleOpenDocument = (resource: Resource) => {
@@ -372,7 +382,10 @@ Our component library follows industrial design principles with sharp edges, bol
                   type="text"
                   placeholder="Search dashboard..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    console.log("Search query changed:", e.target.value);
+                    setSearchQuery(e.target.value);
+                  }}
                   className={`w-full border ${uiColors.border} ${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text} px-3 py-2 pl-10 focus:outline-none focus:border-[#ffff00] transition-colors rounded`}
                 />
                 <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 ${uiColors.text} opacity-50`} />
@@ -382,31 +395,46 @@ Our component library follows industrial design principles with sharp edges, bol
               <div className="flex flex-wrap gap-2 w-full md:w-auto justify-center md:justify-start">
                 <button 
                   className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'all' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
-                  onClick={() => setActiveFilter('all')}
+                  onClick={() => {
+                    console.log("Filter changed to: all");
+                    setActiveFilter('all');
+                  }}
                 >
                   ALL
                 </button>
                 <button 
                   className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'design' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
-                  onClick={() => setActiveFilter('design')}
+                  onClick={() => {
+                    console.log("Filter changed to: design");
+                    setActiveFilter('design');
+                  }}
                 >
                   DESIGN
                 </button>
                 <button 
                   className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'code' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
-                  onClick={() => setActiveFilter('code')}
+                  onClick={() => {
+                    console.log("Filter changed to: code");
+                    setActiveFilter('code');
+                  }}
                 >
                   CODE
                 </button>
                 <button 
                   className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'media' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
-                  onClick={() => setActiveFilter('media')}
+                  onClick={() => {
+                    console.log("Filter changed to: media");
+                    setActiveFilter('media');
+                  }}
                 >
                   MEDIA
                 </button>
                 <button 
                   className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'concepts' ? `bg-[#ffff00] text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
-                  onClick={() => setActiveFilter('concepts')}
+                  onClick={() => {
+                    console.log("Filter changed to: concepts");
+                    setActiveFilter('concepts');
+                  }}
                 >
                   CONCEPTS
                 </button>
@@ -416,14 +444,20 @@ Our component library follows industrial design principles with sharp edges, bol
               <div className={`flex border ${uiColors.border} w-full md:w-auto justify-center md:justify-start mt-4 md:mt-0 rounded overflow-hidden`}>
                 <button 
                   className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'grid' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text}`}`}
-                  onClick={() => setViewMode('grid')}
+                  onClick={() => {
+                    console.log("View mode changed to: grid");
+                    setViewMode('grid');
+                  }}
                   aria-label="Grid View"
                 >
                   <Grid className="h-5 w-5 mx-auto" />
                 </button>
                 <button 
                   className={`p-2 flex-1 md:flex-auto transition-colors ${viewMode === 'file' ? `bg-[#ffff00] text-black` : `${isDarkMode ? 'bg-black' : 'bg-white'} ${uiColors.text}`}`}
-                  onClick={() => setViewMode('file')}
+                  onClick={() => {
+                    console.log("View mode changed to: file");
+                    setViewMode('file');
+                  }}
                   aria-label="File View"
                 >
                   <List className="h-5 w-5 mx-auto" />
