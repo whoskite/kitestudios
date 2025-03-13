@@ -11,15 +11,6 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedMetaData extends Struct.ComponentSchema {
-  collectionName: 'components_shared_meta_data';
-  info: {
-    displayName: 'metaData';
-    icon: 'alien';
-  };
-  attributes: {};
-}
-
 export interface SharedQuote extends Struct.ComponentSchema {
   collectionName: 'components_shared_quotes';
   info: {
@@ -75,7 +66,6 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.media': SharedMedia;
-      'shared.meta-data': SharedMetaData;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;

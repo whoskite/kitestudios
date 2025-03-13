@@ -17,67 +17,7 @@
     },
     "blocks": {
       "type": "dynamiczone",
-      "components": [
-        "shared.media",
-        "shared.quote",
-        "shared.rich-text",
-        "shared.slider"
-      ]
-    },
-    "Description": {
-      "type": "string"
-    },
-    "Category": {
-      "type": "enumeration",
-      "enum": [
-        "Design",
-        "Coding",
-        "Web3",
-        "Idea"
-      ]
-    },
-    "Tags": {
-      "type": "json"
-    },
-    "publishDate": {
-      "type": "date"
-    },
-    "Author": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::article.article"
-    },
-    "featuredImage": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
-    },
-    "contentStatus": {
-      "type": "enumeration",
-      "enum": [
-        "Draft",
-        "Published",
-        "Archived"
-      ]
-    },
-    "slug": {
-      "type": "string"
-    },
-    "contentMeta": {
-      "displayName": "metaData",
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.meta-data"
-    },
-    "article": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::article.article"
+      "components": ["shared.media", "shared.quote", "shared.rich-text", "shared.slider"]
     }
   }
 }

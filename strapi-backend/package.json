@@ -13,15 +13,17 @@
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "generate-secrets": "node ./scripts/generate-secrets.js"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.11.0",
-    "@strapi/plugin-users-permissions": "5.11.0",
-    "@strapi/strapi": "5.11.0",
+    "@strapi/plugin-cloud": "5.11.1",
+    "@strapi/plugin-users-permissions": "5.11.1",
+    "@strapi/strapi": "5.11.1",
     "better-sqlite3": "11.3.0",
     "fs-extra": "^10.0.0",
     "mime-types": "^2.1.27",
+    "pg": "^8.14.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
@@ -38,6 +40,6 @@
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "9d5f39d2-b0af-41dc-9506-03dc23585875"
+    "uuid": "bd07b008-e842-4424-9ec7-12669d53769d"
   }
 }

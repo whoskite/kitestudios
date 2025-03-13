@@ -58,4 +58,97 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 
 ---
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+# Strapi Backend for KITE Studios
+
+This is the Strapi CMS backend for the KITE Studios website.
+
+## Database Configuration
+
+This project is configured to use:
+- **SQLite** for local development
+- **PostgreSQL** for production deployment on Railway
+
+This dual configuration makes local development easier while ensuring the production environment is robust and scalable.
+
+### Local Development (SQLite)
+
+SQLite is a file-based database that doesn't require any additional setup. The database file is stored at `.tmp/data.db` in the Strapi backend directory.
+
+### Production (PostgreSQL)
+
+For production, the application will use PostgreSQL provided by Railway. The configuration for this is in the `.env.production` file, which uses environment variables that will be automatically provided by Railway.
+
+## Local Development
+
+1. Install dependencies:
+   ```
+   npm install
+   ```
+
+2. Start the development server:
+   ```
+   npm run develop
+   ```
+
+3. Access the admin panel at http://localhost:1337/admin
+
+## Deployment on Railway
+
+### Prerequisites
+
+1. Create a Railway account at https://railway.app/
+2. Install the Railway CLI:
+   ```
+   npm install -g @railway/cli
+   ```
+3. Login to Railway:
+   ```
+   railway login
+   ```
+
+### Steps to Deploy
+
+1. Create a new project on Railway
+2. Add a PostgreSQL database to your project
+3. Link your local project to Railway:
+   ```
+   railway link
+   ```
+4. Deploy your project:
+   ```
+   railway up
+   ```
+
+### Environment Variables
+
+The following environment variables will be automatically provided by Railway for the PostgreSQL database:
+
+- `DATABASE_URL`
+- `DATABASE_HOST`
+- `DATABASE_PORT`
+- `DATABASE_NAME`
+- `DATABASE_USERNAME`
+- `DATABASE_PASSWORD`
+
+You'll need to set these additional environment variables in the Railway dashboard:
+
+- `APP_KEYS` - Comma-separated random strings
+- `API_TOKEN_SALT` - Random string
+- `ADMIN_JWT_SECRET` - Random string
+- `TRANSFER_TOKEN_SALT` - Random string
+- `JWT_SECRET` - Random string
+
+You can generate random strings using:
+```
+node -e "console.log(require('crypto').randomBytes(16).toString('base64'))"
+```
+
+## API Documentation
+
+Once deployed, you can access the API documentation at:
+- https://your-railway-url.railway.app/documentation/v1.0.0
+
+## Admin Panel
+
+The admin panel will be available at:
+- https://your-railway-url.railway.app/admin

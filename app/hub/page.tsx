@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react"
 import { Home, LogOut, Menu, X, Sun, Moon, Settings, User, CreditCard, Bell, Shield, HelpCircle, ChevronRight, FileText, Package, ShoppingBag, Users, Grid, Database, Image, Video, Layers, Star, Download, BookOpen, Search, List, Folder, Maximize2, Minimize2 } from "lucide-react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
+import HubResources from "@/components/HubResources"
 
 // Define document type
 interface Document {
@@ -474,7 +475,7 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
 
             {/* Grid View */}
             {viewMode === 'grid' && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
                 {/* Welcome message */}
                 {showWelcome && (
                   <div className={`mb-8 p-6 ${uiColors.highlight} ${uiColors.text} border ${uiColors.border} col-span-full`}>
@@ -494,32 +495,8 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
                   </div>
                 )}
 
-                {/* Document Cards */}
-                {documents.map((doc, index) => (
-                  <div 
-                    key={index}
-                    onClick={() => handleOpenDocument(doc)}
-                    className={`grid-card border ${uiColors.border} p-6 flex flex-col h-full cursor-pointer`}
-                  >
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="flex items-center">
-                        <FileText size={16} className="text-gray-400 mr-2" />
-                        <span className="text-xs font-bold uppercase">{doc.type}</span>
-                      </div>
-                      <div className="text-xs opacity-70">{doc.date}</div>
-                    </div>
-                    
-                    <h3 className="grid-card-title text-xl font-bold mb-2">{doc.title}</h3>
-                    <p className="text-sm mb-4 flex-grow opacity-80">{doc.description}</p>
-                    
-                    <div className="mt-auto">
-                      <div className={`flex items-center mt-3 pt-3 border-t ${uiColors.border}`}>
-                        <User size={14} className="mr-2" />
-                        <span className="text-xs font-medium">{doc.author}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                {/* Use the HubResources component to fetch and display resources from Strapi */}
+                <HubResources />
               </div>
             )}
           </div>

@@ -1,4 +1,5 @@
 import qs from 'qs';
+import axios from 'axios';
 
 // Check if we're in a production environment (like Vercel)
 const isProduction = process.env.NODE_ENV === 'production' && process.env.VERCEL === '1';
@@ -15,54 +16,100 @@ const useMockData = isProduction && (
 );
 
 /**
- * Fetch data from Strapi API
- * @param endpoint - API endpoint
- * @param params - Query parameters
- * @returns Promise with the response data
+ * Get full Strapi URL from path
+ * @param {string} path Path of the URL
+ * @returns {string} Full Strapi URL
  */
-export async function fetchAPI(
-  endpoint: string,
-  params: Record<string, any> = {}
-) {
-  // If we're in production and should use mock data, return mock data immediately
-  if (useMockData) {
-    console.log('Using mock data for Strapi in production environment');
-    return getMockData(endpoint);
-  }
+export function getStrapiURL(path = '') {
+  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${path}`;
+}
 
-  // Build the query string
-  const queryString = qs.stringify(params);
-  const url = `${STRAPI_URL}/api/${endpoint}${queryString ? `?${queryString}` : ''}`;
-
-  const headers: HeadersInit = {
-    'Content-Type': 'application/json',
+/**
+ * Helper to make GET requests to Strapi API endpoints
+ * @param {string} path Path of the API route
+ * @param {Object} urlParamsObject URL params object, will be stringified
+ * @param {Object} options Options passed to fetch
+ * @returns Parsed API call response
+ */
+export async function fetchAPI(path: string, urlParamsObject = {}, options = {}) {
+  // Merge default and user options
+  const mergedOptions = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    ...options,
   };
 
-  // Add authorization header if API token exists
-  if (API_TOKEN) {
-    headers.Authorization = `Bearer ${API_TOKEN}`;
-  }
+  // Build request URL
+  const queryString = qs.stringify(urlParamsObject);
+  const requestUrl = `${getStrapiURL(
+    `/api${path}${queryString ? `?${queryString}` : ''}`
+  )}`;
 
+  // Trigger API call
   try {
-    const response = await fetch(url, {
-      method: 'GET',
-      headers,
-      next: { revalidate: 60 }, // Revalidate every 60 seconds
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error fetching from Strapi: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    return data;
+    const response = await axios.get(requestUrl, mergedOptions);
+    return response.data;
   } catch (error) {
-    // During build time or when Strapi is not available, return empty data
-    console.error('Error fetching from Strapi:', error);
-    
-    // Return mock data when there's an error
-    return getMockData(endpoint);
+    console.error(error);
+    throw new Error(`Error fetching from Strapi API: ${error}`);
   }
+}
+
+/**
+ * Helper to make POST requests to Strapi API endpoints
+ * @param {string} path Path of the API route
+ * @param {Object} data Data to be posted
+ * @param {Object} options Options passed to fetch
+ * @returns Parsed API call response
+ */
+export async function postAPI(path: string, data = {}, options = {}) {
+  // Merge default and user options
+  const mergedOptions = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    ...options,
+  };
+
+  // Build request URL
+  const requestUrl = getStrapiURL(`/api${path}`);
+
+  // Trigger API call
+  try {
+    const response = await axios.post(requestUrl, data, mergedOptions);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(`Error posting to Strapi API: ${error}`);
+  }
+}
+
+/**
+ * Get media URL from Strapi
+ * @param {object} media Media object from Strapi
+ * @returns {string} URL of the media
+ */
+export function getStrapiMedia(media: any) {
+  if (!media) return null;
+  
+  const { url } = media.data.attributes;
+  const imageUrl = url.startsWith('/') ? getStrapiURL(url) : url;
+  return imageUrl;
+}
+
+/**
+ * Format date from Strapi
+ * @param {string} dateString Date string from Strapi
+ * @returns {string} Formatted date
+ */
+export function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 }
 
 /**
