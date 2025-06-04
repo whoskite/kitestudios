@@ -1,70 +1,88 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import OffWhiteCard from './OffWhiteCard'
+import { motion } from "framer-motion";
+import OffWhiteCard from "./OffWhiteCard";
 
 export default function OffWhiteSection() {
   const projects = [
     {
       title: "PROJECT 01",
-      description: "Industrial design concept with minimalist approach and functional aesthetics.",
+      description:
+        "Industrial design concept with minimalist approach and functional aesthetics.",
       category: "DESIGN",
-      image: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=2070&auto=format&fit=crop"
+      image:
+        "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=2070&auto=format&fit=crop",
     },
     {
       title: "PROJECT 02",
-      description: "Architectural visualization with focus on negative space and structural elements.",
+      description:
+        "Architectural visualization with focus on negative space and structural elements.",
       category: "ARCHITECTURE",
-      image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2089&auto=format&fit=crop"
+      image:
+        "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2089&auto=format&fit=crop",
     },
     {
       title: "PROJECT 03",
-      description: "Experimental typography exploration with industrial influences and bold statements.",
+      description:
+        "Experimental typography exploration with industrial influences and bold statements.",
       category: "TYPOGRAPHY",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop"
-    }
-  ]
+      image:
+        "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop",
+    },
+  ];
 
   return (
-    <section className="w-full py-16 relative">
+    <section className="w-full py-16 relative" data-oid="oea05a3">
       {/* Section Header */}
-      <div className="container mx-auto mb-12">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <motion.h2 
+      <div className="container mx-auto mb-12" data-oid="cl28w7w">
+        <div
+          className="flex flex-col md:flex-row md:items-center md:justify-between"
+          data-oid="n7wgwg."
+        >
+          <motion.h2
             className="industrial-text text-3xl md:text-4xl mb-4 md:mb-0 off-white-quote"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
+            data-oid="xzom1z5"
           >
             FEATURED PROJECTS
           </motion.h2>
-          
-          <motion.div 
+
+          <motion.div
             className="flex items-center"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
+            data-oid="_k197yf"
           >
-            <div className="off-white-x text-sm uppercase tracking-wider">
+            <div
+              className="off-white-x text-sm uppercase tracking-wider"
+              data-oid=":s8gqhy"
+            >
               CURATED SELECTION
             </div>
           </motion.div>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           className="w-full h-0.5 bg-black dark:bg-white mt-6"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
+          data-oid="cup5frv"
         />
       </div>
-      
+
       {/* Cards Grid */}
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="container mx-auto" data-oid="9f:-r:2">
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          data-oid="fooh16a"
+        >
           {projects.map((project, index) => (
             <OffWhiteCard
               key={index}
@@ -72,38 +90,46 @@ export default function OffWhiteSection() {
               description={project.description}
               category={project.category}
               image={project.image}
+              data-oid="z74o7xs"
             />
           ))}
         </div>
       </div>
-      
+
       {/* Section Footer */}
-      <div className="container mx-auto mt-12">
-        <motion.div 
+      <div className="container mx-auto mt-12" data-oid="z_.a.9h">
+        <motion.div
           className="w-full h-0.5 bg-black dark:bg-white mb-6"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          data-oid="4shkuth"
         />
-        
-        <div className="flex justify-between items-center">
-          <div className="text-xs uppercase tracking-wider">
+
+        <div className="flex justify-between items-center" data-oid="6-v12i5">
+          <div className="text-xs uppercase tracking-wider" data-oid="dq4046s">
             "SCROLL FOR MORE"
           </div>
-          
-          <button className="off-white-button text-sm">
+
+          <button className="off-white-button text-sm" data-oid="xfyp_75">
             VIEW ALL PROJECTS
           </button>
         </div>
       </div>
-      
+
       {/* Decorative Elements */}
-      <div className="absolute -left-2 top-1/2 transform -translate-y-1/2 rotate-90">
-        <div className="text-xs uppercase tracking-wider whitespace-nowrap">
+      <div
+        className="absolute -left-2 top-1/2 transform -translate-y-1/2 rotate-90"
+        data-oid="rlk5_9e"
+      >
+        <div
+          className="text-xs uppercase tracking-wider whitespace-nowrap"
+          data-oid="497tr7w"
+        >
           "KITESTUDIOS PROJECTS 2024"
         </div>
       </div>
     </section>
-  )
-} 
+  );
+}

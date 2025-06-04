@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Quote {
-  quote: string
-  author: string
+  quote: string;
+  author: string;
 }
 
 // Animation variants for text reveal
@@ -19,38 +19,38 @@ const quoteVariants = {
       ease: [0.2, 0.65, 0.3, 0.9],
     },
   }),
-}
+};
 
 export default function RandomQuote() {
-  const [quote, setQuote] = useState<Quote | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [quote, setQuote] = useState<Quote | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRandomQuote = async () => {
       try {
         // Add a slight delay for a more noticeable animation
-        await new Promise(resolve => setTimeout(resolve, 1000))
-        
-        const response = await fetch('/quotes.json')
-        const quotes = await response.json()
-        
-        // Select a random quote
-        const randomIndex = Math.floor(Math.random() * quotes.length)
-        setQuote(quotes[randomIndex])
-      } catch (error) {
-        console.error('Error fetching quote:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    fetchRandomQuote()
-  }, [])
+        const response = await fetch("/quotes.json");
+        const quotes = await response.json();
+
+        // Select a random quote
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        setQuote(quotes[randomIndex]);
+      } catch (error) {
+        console.error("Error fetching quote:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRandomQuote();
+  }, []);
 
   if (loading) {
     return (
-      <div className="h-6 w-full relative overflow-hidden">
-        <motion.div 
+      <div className="h-6 w-full relative overflow-hidden" data-oid="lucat18">
+        <motion.div
           className="h-full bg-black dark:bg-white opacity-10 absolute inset-0"
           animate={{
             x: ["-100%", "100%"],
@@ -61,21 +61,22 @@ export default function RandomQuote() {
             repeat: Infinity,
             repeatType: "mirror",
           }}
+          data-oid="4_9nl4u"
         />
       </div>
-    )
+    );
   }
 
   if (!quote) {
-    return null
+    return null;
   }
 
   // Split the quote into words for word-by-word animation
-  const words = quote.quote.split(" ")
+  const words = quote.quote.split(" ");
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div 
+    <AnimatePresence mode="wait" data-oid="on2cfim">
+      <motion.div
         className="text-center w-full"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -83,8 +84,12 @@ export default function RandomQuote() {
           duration: 1.5,
           ease: [0.2, 0.65, 0.3, 0.9],
         }}
+        data-oid="z1-qb4f"
       >
-        <div className="text-black dark:text-white uppercase text-sm tracking-wide font-medium">
+        <div
+          className="text-black dark:text-white uppercase text-sm tracking-wide font-medium"
+          data-oid="oeria-:"
+        >
           {words.map((word, i) => (
             <motion.span
               key={i}
@@ -93,20 +98,22 @@ export default function RandomQuote() {
               animate="visible"
               variants={quoteVariants}
               className="inline-block mx-0.5"
+              data-oid="c9y6q1g"
             >
               {word}
             </motion.span>
           ))}
         </div>
-        <motion.p 
+        <motion.p
           className="text-black dark:text-white text-xs mt-2 uppercase tracking-wider"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, delay: 2.5 }}
+          data-oid="x-y3t28"
         >
           — {quote.author}
         </motion.p>
       </motion.div>
     </AnimatePresence>
-  )
-} 
+  );
+}

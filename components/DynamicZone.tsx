@@ -1,10 +1,10 @@
-import React from 'react';
-import Image from 'next/image';
-import { Separator } from '@/components/ui/separator';
+import React from "react";
+import Image from "next/image";
+import { Separator } from "@/components/ui/separator";
 
 // Define the component types
 interface MediaComponent {
-  __component: 'shared.media';
+  __component: "shared.media";
   id: number;
   file: {
     data: {
@@ -21,7 +21,7 @@ interface MediaComponent {
 }
 
 interface QuoteComponent {
-  __component: 'shared.quote';
+  __component: "shared.quote";
   id: number;
   title?: string;
   body: string;
@@ -29,13 +29,13 @@ interface QuoteComponent {
 }
 
 interface RichTextComponent {
-  __component: 'shared.rich-text';
+  __component: "shared.rich-text";
   id: number;
   content: string;
 }
 
 interface SliderComponent {
-  __component: 'shared.slider';
+  __component: "shared.slider";
   id: number;
   files: {
     data: Array<{
@@ -50,10 +50,10 @@ interface SliderComponent {
   };
 }
 
-type DynamicZoneComponent = 
-  | MediaComponent 
-  | QuoteComponent 
-  | RichTextComponent 
+type DynamicZoneComponent =
+  | MediaComponent
+  | QuoteComponent
+  | RichTextComponent
   | SliderComponent;
 
 interface DynamicZoneProps {
@@ -66,17 +66,20 @@ export default function DynamicZone({ content }: DynamicZoneProps) {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8" data-oid="5xkif9f">
       {content.map((item) => {
         switch (item.__component) {
-          case 'shared.media':
-            return <MediaBlock key={item.id} data={item} />;
-          case 'shared.quote':
-            return <QuoteBlock key={item.id} data={item} />;
-          case 'shared.rich-text':
-            return <RichTextBlock key={item.id} data={item} />;
-          case 'shared.slider':
-            return <SliderBlock key={item.id} data={item} />;
+          case "shared.media":
+            return <MediaBlock key={item.id} data={item} data-oid="xymb7n9" />;
+          case "shared.quote":
+            return <QuoteBlock key={item.id} data={item} data-oid="3a8wary" />;
+          case "shared.rich-text":
+            return (
+              <RichTextBlock key={item.id} data={item} data-oid="27ih.t2" />
+            );
+
+          case "shared.slider":
+            return <SliderBlock key={item.id} data={item} data-oid="nm3ihqy" />;
           default:
             return null;
         }
@@ -91,25 +94,29 @@ function MediaBlock({ data }: { data: MediaComponent }) {
   }
 
   const { url, width, height, alternativeText } = data.file.data.attributes;
-  const imageUrl = url.startsWith('http') 
-    ? url 
-    : url.startsWith('/') && !url.startsWith('/api')
+  const imageUrl = url.startsWith("http")
+    ? url
+    : url.startsWith("/") && !url.startsWith("/api")
       ? url // Already a local path
-      : `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${url}`;
+      : `${process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}${url}`;
 
   return (
-    <figure className="my-8">
-      <div className="overflow-hidden rounded-lg">
+    <figure className="my-8" data-oid="8j:n6ft">
+      <div className="overflow-hidden rounded-lg" data-oid="i.gytow">
         <Image
           src={imageUrl}
-          alt={alternativeText || 'Media content'}
+          alt={alternativeText || "Media content"}
           width={width || 1200}
           height={height || 800}
           className="w-full h-auto object-cover"
+          data-oid="_b_xy53"
         />
       </div>
       {data.caption && (
-        <figcaption className="text-sm text-muted-foreground mt-2 text-center">
+        <figcaption
+          className="text-sm text-muted-foreground mt-2 text-center"
+          data-oid="3jvyjx4"
+        >
           {data.caption}
         </figcaption>
       )}
@@ -119,13 +126,23 @@ function MediaBlock({ data }: { data: MediaComponent }) {
 
 function QuoteBlock({ data }: { data: QuoteComponent }) {
   return (
-    <blockquote className="border-l-4 border-primary pl-4 py-3 my-8">
+    <blockquote
+      className="border-l-4 border-primary pl-4 py-3 my-8"
+      data-oid="xxv:.7:"
+    >
       {data.title && (
-        <h3 className="text-xl font-semibold mb-2">{data.title}</h3>
+        <h3 className="text-xl font-semibold mb-2" data-oid="dz4zifr">
+          {data.title}
+        </h3>
       )}
-      <p className="text-lg italic">{data.body}</p>
+      <p className="text-lg italic" data-oid="1wd10ms">
+        {data.body}
+      </p>
       {data.author && (
-        <footer className="text-sm text-muted-foreground mt-2">
+        <footer
+          className="text-sm text-muted-foreground mt-2"
+          data-oid="4g5u15q"
+        >
           — {data.author}
         </footer>
       )}
@@ -135,8 +152,11 @@ function QuoteBlock({ data }: { data: QuoteComponent }) {
 
 function RichTextBlock({ data }: { data: RichTextComponent }) {
   return (
-    <div className="prose dark:prose-invert max-w-none">
-      <div dangerouslySetInnerHTML={{ __html: data.content }} />
+    <div className="prose dark:prose-invert max-w-none" data-oid=".vm:qii">
+      <div
+        dangerouslySetInnerHTML={{ __html: data.content }}
+        data-oid=":ch_sfb"
+      />
     </div>
   );
 }
@@ -149,24 +169,32 @@ function SliderBlock({ data }: { data: SliderComponent }) {
   // For simplicity, we'll just show the images in a grid
   // In a real application, you might want to use a carousel component
   return (
-    <div className="my-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="my-8" data-oid="y4k.xab">
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        data-oid="2owtakt"
+      >
         {data.files.data.map((file) => {
           const { url, width, height, alternativeText } = file.attributes;
-          const imageUrl = url.startsWith('http') 
-            ? url 
-            : url.startsWith('/') && !url.startsWith('/api')
+          const imageUrl = url.startsWith("http")
+            ? url
+            : url.startsWith("/") && !url.startsWith("/api")
               ? url // Already a local path
-              : `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${url}`;
+              : `${process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}${url}`;
 
           return (
-            <div key={file.id} className="overflow-hidden rounded-lg">
+            <div
+              key={file.id}
+              className="overflow-hidden rounded-lg"
+              data-oid="xqti.a7"
+            >
               <Image
                 src={imageUrl}
-                alt={alternativeText || 'Slider image'}
+                alt={alternativeText || "Slider image"}
                 width={width || 400}
                 height={height || 300}
                 className="w-full h-auto object-cover"
+                data-oid="trxkmf3"
               />
             </div>
           );
@@ -174,4 +202,4 @@ function SliderBlock({ data }: { data: SliderComponent }) {
       </div>
     </div>
   );
-} 
+}

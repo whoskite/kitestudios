@@ -1,18 +1,25 @@
 "use client";
 
-import Image from 'next/image';
+import Image from "next/image";
 
-export default function ResourceDetailImage({ src, alt }: { src: string; alt: string }) {
+export default function ResourceDetailImage({
+  src,
+  alt,
+}: {
+  src: string;
+  alt: string;
+}) {
   return (
-    <Image 
+    <Image
       src={src}
       alt={alt}
       fill
       className="object-cover"
       onError={(e) => {
         const target = e.target as HTMLImageElement;
-        target.src = '/images/placeholder-image.jpg';
+        target.src = "/images/placeholder-image.jpg";
       }}
+      data-oid="mce1-4i"
     />
   );
-} 
+}

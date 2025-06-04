@@ -1,11 +1,42 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useSession } from "next-auth/react"
-import { Home, LogOut, Menu, X, Sun, Moon, Settings, User, CreditCard, Bell, Shield, HelpCircle, ChevronRight, FileText, Package, ShoppingBag, Users, Grid, Database, Image, Video, Layers, Star, Download, BookOpen, Search, List, Folder, Maximize2, Minimize2 } from "lucide-react"
-import { useTheme } from "next-themes"
-import Link from "next/link"
-import HubResources from "@/components/HubResources"
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
+import {
+  Home,
+  LogOut,
+  Menu,
+  X,
+  Sun,
+  Moon,
+  Settings,
+  User,
+  CreditCard,
+  Bell,
+  Shield,
+  HelpCircle,
+  ChevronRight,
+  FileText,
+  Package,
+  ShoppingBag,
+  Users,
+  Grid,
+  Database,
+  Image,
+  Video,
+  Layers,
+  Star,
+  Download,
+  BookOpen,
+  Search,
+  List,
+  Folder,
+  Maximize2,
+  Minimize2,
+} from "lucide-react";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import HubResources from "@/components/HubResources";
 
 // Define document type
 interface Document {
@@ -19,46 +50,51 @@ interface Document {
 }
 
 export default function HubPage() {
-  const { data: session } = useSession()
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [showWelcome, setShowWelcome] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(true) // Default to dark mode for the UI
-  const [settingsOpen, setSettingsOpen] = useState(false)
-  const [activeSettingsTab, setActiveSettingsTab] = useState('profile')
-  const [activeFilter, setActiveFilter] = useState('all') // Add missing state variable for filters
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
-  const [selectedDocument, setSelectedDocument] = useState<Document | null>(null)
-  const [documentViewMode, setDocumentViewMode] = useState<'peek' | null>(null)
+  const { data: session } = useSession();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark mode for the UI
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [activeSettingsTab, setActiveSettingsTab] = useState("profile");
+  const [activeFilter, setActiveFilter] = useState("all"); // Add missing state variable for filters
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [selectedDocument, setSelectedDocument] = useState<Document | null>(
+    null,
+  );
+  const [documentViewMode, setDocumentViewMode] = useState<"peek" | null>(null);
 
   // After mounting, we can safely show the UI
   useEffect(() => {
-    setMounted(true)
-    setIsDarkMode(theme === 'dark')
-    
+    setMounted(true);
+    setIsDarkMode(theme === "dark");
+
     // No need for welcome message timeout since it's now hidden by default
-  }, [theme])
+  }, [theme]);
 
   // Close settings panel when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const settingsPanel = document.getElementById('settings-panel');
-      const settingsButton = document.getElementById('settings-button');
-      
-      if (settingsPanel && settingsButton && 
-          !settingsPanel.contains(event.target as Node) && 
-          !settingsButton.contains(event.target as Node)) {
+      const settingsPanel = document.getElementById("settings-panel");
+      const settingsButton = document.getElementById("settings-button");
+
+      if (
+        settingsPanel &&
+        settingsButton &&
+        !settingsPanel.contains(event.target as Node) &&
+        !settingsButton.contains(event.target as Node)
+      ) {
         setSettingsOpen(false);
       }
     };
 
     if (settingsOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
-    
+
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [settingsOpen]);
 
@@ -99,22 +135,34 @@ export default function HubPage() {
     activeBorder: isDarkMode ? "border-yellow-400/30" : "border-yellow-600/30",
     tooltipBg: isDarkMode ? "bg-black" : "bg-gray-800",
     tooltipText: "text-white",
-    tooltipBorder: isDarkMode ? "border border-zinc-800" : "border border-gray-200",
+    tooltipBorder: isDarkMode
+      ? "border border-zinc-800"
+      : "border border-gray-200",
     tableHeaderBg: isDarkMode ? "bg-zinc-900" : "bg-gray-100",
     tableRowHover: isDarkMode ? "hover:bg-zinc-900/50" : "hover:bg-gray-50",
-    tableRowBorder: isDarkMode ? "border-b border-zinc-800" : "border-b border-gray-200",
+    tableRowBorder: isDarkMode
+      ? "border-b border-zinc-800"
+      : "border-b border-gray-200",
     tableCellBg: isDarkMode ? "bg-black" : "bg-white",
   };
 
   // Sidebar navigation items
   const sidebarItems = [
-    { icon: <Home size={20} />, label: "HOME", href: "/hub" },
-    { icon: <BookOpen size={20} />, label: "ARTICLES", href: "/hub/articles" },
+    {
+      icon: <Home size={20} data-oid=":106hz0" />,
+      label: "HOME",
+      href: "/hub",
+    },
+    {
+      icon: <BookOpen size={20} data-oid="lnydn3f" />,
+      label: "ARTICLES",
+      href: "/hub/articles",
+    },
   ];
 
   // Get current path to determine active link
   const [currentPath, setCurrentPath] = useState("/hub");
-  
+
   useEffect(() => {
     setCurrentPath(window.location.pathname);
   }, []);
@@ -123,7 +171,8 @@ export default function HubPage() {
   const documents: Document[] = [
     {
       title: "Hello World",
-      description: "A simple Hello World document created in the Hub Dashboard.",
+      description:
+        "A simple Hello World document created in the Hub Dashboard.",
       date: "2024-05-15",
       size: "1.5 KB",
       type: "document",
@@ -137,11 +186,12 @@ This is a simple Hello World document created in the KITESTUDIOS Hub Dashboard.
 Hello, World! This is a test document to demonstrate the document creation functionality in the Hub Dashboard.
 
 ## Purpose
-This document serves as a basic example of content that can be created and shared within the KITESTUDIOS ecosystem.`
+This document serves as a basic example of content that can be created and shared within the KITESTUDIOS ecosystem.`,
     },
     {
       title: "KITESTUDIOS Design System Overview",
-      description: "Comprehensive documentation of our design system including typography, colors, and components.",
+      description:
+        "Comprehensive documentation of our design system including typography, colors, and components.",
       date: "2024-04-15",
       size: "4.2 MB",
       type: "document",
@@ -158,20 +208,20 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
 - H1: 48px/56px, Helvetica Neue Bold
 - H2: 36px/44px, Helvetica Neue Bold
 - H3: 24px/32px, Helvetica Neue Bold
-- H4: 18px/28px, Helvetica Neue Bold`
-    }
+- H4: 18px/28px, Helvetica Neue Bold`,
+    },
   ];
 
   // Function to handle opening a document
   const handleOpenDocument = (document: Document) => {
     console.log("Document clicked:", document.title);
-    
+
     // Prevent multiple clicks
     if (selectedDocument) return;
-    
+
     // Set the selected document and view mode to peek
     setSelectedDocument(document);
-    setDocumentViewMode('peek');
+    setDocumentViewMode("peek");
   };
 
   // Function to close document view
@@ -184,50 +234,85 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
   };
 
   return (
-    <div className={`page-wrapper ${uiColors.bg} ${uiColors.text} min-h-screen flex`}>
+    <div
+      className={`page-wrapper ${uiColors.bg} ${uiColors.text} min-h-screen flex`}
+      data-oid="sw0ksnf"
+    >
       {/* Industrial Sidebar Navigation */}
-      <aside 
-        className={`${menuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 fixed left-0 top-0 bottom-0 z-40 h-screen w-[70px] ${uiColors.sidebarBg} border-r ${uiColors.border} transition-transform duration-300 ease-in-out flex flex-col justify-between`}
+      <aside
+        className={`${menuOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 fixed left-0 top-0 bottom-0 z-40 h-screen w-[70px] ${uiColors.sidebarBg} border-r ${uiColors.border} transition-transform duration-300 ease-in-out flex flex-col justify-between`}
         style={{
-          backgroundImage: isDarkMode ? 
-            'linear-gradient(rgba(0, 0, 0, 0.97), rgba(0, 0, 0, 0.97)), url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23333333\' fill-opacity=\'0.15\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'1\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'1\'/%3E%3C/g%3E%3C/svg%3E")' : 
-            'linear-gradient(rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.97)), url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'1\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'1\'/%3E%3C/g%3E%3C/svg%3E")'
+          backgroundImage: isDarkMode
+            ? "linear-gradient(rgba(0, 0, 0, 0.97), rgba(0, 0, 0, 0.97)), url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23333333' fill-opacity='0.15' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E\")"
+            : "linear-gradient(rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.97)), url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E\")",
         }}
+        data-oid="f4hrayv"
       >
         {/* Top section with logo and navigation icons */}
-        <div>
-          <div className={`p-4 border-b ${uiColors.border} flex justify-center`}>
-            <div className={`w-10 h-10 flex items-center justify-center border ${isDarkMode ? 'border-yellow-400' : 'border-gray-200'}`}>
-              <span className="text-yellow-400 font-bold text-2xl tracking-tighter">K</span>
+        <div data-oid="t50h.0:">
+          <div
+            className={`p-4 border-b ${uiColors.border} flex justify-center`}
+            data-oid="lf6mn.2"
+          >
+            <div
+              className={`w-10 h-10 flex items-center justify-center border ${isDarkMode ? "border-yellow-400" : "border-gray-200"}`}
+              data-oid="ioq4naf"
+            >
+              <span
+                className="text-yellow-400 font-bold text-2xl tracking-tighter"
+                data-oid="j.swq-m"
+              >
+                K
+              </span>
             </div>
           </div>
-          
-          <nav className="py-8">
-            <ul className="space-y-8">
+
+          <nav className="py-8" data-oid="u8dum7l">
+            <ul className="space-y-8" data-oid=":8wv0wt">
               {sidebarItems.map((item, index) => {
                 const isActive = currentPath === item.href;
                 return (
-                  <li key={index} className="flex justify-center relative group">
+                  <li
+                    key={index}
+                    className="flex justify-center relative group"
+                    data-oid="fbz6tz8"
+                  >
                     {isActive && (
                       <>
-                        <div className="absolute left-0 w-1 h-8 bg-yellow-400"></div>
-                        <div className="absolute -right-1 w-1 h-8 bg-yellow-400"></div>
+                        <div
+                          className="absolute left-0 w-1 h-8 bg-yellow-400"
+                          data-oid="vc_0s41"
+                        ></div>
+                        <div
+                          className="absolute -right-1 w-1 h-8 bg-yellow-400"
+                          data-oid="rd3iclj"
+                        ></div>
                       </>
                     )}
-                    <Link 
+                    <Link
                       href={item.href}
-                      className={`p-3 ${isActive ? `${uiColors.activeBg} ${uiColors.activeHighlight}` : ''} transition-all duration-200 flex items-center justify-center group-hover:scale-110 border ${isActive ? uiColors.activeBorder : 'border-transparent'} group-hover:border-zinc-800`}
+                      className={`p-3 ${isActive ? `${uiColors.activeBg} ${uiColors.activeHighlight}` : ""} transition-all duration-200 flex items-center justify-center group-hover:scale-110 border ${isActive ? uiColors.activeBorder : "border-transparent"} group-hover:border-zinc-800`}
                       title={item.label}
+                      data-oid="22.oql7"
                     >
-                      <span className={`${isActive ? uiColors.activeIcon : uiColors.iconColor} transition-colors duration-200 group-hover:text-yellow-400`}>
+                      <span
+                        className={`${isActive ? uiColors.activeIcon : uiColors.iconColor} transition-colors duration-200 group-hover:text-yellow-400`}
+                        data-oid="i_wtsci"
+                      >
                         {item.icon}
                       </span>
                     </Link>
-                    
+
                     {/* Industrial Tooltip */}
-                    <div className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}>
-                      <div className="flex items-center">
-                        <span className="w-2 h-2 bg-yellow-400 mr-1.5"></span>
+                    <div
+                      className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}
+                      data-oid="6uauxlj"
+                    >
+                      <div className="flex items-center" data-oid="ij7ohq_">
+                        <span
+                          className="w-2 h-2 bg-yellow-400 mr-1.5"
+                          data-oid="xfvjqp8"
+                        ></span>
                         {item.label}
                       </div>
                     </div>
@@ -237,75 +322,132 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
             </ul>
           </nav>
         </div>
-        
+
         {/* Bottom section with theme toggle, settings, and user profile */}
-        <div className={`mb-8 space-y-6 border-t ${uiColors.border} pt-6`}>
-          <div className="flex justify-center relative group">
-            <button 
+        <div
+          className={`mb-8 space-y-6 border-t ${uiColors.border} pt-6`}
+          data-oid="xr9mkfn"
+        >
+          <div
+            className="flex justify-center relative group"
+            data-oid="rtuwbfz"
+          >
+            <button
               onClick={toggleTheme}
               className={`p-3 transition-all duration-200 group-hover:scale-110 border border-transparent group-hover:border-zinc-800`}
               aria-label="Toggle theme"
               title="Toggle theme"
+              data-oid="e3c8ofp"
             >
-              {isDarkMode ? 
-                <Sun size={20} className={`${uiColors.iconColor} transition-transform duration-300 group-hover:text-yellow-400 group-hover:rotate-45`} /> : 
-                <Moon size={20} className={`${uiColors.iconColor} transition-transform duration-300 group-hover:text-yellow-400 group-hover:rotate-12`} />
-              }
+              {isDarkMode ? (
+                <Sun
+                  size={20}
+                  className={`${uiColors.iconColor} transition-transform duration-300 group-hover:text-yellow-400 group-hover:rotate-45`}
+                  data-oid="jjm19ok"
+                />
+              ) : (
+                <Moon
+                  size={20}
+                  className={`${uiColors.iconColor} transition-transform duration-300 group-hover:text-yellow-400 group-hover:rotate-12`}
+                  data-oid=".1ouzhl"
+                />
+              )}
             </button>
-            
+
             {/* Industrial Tooltip */}
-            <div className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-yellow-400 mr-1.5"></span>
+            <div
+              className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}
+              data-oid="dyrabyg"
+            >
+              <div className="flex items-center" data-oid="4xh.4:h">
+                <span
+                  className="w-2 h-2 bg-yellow-400 mr-1.5"
+                  data-oid="00xqnlo"
+                ></span>
                 {isDarkMode ? "LIGHT MODE" : "DARK MODE"}
               </div>
             </div>
           </div>
-          
-          <div className="flex justify-center relative group">
-            <button 
+
+          <div
+            className="flex justify-center relative group"
+            data-oid="rt1leg4"
+          >
+            <button
               id="settings-button"
               onClick={() => setSettingsOpen(!settingsOpen)}
               className={`p-3 transition-all duration-200 group-hover:scale-110 border border-transparent group-hover:border-zinc-800`}
               aria-label="Settings"
               title="Settings"
+              data-oid="66eb-1p"
             >
-              <Settings size={20} className={`${uiColors.iconColor} transition-transform duration-300 group-hover:text-yellow-400 group-hover:rotate-90`} />
+              <Settings
+                size={20}
+                className={`${uiColors.iconColor} transition-transform duration-300 group-hover:text-yellow-400 group-hover:rotate-90`}
+                data-oid="nu10bpm"
+              />
             </button>
-            
+
             {/* Industrial Tooltip */}
-            <div className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-yellow-400 mr-1.5"></span>
+            <div
+              className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}
+              data-oid="ef_vq43"
+            >
+              <div className="flex items-center" data-oid="iocs0l:">
+                <span
+                  className="w-2 h-2 bg-yellow-400 mr-1.5"
+                  data-oid="-advb2q"
+                ></span>
                 SETTINGS
               </div>
             </div>
           </div>
-          
-          <div className="flex justify-center relative group">
-            <Link 
+
+          <div
+            className="flex justify-center relative group"
+            data-oid="op:u4m-"
+          >
+            <Link
               href="/profile"
               className={`p-3 transition-all duration-200 group-hover:scale-110 relative border border-transparent group-hover:border-zinc-800`}
               title="Profile"
+              data-oid="j8k0sqx"
             >
               {session?.user?.image ? (
-                <img 
-                  src={session.user.image} 
-                  alt="Profile" 
+                <img
+                  src={session.user.image}
+                  alt="Profile"
                   className={`w-8 h-8 rounded-none border ${uiColors.border}`}
+                  data-oid="7k8_25h"
                 />
               ) : (
-                <div className={`w-8 h-8 border ${uiColors.border} flex items-center justify-center`}>
-                  <User size={16} className={`${uiColors.iconColor} group-hover:text-yellow-400`} />
+                <div
+                  className={`w-8 h-8 border ${uiColors.border} flex items-center justify-center`}
+                  data-oid="avv05fx"
+                >
+                  <User
+                    size={16}
+                    className={`${uiColors.iconColor} group-hover:text-yellow-400`}
+                    data-oid="rw0xn5e"
+                  />
                 </div>
               )}
-              <span className="absolute bottom-0 right-1 w-2 h-2 bg-yellow-400"></span>
+              <span
+                className="absolute bottom-0 right-1 w-2 h-2 bg-yellow-400"
+                data-oid="i66jixe"
+              ></span>
             </Link>
-            
+
             {/* Industrial Tooltip */}
-            <div className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-yellow-400 mr-1.5"></span>
+            <div
+              className={`absolute left-full ml-2 px-3 py-1.5 ${uiColors.tooltipBg} ${uiColors.tooltipText} text-[10px] tracking-wider font-bold ${uiColors.tooltipBorder} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap`}
+              data-oid="6p3vawd"
+            >
+              <div className="flex items-center" data-oid="02:hg.j">
+                <span
+                  className="w-2 h-2 bg-yellow-400 mr-1.5"
+                  data-oid="60qnn54"
+                ></span>
                 PROFILE
               </div>
             </div>
@@ -314,47 +456,79 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
       </aside>
 
       {/* Main Content - Add padding to account for fixed sidebar */}
-      <div className="flex-1 flex flex-col min-h-screen md:ml-[70px]">
-        <div className="container mx-auto px-4 py-6">
+      <div
+        className="flex-1 flex flex-col min-h-screen md:ml-[70px]"
+        data-oid="5p4vex1"
+      >
+        <div className="container mx-auto px-4 py-6" data-oid="3qnphv_">
           {/* Browse Hub Resources Button */}
-          <div className={`mb-6 border ${uiColors.border} p-0`}>
-            <Link 
-              href="/hub/resource" 
+          <div
+            className={`mb-6 border ${uiColors.border} p-0`}
+            data-oid="7n18o9n"
+          >
+            <Link
+              href="/hub/resource"
               className="flex items-center justify-between px-4 py-3 hover:bg-zinc-900 transition-colors"
+              data-oid="jc3t2v0"
             >
-              <div className="flex items-center">
-                <BookOpen size={18} className="mr-2" />
-                <span className="font-bold tracking-wide">BROWSE HUB RESOURCES</span>
+              <div className="flex items-center" data-oid="hl24_0x">
+                <BookOpen size={18} className="mr-2" data-oid="w2qul68" />
+                <span className="font-bold tracking-wide" data-oid="b8kqc6e">
+                  BROWSE HUB RESOURCES
+                </span>
               </div>
-              <ChevronRight size={18} />
+              <ChevronRight size={18} data-oid="3au7-16" />
             </Link>
           </div>
 
           {/* Search and Filter Bar */}
-          <div className="mb-6 flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="relative w-full md:w-64">
+          <div
+            className="mb-6 flex flex-col md:flex-row gap-4 items-center justify-between"
+            data-oid="sl20qme"
+          >
+            <div className="relative w-full md:w-64" data-oid="usbiyd3">
               <input
                 type="text"
                 placeholder="Search dashboard..."
                 className={`w-full border ${uiColors.border} ${uiColors.inputBg} px-3 py-2 pl-10 focus:outline-none focus:border-yellow-400 transition-colors`}
+                data-oid="vllx8bf"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+
+              <Search
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400"
+                data-oid="k4kd:5m"
+              />
             </div>
-            
-            <div className="flex space-x-2">
-              <button className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'all' ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}>
+
+            <div className="flex space-x-2" data-oid="iawz_5:">
+              <button
+                className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === "all" ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
+                data-oid="g3w:5bl"
+              >
                 ALL
               </button>
-              <button className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'design' ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}>
+              <button
+                className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === "design" ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
+                data-oid="r-ogab3"
+              >
                 DESIGN
               </button>
-              <button className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'code' ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}>
+              <button
+                className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === "code" ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
+                data-oid="gz-rlol"
+              >
                 CODE
               </button>
-              <button className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'media' ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}>
+              <button
+                className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === "media" ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
+                data-oid="d_ir9y1"
+              >
                 MEDIA
               </button>
-              <button className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === 'concepts' ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}>
+              <button
+                className={`px-3 py-1 text-xs font-bold uppercase transition-colors ${activeFilter === "concepts" ? `bg-yellow-400 text-black` : `border ${uiColors.border} ${uiColors.text}`}`}
+                data-oid="yxnjomj"
+              >
                 CONCEPTS
               </button>
             </div>
@@ -362,141 +536,302 @@ KITESTUDIOS uses a combination of Helvetica Neue for body text and JetBrains Mon
 
           {/* Document View - Now positioned fixed */}
           {selectedDocument && documentViewMode && (
-            <div className={`document-view ${documentViewMode}`}>
-              <div className={`border-b ${uiColors.border} p-4 flex justify-between items-center sticky top-0 ${uiColors.bg} z-10`}>
-                <div className="flex-1">
-                  <h2 className="text-2xl font-bold">{selectedDocument.title}</h2>
-                  <div className="flex items-center mt-1 text-sm">
-                    <User size={14} className="mr-2" />
-                    <span>{selectedDocument.author}</span>
-                    <span className="mx-2">•</span>
-                    <span>{selectedDocument.date}</span>
+            <div
+              className={`document-view ${documentViewMode}`}
+              data-oid="n5.fr.t"
+            >
+              <div
+                className={`border-b ${uiColors.border} p-4 flex justify-between items-center sticky top-0 ${uiColors.bg} z-10`}
+                data-oid="9gd2h3:"
+              >
+                <div className="flex-1" data-oid="_owkppb">
+                  <h2 className="text-2xl font-bold" data-oid="iqf:dbs">
+                    {selectedDocument.title}
+                  </h2>
+                  <div
+                    className="flex items-center mt-1 text-sm"
+                    data-oid="r9b1g71"
+                  >
+                    <User size={14} className="mr-2" data-oid="524-jww" />
+                    <span data-oid="d:239-8">{selectedDocument.author}</span>
+                    <span className="mx-2" data-oid="qtb2597">
+                      •
+                    </span>
+                    <span data-oid="uvi0jk:">{selectedDocument.date}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <button 
+                <div className="flex items-center gap-2" data-oid="hpbmk83">
+                  <button
                     onClick={handleCloseDocument}
                     className={`border ${uiColors.border} p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors`}
                     aria-label="Close document"
+                    data-oid="f39gb8z"
                   >
-                    <X className="h-5 w-5" />
+                    <X className="h-5 w-5" data-oid="cxtezfg" />
                   </button>
                 </div>
               </div>
-              <div className="document-view-content">
-                <div className={`prose ${isDarkMode ? 'prose-invert' : ''} max-w-none`}>
-                  {selectedDocument.content?.split('\n').map((line: string, index: number) => {
-                    if (line.startsWith('# ')) {
-                      return <h1 key={index} className="text-3xl font-bold mt-6 mb-4">{line.substring(2)}</h1>;
-                    } else if (line.startsWith('## ')) {
-                      return <h2 key={index} className="text-2xl font-bold mt-5 mb-3">{line.substring(3)}</h2>;
-                    } else if (line.startsWith('### ')) {
-                      return <h3 key={index} className="text-xl font-bold mt-4 mb-2">{line.substring(4)}</h3>;
-                    } else if (line.startsWith('- ')) {
-                      return <li key={index} className="ml-6 mb-1">{line.substring(2)}</li>;
-                    } else if (line === '') {
-                      return <br key={index} />;
-                    } else {
-                      return <p key={index} className="mb-4">{line}</p>;
-                    }
-                  })}
+              <div className="document-view-content" data-oid="zqthvxl">
+                <div
+                  className={`prose ${isDarkMode ? "prose-invert" : ""} max-w-none`}
+                  data-oid="aq-unx7"
+                >
+                  {selectedDocument.content
+                    ?.split("\n")
+                    .map((line: string, index: number) => {
+                      if (line.startsWith("# ")) {
+                        return (
+                          <h1
+                            key={index}
+                            className="text-3xl font-bold mt-6 mb-4"
+                            data-oid="8evs12f"
+                          >
+                            {line.substring(2)}
+                          </h1>
+                        );
+                      } else if (line.startsWith("## ")) {
+                        return (
+                          <h2
+                            key={index}
+                            className="text-2xl font-bold mt-5 mb-3"
+                            data-oid="h:e6zr:"
+                          >
+                            {line.substring(3)}
+                          </h2>
+                        );
+                      } else if (line.startsWith("### ")) {
+                        return (
+                          <h3
+                            key={index}
+                            className="text-xl font-bold mt-4 mb-2"
+                            data-oid="xwix039"
+                          >
+                            {line.substring(4)}
+                          </h3>
+                        );
+                      } else if (line.startsWith("- ")) {
+                        return (
+                          <li
+                            key={index}
+                            className="ml-6 mb-1"
+                            data-oid="gl9dlqx"
+                          >
+                            {line.substring(2)}
+                          </li>
+                        );
+                      } else if (line === "") {
+                        return <br key={index} data-oid="mlqmgd7" />;
+                      } else {
+                        return (
+                          <p key={index} className="mb-4" data-oid="_4tp0z_">
+                            {line}
+                          </p>
+                        );
+                      }
+                    })}
                 </div>
               </div>
             </div>
           )}
-          
+
           {/* Hub Dashboard View - Always visible */}
-          <div className={documentViewMode === 'peek' ? 'opacity-50 pointer-events-none' : ''}>
+          <div
+            className={
+              documentViewMode === "peek"
+                ? "opacity-50 pointer-events-none"
+                : ""
+            }
+            data-oid="tcn:tkn"
+          >
             {/* View Toggle */}
-            <div className="flex justify-end mb-6">
-              <div className={`flex border ${uiColors.border}`}>
-                <button 
-                  className={`p-2 transition-colors ${viewMode === 'grid' ? `bg-yellow-400 text-black` : `${uiColors.bg} ${uiColors.text}`}`}
-                  onClick={() => setViewMode('grid')}
+            <div className="flex justify-end mb-6" data-oid="thbfbwp">
+              <div
+                className={`flex border ${uiColors.border}`}
+                data-oid="u7w8.fl"
+              >
+                <button
+                  className={`p-2 transition-colors ${viewMode === "grid" ? `bg-yellow-400 text-black` : `${uiColors.bg} ${uiColors.text}`}`}
+                  onClick={() => setViewMode("grid")}
                   aria-label="Grid View"
+                  data-oid="nol8903"
                 >
-                  <Grid className="h-5 w-5" />
+                  <Grid className="h-5 w-5" data-oid="00c:jr_" />
                 </button>
-                <button 
-                  className={`p-2 transition-colors ${viewMode === 'list' ? `bg-yellow-400 text-black` : `${uiColors.bg} ${uiColors.text}`}`}
-                  onClick={() => setViewMode('list')}
+                <button
+                  className={`p-2 transition-colors ${viewMode === "list" ? `bg-yellow-400 text-black` : `${uiColors.bg} ${uiColors.text}`}`}
+                  onClick={() => setViewMode("list")}
                   aria-label="List View"
+                  data-oid="pt5ly1g"
                 >
-                  <List className="h-5 w-5" />
+                  <List className="h-5 w-5" data-oid="ixbv9f." />
                 </button>
               </div>
             </div>
 
             {/* File System View (List View) */}
-            {viewMode === 'list' && (
-              <div className="w-full">
+            {viewMode === "list" && (
+              <div className="w-full" data-oid="qh4t4j5">
                 {/* Table Header */}
-                <div className={`grid grid-cols-12 ${uiColors.tableHeaderBg} text-xs font-bold uppercase tracking-wider`}>
-                  <div className="col-span-5 px-4 py-3">NAME</div>
-                  <div className="col-span-2 px-4 py-3">DATE ADDED</div>
-                  <div className="col-span-1 px-4 py-3">SIZE</div>
-                  <div className="col-span-2 px-4 py-3">KIND</div>
-                  <div className="col-span-2 px-4 py-3">AUTHOR</div>
-                </div>
-                
-                {/* Folder Row */}
-                <div className={`grid grid-cols-12 ${uiColors.tableRowBorder} cursor-pointer hover:bg-yellow-400/5`}>
-                  <div className="col-span-5 px-4 py-3 flex items-center">
-                    <ChevronRight size={16} className="mr-2" />
-                    <Folder size={16} className="mr-2 text-gray-400" />
-                    <span className="font-medium">DOCUMENTS</span>
+                <div
+                  className={`grid grid-cols-12 ${uiColors.tableHeaderBg} text-xs font-bold uppercase tracking-wider`}
+                  data-oid="aapc3tn"
+                >
+                  <div className="col-span-5 px-4 py-3" data-oid="7jcvr4r">
+                    NAME
                   </div>
-                  <div className="col-span-2 px-4 py-3 text-gray-400">-</div>
-                  <div className="col-span-1 px-4 py-3 text-gray-400">-</div>
-                  <div className="col-span-2 px-4 py-3 text-gray-400">Folder</div>
-                  <div className="col-span-2 px-4 py-3 text-gray-400">-</div>
+                  <div className="col-span-2 px-4 py-3" data-oid="vgox1pp">
+                    DATE ADDED
+                  </div>
+                  <div className="col-span-1 px-4 py-3" data-oid="k2xz2j0">
+                    SIZE
+                  </div>
+                  <div className="col-span-2 px-4 py-3" data-oid=".-trsgm">
+                    KIND
+                  </div>
+                  <div className="col-span-2 px-4 py-3" data-oid="4:9:spz">
+                    AUTHOR
+                  </div>
                 </div>
-                
+
+                {/* Folder Row */}
+                <div
+                  className={`grid grid-cols-12 ${uiColors.tableRowBorder} cursor-pointer hover:bg-yellow-400/5`}
+                  data-oid="10_p2uz"
+                >
+                  <div
+                    className="col-span-5 px-4 py-3 flex items-center"
+                    data-oid=".xg5o0_"
+                  >
+                    <ChevronRight
+                      size={16}
+                      className="mr-2"
+                      data-oid="xcep046"
+                    />
+
+                    <Folder
+                      size={16}
+                      className="mr-2 text-gray-400"
+                      data-oid="wb3:doc"
+                    />
+
+                    <span className="font-medium" data-oid="u8vaf4_">
+                      DOCUMENTS
+                    </span>
+                  </div>
+                  <div
+                    className="col-span-2 px-4 py-3 text-gray-400"
+                    data-oid="v4:8zlm"
+                  >
+                    -
+                  </div>
+                  <div
+                    className="col-span-1 px-4 py-3 text-gray-400"
+                    data-oid="442bvsy"
+                  >
+                    -
+                  </div>
+                  <div
+                    className="col-span-2 px-4 py-3 text-gray-400"
+                    data-oid="uuo0lri"
+                  >
+                    Folder
+                  </div>
+                  <div
+                    className="col-span-2 px-4 py-3 text-gray-400"
+                    data-oid="_v_3d71"
+                  >
+                    -
+                  </div>
+                </div>
+
                 {/* File Rows */}
                 {documents.map((doc, index) => (
-                  <div 
+                  <div
                     key={index}
                     onClick={() => handleOpenDocument(doc)}
                     className={`grid grid-cols-12 ${uiColors.tableRowBorder} cursor-pointer hover:bg-yellow-400/5`}
+                    data-oid="wbj35t4"
                   >
-                    <div className="col-span-5 px-4 py-3 flex items-center">
-                      <div className="w-4 mr-2"></div>
-                      <FileText size={16} className="mr-2 text-gray-400" />
-                      <span>{doc.title}</span>
+                    <div
+                      className="col-span-5 px-4 py-3 flex items-center"
+                      data-oid="59vdzqz"
+                    >
+                      <div className="w-4 mr-2" data-oid="2r.qdbl"></div>
+                      <FileText
+                        size={16}
+                        className="mr-2 text-gray-400"
+                        data-oid="azfwpkx"
+                      />
+
+                      <span data-oid="hz3oi-_">{doc.title}</span>
                     </div>
-                    <div className="col-span-2 px-4 py-3 text-gray-400">{doc.date}</div>
-                    <div className="col-span-1 px-4 py-3 text-gray-400">{doc.size}</div>
-                    <div className="col-span-2 px-4 py-3 text-gray-400">{doc.type}</div>
-                    <div className="col-span-2 px-4 py-3 text-gray-400">{doc.author}</div>
+                    <div
+                      className="col-span-2 px-4 py-3 text-gray-400"
+                      data-oid="o4obik5"
+                    >
+                      {doc.date}
+                    </div>
+                    <div
+                      className="col-span-1 px-4 py-3 text-gray-400"
+                      data-oid="rdq70ld"
+                    >
+                      {doc.size}
+                    </div>
+                    <div
+                      className="col-span-2 px-4 py-3 text-gray-400"
+                      data-oid="xm83b7w"
+                    >
+                      {doc.type}
+                    </div>
+                    <div
+                      className="col-span-2 px-4 py-3 text-gray-400"
+                      data-oid="8nkui17"
+                    >
+                      {doc.author}
+                    </div>
                   </div>
                 ))}
               </div>
             )}
 
             {/* Grid View */}
-            {viewMode === 'grid' && (
-              <div>
+            {viewMode === "grid" && (
+              <div data-oid="rouzb9i">
                 {/* Welcome message */}
                 {showWelcome && (
-                  <div className={`mb-8 p-6 ${uiColors.highlight} ${uiColors.text} border ${uiColors.border} col-span-full`}>
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h1 className="text-2xl font-bold mb-2">Welcome to Kite Studios Hub</h1>
-                        <p className="opacity-80">Your central location for all resources and tools.</p>
+                  <div
+                    className={`mb-8 p-6 ${uiColors.highlight} ${uiColors.text} border ${uiColors.border} col-span-full`}
+                    data-oid="5om1jf4"
+                  >
+                    <div
+                      className="flex justify-between items-start"
+                      data-oid="r7me:h5"
+                    >
+                      <div data-oid="i0:5w3f">
+                        <h1
+                          className="text-2xl font-bold mb-2"
+                          data-oid="c14nnsv"
+                        >
+                          Welcome to Kite Studios Hub
+                        </h1>
+                        <p className="opacity-80" data-oid="zyrat8j">
+                          Your central location for all resources and tools.
+                        </p>
                       </div>
-                      <button 
+                      <button
                         onClick={() => setShowWelcome(false)}
                         className={`p-1 ${uiColors.iconColor} ${uiColors.iconHover}`}
                         aria-label="Close welcome message"
+                        data-oid="uw.c22w"
                       >
-                        <X size={20} />
+                        <X size={20} data-oid="5r3eyxl" />
                       </button>
                     </div>
                   </div>
                 )}
 
                 {/* Use the HubResources component to fetch and display resources from Strapi */}
-                <HubResources />
+                <HubResources data-oid="ojfuov1" />
               </div>
             )}
           </div>
