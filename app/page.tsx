@@ -1,320 +1,437 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { ArrowDown, Cpu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import RandomQuote from "@/components/RandomQuote";
-import OffWhiteNav from "@/components/OffWhiteNav";
-import OffWhiteSection from "@/components/OffWhiteSection";
-import OffWhiteAI from "@/components/OffWhiteAI";
-import OffWhiteAIShowcase from "@/components/OffWhiteAIShowcase";
-import Manifesto from "@/components/Manifesto";
-import Community from "@/components/Community";
-import BuildInPublic from "@/components/BuildInPublic";
-import AIChatButton from "@/components/AIChatButton";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Camera,
+  Video,
+  Info,
+  X,
+  Play,
+  ArrowUp,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import MinimalNav from "@/components/MinimalNav";
+import { portfolioItems, projectsList, MediaItem } from "@/lib/portfolio-data";
 
-export default function Home() {
-  const [isFutureMode, setIsFutureMode] = useState(false);
+function LazyMedia({ item }: { item: MediaItem }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
 
-  // Initialize future mode from localStorage
   useEffect(() => {
-    // Check for future mode setting
-    const futureSetting = localStorage.getItem("futureMode");
-    if (futureSetting !== null) {
-      setIsFutureMode(futureSetting === "true");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        rootMargin: "250px", // Pre-fetch media slightly before viewport entry
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
     }
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
-  // Store future mode preference
-  useEffect(() => {
-    localStorage.setItem("futureMode", isFutureMode.toString());
-  }, [isFutureMode]);
+  return (
+    <div ref={ref} className="relative w-full overflow-hidden bg-neutral-50 dark:bg-neutral-900/60 min-h-[220px]">
+      {isInView ? (
+        item.type === "photo" ? (
+          <img
+            src={item.src}
+            alt={item.title}
+            className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+            loading="lazy"
+          />
+        ) : (
+          <video
+            src={item.src}
+            loop
+            muted
+            autoPlay
+            playsInline
+            className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+          />
+        )
+      ) : (
+        /* Premium Minimal Loader State */
+        <div className="absolute inset-0 flex items-center justify-center bg-zinc-100/30 dark:bg-zinc-900/30 backdrop-blur-sm animate-pulse min-h-[220px]">
+          <div className="w-4 h-4 rounded-full border border-neutral-300 dark:border-neutral-700 border-t-neutral-800 dark:border-t-neutral-100 animate-spin" />
+        </div>
+      )}
+    </div>
+  );
+}
 
-  const toggleFutureMode = () => {
-    setIsFutureMode(!isFutureMode);
+export default function Home() {
+  const [filter, setFilter] = useState<"all" | "photo" | "video">("all");
+  const [projectFilter, setProjectFilter] = useState<string>("all");
+  const [activeItem, setActiveItem] = useState<MediaItem | null>(null);
+  const [showMetadata, setShowMetadata] = useState(true);
+  const [copiedFooter, setCopiedFooter] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(18);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Reset pagination when filter updates
+  useEffect(() => {
+    setVisibleCount(18);
+  }, [filter, projectFilter]);
+
+  // Monitor scroll height to show/hide "Back to Top" trigger
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Combine filters
+  const filteredItems = portfolioItems.filter((item) => {
+    const matchesType = filter === "all" || item.type === filter;
+    const matchesProject =
+      projectFilter === "all" || item.project === projectFilter;
+    return matchesType && matchesProject;
+  });
+
+  const visibleItems = filteredItems.slice(0, visibleCount);
+
+  const activeIndex = activeItem
+    ? filteredItems.findIndex((item) => item.id === activeItem.id)
+    : -1;
+
+  const handleNext = () => {
+    if (activeIndex === -1) return;
+    const nextIndex = (activeIndex + 1) % filteredItems.length;
+    setActiveItem(filteredItems[nextIndex]);
+  };
+
+  const handlePrev = () => {
+    if (activeIndex === -1) return;
+    const prevIndex = (activeIndex - 1 + filteredItems.length) % filteredItems.length;
+    setActiveItem(filteredItems[prevIndex]);
+  };
+
+  // Keyboard navigation for Lightbox
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!activeItem) return;
+      if (e.key === "ArrowRight") {
+        handleNext();
+      } else if (e.key === "ArrowLeft") {
+        handlePrev();
+      } else if (e.key === "Escape") {
+        setActiveItem(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeItem, activeIndex, filteredItems]);
+
+  // Rolling Adjacent Filmstrip Window (centered on active index)
+  const getAdjacentThumbs = () => {
+    if (activeIndex === -1) return [];
+    const range = 4; // Show 4 previous and 4 next items
+    const thumbs = [];
+    for (let i = -range; i <= range; i++) {
+      const idx = (activeIndex + i + filteredItems.length) % filteredItems.length;
+      thumbs.push({ item: filteredItems[idx], originalIndex: idx });
+    }
+    return thumbs;
+  };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("tomy@kitestudios.net");
+    setCopiedFooter(true);
+    setTimeout(() => setCopiedFooter(false), 2000);
   };
 
   return (
-    <div className="page-wrapper" data-oid="tdr_71.">
-      {/* Navigation */}
-      <OffWhiteNav data-oid="k5y1e97" />
-
-      <div
-        className={`min-h-screen bg-white dark:bg-black off-white-caution ${isFutureMode ? "future-grid" : ""} transition-all duration-300`}
-        data-oid="wgri2ks"
-      >
-        {/* Hero Section */}
-        <main
-          className={`flex min-h-screen flex-col items-center justify-center bg-white dark:bg-black ${isFutureMode ? "future-grid scan-line" : "off-white-stripes"}`}
-          data-oid="6fv.asi"
-        >
-          <div
-            className="absolute top-6 left-6 text-xs font-bold uppercase tracking-wider"
-            data-oid="pa_hiqx"
-          >
-            c/o 2024
-          </div>
-
-          <div
-            className="absolute bottom-6 left-6 text-xs font-bold uppercase tracking-wider"
-            data-oid="f:0nq7k"
-          >
-            "FOR DISPLAY ONLY"
-          </div>
-
-          <div
-            className="absolute bottom-6 right-6 text-xs font-bold uppercase tracking-wider"
-            data-oid="hrpuici"
-          >
-            "WEBSITE"
-          </div>
-
-          <div
-            className="relative z-10 flex flex-col items-center"
-            data-oid="1wowulk"
-          >
-            <div className="relative" data-oid="m.likk7">
-              <h1
-                className={`industrial-text text-5xl md:text-7xl font-bold tracking-tighter mb-2 relative ${isFutureMode ? "ai-gradient-text" : ""}`}
-                data-text="KITESTUDIOS"
-                data-oid="cewidzu"
-              >
-                KITESTUDIOS
-              </h1>
-            </div>
-
-            <div
-              className={`w-full max-w-md border-t-2 border-b-2 border-black dark:border-white py-2 my-4 ${isFutureMode ? "scan-line" : ""}`}
-              data-oid="a8quj-p"
-            >
-              <RandomQuote data-oid="edw979n" />
-            </div>
-
-            <motion.div
-              className={`mt-8 text-sm uppercase tracking-wider ${isFutureMode ? "ai-badge mb-4" : "off-white-arrow"}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
-              data-oid="6a5wyjv"
-            >
-              {isFutureMode ? (
-                <span className="ai-badge-text" data-oid="gkdfe.6">
-                  ESTABLISHED 2024
-                </span>
-              ) : (
-                "ESTABLISHED 2024"
-              )}
-            </motion.div>
-
-            {isFutureMode && (
-              <motion.div
-                className="terminal-text text-xs mt-2 ai-blink"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
-                data-oid="-5jlqfc"
-              >
-                SYSTEM POWERED BY ARTIFICIAL INTELLIGENCE
-              </motion.div>
-            )}
-
-            <motion.div
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1,
-                delay: 3,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-              data-oid="qrfy7hi"
-            >
-              <ArrowDown
-                className={`h-6 w-6 ${isFutureMode ? "text-[#ffff00]" : ""}`}
-                data-oid="9.r6ohe"
-              />
-            </motion.div>
-          </div>
-        </main>
-
-        <div id="manifesto" data-oid="2zlnzux">
-          <Manifesto data-oid="o7_iemr" />
-        </div>
-
-        {/* Community Section - Disabled */}
-        {/* 
-               <div id="community">
-                <Community />
-               </div>
-               */}
-
-        {/* Build In Public Section */}
-        <div id="build" data-oid="-i74t0:">
-          <BuildInPublic data-oid="ryxxmfq" />
-        </div>
-
-        {/* AI Showcase Section (only visible in future mode) */}
-        {isFutureMode && (
-          <OffWhiteAIShowcase
-            title="AI-ENHANCED DESIGN"
-            description="Exploring the intersection of artificial intelligence and industrial design aesthetics."
-            data-oid="v30a618"
-          />
-        )}
-
-        {/* Projects Section - Disabled */}
-        {/* 
-               <div className={isFutureMode ? 'future-grid' : 'off-white-grid'}>
-                <OffWhiteSection />
-               </div>
-               */}
-
-        {/* Footer */}
-        <footer
-          className={`py-12 border-t-2 border-black dark:border-white ${isFutureMode ? "future-grid" : ""}`}
-          data-oid="gm363qx"
-        >
-          <div className="container mx-auto px-6 md:px-12" data-oid="tq7-86u">
-            <div
-              className="flex flex-col md:flex-row justify-between items-start md:items-center"
-              data-oid="tyf1piz"
-            >
-              <div className="mb-6 md:mb-0 pl-4 md:pl-8" data-oid="q:h6b3r">
-                <div
-                  className={`industrial-text text-2xl mb-2 ${isFutureMode ? "ai-gradient-text" : ""}`}
-                  data-oid="8nbenv3"
-                >
-                  {isFutureMode ? (
-                    <span
-                      className="glitch-text"
-                      data-text="KITESTUDIOS"
-                      data-oid="oek2ku3"
-                    >
-                      "KITESTUDIOS"
-                    </span>
-                  ) : (
-                    '"KITESTUDIOS"'
-                  )}
-                </div>
-                <div
-                  className="text-xs uppercase tracking-wider"
-                  data-oid="7_z:qau"
-                >
-                  © 2024 ALL RIGHTS RESERVED
-                </div>
-              </div>
-
-              <div className="flex flex-col space-y-4" data-oid="5yicz93">
-                <a
-                  href="https://instagram.com/kitestudios6"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-xs uppercase tracking-wider ${isFutureMode ? "ai-badge" : "off-white-arrow"}`}
-                  data-oid="hv6rs11"
-                >
-                  {isFutureMode ? (
-                    <span className="ai-badge-text" data-oid="qzkz0cm">
-                      INSTAGRAM
-                    </span>
-                  ) : (
-                    "INSTAGRAM"
-                  )}
-                </a>
-                <a
-                  href="http://twitter.com/tomykite"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-xs uppercase tracking-wider ${isFutureMode ? "ai-badge" : "off-white-arrow"}`}
-                  data-oid="qxakg94"
-                >
-                  {isFutureMode ? (
-                    <span className="ai-badge-text" data-oid="9eed2n:">
-                      TWITTER
-                    </span>
-                  ) : (
-                    "TWITTER"
-                  )}
-                </a>
-                <a
-                  href="https://warpcast.com/kitestudios"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-xs uppercase tracking-wider ${isFutureMode ? "ai-badge" : "off-white-arrow"}`}
-                  data-oid="35ru-23"
-                >
-                  {isFutureMode ? (
-                    <span className="ai-badge-text" data-oid="lrn68x1">
-                      WARPCAST
-                    </span>
-                  ) : (
-                    "WARPCAST"
-                  )}
-                </a>
-                <a
-                  href="https://warpcast.com/~/channel/funquotes"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-xs uppercase tracking-wider ${isFutureMode ? "ai-badge" : "off-white-arrow"}`}
-                  data-oid="2n3lm3x"
-                >
-                  {isFutureMode ? (
-                    <span className="ai-badge-text" data-oid="f:4dgw_">
-                      FUNQUOTES
-                    </span>
-                  ) : (
-                    "FUNQUOTES"
-                  )}{" "}
-                  <span className="text-[10px]" data-oid="wvfduie">
-                    (COMMUNITY)
-                  </span>
-                </a>
-                <a
-                  href="#"
-                  className={`text-xs uppercase tracking-wider opacity-50 cursor-not-allowed ${isFutureMode ? "ai-badge opacity-50" : "off-white-arrow opacity-50"}`}
-                  data-oid="bjwgawx"
-                >
-                  {isFutureMode ? (
-                    <span className="ai-badge-text" data-oid="w8hk53l">
-                      DISCORD
-                    </span>
-                  ) : (
-                    "DISCORD"
-                  )}{" "}
-                  <span className="text-[10px]" data-oid="1akcv.a">
-                    (COMING SOON)
-                  </span>
-                </a>
-              </div>
-            </div>
-
-            <div
-              className="mt-12 pt-6 border-t border-black dark:border-white"
-              data-oid="t9c14e3"
-            >
-              <div
-                className="text-xs uppercase tracking-wider text-center px-4"
-                data-oid="8qcyfss"
-              >
-                {isFutureMode
-                  ? '"BUILT BY KITESTUDIOS"'
-                  : '"BUILT BY KITESTUDIOS"'}
-              </div>
-            </div>
-          </div>
-        </footer>
-
-        {/* AI Chat Assistant (only visible in future mode) */}
-        {isFutureMode && <OffWhiteAI data-oid="-523mbj" />}
-      </div>
-
-      {/* AI Chat Button */}
-      <AIChatButton
-        agentName="Garu"
-        agentImageSrc="/Garu Profile Image.png"
-        data-oid="9.plze7"
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
+      {/* Sleek Navigation passing double filter controls */}
+      <MinimalNav
+        filter={filter}
+        setFilter={setFilter}
+        projectFilter={projectFilter}
+        setProjectFilter={setProjectFilter}
+        projects={projectsList}
       />
+
+      {/* Main Content Area - Landing directly into visual archives */}
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-7xl">
+        {filteredItems.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-32 text-center">
+            <span className="text-xs uppercase font-mono tracking-widest text-neutral-400 dark:text-neutral-500 mb-2">
+              No Archives Found
+            </span>
+            <p className="text-neutral-500 dark:text-neutral-400 text-sm max-w-xs font-light">
+              No matching assets were found in this specific selection. Try resetting filters.
+            </p>
+            <button
+              onClick={() => {
+                setFilter("all");
+                setProjectFilter("all");
+              }}
+              className="mt-6 px-4 py-2 border border-neutral-300 dark:border-neutral-800 text-[10px] tracking-wider uppercase font-mono hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+            >
+              Reset Filters
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 sm:gap-12">
+              <AnimatePresence mode="popLayout">
+                {visibleItems.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.4, delay: Math.min(index * 0.03, 0.3) }}
+                    className="group break-inside-avoid relative cursor-pointer flex flex-col bg-transparent mb-6 sm:mb-12"
+                    onClick={() => setActiveItem(item)}
+                  >
+                    {/* Media Container - Borderless minimal frame */}
+                    <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-900 shadow-sm">
+                      <LazyMedia item={item} />
+
+                      {/* Play overlay for video posts */}
+                      {item.type === "video" && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/15 group-hover:bg-black/35 transition-colors z-10">
+                          <div className="border border-white/40 p-3 bg-black/40 backdrop-blur-sm rounded-full text-white transform group-hover:scale-105 transition-transform duration-300">
+                            <Play className="h-5 w-5 fill-white" />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Project Tag */}
+                      <div className="absolute top-3 left-3 bg-black/60 text-white backdrop-blur-sm px-2 py-0.5 text-[7px] font-mono tracking-widest uppercase font-bold z-10">
+                        {item.project}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+
+            {/* Pagination Loader */}
+            {filteredItems.length > visibleCount && (
+              <div className="flex justify-center mt-16">
+                <button
+                  onClick={() => setVisibleCount((prev) => prev + 18)}
+                  className="px-8 py-3 border border-neutral-300 dark:border-neutral-800 text-[10px] tracking-[0.25em] uppercase font-mono hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300"
+                >
+                  REVEAL MORE ARCHIVES ({filteredItems.length - visibleCount} REMAINING)
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      </main>
+
+      {/* Sleek Minimal Sign-off Footer */}
+      <footer className="w-full border-t border-neutral-100 dark:border-neutral-900 py-16 bg-transparent">
+        <div className="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8 text-neutral-400 dark:text-neutral-500 text-xs">
+          {/* Copyright signature */}
+          <div className="text-center md:text-left">
+            <span className="font-light tracking-[0.2em] text-neutral-800 dark:text-neutral-200 uppercase block mb-1">
+              KITESTUDIOS
+            </span>
+            <span className="text-[10px] tracking-wider font-mono uppercase font-light">
+              © 2026 TOMY KITE • PORTFOLIO
+            </span>
+          </div>
+
+          {/* Social connections */}
+          <div className="flex items-center space-x-12 font-medium tracking-widest text-[10px] uppercase">
+            <a
+              href="https://instagram.com/kitestudios6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-black dark:hover:text-white transition-colors"
+            >
+              INSTAGRAM
+            </a>
+            <a
+              href="mailto:tomy@kitestudios.net"
+              className="hover:text-black dark:hover:text-white transition-colors"
+            >
+              EMAIL
+            </a>
+          </div>
+
+          {/* Inquiry / Mail */}
+          <div className="text-center md:text-right font-mono">
+            <span className="block text-[8px] tracking-widest uppercase mb-1 opacity-80">
+              WORK ENQUIRIES
+            </span>
+            <button
+              onClick={handleCopyEmail}
+              className="font-bold text-neutral-600 dark:text-neutral-300 hover:text-[#ffff00] transition-colors text-[11px] flex items-center justify-center md:justify-end gap-2 uppercase"
+            >
+              TOMY@KITESTUDIOS.NET
+              <span className="text-[8px] bg-neutral-100 dark:bg-neutral-900 text-neutral-500 px-1 py-0.5 border border-neutral-200 dark:border-neutral-800">
+                {copiedFooter ? "COPIED" : "COPY"}
+              </span>
+            </button>
+          </div>
+        </div>
+      </footer>
+
+      {/* Gorgeous Immersive Lightbox & Theater Video Overlays */}
+      <AnimatePresence>
+        {activeItem && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-md"
+          >
+            {/* Click outside target */}
+            <div
+              className="absolute inset-0 cursor-zoom-out"
+              onClick={() => setActiveItem(null)}
+            />
+
+            {/* Modal Container */}
+            <motion.div
+              initial={{ scale: 0.98, y: 10 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.98, y: 10 }}
+              className="relative max-w-4xl w-full bg-neutral-950 border border-neutral-900 text-white shadow-2xl flex flex-col overflow-hidden max-h-[90vh]"
+            >
+              {/* Controls bar */}
+              <div className="absolute top-4 right-4 z-40 flex items-center space-x-3">
+                {/* Close Button */}
+                <button
+                  onClick={() => setActiveItem(null)}
+                  className="border border-white/20 p-2 bg-black/60 hover:bg-white hover:text-black hover:border-white transition-all cursor-pointer"
+                  aria-label="Close view"
+                >
+                  <X className="h-4.5 w-4.5" />
+                </button>
+              </div>
+
+              {/* Media viewer panel */}
+              <div className="relative flex-1 bg-black flex items-center justify-center overflow-hidden min-h-[300px] md:min-h-[500px]">
+                {/* Left Arrow overlay */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrev();
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 bg-black/60 hover:bg-white hover:text-black border border-white/10 hover:border-white transition-all cursor-pointer rounded-full text-white"
+                  aria-label="Previous asset"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+
+                {/* Right Arrow overlay */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNext();
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 bg-black/60 hover:bg-white hover:text-black border border-white/10 hover:border-white transition-all cursor-pointer rounded-full text-white"
+                  aria-label="Next asset"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+
+                {activeItem.type === "photo" ? (
+                  <img
+                    src={activeItem.src}
+                    alt={activeItem.title}
+                    className="object-contain w-full h-full max-h-[75vh]"
+                  />
+                ) : (
+                  <div className="relative w-full h-full aspect-video">
+                    {activeItem.videoUrl ? (
+                      <video
+                        src={activeItem.videoUrl}
+                        controls
+                        autoPlay
+                        loop
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center font-mono text-xs uppercase opacity-75">
+                        Video source unavailable
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Dynamic Filmstrip preview row */}
+              <div className="bg-neutral-950 border-t border-neutral-900 px-6 py-4 flex items-center justify-center overflow-hidden">
+                <div className="flex items-center space-x-3 overflow-x-auto scrollbar-none max-w-full">
+                  {getAdjacentThumbs().map(({ item, originalIndex }) => {
+                    const isActive = item.id === activeItem.id;
+                    return (
+                      <button
+                        key={`thumb-${item.id}-${originalIndex}`}
+                        onClick={() => setActiveItem(item)}
+                        className={`relative h-10 sm:h-12 aspect-[3/2] overflow-hidden border transition-all duration-300 shrink-0 ${
+                          isActive
+                            ? "border-white scale-105 shadow-[0_0_8px_rgba(255,255,255,0.25)]"
+                            : "border-neutral-800 opacity-35 hover:opacity-85 hover:border-neutral-600"
+                        }`}
+                      >
+                        {item.type === "photo" ? (
+                          <img
+                            src={item.src}
+                            alt={item.title}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <video
+                            src={item.src}
+                            muted
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating Back to Top Button (Mobile only) */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 10 }}
+            onClick={scrollToTop}
+            className="sm:hidden fixed bottom-6 right-6 z-40 p-3 bg-white/80 dark:bg-black/80 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 rounded-full shadow-lg text-black dark:text-white cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
+            aria-label="Back to top"
+          >
+            <ArrowUp className="h-4 w-4" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

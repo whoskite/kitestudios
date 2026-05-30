@@ -1,0 +1,1231 @@
+[
+  {
+    "name": "Ecommerce",
+    "type": "directory",
+    "children": [
+      {
+        "name": "0d1f7b25-872c-4763-8ed0-c6d7ecd427f3_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 493264,
+        "relativePath": "portfolio/Ecommerce/0d1f7b25-872c-4763-8ed0-c6d7ecd427f3_rw_1920.jpg"
+      },
+      {
+        "name": "34f9863e-c1a4-4866-9493-9f47ea5d063d_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 531485,
+        "relativePath": "portfolio/Ecommerce/34f9863e-c1a4-4866-9493-9f47ea5d063d_rw_1920.jpg"
+      },
+      {
+        "name": "4737399a-2610-4883-b262-062813e7abea_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 556002,
+        "relativePath": "portfolio/Ecommerce/4737399a-2610-4883-b262-062813e7abea_rw_1920.jpg"
+      },
+      {
+        "name": "66dddbb2-03aa-41bf-b5a2-77a4a8c9143e_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 526821,
+        "relativePath": "portfolio/Ecommerce/66dddbb2-03aa-41bf-b5a2-77a4a8c9143e_rw_1920.jpg"
+      },
+      {
+        "name": "68fe812d-1f5b-4759-a7c5-cfa69c9c1f36_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 550553,
+        "relativePath": "portfolio/Ecommerce/68fe812d-1f5b-4759-a7c5-cfa69c9c1f36_rw_1920.jpg"
+      },
+      {
+        "name": "a694331a-863e-4090-8de4-4c7de75cfbcd_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 643422,
+        "relativePath": "portfolio/Ecommerce/a694331a-863e-4090-8de4-4c7de75cfbcd_rw_1920.jpg"
+      },
+      {
+        "name": "b22eccad-2ed6-4535-a29d-b7087aea8cac_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 502092,
+        "relativePath": "portfolio/Ecommerce/b22eccad-2ed6-4535-a29d-b7087aea8cac_rw_1920.jpg"
+      },
+      {
+        "name": "cad446f4-93ab-42b6-a6b7-65c9c8713714_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 639492,
+        "relativePath": "portfolio/Ecommerce/cad446f4-93ab-42b6-a6b7-65c9c8713714_rw_1920.jpg"
+      },
+      {
+        "name": "d27a69c2-5e89-4325-aa2a-fce9fcdddeb1_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 535121,
+        "relativePath": "portfolio/Ecommerce/d27a69c2-5e89-4325-aa2a-fce9fcdddeb1_rw_1920.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Fashion",
+    "type": "directory",
+    "children": [
+      {
+        "name": "fashion_1.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 980245,
+        "relativePath": "portfolio/Fashion/fashion_1.jpg"
+      },
+      {
+        "name": "fashion_10.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 285874,
+        "relativePath": "portfolio/Fashion/fashion_10.jpg"
+      },
+      {
+        "name": "fashion_11.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 154786,
+        "relativePath": "portfolio/Fashion/fashion_11.jpg"
+      },
+      {
+        "name": "fashion_12.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 237498,
+        "relativePath": "portfolio/Fashion/fashion_12.jpg"
+      },
+      {
+        "name": "fashion_13.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 350184,
+        "relativePath": "portfolio/Fashion/fashion_13.jpg"
+      },
+      {
+        "name": "fashion_14.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 417823,
+        "relativePath": "portfolio/Fashion/fashion_14.jpg"
+      },
+      {
+        "name": "fashion_15.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 305253,
+        "relativePath": "portfolio/Fashion/fashion_15.jpg"
+      },
+      {
+        "name": "fashion_16.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 287956,
+        "relativePath": "portfolio/Fashion/fashion_16.jpg"
+      },
+      {
+        "name": "fashion_17.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 192546,
+        "relativePath": "portfolio/Fashion/fashion_17.jpg"
+      },
+      {
+        "name": "fashion_18.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 110664,
+        "relativePath": "portfolio/Fashion/fashion_18.jpg"
+      },
+      {
+        "name": "fashion_19.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 179195,
+        "relativePath": "portfolio/Fashion/fashion_19.jpg"
+      },
+      {
+        "name": "fashion_2.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 222774,
+        "relativePath": "portfolio/Fashion/fashion_2.jpg"
+      },
+      {
+        "name": "fashion_20.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 95754,
+        "relativePath": "portfolio/Fashion/fashion_20.jpg"
+      },
+      {
+        "name": "fashion_21.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 149932,
+        "relativePath": "portfolio/Fashion/fashion_21.jpg"
+      },
+      {
+        "name": "fashion_22.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 124751,
+        "relativePath": "portfolio/Fashion/fashion_22.jpg"
+      },
+      {
+        "name": "fashion_23.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 161572,
+        "relativePath": "portfolio/Fashion/fashion_23.jpg"
+      },
+      {
+        "name": "fashion_24.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 111247,
+        "relativePath": "portfolio/Fashion/fashion_24.jpg"
+      },
+      {
+        "name": "fashion_25.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 114832,
+        "relativePath": "portfolio/Fashion/fashion_25.jpg"
+      },
+      {
+        "name": "fashion_26.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 238514,
+        "relativePath": "portfolio/Fashion/fashion_26.jpg"
+      },
+      {
+        "name": "fashion_27.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 254192,
+        "relativePath": "portfolio/Fashion/fashion_27.jpg"
+      },
+      {
+        "name": "fashion_28.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 269125,
+        "relativePath": "portfolio/Fashion/fashion_28.jpg"
+      },
+      {
+        "name": "fashion_29.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 232177,
+        "relativePath": "portfolio/Fashion/fashion_29.jpg"
+      },
+      {
+        "name": "fashion_3.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 1228219,
+        "relativePath": "portfolio/Fashion/fashion_3.jpg"
+      },
+      {
+        "name": "fashion_30.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 295756,
+        "relativePath": "portfolio/Fashion/fashion_30.jpg"
+      },
+      {
+        "name": "fashion_31.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 571520,
+        "relativePath": "portfolio/Fashion/fashion_31.jpg"
+      },
+      {
+        "name": "fashion_32.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 277693,
+        "relativePath": "portfolio/Fashion/fashion_32.jpg"
+      },
+      {
+        "name": "fashion_33.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 218730,
+        "relativePath": "portfolio/Fashion/fashion_33.jpg"
+      },
+      {
+        "name": "fashion_34.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 299518,
+        "relativePath": "portfolio/Fashion/fashion_34.jpg"
+      },
+      {
+        "name": "fashion_35.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 223471,
+        "relativePath": "portfolio/Fashion/fashion_35.jpg"
+      },
+      {
+        "name": "fashion_36.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 823239,
+        "relativePath": "portfolio/Fashion/fashion_36.jpg"
+      },
+      {
+        "name": "fashion_37.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 111247,
+        "relativePath": "portfolio/Fashion/fashion_37.jpg"
+      },
+      {
+        "name": "fashion_38.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 161572,
+        "relativePath": "portfolio/Fashion/fashion_38.jpg"
+      },
+      {
+        "name": "fashion_39.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 224009,
+        "relativePath": "portfolio/Fashion/fashion_39.jpg"
+      },
+      {
+        "name": "fashion_4.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 285169,
+        "relativePath": "portfolio/Fashion/fashion_4.jpg"
+      },
+      {
+        "name": "fashion_40.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 367792,
+        "relativePath": "portfolio/Fashion/fashion_40.jpg"
+      },
+      {
+        "name": "fashion_5.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 160073,
+        "relativePath": "portfolio/Fashion/fashion_5.jpg"
+      },
+      {
+        "name": "fashion_6.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 625175,
+        "relativePath": "portfolio/Fashion/fashion_6.jpg"
+      },
+      {
+        "name": "fashion_7.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 693581,
+        "relativePath": "portfolio/Fashion/fashion_7.jpg"
+      },
+      {
+        "name": "fashion_8.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 113247,
+        "relativePath": "portfolio/Fashion/fashion_8.jpg"
+      },
+      {
+        "name": "fashion_9.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 278248,
+        "relativePath": "portfolio/Fashion/fashion_9.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Genki Prints",
+    "type": "directory",
+    "children": [
+      {
+        "name": "Ecommerce",
+        "type": "directory",
+        "children": [
+          {
+            "name": "8-Bit Charizard Keychain.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 3504630,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/8-Bit Charizard Keychain.jpg"
+          },
+          {
+            "name": "8-Bit Espeon Keychain.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2312555,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/8-Bit Espeon Keychain.jpg"
+          },
+          {
+            "name": "8-Bit Gyarados Keychain.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2660964,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/8-Bit Gyarados Keychain.jpg"
+          },
+          {
+            "name": "8-Bit Lapras Keychain.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2733835,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/8-Bit Lapras Keychain.jpg"
+          },
+          {
+            "name": "8-Bit Lugia Keychain.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2336095,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/8-Bit Lugia Keychain.jpg"
+          },
+          {
+            "name": "GPArtboard 8.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 139875,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/GPArtboard 8.jpg"
+          },
+          {
+            "name": "IG_PokeBall_2.png",
+            "type": "file",
+            "extension": ".png",
+            "size": 220036,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/IG_PokeBall_2.png"
+          },
+          {
+            "name": "IG_PokeBall_3.png",
+            "type": "file",
+            "extension": ".png",
+            "size": 206640,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/IG_PokeBall_3.png"
+          },
+          {
+            "name": "IG_PokeBall_4.png",
+            "type": "file",
+            "extension": ".png",
+            "size": 179476,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/IG_PokeBall_4.png"
+          },
+          {
+            "name": "IG_PokeBall_5.png",
+            "type": "file",
+            "extension": ".png",
+            "size": 231746,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/IG_PokeBall_5.png"
+          },
+          {
+            "name": "KIRBY-535767.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2796935,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/KIRBY-535767.JPG"
+          },
+          {
+            "name": "KIRBY-542830.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1276820,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/KIRBY-542830.JPG"
+          },
+          {
+            "name": "KIRBY-544801.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1823051,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/KIRBY-544801.JPG"
+          },
+          {
+            "name": "KIRBY-549478.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2042968,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/KIRBY-549478.JPG"
+          },
+          {
+            "name": "KIRBY-551069.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1577355,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/KIRBY-551069.JPG"
+          },
+          {
+            "name": "KIRBY-551169.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2035145,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/KIRBY-551169.JPG"
+          },
+          {
+            "name": "KIRBY-569623.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2862631,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/KIRBY-569623.JPG"
+          },
+          {
+            "name": "P1040872-Enhanced-NR.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 340761,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/P1040872-Enhanced-NR.JPG"
+          },
+          {
+            "name": "P1040876-Enhanced-NR.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 238318,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/P1040876-Enhanced-NR.JPG"
+          },
+          {
+            "name": "P1040880-Enhanced-NR.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 488394,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/P1040880-Enhanced-NR.JPG"
+          },
+          {
+            "name": "P1040913-Enhanced-NR.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 652252,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/P1040913-Enhanced-NR.JPG"
+          },
+          {
+            "name": "P1041291.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1258328,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/P1041291.JPG"
+          },
+          {
+            "name": "P1041313.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 945433,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/P1041313.JPG"
+          },
+          {
+            "name": "P1041321.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 809576,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/P1041321.JPG"
+          },
+          {
+            "name": "P1041327.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1698891,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/P1041327.JPG"
+          },
+          {
+            "name": "P1041329.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1093979,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/P1041329.JPG"
+          },
+          {
+            "name": "P1041344.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2303616,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/P1041344.JPG"
+          },
+          {
+            "name": "Professional-Product-Photos-KITESTUDIOS-Ecommerce-Tomy-3.png",
+            "type": "file",
+            "extension": ".png",
+            "size": 817792,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/Professional-Product-Photos-KITESTUDIOS-Ecommerce-Tomy-3.png"
+          },
+          {
+            "name": "Valentines Day_Final_1920x1080.png",
+            "type": "file",
+            "extension": ".png",
+            "size": 3369912,
+            "relativePath": "portfolio/Genki Prints/Ecommerce/Valentines Day_Final_1920x1080.png"
+          }
+        ]
+      },
+      {
+        "name": "Event",
+        "type": "directory",
+        "children": [
+          {
+            "name": "comiccon_recap.mp4",
+            "type": "file",
+            "extension": ".mp4",
+            "size": 3859498,
+            "relativePath": "portfolio/Genki Prints/Event/comiccon_recap.mp4"
+          },
+          {
+            "name": "event_1_glyf.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 186990,
+            "relativePath": "portfolio/Genki Prints/Event/event_1_glyf.jpg"
+          },
+          {
+            "name": "event_2_team.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 146748,
+            "relativePath": "portfolio/Genki Prints/Event/event_2_team.jpg"
+          },
+          {
+            "name": "event_3_gaming.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 174613,
+            "relativePath": "portfolio/Genki Prints/Event/event_3_gaming.jpg"
+          },
+          {
+            "name": "event_4_lsprint.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 142283,
+            "relativePath": "portfolio/Genki Prints/Event/event_4_lsprint.jpg"
+          },
+          {
+            "name": "event_5_signed.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 130348,
+            "relativePath": "portfolio/Genki Prints/Event/event_5_signed.jpg"
+          },
+          {
+            "name": "SaveClip.App_629462752_18454476853103425_3738569233577502164_n.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 498354,
+            "relativePath": "portfolio/Genki Prints/Event/SaveClip.App_629462752_18454476853103425_3738569233577502164_n.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "GLYF STUDIO",
+    "type": "directory",
+    "children": [
+      {
+        "name": "Ecommerce",
+        "type": "directory",
+        "children": [
+          {
+            "name": "GALLERY82-504604.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 3514541,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-504604.JPG"
+          },
+          {
+            "name": "GALLERY82-506411.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 3036199,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-506411.JPG"
+          },
+          {
+            "name": "GALLERY82-511042.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 4476054,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-511042.JPG"
+          },
+          {
+            "name": "GALLERY82-573583.webp",
+            "type": "file",
+            "extension": ".webp",
+            "size": 125654,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-573583.webp"
+          },
+          {
+            "name": "GALLERY82-591109.webp",
+            "type": "file",
+            "extension": ".webp",
+            "size": 72188,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-591109.webp"
+          },
+          {
+            "name": "GALLERY82-603036.webp",
+            "type": "file",
+            "extension": ".webp",
+            "size": 280486,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-603036.webp"
+          },
+          {
+            "name": "GALLERY82-624394.webp",
+            "type": "file",
+            "extension": ".webp",
+            "size": 248020,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-624394.webp"
+          },
+          {
+            "name": "GALLERY82-632750.webp",
+            "type": "file",
+            "extension": ".webp",
+            "size": 176936,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-632750.webp"
+          },
+          {
+            "name": "GALLERY82-661065.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2921274,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-661065.JPG"
+          },
+          {
+            "name": "GALLERY82-661735.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 6800314,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-661735.JPG"
+          },
+          {
+            "name": "GALLERY82-661739.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 3642398,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-661739.JPG"
+          },
+          {
+            "name": "GALLERY82-662790.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 4542338,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-662790.JPG"
+          },
+          {
+            "name": "GALLERY82-996886.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 4308199,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82-996886.JPG"
+          },
+          {
+            "name": "GALLERY82_HAT-1041664.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1896699,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041664.JPG"
+          },
+          {
+            "name": "GALLERY82_HAT-1041668.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1722407,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041668.JPG"
+          },
+          {
+            "name": "GALLERY82_HAT-1041669.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1667392,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041669.JPG"
+          },
+          {
+            "name": "GALLERY82_HAT-1041670.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 3186386,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041670.JPG"
+          },
+          {
+            "name": "GALLERY82_PURPLEHAZE_TSHIRT_BACK_2.webp",
+            "type": "file",
+            "extension": ".webp",
+            "size": 84144,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_BACK_2.webp"
+          },
+          {
+            "name": "GALLERY82_PURPLEHAZE_TSHIRT_BACK_3.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 766126,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_BACK_3.JPG"
+          },
+          {
+            "name": "GALLERY82_PURPLEHAZE_TSHIRT_BACK_76574a97-9c05-4aa8-895c-6f39d4dc35ba.webp",
+            "type": "file",
+            "extension": ".webp",
+            "size": 45102,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_BACK_76574a97-9c05-4aa8-895c-6f39d4dc35ba.webp"
+          },
+          {
+            "name": "GALLERY82_PURPLEHAZE_TSHIRT_FRONT.png",
+            "type": "file",
+            "extension": ".png",
+            "size": 7589176,
+            "relativePath": "portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_FRONT.png"
+          }
+        ]
+      },
+      {
+        "name": "Lookbook",
+        "type": "directory",
+        "children": [
+          {
+            "name": "Hero Banner_Clone_1.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 5839282,
+            "relativePath": "portfolio/GLYF STUDIO/Lookbook/Hero Banner_Clone_1.JPG"
+          },
+          {
+            "name": "image 16.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 10239970,
+            "relativePath": "portfolio/GLYF STUDIO/Lookbook/image 16.jpg"
+          },
+          {
+            "name": "P1041766.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 5049496,
+            "relativePath": "portfolio/GLYF STUDIO/Lookbook/P1041766.JPG"
+          },
+          {
+            "name": "P1041814.JPG",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 4838214,
+            "relativePath": "portfolio/GLYF STUDIO/Lookbook/P1041814.JPG"
+          }
+        ]
+      },
+      {
+        "name": "Video",
+        "type": "directory",
+        "children": [
+          {
+            "name": "glyfstudio_documentary.mp4",
+            "type": "file",
+            "extension": ".mp4",
+            "size": 6014183,
+            "relativePath": "portfolio/GLYF STUDIO/Video/glyfstudio_documentary.mp4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Kevora",
+    "type": "directory",
+    "children": [
+      {
+        "name": "KEVORA_PRODUCT_1.png",
+        "type": "file",
+        "extension": ".png",
+        "size": 5738746,
+        "relativePath": "portfolio/Kevora/KEVORA_PRODUCT_1.png"
+      },
+      {
+        "name": "KEVORA_PRODUCT_10.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 497189,
+        "relativePath": "portfolio/Kevora/KEVORA_PRODUCT_10.jpg"
+      },
+      {
+        "name": "KEVORA_PRODUCT_12.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 834878,
+        "relativePath": "portfolio/Kevora/KEVORA_PRODUCT_12.jpg"
+      },
+      {
+        "name": "KEVORA_PRODUCT_13.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 572485,
+        "relativePath": "portfolio/Kevora/KEVORA_PRODUCT_13.jpg"
+      },
+      {
+        "name": "KEVORA_PRODUCT_15.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 838737,
+        "relativePath": "portfolio/Kevora/KEVORA_PRODUCT_15.jpg"
+      },
+      {
+        "name": "KEVORA_PRODUCT_2.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 562981,
+        "relativePath": "portfolio/Kevora/KEVORA_PRODUCT_2.jpg"
+      },
+      {
+        "name": "KEVORA_PRODUCT_3.webp",
+        "type": "file",
+        "extension": ".webp",
+        "size": 7344990,
+        "relativePath": "portfolio/Kevora/KEVORA_PRODUCT_3.webp"
+      },
+      {
+        "name": "KEVORA_PRODUCT_7.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 78167,
+        "relativePath": "portfolio/Kevora/KEVORA_PRODUCT_7.jpg"
+      },
+      {
+        "name": "KEVORA_PRODUCT_8.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 1347428,
+        "relativePath": "portfolio/Kevora/KEVORA_PRODUCT_8.jpg"
+      },
+      {
+        "name": "KEVORA_PRODUCT_9.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 383178,
+        "relativePath": "portfolio/Kevora/KEVORA_PRODUCT_9.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Platini Jeans",
+    "type": "directory",
+    "children": [
+      {
+        "name": "Ecommerce Photography",
+        "type": "directory",
+        "children": [
+          {
+            "name": "08cf57ba5aaf06960b7b7ea6_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1452589,
+            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/08cf57ba5aaf06960b7b7ea6_rw_1920.jpg"
+          },
+          {
+            "name": "4bd3dd45c58dc04fdec57950_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1084049,
+            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/4bd3dd45c58dc04fdec57950_rw_1920.jpg"
+          },
+          {
+            "name": "807ee5f2aaf0e95218cc19f3_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1977731,
+            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/807ee5f2aaf0e95218cc19f3_rw_1920.jpg"
+          },
+          {
+            "name": "9a41446150e6fbfa857631af_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 842023,
+            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/9a41446150e6fbfa857631af_rw_1920.jpg"
+          },
+          {
+            "name": "9f7d049f6b213314374ede51_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1415901,
+            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/9f7d049f6b213314374ede51_rw_1920.jpg"
+          },
+          {
+            "name": "b20a38200650d249fedc749b_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1145852,
+            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/b20a38200650d249fedc749b_rw_1920.jpg"
+          },
+          {
+            "name": "b2917169b4681344feded67d_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 968524,
+            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/b2917169b4681344feded67d_rw_1920.jpg"
+          },
+          {
+            "name": "da243c3af7beed92b491308c_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1182669,
+            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/da243c3af7beed92b491308c_rw_1920.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Lifestyle Photography",
+        "type": "directory",
+        "children": [
+          {
+            "name": "102b1298ac8c9a3bee6f7b18_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 886378,
+            "relativePath": "portfolio/Platini Jeans/Lifestyle Photography/102b1298ac8c9a3bee6f7b18_rw_1920.jpg"
+          },
+          {
+            "name": "3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1176306,
+            "relativePath": "portfolio/Platini Jeans/Lifestyle Photography/3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg"
+          },
+          {
+            "name": "4e258022a09102117577c468_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2256130,
+            "relativePath": "portfolio/Platini Jeans/Lifestyle Photography/4e258022a09102117577c468_rw_1920.jpg"
+          },
+          {
+            "name": "518d0d2471c414178e5d65ee_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 803646,
+            "relativePath": "portfolio/Platini Jeans/Lifestyle Photography/518d0d2471c414178e5d65ee_rw_1920.jpg"
+          },
+          {
+            "name": "96e464de25a3566d9fb0d107_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1151285,
+            "relativePath": "portfolio/Platini Jeans/Lifestyle Photography/96e464de25a3566d9fb0d107_rw_1920.jpg"
+          },
+          {
+            "name": "f0fc67b4bd4ef7331f5a3473_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1999433,
+            "relativePath": "portfolio/Platini Jeans/Lifestyle Photography/f0fc67b4bd4ef7331f5a3473_rw_1920.jpg"
+          },
+          {
+            "name": "fca30fc1a2370c9e8d4e86d0_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1186724,
+            "relativePath": "portfolio/Platini Jeans/Lifestyle Photography/fca30fc1a2370c9e8d4e86d0_rw_1920.jpg"
+          },
+          {
+            "name": "kitestudios6_21107678_514410792233560_1058325519927345152_n.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 113303,
+            "relativePath": "portfolio/Platini Jeans/Lifestyle Photography/kitestudios6_21107678_514410792233560_1058325519927345152_n.jpg"
+          },
+          {
+            "name": "kitestudios6_21147688_128859881069544_6113473878103687168_n.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 210734,
+            "relativePath": "portfolio/Platini Jeans/Lifestyle Photography/kitestudios6_21147688_128859881069544_6113473878103687168_n.jpg"
+          },
+          {
+            "name": "kitestudios6_22857611_2042022399412019_909932394100817920_n.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 83345,
+            "relativePath": "portfolio/Platini Jeans/Lifestyle Photography/kitestudios6_22857611_2042022399412019_909932394100817920_n.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Products",
+        "type": "directory",
+        "children": [
+          {
+            "name": "1fb6ce96-5d1b-476b-aa32-643f8b94d95d_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 624485,
+            "relativePath": "portfolio/Platini Jeans/Products/1fb6ce96-5d1b-476b-aa32-643f8b94d95d_rw_1920.jpg"
+          },
+          {
+            "name": "3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1176306,
+            "relativePath": "portfolio/Platini Jeans/Products/3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg"
+          },
+          {
+            "name": "4e258022a09102117577c468_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2256130,
+            "relativePath": "portfolio/Platini Jeans/Products/4e258022a09102117577c468_rw_1920.jpg"
+          },
+          {
+            "name": "518d0d2471c414178e5d65ee_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 803646,
+            "relativePath": "portfolio/Platini Jeans/Products/518d0d2471c414178e5d65ee_rw_1920.jpg"
+          },
+          {
+            "name": "950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 775795,
+            "relativePath": "portfolio/Platini Jeans/Products/950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg"
+          },
+          {
+            "name": "96e464de25a3566d9fb0d107_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1151285,
+            "relativePath": "portfolio/Platini Jeans/Products/96e464de25a3566d9fb0d107_rw_1920.jpg"
+          },
+          {
+            "name": "f0fc67b4bd4ef7331f5a3473_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1999433,
+            "relativePath": "portfolio/Platini Jeans/Products/f0fc67b4bd4ef7331f5a3473_rw_1920.jpg"
+          },
+          {
+            "name": "fca30fc1a2370c9e8d4e86d0_rw_1920.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1186724,
+            "relativePath": "portfolio/Platini Jeans/Products/fca30fc1a2370c9e8d4e86d0_rw_1920.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Quinceanera",
+        "type": "directory",
+        "children": [
+          {
+            "name": "kitestudios6_1552332668_1997433444191352927_3895010458.mp4",
+            "type": "file",
+            "extension": ".mp4",
+            "size": 11121987,
+            "relativePath": "portfolio/Platini Jeans/Quinceanera/kitestudios6_1552332668_1997433444191352927_3895010458.mp4"
+          },
+          {
+            "name": "Quinceanera Cover.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 212820,
+            "relativePath": "portfolio/Platini Jeans/Quinceanera/Quinceanera Cover.jpg"
+          },
+          {
+            "name": "quinceanera_146278770_110576184371294_8053248095299769303_n.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 211465,
+            "relativePath": "portfolio/Platini Jeans/Quinceanera/quinceanera_146278770_110576184371294_8053248095299769303_n.jpg"
+          }
+        ]
+      },
+      {
+        "name": "TDM",
+        "type": "directory",
+        "children": [
+          {
+            "name": "Redroom.mp4",
+            "type": "file",
+            "extension": ".mp4",
+            "size": 9971511,
+            "relativePath": "portfolio/Platini Jeans/TDM/Redroom.mp4"
+          },
+          {
+            "name": "SaveClip.App_AQOTN44FFv_GibzOXplW4J0JWpKvaRqRKVnLeAt95w4wfhUi0Tq5VI4-UHnEeGq-aZk7u14ELe0ZxqfE2_2awRNYWYJXBE-npGaiW_o.mp4",
+            "type": "file",
+            "extension": ".mp4",
+            "size": 7610151,
+            "relativePath": "portfolio/Platini Jeans/TDM/SaveClip.App_AQOTN44FFv_GibzOXplW4J0JWpKvaRqRKVnLeAt95w4wfhUi0Tq5VI4-UHnEeGq-aZk7u14ELe0ZxqfE2_2awRNYWYJXBE-npGaiW_o.mp4"
+          }
+        ]
+      },
+      {
+        "name": "TOANDME",
+        "type": "directory",
+        "children": [
+          {
+            "name": "Photo 2022-06-30 07.45.52 PM.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 2182889,
+            "relativePath": "portfolio/Platini Jeans/TOANDME/Photo 2022-06-30 07.45.52 PM.jpg"
+          },
+          {
+            "name": "SnapInsta.to_649244578_18094838306079035_4988156940014173278_n.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 223670,
+            "relativePath": "portfolio/Platini Jeans/TOANDME/SnapInsta.to_649244578_18094838306079035_4988156940014173278_n.jpg"
+          },
+          {
+            "name": "SnapInsta.to_651273480_18094455428047759_5856402615153129018_n (1).jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 116093,
+            "relativePath": "portfolio/Platini Jeans/TOANDME/SnapInsta.to_651273480_18094455428047759_5856402615153129018_n (1).jpg"
+          },
+          {
+            "name": "TEST.mp4",
+            "type": "file",
+            "extension": ".mp4",
+            "size": 5741203,
+            "relativePath": "portfolio/Platini Jeans/TOANDME/TEST.mp4"
+          },
+          {
+            "name": "TOANDME_1x1-5312.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1109539,
+            "relativePath": "portfolio/Platini Jeans/TOANDME/TOANDME_1x1-5312.jpg"
+          },
+          {
+            "name": "TOANDME_1x1-5330.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1836953,
+            "relativePath": "portfolio/Platini Jeans/TOANDME/TOANDME_1x1-5330.jpg"
+          },
+          {
+            "name": "TOANDME_1x1-5356.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1454913,
+            "relativePath": "portfolio/Platini Jeans/TOANDME/TOANDME_1x1-5356.jpg"
+          },
+          {
+            "name": "TOANDME_1x1-5358.jpg",
+            "type": "file",
+            "extension": ".jpg",
+            "size": 1533290,
+            "relativePath": "portfolio/Platini Jeans/TOANDME/TOANDME_1x1-5358.jpg"
+          },
+          {
+            "name": "To_and_Me_Advertisement_2.mp4",
+            "type": "file",
+            "extension": ".mp4",
+            "size": 2544747,
+            "relativePath": "portfolio/Platini Jeans/TOANDME/To_and_Me_Advertisement_2.mp4"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -18,7 +18,7 @@ const InputOTP = React.forwardRef<
     )}
     className={cn("disabled:cursor-not-allowed", className)}
     {...props}
-    data-oid="n.phggq"
+    data-oid="8byos3i"
   />
 ));
 InputOTP.displayName = "InputOTP";
@@ -31,7 +31,7 @@ const InputOTPGroup = React.forwardRef<
     ref={ref}
     className={cn("flex items-center", className)}
     {...props}
-    data-oid="wewsu:u"
+    data-oid="b241dlm"
   />
 ));
 InputOTPGroup.displayName = "InputOTPGroup";
@@ -52,17 +52,17 @@ const InputOTPSlot = React.forwardRef<
         className,
       )}
       {...props}
-      data-oid="pylg2oz"
+      data-oid="ib8l4rg"
     >
       {char}
       {hasFakeCaret && (
         <div
           className="pointer-events-none absolute inset-0 flex items-center justify-center"
-          data-oid="u.47hye"
+          data-oid="t887mjk"
         >
           <div
             className="h-4 w-px animate-caret-blink bg-foreground duration-1000"
-            data-oid="sgw41qq"
+            data-oid="p_djaii"
           />
         </div>
       )}
@@ -75,8 +75,8 @@ const InputOTPSeparator = React.forwardRef<
   React.ElementRef<"div">,
   React.ComponentPropsWithoutRef<"div">
 >(({ ...props }, ref) => (
-  <div ref={ref} role="separator" {...props} data-oid="ww1hjyo">
-    <Dot data-oid="zx.yys-" />
+  <div ref={ref} role="separator" {...props} data-oid="eusw73u">
+    <Dot data-oid="remlxuv" />
   </div>
 ));
 InputOTPSeparator.displayName = "InputOTPSeparator";

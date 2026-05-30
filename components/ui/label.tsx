@@ -19,7 +19,7 @@ const Label = React.forwardRef<
     ref={ref}
     className={cn(labelVariants(), className)}
     {...props}
-    data-oid="whoba.q"
+    data-oid="uvk3f_w"
   />
 ));
 Label.displayName = LabelPrimitive.Root.displayName;

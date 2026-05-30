@@ -32,12 +32,12 @@ export default function OffWhiteSection() {
   ];
 
   return (
-    <section className="w-full py-16 relative" data-oid="oea05a3">
+    <section className="w-full py-16 relative" data-oid="pmx3k0v">
       {/* Section Header */}
-      <div className="container mx-auto mb-12" data-oid="cl28w7w">
+      <div className="container mx-auto mb-12" data-oid="9z62:v6">
         <div
           className="flex flex-col md:flex-row md:items-center md:justify-between"
-          data-oid="n7wgwg."
+          data-oid="vakds88"
         >
           <motion.h2
             className="industrial-text text-3xl md:text-4xl mb-4 md:mb-0 off-white-quote"
@@ -45,7 +45,7 @@ export default function OffWhiteSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            data-oid="xzom1z5"
+            data-oid="zaqm-ep"
           >
             FEATURED PROJECTS
           </motion.h2>
@@ -56,11 +56,11 @@ export default function OffWhiteSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            data-oid="_k197yf"
+            data-oid="kv0izyv"
           >
             <div
               className="off-white-x text-sm uppercase tracking-wider"
-              data-oid=":s8gqhy"
+              data-oid="c7au.wa"
             >
               CURATED SELECTION
             </div>
@@ -73,15 +73,15 @@ export default function OffWhiteSection() {
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          data-oid="cup5frv"
+          data-oid="v0pov_u"
         />
       </div>
 
       {/* Cards Grid */}
-      <div className="container mx-auto" data-oid="9f:-r:2">
+      <div className="container mx-auto" data-oid="5ljwe4e">
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          data-oid="fooh16a"
+          data-oid="qd2f9ga"
         >
           {projects.map((project, index) => (
             <OffWhiteCard
@@ -90,29 +90,29 @@ export default function OffWhiteSection() {
               description={project.description}
               category={project.category}
               image={project.image}
-              data-oid="z74o7xs"
+              data-oid="5da0ja7"
             />
           ))}
         </div>
       </div>
 
       {/* Section Footer */}
-      <div className="container mx-auto mt-12" data-oid="z_.a.9h">
+      <div className="container mx-auto mt-12" data-oid="a8wofu8">
         <motion.div
           className="w-full h-0.5 bg-black dark:bg-white mb-6"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          data-oid="4shkuth"
+          data-oid="3_pw35_"
         />
 
-        <div className="flex justify-between items-center" data-oid="6-v12i5">
-          <div className="text-xs uppercase tracking-wider" data-oid="dq4046s">
+        <div className="flex justify-between items-center" data-oid="5_93v3h">
+          <div className="text-xs uppercase tracking-wider" data-oid="hl.1tg8">
             "SCROLL FOR MORE"
           </div>
 
-          <button className="off-white-button text-sm" data-oid="xfyp_75">
+          <button className="off-white-button text-sm" data-oid="uots43k">
             VIEW ALL PROJECTS
           </button>
         </div>
@@ -121,11 +121,11 @@ export default function OffWhiteSection() {
       {/* Decorative Elements */}
       <div
         className="absolute -left-2 top-1/2 transform -translate-y-1/2 rotate-90"
-        data-oid="rlk5_9e"
+        data-oid="-naafty"
       >
         <div
           className="text-xs uppercase tracking-wider whitespace-nowrap"
-          data-oid="497tr7w"
+          data-oid="torag9."
         >
           "KITESTUDIOS PROJECTS 2024"
         </div>

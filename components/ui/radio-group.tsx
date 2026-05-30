@@ -15,7 +15,6 @@ const RadioGroup = React.forwardRef<
       className={cn("grid gap-2", className)}
       {...props}
       ref={ref}
-      data-oid="d8-qeb3"
     />
   );
 });
@@ -33,16 +32,9 @@ const RadioGroupItem = React.forwardRef<
         className,
       )}
       {...props}
-      data-oid="cafhr__"
     >
-      <RadioGroupPrimitive.Indicator
-        className="flex items-center justify-center"
-        data-oid="cvj2zwu"
-      >
-        <Circle
-          className="h-2.5 w-2.5 fill-current text-current"
-          data-oid="mp.g:pi"
-        />
+      <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
+        <Circle className="h-2.5 w-2.5 fill-current text-current" />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   );

@@ -2,7 +2,7 @@ import type React from "react";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Providers } from "./providers";
-import ChatAssistant from "@/components/ChatAssistant";
+
 export const metadata: Metadata = {
   title: "KITESTUDIOS",
   description:
@@ -50,25 +50,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-oid="uog:4ts">
-      <head data-oid="1qr1i44">
+    <html lang="en" data-oid="_051-5r">
+      <head data-oid="b_xla4m">
         <link
           rel="icon"
           href="/KITESTUDIOS_ICON.ico"
           sizes="any"
-          data-oid="swxwaz8"
+          data-oid="7dm296e"
         />
 
         <link
           rel="apple-touch-icon"
           href="/KITESTUDIOS_ICON.png"
-          data-oid="d5aadpw"
+          data-oid="2uef:dk"
         />
       </head>
-      <body className="" data-oid="upqvd-1">
-        <Providers data-oid="bi8tsbg">
+      <body className="" data-oid=":u-ue_r">
+        <Providers data-oid="phk1e-9">
           {children}
-          <ChatAssistant data-oid="_f:tp6s" />
         </Providers>
       </body>
     </html>
