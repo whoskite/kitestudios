@@ -28,8 +28,8 @@ export const portfolioItems: MediaItem[] = [
     "title": "Comiccon Recap",
     "category": "Event / Documentary",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Event/comiccon_recap.mp4",
-    "videoUrl": "/portfolio/Genki Prints/Event/comiccon_recap.mp4",
+    "src": "/Portfolio/Genki Prints/Event/comiccon_recap.mp4",
+    "videoUrl": "/Portfolio/Genki Prints/Event/comiccon_recap.mp4",
     "metadata": {
       "camera": "Sony FX6 Cinema",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -46,8 +46,8 @@ export const portfolioItems: MediaItem[] = [
     "title": "Glyfstudio Documentary",
     "category": "Campaign / Brand Film",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Video/glyfstudio_documentary.mp4",
-    "videoUrl": "/portfolio/GLYF STUDIO/Video/glyfstudio_documentary.mp4",
+    "src": "/Portfolio/GLYF STUDIO/Video/glyfstudio_documentary.mp4",
+    "videoUrl": "/Portfolio/GLYF STUDIO/Video/glyfstudio_documentary.mp4",
     "metadata": {
       "camera": "RED V-Raptor 8K",
       "lens": "Cooke Anamorphic /i 2x",
@@ -64,8 +64,8 @@ export const portfolioItems: MediaItem[] = [
     "title": "1552332668 1997433444191352927 3895010458",
     "category": "Event / Cinematic",
     "project": "Quinceanera",
-    "src": "/portfolio/Quinceanera/kitestudios6_1552332668_1997433444191352927_3895010458.mp4",
-    "videoUrl": "/portfolio/Quinceanera/kitestudios6_1552332668_1997433444191352927_3895010458.mp4",
+    "src": "/Portfolio/Quinceanera/kitestudios6_1552332668_1997433444191352927_3895010458.mp4",
+    "videoUrl": "/Portfolio/Quinceanera/kitestudios6_1552332668_1997433444191352927_3895010458.mp4",
     "metadata": {
       "camera": "Sony FX3 Cinema",
       "lens": "FE 50mm f/1.2 GM",
@@ -82,8 +82,8 @@ export const portfolioItems: MediaItem[] = [
     "title": "Redroom",
     "category": "Commercial / Fashion",
     "project": "TDM",
-    "src": "/portfolio/TDM/Redroom.mp4",
-    "videoUrl": "/portfolio/TDM/Redroom.mp4",
+    "src": "/Portfolio/TDM/Redroom.mp4",
+    "videoUrl": "/Portfolio/TDM/Redroom.mp4",
     "metadata": {
       "camera": "ARRI Alexa Mini LF",
       "lens": "Angenieux Optimo Ultra 12x",
@@ -100,8 +100,8 @@ export const portfolioItems: MediaItem[] = [
     "title": "Aqotn44ffv Gibzoxplw4j0jwpkvarqrkvnleat95w4wfhui0tq5vi4 Uhneegq Azk7u14ele0zxqfe2 2awrnywyjxbe Npgaiw O",
     "category": "Commercial / Fashion",
     "project": "TDM",
-    "src": "/portfolio/TDM/SaveClip.App_AQOTN44FFv_GibzOXplW4J0JWpKvaRqRKVnLeAt95w4wfhUi0Tq5VI4-UHnEeGq-aZk7u14ELe0ZxqfE2_2awRNYWYJXBE-npGaiW_o.mp4",
-    "videoUrl": "/portfolio/TDM/SaveClip.App_AQOTN44FFv_GibzOXplW4J0JWpKvaRqRKVnLeAt95w4wfhUi0Tq5VI4-UHnEeGq-aZk7u14ELe0ZxqfE2_2awRNYWYJXBE-npGaiW_o.mp4",
+    "src": "/Portfolio/TDM/SaveClip.App_AQOTN44FFv_GibzOXplW4J0JWpKvaRqRKVnLeAt95w4wfhUi0Tq5VI4-UHnEeGq-aZk7u14ELe0ZxqfE2_2awRNYWYJXBE-npGaiW_o.mp4",
+    "videoUrl": "/Portfolio/TDM/SaveClip.App_AQOTN44FFv_GibzOXplW4J0JWpKvaRqRKVnLeAt95w4wfhUi0Tq5VI4-UHnEeGq-aZk7u14ELe0ZxqfE2_2awRNYWYJXBE-npGaiW_o.mp4",
     "metadata": {
       "camera": "ARRI Alexa Mini LF",
       "lens": "Angenieux Optimo Ultra 12x",
@@ -118,8 +118,8 @@ export const portfolioItems: MediaItem[] = [
     "title": "Test",
     "category": "Editorial / Brand",
     "project": "TOANDME",
-    "src": "/portfolio/TOANDME/TEST.mp4",
-    "videoUrl": "/portfolio/TOANDME/TEST.mp4",
+    "src": "/Portfolio/TOANDME/TEST.mp4",
+    "videoUrl": "/Portfolio/TOANDME/TEST.mp4",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Summicron-SL 50mm f/2 ASPH",
@@ -136,8 +136,8 @@ export const portfolioItems: MediaItem[] = [
     "title": "To And Me Advertisement 2",
     "category": "Editorial / Brand",
     "project": "TOANDME",
-    "src": "/portfolio/TOANDME/To_and_Me_Advertisement_2.mp4",
-    "videoUrl": "/portfolio/TOANDME/To_and_Me_Advertisement_2.mp4",
+    "src": "/Portfolio/TOANDME/To_and_Me_Advertisement_2.mp4",
+    "videoUrl": "/Portfolio/TOANDME/To_and_Me_Advertisement_2.mp4",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Summicron-SL 50mm f/2 ASPH",
@@ -154,7 +154,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "ECOMMERCE SHOT",
     "category": "Product / E-commerce",
     "project": "Ecommerce",
-    "src": "/portfolio/Ecommerce/0d1f7b25-872c-4763-8ed0-c6d7ecd427f3_rw_1920.jpg",
+    "src": "/Portfolio/Ecommerce/0d1f7b25-872c-4763-8ed0-c6d7ecd427f3_rw_1920.jpg",
     "metadata": {
       "camera": "Phase One XF 150MP",
       "lens": "Schneider Kreuznach 80mm f/2.8",
@@ -171,7 +171,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "ECOMMERCE SHOT",
     "category": "Product / E-commerce",
     "project": "Ecommerce",
-    "src": "/portfolio/Ecommerce/34f9863e-c1a4-4866-9493-9f47ea5d063d_rw_1920.jpg",
+    "src": "/Portfolio/Ecommerce/34f9863e-c1a4-4866-9493-9f47ea5d063d_rw_1920.jpg",
     "metadata": {
       "camera": "Phase One XF 150MP",
       "lens": "Schneider Kreuznach 80mm f/2.8",
@@ -188,7 +188,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "ECOMMERCE SHOT",
     "category": "Product / E-commerce",
     "project": "Ecommerce",
-    "src": "/portfolio/Ecommerce/4737399a-2610-4883-b262-062813e7abea_rw_1920.jpg",
+    "src": "/Portfolio/Ecommerce/4737399a-2610-4883-b262-062813e7abea_rw_1920.jpg",
     "metadata": {
       "camera": "Phase One XF 150MP",
       "lens": "Schneider Kreuznach 80mm f/2.8",
@@ -205,7 +205,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "ECOMMERCE SHOT",
     "category": "Product / E-commerce",
     "project": "Ecommerce",
-    "src": "/portfolio/Ecommerce/66dddbb2-03aa-41bf-b5a2-77a4a8c9143e_rw_1920.jpg",
+    "src": "/Portfolio/Ecommerce/66dddbb2-03aa-41bf-b5a2-77a4a8c9143e_rw_1920.jpg",
     "metadata": {
       "camera": "Phase One XF 150MP",
       "lens": "Schneider Kreuznach 80mm f/2.8",
@@ -222,7 +222,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "ECOMMERCE SHOT",
     "category": "Product / E-commerce",
     "project": "Ecommerce",
-    "src": "/portfolio/Ecommerce/68fe812d-1f5b-4759-a7c5-cfa69c9c1f36_rw_1920.jpg",
+    "src": "/Portfolio/Ecommerce/68fe812d-1f5b-4759-a7c5-cfa69c9c1f36_rw_1920.jpg",
     "metadata": {
       "camera": "Phase One XF 150MP",
       "lens": "Schneider Kreuznach 80mm f/2.8",
@@ -239,7 +239,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "ECOMMERCE SHOT",
     "category": "Product / E-commerce",
     "project": "Ecommerce",
-    "src": "/portfolio/Ecommerce/a694331a-863e-4090-8de4-4c7de75cfbcd_rw_1920.jpg",
+    "src": "/Portfolio/Ecommerce/a694331a-863e-4090-8de4-4c7de75cfbcd_rw_1920.jpg",
     "metadata": {
       "camera": "Phase One XF 150MP",
       "lens": "Schneider Kreuznach 80mm f/2.8",
@@ -256,7 +256,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "ECOMMERCE SHOT",
     "category": "Product / E-commerce",
     "project": "Ecommerce",
-    "src": "/portfolio/Ecommerce/b22eccad-2ed6-4535-a29d-b7087aea8cac_rw_1920.jpg",
+    "src": "/Portfolio/Ecommerce/b22eccad-2ed6-4535-a29d-b7087aea8cac_rw_1920.jpg",
     "metadata": {
       "camera": "Phase One XF 150MP",
       "lens": "Schneider Kreuznach 80mm f/2.8",
@@ -273,7 +273,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "ECOMMERCE SHOT",
     "category": "Product / E-commerce",
     "project": "Ecommerce",
-    "src": "/portfolio/Ecommerce/cad446f4-93ab-42b6-a6b7-65c9c8713714_rw_1920.jpg",
+    "src": "/Portfolio/Ecommerce/cad446f4-93ab-42b6-a6b7-65c9c8713714_rw_1920.jpg",
     "metadata": {
       "camera": "Phase One XF 150MP",
       "lens": "Schneider Kreuznach 80mm f/2.8",
@@ -290,7 +290,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "ECOMMERCE SHOT",
     "category": "Product / E-commerce",
     "project": "Ecommerce",
-    "src": "/portfolio/Ecommerce/d27a69c2-5e89-4325-aa2a-fce9fcdddeb1_rw_1920.jpg",
+    "src": "/Portfolio/Ecommerce/d27a69c2-5e89-4325-aa2a-fce9fcdddeb1_rw_1920.jpg",
     "metadata": {
       "camera": "Phase One XF 150MP",
       "lens": "Schneider Kreuznach 80mm f/2.8",
@@ -307,7 +307,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 1",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_1.jpg",
+    "src": "/Portfolio/Fashion/fashion_1.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -324,7 +324,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 10",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_10.jpg",
+    "src": "/Portfolio/Fashion/fashion_10.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -341,7 +341,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 11",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_11.jpg",
+    "src": "/Portfolio/Fashion/fashion_11.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -358,7 +358,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 12",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_12.jpg",
+    "src": "/Portfolio/Fashion/fashion_12.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -375,7 +375,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 13",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_13.jpg",
+    "src": "/Portfolio/Fashion/fashion_13.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -392,7 +392,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 14",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_14.jpg",
+    "src": "/Portfolio/Fashion/fashion_14.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -409,7 +409,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 15",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_15.jpg",
+    "src": "/Portfolio/Fashion/fashion_15.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -426,7 +426,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 16",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_16.jpg",
+    "src": "/Portfolio/Fashion/fashion_16.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -443,7 +443,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 17",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_17.jpg",
+    "src": "/Portfolio/Fashion/fashion_17.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -460,7 +460,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 18",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_18.jpg",
+    "src": "/Portfolio/Fashion/fashion_18.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -477,7 +477,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 19",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_19.jpg",
+    "src": "/Portfolio/Fashion/fashion_19.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -494,7 +494,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 2",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_2.jpg",
+    "src": "/Portfolio/Fashion/fashion_2.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -511,7 +511,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 20",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_20.jpg",
+    "src": "/Portfolio/Fashion/fashion_20.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -528,7 +528,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 21",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_21.jpg",
+    "src": "/Portfolio/Fashion/fashion_21.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -545,7 +545,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 22",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_22.jpg",
+    "src": "/Portfolio/Fashion/fashion_22.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -562,7 +562,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 23",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_23.jpg",
+    "src": "/Portfolio/Fashion/fashion_23.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -579,7 +579,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 24",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_24.jpg",
+    "src": "/Portfolio/Fashion/fashion_24.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -596,7 +596,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 25",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_25.jpg",
+    "src": "/Portfolio/Fashion/fashion_25.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -613,7 +613,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 26",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_26.jpg",
+    "src": "/Portfolio/Fashion/fashion_26.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -630,7 +630,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 27",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_27.jpg",
+    "src": "/Portfolio/Fashion/fashion_27.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -647,7 +647,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 28",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_28.jpg",
+    "src": "/Portfolio/Fashion/fashion_28.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -664,7 +664,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 29",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_29.jpg",
+    "src": "/Portfolio/Fashion/fashion_29.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -681,7 +681,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 3",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_3.jpg",
+    "src": "/Portfolio/Fashion/fashion_3.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -698,7 +698,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 30",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_30.jpg",
+    "src": "/Portfolio/Fashion/fashion_30.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -715,7 +715,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 31",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_31.jpg",
+    "src": "/Portfolio/Fashion/fashion_31.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -732,7 +732,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 32",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_32.jpg",
+    "src": "/Portfolio/Fashion/fashion_32.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -749,7 +749,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 33",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_33.jpg",
+    "src": "/Portfolio/Fashion/fashion_33.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -766,7 +766,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 34",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_34.jpg",
+    "src": "/Portfolio/Fashion/fashion_34.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -783,7 +783,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 35",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_35.jpg",
+    "src": "/Portfolio/Fashion/fashion_35.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -800,7 +800,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 36",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_36.jpg",
+    "src": "/Portfolio/Fashion/fashion_36.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -817,7 +817,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 37",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_37.jpg",
+    "src": "/Portfolio/Fashion/fashion_37.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -834,7 +834,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 38",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_38.jpg",
+    "src": "/Portfolio/Fashion/fashion_38.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -851,7 +851,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 39",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_39.jpg",
+    "src": "/Portfolio/Fashion/fashion_39.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -868,7 +868,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 4",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_4.jpg",
+    "src": "/Portfolio/Fashion/fashion_4.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -885,7 +885,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 40",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_40.jpg",
+    "src": "/Portfolio/Fashion/fashion_40.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -902,7 +902,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 5",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_5.jpg",
+    "src": "/Portfolio/Fashion/fashion_5.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -919,7 +919,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 6",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_6.jpg",
+    "src": "/Portfolio/Fashion/fashion_6.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -936,7 +936,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 7",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_7.jpg",
+    "src": "/Portfolio/Fashion/fashion_7.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -953,7 +953,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 8",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_8.jpg",
+    "src": "/Portfolio/Fashion/fashion_8.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -970,7 +970,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Fashion 9",
     "category": "Fashion / Editorial",
     "project": "Fashion",
-    "src": "/portfolio/Fashion/fashion_9.jpg",
+    "src": "/Portfolio/Fashion/fashion_9.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -987,7 +987,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "8 Bit Charizard Keychain",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/8-Bit Charizard Keychain.jpg",
+    "src": "/Portfolio/Genki Prints/Ecommerce/8-Bit Charizard Keychain.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1004,7 +1004,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "8 Bit Espeon Keychain",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/8-Bit Espeon Keychain.jpg",
+    "src": "/Portfolio/Genki Prints/Ecommerce/8-Bit Espeon Keychain.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1021,7 +1021,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "8 Bit Gyarados Keychain",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/8-Bit Gyarados Keychain.jpg",
+    "src": "/Portfolio/Genki Prints/Ecommerce/8-Bit Gyarados Keychain.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1038,7 +1038,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "8 Bit Lapras Keychain",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/8-Bit Lapras Keychain.jpg",
+    "src": "/Portfolio/Genki Prints/Ecommerce/8-Bit Lapras Keychain.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1055,7 +1055,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "8 Bit Lugia Keychain",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/8-Bit Lugia Keychain.jpg",
+    "src": "/Portfolio/Genki Prints/Ecommerce/8-Bit Lugia Keychain.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1072,7 +1072,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gpartboard 8",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/GPArtboard 8.jpg",
+    "src": "/Portfolio/Genki Prints/Ecommerce/GPArtboard 8.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1089,7 +1089,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Ig Pokeball 2",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/IG_PokeBall_2.png",
+    "src": "/Portfolio/Genki Prints/Ecommerce/IG_PokeBall_2.png",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1106,7 +1106,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Ig Pokeball 3",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/IG_PokeBall_3.png",
+    "src": "/Portfolio/Genki Prints/Ecommerce/IG_PokeBall_3.png",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1123,7 +1123,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Ig Pokeball 4",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/IG_PokeBall_4.png",
+    "src": "/Portfolio/Genki Prints/Ecommerce/IG_PokeBall_4.png",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1140,7 +1140,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Ig Pokeball 5",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/IG_PokeBall_5.png",
+    "src": "/Portfolio/Genki Prints/Ecommerce/IG_PokeBall_5.png",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1157,7 +1157,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kirby",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/KIRBY-535767.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/KIRBY-535767.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1174,7 +1174,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kirby",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/KIRBY-542830.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/KIRBY-542830.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1191,7 +1191,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kirby",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/KIRBY-544801.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/KIRBY-544801.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1208,7 +1208,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kirby",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/KIRBY-549478.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/KIRBY-549478.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1225,7 +1225,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kirby",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/KIRBY-551069.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/KIRBY-551069.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1242,7 +1242,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kirby",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/KIRBY-551169.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/KIRBY-551169.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1259,7 +1259,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kirby",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/KIRBY-569623.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/KIRBY-569623.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1276,7 +1276,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1040872 Enhanced Nr",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/P1040872-Enhanced-NR.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/P1040872-Enhanced-NR.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1293,7 +1293,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1040876 Enhanced Nr",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/P1040876-Enhanced-NR.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/P1040876-Enhanced-NR.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1310,7 +1310,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1040880 Enhanced Nr",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/P1040880-Enhanced-NR.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/P1040880-Enhanced-NR.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1327,7 +1327,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1040913 Enhanced Nr",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/P1040913-Enhanced-NR.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/P1040913-Enhanced-NR.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1344,7 +1344,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1041291",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/P1041291.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/P1041291.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1361,7 +1361,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1041313",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/P1041313.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/P1041313.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1378,7 +1378,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1041321",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/P1041321.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/P1041321.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1395,7 +1395,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1041327",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/P1041327.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/P1041327.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1412,7 +1412,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1041329",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/P1041329.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/P1041329.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1429,7 +1429,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1041344",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/P1041344.JPG",
+    "src": "/Portfolio/Genki Prints/Ecommerce/P1041344.JPG",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1446,7 +1446,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Professional Product Photos Kitestudios Ecommerce Tomy",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/Professional-Product-Photos-KITESTUDIOS-Ecommerce-Tomy-3.png",
+    "src": "/Portfolio/Genki Prints/Ecommerce/Professional-Product-Photos-KITESTUDIOS-Ecommerce-Tomy-3.png",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1463,7 +1463,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Valentines Day Final 1920x1080",
     "category": "Product / Macro",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Ecommerce/Valentines Day_Final_1920x1080.png",
+    "src": "/Portfolio/Genki Prints/Ecommerce/Valentines Day_Final_1920x1080.png",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 90mm f/2.8 Macro G OSS",
@@ -1480,7 +1480,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Event 1 Glyf",
     "category": "Event / Documentary",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Event/event_1_glyf.jpg",
+    "src": "/Portfolio/Genki Prints/Event/event_1_glyf.jpg",
     "metadata": {
       "camera": "Sony FX6 Cinema",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -1497,7 +1497,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Event 2 Team",
     "category": "Event / Documentary",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Event/event_2_team.jpg",
+    "src": "/Portfolio/Genki Prints/Event/event_2_team.jpg",
     "metadata": {
       "camera": "Sony FX6 Cinema",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -1514,7 +1514,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Event 3 Gaming",
     "category": "Event / Documentary",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Event/event_3_gaming.jpg",
+    "src": "/Portfolio/Genki Prints/Event/event_3_gaming.jpg",
     "metadata": {
       "camera": "Sony FX6 Cinema",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -1531,7 +1531,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Event 4 Lsprint",
     "category": "Event / Documentary",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Event/event_4_lsprint.jpg",
+    "src": "/Portfolio/Genki Prints/Event/event_4_lsprint.jpg",
     "metadata": {
       "camera": "Sony FX6 Cinema",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -1548,7 +1548,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Event 5 Signed",
     "category": "Event / Documentary",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Event/event_5_signed.jpg",
+    "src": "/Portfolio/Genki Prints/Event/event_5_signed.jpg",
     "metadata": {
       "camera": "Sony FX6 Cinema",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -1565,7 +1565,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "629462752 18454476853103425 3738569233577502164 N",
     "category": "Event / Documentary",
     "project": "Genki Prints",
-    "src": "/portfolio/Genki Prints/Event/SaveClip.App_629462752_18454476853103425_3738569233577502164_n.jpg",
+    "src": "/Portfolio/Genki Prints/Event/SaveClip.App_629462752_18454476853103425_3738569233577502164_n.jpg",
     "metadata": {
       "camera": "Sony FX6 Cinema",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -1582,7 +1582,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-504604.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-504604.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1599,7 +1599,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-506411.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-506411.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1616,7 +1616,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-511042.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-511042.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1633,7 +1633,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-573583.webp",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-573583.webp",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1650,7 +1650,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-591109.webp",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-591109.webp",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1667,7 +1667,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-603036.webp",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-603036.webp",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1684,7 +1684,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-624394.webp",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-624394.webp",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1701,7 +1701,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-632750.webp",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-632750.webp",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1718,7 +1718,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-661065.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-661065.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1735,7 +1735,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-661735.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-661735.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1752,7 +1752,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-661739.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-661739.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1769,7 +1769,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-662790.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-662790.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1786,7 +1786,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82-996886.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82-996886.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1803,7 +1803,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82 Hat",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041664.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041664.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1820,7 +1820,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82 Hat",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041668.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041668.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1837,7 +1837,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82 Hat",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041669.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041669.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1854,7 +1854,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82 Hat",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041670.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82_HAT-1041670.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1871,7 +1871,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82 Purplehaze Tshirt Back 2",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_BACK_2.webp",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_BACK_2.webp",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1888,7 +1888,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82 Purplehaze Tshirt Back 3",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_BACK_3.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_BACK_3.JPG",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1905,7 +1905,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82 Purplehaze Tshirt Back",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_BACK_76574a97-9c05-4aa8-895c-6f39d4dc35ba.webp",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_BACK_76574a97-9c05-4aa8-895c-6f39d4dc35ba.webp",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1922,7 +1922,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Gallery82 Purplehaze Tshirt Front",
     "category": "Product / Apparel",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_FRONT.png",
+    "src": "/Portfolio/GLYF STUDIO/Ecommerce/GALLERY82_PURPLEHAZE_TSHIRT_FRONT.png",
     "metadata": {
       "camera": "Fujifilm GFX 100S",
       "lens": "GF 120mm f/4 Macro R LM",
@@ -1939,7 +1939,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Hero Banner Clone 1",
     "category": "Fashion / Lookbook",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Lookbook/Hero Banner_Clone_1.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Lookbook/Hero Banner_Clone_1.JPG",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Vario-Elmarit-SL 24-70mm f/2.8",
@@ -1956,7 +1956,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Image 16",
     "category": "Fashion / Lookbook",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Lookbook/image 16.jpg",
+    "src": "/Portfolio/GLYF STUDIO/Lookbook/image 16.jpg",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Vario-Elmarit-SL 24-70mm f/2.8",
@@ -1973,7 +1973,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1041766",
     "category": "Fashion / Lookbook",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Lookbook/P1041766.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Lookbook/P1041766.JPG",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Vario-Elmarit-SL 24-70mm f/2.8",
@@ -1990,7 +1990,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "P1041814",
     "category": "Fashion / Lookbook",
     "project": "GLYF STUDIO",
-    "src": "/portfolio/GLYF STUDIO/Lookbook/P1041814.JPG",
+    "src": "/Portfolio/GLYF STUDIO/Lookbook/P1041814.JPG",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Vario-Elmarit-SL 24-70mm f/2.8",
@@ -2007,7 +2007,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kevora Product 1",
     "category": "Product / Skincare",
     "project": "Kevora",
-    "src": "/portfolio/Kevora/KEVORA_PRODUCT_1.png",
+    "src": "/Portfolio/Kevora/KEVORA_PRODUCT_1.png",
     "metadata": {
       "camera": "Phase One IQ4 150MP",
       "lens": "Schneider Kreuznach 120mm f/4 Macro",
@@ -2024,7 +2024,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kevora Product 10",
     "category": "Product / Skincare",
     "project": "Kevora",
-    "src": "/portfolio/Kevora/KEVORA_PRODUCT_10.jpg",
+    "src": "/Portfolio/Kevora/KEVORA_PRODUCT_10.jpg",
     "metadata": {
       "camera": "Phase One IQ4 150MP",
       "lens": "Schneider Kreuznach 120mm f/4 Macro",
@@ -2041,7 +2041,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kevora Product 12",
     "category": "Product / Skincare",
     "project": "Kevora",
-    "src": "/portfolio/Kevora/KEVORA_PRODUCT_12.jpg",
+    "src": "/Portfolio/Kevora/KEVORA_PRODUCT_12.jpg",
     "metadata": {
       "camera": "Phase One IQ4 150MP",
       "lens": "Schneider Kreuznach 120mm f/4 Macro",
@@ -2058,7 +2058,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kevora Product 13",
     "category": "Product / Skincare",
     "project": "Kevora",
-    "src": "/portfolio/Kevora/KEVORA_PRODUCT_13.jpg",
+    "src": "/Portfolio/Kevora/KEVORA_PRODUCT_13.jpg",
     "metadata": {
       "camera": "Phase One IQ4 150MP",
       "lens": "Schneider Kreuznach 120mm f/4 Macro",
@@ -2075,7 +2075,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kevora Product 15",
     "category": "Product / Skincare",
     "project": "Kevora",
-    "src": "/portfolio/Kevora/KEVORA_PRODUCT_15.jpg",
+    "src": "/Portfolio/Kevora/KEVORA_PRODUCT_15.jpg",
     "metadata": {
       "camera": "Phase One IQ4 150MP",
       "lens": "Schneider Kreuznach 120mm f/4 Macro",
@@ -2092,7 +2092,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kevora Product 2",
     "category": "Product / Skincare",
     "project": "Kevora",
-    "src": "/portfolio/Kevora/KEVORA_PRODUCT_2.jpg",
+    "src": "/Portfolio/Kevora/KEVORA_PRODUCT_2.jpg",
     "metadata": {
       "camera": "Phase One IQ4 150MP",
       "lens": "Schneider Kreuznach 120mm f/4 Macro",
@@ -2109,7 +2109,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kevora Product 3",
     "category": "Product / Skincare",
     "project": "Kevora",
-    "src": "/portfolio/Kevora/KEVORA_PRODUCT_3.webp",
+    "src": "/Portfolio/Kevora/KEVORA_PRODUCT_3.webp",
     "metadata": {
       "camera": "Phase One IQ4 150MP",
       "lens": "Schneider Kreuznach 120mm f/4 Macro",
@@ -2126,7 +2126,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kevora Product 7",
     "category": "Product / Skincare",
     "project": "Kevora",
-    "src": "/portfolio/Kevora/KEVORA_PRODUCT_7.jpg",
+    "src": "/Portfolio/Kevora/KEVORA_PRODUCT_7.jpg",
     "metadata": {
       "camera": "Phase One IQ4 150MP",
       "lens": "Schneider Kreuznach 120mm f/4 Macro",
@@ -2143,7 +2143,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kevora Product 8",
     "category": "Product / Skincare",
     "project": "Kevora",
-    "src": "/portfolio/Kevora/KEVORA_PRODUCT_8.jpg",
+    "src": "/Portfolio/Kevora/KEVORA_PRODUCT_8.jpg",
     "metadata": {
       "camera": "Phase One IQ4 150MP",
       "lens": "Schneider Kreuznach 120mm f/4 Macro",
@@ -2160,7 +2160,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Kevora Product 9",
     "category": "Product / Skincare",
     "project": "Kevora",
-    "src": "/portfolio/Kevora/KEVORA_PRODUCT_9.jpg",
+    "src": "/Portfolio/Kevora/KEVORA_PRODUCT_9.jpg",
     "metadata": {
       "camera": "Phase One IQ4 150MP",
       "lens": "Schneider Kreuznach 120mm f/4 Macro",
@@ -2177,7 +2177,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Product / E-commerce",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Ecommerce Photography/08cf57ba5aaf06960b7b7ea6_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/08cf57ba5aaf06960b7b7ea6_rw_1920.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -2194,7 +2194,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Product / E-commerce",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Ecommerce Photography/4bd3dd45c58dc04fdec57950_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/4bd3dd45c58dc04fdec57950_rw_1920.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -2211,7 +2211,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Product / E-commerce",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Ecommerce Photography/807ee5f2aaf0e95218cc19f3_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/807ee5f2aaf0e95218cc19f3_rw_1920.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -2228,7 +2228,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Product / E-commerce",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Ecommerce Photography/9a41446150e6fbfa857631af_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/9a41446150e6fbfa857631af_rw_1920.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -2245,7 +2245,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Product / E-commerce",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Ecommerce Photography/9f7d049f6b213314374ede51_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/9f7d049f6b213314374ede51_rw_1920.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -2262,7 +2262,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Product / E-commerce",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Ecommerce Photography/b20a38200650d249fedc749b_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/b20a38200650d249fedc749b_rw_1920.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -2279,7 +2279,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Product / E-commerce",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Ecommerce Photography/b2917169b4681344feded67d_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/b2917169b4681344feded67d_rw_1920.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -2296,7 +2296,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Product / E-commerce",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Ecommerce Photography/da243c3af7beed92b491308c_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/da243c3af7beed92b491308c_rw_1920.jpg",
     "metadata": {
       "camera": "Sony A7R V",
       "lens": "FE 24-70mm f/2.8 GM II",
@@ -2313,7 +2313,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Lifestyle / Editorial",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Lifestyle Photography/102b1298ac8c9a3bee6f7b18_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Lifestyle Photography/102b1298ac8c9a3bee6f7b18_rw_1920.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 35mm f/1.4 ASPH",
@@ -2330,7 +2330,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Lifestyle / Editorial",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Lifestyle Photography/3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Lifestyle Photography/3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 35mm f/1.4 ASPH",
@@ -2347,7 +2347,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Lifestyle / Editorial",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Lifestyle Photography/4e258022a09102117577c468_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Lifestyle Photography/4e258022a09102117577c468_rw_1920.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 35mm f/1.4 ASPH",
@@ -2364,7 +2364,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Lifestyle / Editorial",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Lifestyle Photography/518d0d2471c414178e5d65ee_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Lifestyle Photography/518d0d2471c414178e5d65ee_rw_1920.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 35mm f/1.4 ASPH",
@@ -2381,7 +2381,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Lifestyle / Editorial",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Lifestyle Photography/96e464de25a3566d9fb0d107_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Lifestyle Photography/96e464de25a3566d9fb0d107_rw_1920.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 35mm f/1.4 ASPH",
@@ -2398,7 +2398,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Lifestyle / Editorial",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Lifestyle Photography/f0fc67b4bd4ef7331f5a3473_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Lifestyle Photography/f0fc67b4bd4ef7331f5a3473_rw_1920.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 35mm f/1.4 ASPH",
@@ -2415,7 +2415,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PLATINI JEANS SHOT",
     "category": "Lifestyle / Editorial",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Lifestyle Photography/fca30fc1a2370c9e8d4e86d0_rw_1920.jpg",
+    "src": "/Portfolio/Platini Jeans/Lifestyle Photography/fca30fc1a2370c9e8d4e86d0_rw_1920.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 35mm f/1.4 ASPH",
@@ -2432,7 +2432,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "21107678 514410792233560 1058325519927345152 N",
     "category": "Lifestyle / Editorial",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Lifestyle Photography/kitestudios6_21107678_514410792233560_1058325519927345152_n.jpg",
+    "src": "/Portfolio/Platini Jeans/Lifestyle Photography/kitestudios6_21107678_514410792233560_1058325519927345152_n.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 35mm f/1.4 ASPH",
@@ -2449,7 +2449,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "21147688 128859881069544 6113473878103687168 N",
     "category": "Lifestyle / Editorial",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Lifestyle Photography/kitestudios6_21147688_128859881069544_6113473878103687168_n.jpg",
+    "src": "/Portfolio/Platini Jeans/Lifestyle Photography/kitestudios6_21147688_128859881069544_6113473878103687168_n.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 35mm f/1.4 ASPH",
@@ -2466,7 +2466,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "22857611 2042022399412019 909932394100817920 N",
     "category": "Lifestyle / Editorial",
     "project": "Platini Jeans",
-    "src": "/portfolio/Platini Jeans/Lifestyle Photography/kitestudios6_22857611_2042022399412019_909932394100817920_n.jpg",
+    "src": "/Portfolio/Platini Jeans/Lifestyle Photography/kitestudios6_22857611_2042022399412019_909932394100817920_n.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 35mm f/1.4 ASPH",
@@ -2483,7 +2483,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PRODUCTS SHOT",
     "category": "Product / Denim",
     "project": "Products",
-    "src": "/portfolio/Products/1fb6ce96-5d1b-476b-aa32-643f8b94d95d_rw_1920.jpg",
+    "src": "/Portfolio/Products/1fb6ce96-5d1b-476b-aa32-643f8b94d95d_rw_1920.jpg",
     "metadata": {
       "camera": "Hasselblad X2D 100C",
       "lens": "XCD 90mm f/2.5",
@@ -2500,7 +2500,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PRODUCTS SHOT",
     "category": "Product / Denim",
     "project": "Products",
-    "src": "/portfolio/Products/3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg",
+    "src": "/Portfolio/Products/3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg",
     "metadata": {
       "camera": "Hasselblad X2D 100C",
       "lens": "XCD 90mm f/2.5",
@@ -2517,7 +2517,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PRODUCTS SHOT",
     "category": "Product / Denim",
     "project": "Products",
-    "src": "/portfolio/Products/4e258022a09102117577c468_rw_1920.jpg",
+    "src": "/Portfolio/Products/4e258022a09102117577c468_rw_1920.jpg",
     "metadata": {
       "camera": "Hasselblad X2D 100C",
       "lens": "XCD 90mm f/2.5",
@@ -2534,7 +2534,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PRODUCTS SHOT",
     "category": "Product / Denim",
     "project": "Products",
-    "src": "/portfolio/Products/518d0d2471c414178e5d65ee_rw_1920.jpg",
+    "src": "/Portfolio/Products/518d0d2471c414178e5d65ee_rw_1920.jpg",
     "metadata": {
       "camera": "Hasselblad X2D 100C",
       "lens": "XCD 90mm f/2.5",
@@ -2551,7 +2551,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PRODUCTS SHOT",
     "category": "Product / Denim",
     "project": "Products",
-    "src": "/portfolio/Products/950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg",
+    "src": "/Portfolio/Products/950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg",
     "metadata": {
       "camera": "Hasselblad X2D 100C",
       "lens": "XCD 90mm f/2.5",
@@ -2568,7 +2568,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PRODUCTS SHOT",
     "category": "Product / Denim",
     "project": "Products",
-    "src": "/portfolio/Products/96e464de25a3566d9fb0d107_rw_1920.jpg",
+    "src": "/Portfolio/Products/96e464de25a3566d9fb0d107_rw_1920.jpg",
     "metadata": {
       "camera": "Hasselblad X2D 100C",
       "lens": "XCD 90mm f/2.5",
@@ -2585,7 +2585,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PRODUCTS SHOT",
     "category": "Product / Denim",
     "project": "Products",
-    "src": "/portfolio/Products/f0fc67b4bd4ef7331f5a3473_rw_1920.jpg",
+    "src": "/Portfolio/Products/f0fc67b4bd4ef7331f5a3473_rw_1920.jpg",
     "metadata": {
       "camera": "Hasselblad X2D 100C",
       "lens": "XCD 90mm f/2.5",
@@ -2602,7 +2602,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "PRODUCTS SHOT",
     "category": "Product / Denim",
     "project": "Products",
-    "src": "/portfolio/Products/fca30fc1a2370c9e8d4e86d0_rw_1920.jpg",
+    "src": "/Portfolio/Products/fca30fc1a2370c9e8d4e86d0_rw_1920.jpg",
     "metadata": {
       "camera": "Hasselblad X2D 100C",
       "lens": "XCD 90mm f/2.5",
@@ -2619,7 +2619,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Quinceanera Cover",
     "category": "Event / Cinematic",
     "project": "Quinceanera",
-    "src": "/portfolio/Quinceanera/Quinceanera Cover.jpg",
+    "src": "/Portfolio/Quinceanera/Quinceanera Cover.jpg",
     "metadata": {
       "camera": "Sony FX3 Cinema",
       "lens": "FE 50mm f/1.2 GM",
@@ -2636,7 +2636,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Quinceanera 146278770 110576184371294 8053248095299769303 N",
     "category": "Event / Cinematic",
     "project": "Quinceanera",
-    "src": "/portfolio/Quinceanera/quinceanera_146278770_110576184371294_8053248095299769303_n.jpg",
+    "src": "/Portfolio/Quinceanera/quinceanera_146278770_110576184371294_8053248095299769303_n.jpg",
     "metadata": {
       "camera": "Sony FX3 Cinema",
       "lens": "FE 50mm f/1.2 GM",
@@ -2653,7 +2653,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Photo 2022 07 45 52 Pm",
     "category": "Editorial / Brand",
     "project": "TOANDME",
-    "src": "/portfolio/TOANDME/Photo 2022-06-30 07.45.52 PM.jpg",
+    "src": "/Portfolio/TOANDME/Photo 2022-06-30 07.45.52 PM.jpg",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Summicron-SL 50mm f/2 ASPH",
@@ -2670,7 +2670,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "649244578 18094838306079035 4988156940014173278 N",
     "category": "Editorial / Brand",
     "project": "TOANDME",
-    "src": "/portfolio/TOANDME/SnapInsta.to_649244578_18094838306079035_4988156940014173278_n.jpg",
+    "src": "/Portfolio/TOANDME/SnapInsta.to_649244578_18094838306079035_4988156940014173278_n.jpg",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Summicron-SL 50mm f/2 ASPH",
@@ -2687,7 +2687,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "651273480 18094455428047759 5856402615153129018 N (1)",
     "category": "Editorial / Brand",
     "project": "TOANDME",
-    "src": "/portfolio/TOANDME/SnapInsta.to_651273480_18094455428047759_5856402615153129018_n (1).jpg",
+    "src": "/Portfolio/TOANDME/SnapInsta.to_651273480_18094455428047759_5856402615153129018_n (1).jpg",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Summicron-SL 50mm f/2 ASPH",
@@ -2704,7 +2704,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Toandme 1x1",
     "category": "Editorial / Brand",
     "project": "TOANDME",
-    "src": "/portfolio/TOANDME/TOANDME_1x1-5312.jpg",
+    "src": "/Portfolio/TOANDME/TOANDME_1x1-5312.jpg",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Summicron-SL 50mm f/2 ASPH",
@@ -2721,7 +2721,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Toandme 1x1",
     "category": "Editorial / Brand",
     "project": "TOANDME",
-    "src": "/portfolio/TOANDME/TOANDME_1x1-5330.jpg",
+    "src": "/Portfolio/TOANDME/TOANDME_1x1-5330.jpg",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Summicron-SL 50mm f/2 ASPH",
@@ -2738,7 +2738,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Toandme 1x1",
     "category": "Editorial / Brand",
     "project": "TOANDME",
-    "src": "/portfolio/TOANDME/TOANDME_1x1-5356.jpg",
+    "src": "/Portfolio/TOANDME/TOANDME_1x1-5356.jpg",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Summicron-SL 50mm f/2 ASPH",
@@ -2755,7 +2755,7 @@ export const portfolioItems: MediaItem[] = [
     "title": "Toandme 1x1",
     "category": "Editorial / Brand",
     "project": "TOANDME",
-    "src": "/portfolio/TOANDME/TOANDME_1x1-5358.jpg",
+    "src": "/Portfolio/TOANDME/TOANDME_1x1-5358.jpg",
     "metadata": {
       "camera": "Leica SL2",
       "lens": "Summicron-SL 50mm f/2 ASPH",

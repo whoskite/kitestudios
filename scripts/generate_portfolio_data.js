@@ -62,7 +62,11 @@ function scanAndBuildData() {
           continue;
         }
 
-        const relativePath = path.relative(path.join(__dirname, '..', 'public'), fullPath).replace(/\\/g, '/');
+        let relativePath = path.relative(path.join(__dirname, '..', 'public'), fullPath).replace(/\\/g, '/');
+        // Force capital "P" in "Portfolio" to match Git case-sensitivity on Linux production servers
+        if (relativePath.toLowerCase().startsWith('portfolio/')) {
+          relativePath = 'Portfolio' + relativePath.slice(9);
+        }
         const type = ext === '.mp4' ? 'video' : 'photo';
         
         // Setup realistic professional metadata
