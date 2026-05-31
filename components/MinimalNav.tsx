@@ -6,11 +6,11 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface MinimalNavProps {
-  filter: "all" | "photo" | "video";
-  setFilter: (filter: "all" | "photo" | "video") => void;
-  projectFilter: string;
-  setProjectFilter: (project: string) => void;
-  projects: readonly string[];
+  filter?: "all" | "photo" | "video";
+  setFilter?: (filter: "all" | "photo" | "video") => void;
+  projectFilter?: string;
+  setProjectFilter?: (project: string) => void;
+  projects?: readonly string[];
 }
 
 export default function MinimalNav({
@@ -41,31 +41,41 @@ export default function MinimalNav({
       <div className="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between max-w-7xl">
         {/* Logo */}
         <a
-          href="#"
+          href="/"
           className="text-lg font-light tracking-[0.25em] uppercase hover:opacity-70 transition-opacity font-sans"
         >
           KITESTUDIOS
         </a>
 
         {/* Media Type filters (Desktop only) */}
-        <div className="hidden sm:flex items-center space-x-1 sm:space-x-2 text-[10px] sm:text-xs font-medium tracking-widest uppercase">
-          {(["all", "photo", "video"] as const).map((type) => (
-            <button
-              key={type}
-              onClick={() => setFilter(type)}
-              className={`px-3 py-1.5 transition-all duration-200 ${
-                filter === type
-                  ? "text-black dark:text-white border-b-2 border-black dark:border-white font-semibold"
-                  : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
-              }`}
-            >
-              {type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS"}
-            </button>
-          ))}
-        </div>
+        {filter && setFilter && (
+          <div className="hidden sm:flex items-center space-x-1 sm:space-x-2 text-[10px] sm:text-xs font-medium tracking-widest uppercase">
+            {(["all", "photo", "video"] as const).map((type) => (
+              <button
+                key={type}
+                onClick={() => setFilter(type)}
+                className={`px-3 py-1.5 transition-all duration-200 ${
+                  filter === type
+                    ? "text-black dark:text-white border-b-2 border-black dark:border-white font-semibold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
+                }`}
+              >
+                {type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS"}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Action Controls (Desktop only) */}
-        <div className="hidden sm:flex items-center space-x-4">
+        <div className="hidden sm:flex items-center space-x-6">
+          {/* Book Now Button */}
+          <a
+            href="/book"
+            className="px-3.5 py-1.5 border border-black dark:border-white text-[10px] tracking-widest font-mono font-bold text-black hover:bg-black hover:text-white dark:text-white dark:hover:bg-white dark:hover:text-black transition-all uppercase rounded-sm"
+          >
+            Book Now
+          </a>
+
           {/* Email Quick Copy */}
           <button
             onClick={handleCopyEmail}
@@ -114,33 +124,45 @@ export default function MinimalNav({
           >
             <div className="px-6 py-8 flex flex-col space-y-6">
               {/* Media Type filters inside mobile menu */}
-              <div className="flex flex-col space-y-3">
-                <span className="text-[8px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
-                  Select Category
-                </span>
-                {(["all", "photo", "video"] as const).map((type) => (
-                  <button
-                    key={type}
-                    onClick={() => {
-                      setFilter(type);
-                      setIsOpen(false);
-                    }}
-                    className={`text-left text-lg font-light tracking-[0.15em] uppercase transition-colors ${
-                      filter === type
-                        ? "text-black dark:text-white font-medium"
-                        : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
-                    }`}
-                  >
-                    {type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS"}
-                  </button>
-                ))}
-              </div>
+              {filter && setFilter && (
+                <div className="flex flex-col space-y-3">
+                  <span className="text-[8px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
+                    Select Category
+                  </span>
+                  {(["all", "photo", "video"] as const).map((type) => (
+                    <button
+                      key={type}
+                      onClick={() => {
+                        setFilter(type);
+                        setIsOpen(false);
+                      }}
+                      className={`text-left text-lg font-light tracking-[0.15em] uppercase transition-colors ${
+                        filter === type
+                          ? "text-black dark:text-white font-medium"
+                          : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
+                      }`}
+                    >
+                      {type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS"}
+                    </button>
+                  ))}
+                </div>
+              )}
 
               {/* Action Controls inside mobile menu */}
               <div className="border-t border-zinc-100 dark:border-zinc-900 pt-6 flex flex-col space-y-4">
                 <span className="text-[8px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
                   Work Enquiries
                 </span>
+                
+                {/* Book Now Button */}
+                <a
+                  href="/book"
+                  onClick={() => setIsOpen(false)}
+                  className="text-left text-xs tracking-widest font-mono font-bold text-black dark:text-white uppercase py-1"
+                >
+                  [ Book Now ]
+                </a>
+
                 <button
                   onClick={handleCopyEmail}
                   className="flex items-center space-x-2 text-xs tracking-widest font-mono text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors"
@@ -182,33 +204,35 @@ export default function MinimalNav({
       </AnimatePresence>
 
       {/* Brand/Client/Project Scrollable Pill Filter Bar */}
-      <div className="border-t border-zinc-100 dark:border-zinc-900 py-2.5 bg-zinc-50/50 dark:bg-neutral-950/20 overflow-x-auto scrollbar-none scroll-smooth">
-        <div className="container mx-auto px-4 sm:px-6 max-w-7xl flex items-center space-x-2.5 text-[9px] tracking-[0.15em] uppercase font-mono justify-start md:justify-center overflow-x-auto scrollbar-none">
-          <button
-            onClick={() => setProjectFilter("all")}
-            className={`px-3 py-1 border transition-all duration-300 ${
-              projectFilter === "all"
-                ? "bg-black text-white dark:bg-white dark:text-black border-black dark:border-white font-bold"
-                : "bg-transparent text-zinc-400 dark:text-zinc-500 border-zinc-200 dark:border-zinc-800/80 hover:text-black dark:hover:text-white hover:border-zinc-400 dark:hover:border-zinc-600"
-            }`}
-          >
-            ALL ARCHIVES
-          </button>
-          {projects.map((project) => (
+      {projects && projectFilter && setProjectFilter && (
+        <div className="border-t border-zinc-100 dark:border-zinc-900 py-2.5 bg-zinc-50/50 dark:bg-neutral-950/20 overflow-x-auto scrollbar-none scroll-smooth">
+          <div className="container mx-auto px-4 sm:px-6 max-w-7xl flex items-center space-x-2.5 text-[9px] tracking-[0.15em] uppercase font-mono justify-start md:justify-center overflow-x-auto scrollbar-none">
             <button
-              key={project}
-              onClick={() => setProjectFilter(project)}
-              className={`px-3 py-1 border whitespace-nowrap transition-all duration-300 ${
-                projectFilter === project
+              onClick={() => setProjectFilter("all")}
+              className={`px-3 py-1 border transition-all duration-300 ${
+                projectFilter === "all"
                   ? "bg-black text-white dark:bg-white dark:text-black border-black dark:border-white font-bold"
                   : "bg-transparent text-zinc-400 dark:text-zinc-500 border-zinc-200 dark:border-zinc-800/80 hover:text-black dark:hover:text-white hover:border-zinc-400 dark:hover:border-zinc-600"
               }`}
             >
-              {project}
+              ALL ARCHIVES
             </button>
-          ))}
+            {projects.map((project) => (
+              <button
+                key={project}
+                onClick={() => setProjectFilter(project)}
+                className={`px-3 py-1 border whitespace-nowrap transition-all duration-300 ${
+                  projectFilter === project
+                    ? "bg-black text-white dark:bg-white dark:text-black border-black dark:border-white font-bold"
+                    : "bg-transparent text-zinc-400 dark:text-zinc-500 border-zinc-200 dark:border-zinc-800/80 hover:text-black dark:hover:text-white hover:border-zinc-400 dark:hover:border-zinc-600"
+                }`}
+              >
+                {project}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }
