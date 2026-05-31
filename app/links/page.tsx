@@ -24,7 +24,7 @@ export default function LinksPage() {
 
   const links = [
     {
-      title: "Explore Archives",
+      title: "See Our Work",
       description: "Visual portfolio, photography & motion pictures.",
       url: "/",
       icon: <Grid className="h-5 w-5" />,
