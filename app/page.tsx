@@ -80,10 +80,34 @@ export default function Home() {
   const [visibleCount, setVisibleCount] = useState(18);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
   // Reset pagination when filter updates
   useEffect(() => {
     setVisibleCount(18);
   }, [filter, projectFilter]);
+
+  // Infinite Scroll intersection observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && filteredItems.length > visibleCount) {
+          setVisibleCount((prev) => prev + 18);
+        }
+      },
+      {
+        rootMargin: "400px", // Trigger earlier for smoother experience
+      }
+    );
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [filteredItems.length, visibleCount]);
 
   // Monitor scroll height to show/hide "Back to Top" trigger
   useEffect(() => {
@@ -230,15 +254,10 @@ export default function Home() {
               </AnimatePresence>
             </div>
 
-            {/* Pagination Loader */}
+            {/* Infinite Scroll Trigger */}
             {filteredItems.length > visibleCount && (
-              <div className="flex justify-center mt-16">
-                <button
-                  onClick={() => setVisibleCount((prev) => prev + 18)}
-                  className="px-8 py-3 border border-neutral-300 dark:border-neutral-800 text-[10px] tracking-[0.25em] uppercase font-mono hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300"
-                >
-                  REVEAL MORE ARCHIVES ({filteredItems.length - visibleCount} REMAINING)
-                </button>
+              <div ref={loadMoreRef} className="flex justify-center mt-16 py-8">
+                <div className="w-4 h-4 rounded-full border border-neutral-300 dark:border-neutral-700 border-t-neutral-800 dark:border-t-neutral-100 animate-spin opacity-50" />
               </div>
             )}
           </>
