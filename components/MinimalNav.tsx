@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Sun, Moon, Copy, Check, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { slugify } from "@/lib/utils";
 
 interface MinimalNavProps {
   filter?: "all" | "photo" | "video";
@@ -204,11 +206,11 @@ export default function MinimalNav({
       </AnimatePresence>
 
       {/* Brand/Client/Project Scrollable Pill Filter Bar */}
-      {projects && projectFilter && setProjectFilter && (
+      {projects && projectFilter && (
         <div className="border-t border-zinc-100 dark:border-zinc-900 py-2.5 bg-zinc-50/50 dark:bg-neutral-950/20 overflow-x-auto scrollbar-none scroll-smooth">
           <div className="container mx-auto px-4 sm:px-6 max-w-7xl flex items-center space-x-2.5 text-[9px] tracking-[0.15em] uppercase font-mono justify-start md:justify-center overflow-x-auto scrollbar-none">
-            <button
-              onClick={() => setProjectFilter("all")}
+            <Link
+              href="/"
               className={`px-3 py-1 border transition-all duration-300 ${
                 projectFilter === "all"
                   ? "bg-black text-white dark:bg-white dark:text-black border-black dark:border-white font-bold"
@@ -216,11 +218,11 @@ export default function MinimalNav({
               }`}
             >
               ALL ARCHIVES
-            </button>
+            </Link>
             {projects.map((project) => (
-              <button
+              <Link
                 key={project}
-                onClick={() => setProjectFilter(project)}
+                href={`/project/${slugify(project)}`}
                 className={`px-3 py-1 border whitespace-nowrap transition-all duration-300 ${
                   projectFilter === project
                     ? "bg-black text-white dark:bg-white dark:text-black border-black dark:border-white font-bold"
@@ -228,7 +230,7 @@ export default function MinimalNav({
                 }`}
               >
                 {project}
-              </button>
+              </Link>
             ))}
           </div>
         </div>

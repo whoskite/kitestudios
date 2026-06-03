@@ -3,14 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Camera,
-  Video,
-  Info,
-  X,
   Play,
   ArrowUp,
   ChevronLeft,
   ChevronRight,
+  X,
 } from "lucide-react";
 import MinimalNav from "@/components/MinimalNav";
 import { portfolioItems, projectsList, MediaItem } from "@/lib/portfolio-data";
@@ -30,7 +27,7 @@ function LazyMedia({ item }: { item: MediaItem }) {
         }
       },
       {
-        rootMargin: "250px", // Pre-fetch media slightly before viewport entry
+        rootMargin: "250px",
       }
     );
 
@@ -64,7 +61,6 @@ function LazyMedia({ item }: { item: MediaItem }) {
           />
         )
       ) : (
-        /* Premium Minimal Loader State */
         <div className="absolute inset-0 flex items-center justify-center bg-zinc-100/30 dark:bg-zinc-900/30 backdrop-blur-sm animate-pulse min-h-[220px]">
           <div className="w-4 h-4 rounded-full border border-neutral-300 dark:border-neutral-700 border-t-neutral-800 dark:border-t-neutral-100 animate-spin" />
         </div>
@@ -73,55 +69,19 @@ function LazyMedia({ item }: { item: MediaItem }) {
   );
 }
 
-export default function Home() {
+export default function ProjectClient({ project }: { project: string }) {
   const [filter, setFilter] = useState<"all" | "photo" | "video">("all");
   const [activeItem, setActiveItem] = useState<MediaItem | null>(null);
-  const [showMetadata, setShowMetadata] = useState(true);
   const [copiedFooter, setCopiedFooter] = useState(false);
   const [visibleCount, setVisibleCount] = useState(18);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
-  // Filter projects by active category (photos/videos) for the nav bar tags
-  const visibleProjects = projectsList.filter((project) => {
-    if (filter === "all") return true;
-    return portfolioItems.some((item) => item.project === project && item.type === filter);
-  });
-
-  // Combine filters
-  const filteredItems = portfolioItems.filter((item) => {
-    return filter === "all" || item.type === filter;
-  });
-
-  const visibleItems = filteredItems.slice(0, visibleCount);
-
   // Reset pagination when filter updates
   useEffect(() => {
     setVisibleCount(18);
   }, [filter]);
-
-  // Infinite Scroll intersection observer
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && filteredItems.length > visibleCount) {
-          setVisibleCount((prev) => prev + 18);
-        }
-      },
-      {
-        rootMargin: "400px", // Trigger earlier for smoother experience
-      }
-    );
-
-    if (loadMoreRef.current) {
-      observer.observe(loadMoreRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [filteredItems.length, visibleCount]);
 
   // Monitor scroll height to show/hide "Back to Top" trigger
   useEffect(() => {
@@ -139,6 +99,21 @@ export default function Home() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  // Filter projects by active category (photos/videos) for the nav bar tags
+  const visibleProjects = projectsList.filter((p) => {
+    if (filter === "all") return true;
+    return portfolioItems.some((item) => item.project === p && item.type === filter);
+  });
+
+  // Filter items specifically for this project
+  const projectItems = portfolioItems.filter((item) => item.project === project);
+
+  const filteredItems = projectItems.filter((item) => {
+    return filter === "all" || item.type === filter;
+  });
+
+  const visibleItems = filteredItems.slice(0, visibleCount);
 
   const activeIndex = activeItem
     ? filteredItems.findIndex((item) => item.id === activeItem.id)
@@ -172,10 +147,32 @@ export default function Home() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeItem, activeIndex, filteredItems]);
 
+  // Infinite Scroll intersection observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && filteredItems.length > visibleCount) {
+          setVisibleCount((prev) => prev + 18);
+        }
+      },
+      {
+        rootMargin: "400px",
+      }
+    );
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [filteredItems.length, visibleCount]);
+
   // Rolling Adjacent Filmstrip Window (centered on active index)
   const getAdjacentThumbs = () => {
     if (activeIndex === -1) return [];
-    const range = 4; // Show 4 previous and 4 next items
+    const range = 4;
     const thumbs = [];
     for (let i = -range; i <= range; i++) {
       const idx = (activeIndex + i + filteredItems.length) % filteredItems.length;
@@ -192,20 +189,34 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
-      {/* Sleek Navigation passing double filter controls */}
       <MinimalNav
         filter={filter}
         setFilter={setFilter}
-        projectFilter="all"
+        projectFilter={project}
         projects={visibleProjects}
       />
 
-      {/* Main Content Area - Landing directly into visual archives */}
       <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-7xl">
+        {/* Project Header Title */}
+        <div className="mb-12">
+          <Link
+            href="/"
+            className="text-[10px] font-mono tracking-widest text-zinc-400 hover:text-black dark:hover:text-white uppercase transition-colors"
+          >
+            ← Back to Archives
+          </Link>
+          <h1 className="text-3xl sm:text-4xl font-light tracking-wider uppercase mt-2">
+            {project}
+          </h1>
+          <p className="text-xs font-mono text-zinc-400 dark:text-zinc-500 tracking-widest mt-1">
+            PROJECT ARCHIVE • {filteredItems.length} {filteredItems.length === 1 ? "ITEM" : "ITEMS"}
+          </p>
+        </div>
+
         {filteredItems.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-32 text-center">
+          <div className="flex flex-col items-center justify-center py-20 text-center">
             <span className="text-xs uppercase font-mono tracking-widest text-neutral-400 dark:text-neutral-500 mb-2">
-              No Archives Found
+              No Assets Found
             </span>
             <p className="text-neutral-500 dark:text-neutral-400 text-sm max-w-xs font-light">
               No matching assets were found in this specific selection. Try resetting filters.
@@ -233,11 +244,9 @@ export default function Home() {
                     className="group break-inside-avoid relative cursor-pointer flex flex-col bg-transparent mb-6 sm:mb-12"
                     onClick={() => setActiveItem(item)}
                   >
-                    {/* Media Container - Borderless minimal frame */}
                     <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-900 shadow-sm">
                       <LazyMedia item={item} />
 
-                      {/* Play overlay for video posts */}
                       {item.type === "video" && (
                         <div className="absolute inset-0 flex items-center justify-center bg-black/15 group-hover:bg-black/35 transition-colors z-10">
                           <div className="border border-white/40 p-3 bg-black/40 backdrop-blur-sm rounded-full text-white transform group-hover:scale-105 transition-transform duration-300">
@@ -246,7 +255,6 @@ export default function Home() {
                         </div>
                       )}
 
-                      {/* Project Tag */}
                       <Link
                         href={`/project/${slugify(item.project)}`}
                         onClick={(e) => e.stopPropagation()}
@@ -260,7 +268,6 @@ export default function Home() {
               </AnimatePresence>
             </div>
 
-            {/* Infinite Scroll Trigger */}
             {filteredItems.length > visibleCount && (
               <div ref={loadMoreRef} className="flex justify-center mt-16 py-8">
                 <div className="w-4 h-4 rounded-full border border-neutral-300 dark:border-neutral-700 border-t-neutral-800 dark:border-t-neutral-100 animate-spin opacity-50" />
@@ -270,10 +277,8 @@ export default function Home() {
         )}
       </main>
 
-      {/* Sleek Minimal Sign-off Footer */}
       <footer className="w-full border-t border-neutral-100 dark:border-neutral-900 py-16 bg-transparent">
         <div className="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8 text-neutral-400 dark:text-neutral-500 text-xs">
-          {/* Copyright signature */}
           <div className="text-center md:text-left">
             <span className="font-light tracking-[0.2em] text-neutral-800 dark:text-neutral-200 uppercase block mb-1">
               KITESTUDIOS
@@ -283,7 +288,6 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Social connections */}
           <div className="flex items-center space-x-12 font-medium tracking-widest text-[10px] uppercase">
             <a
               href="https://instagram.com/kitestudios6"
@@ -301,7 +305,6 @@ export default function Home() {
             </a>
           </div>
 
-          {/* Inquiry / Mail */}
           <div className="text-center md:text-right font-mono">
             <span className="block text-[8px] tracking-widest uppercase mb-1 opacity-80">
               WORK ENQUIRIES
@@ -319,7 +322,6 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Gorgeous Immersive Lightbox & Theater Video Overlays */}
       <AnimatePresence>
         {activeItem && (
           <motion.div
@@ -328,22 +330,18 @@ export default function Home() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-md"
           >
-            {/* Click outside target */}
             <div
               className="absolute inset-0 cursor-zoom-out"
               onClick={() => setActiveItem(null)}
             />
 
-            {/* Modal Container */}
             <motion.div
               initial={{ scale: 0.98, y: 10 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.98, y: 10 }}
               className="relative max-w-4xl w-full bg-neutral-950 border border-neutral-900 text-white shadow-2xl flex flex-col overflow-hidden max-h-[90vh]"
             >
-              {/* Controls bar */}
               <div className="absolute top-4 right-4 z-40 flex items-center space-x-3">
-                {/* Close Button */}
                 <button
                   onClick={() => setActiveItem(null)}
                   className="border border-white/20 p-2 bg-black/60 hover:bg-white hover:text-black hover:border-white transition-all cursor-pointer"
@@ -353,9 +351,7 @@ export default function Home() {
                 </button>
               </div>
 
-              {/* Media viewer panel */}
               <div className="relative flex-1 bg-black flex items-center justify-center overflow-hidden min-h-[300px] md:min-h-[500px]">
-                {/* Left Arrow overlay */}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -367,7 +363,6 @@ export default function Home() {
                   <ChevronLeft className="h-5 w-5" />
                 </button>
 
-                {/* Right Arrow overlay */}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -404,7 +399,6 @@ export default function Home() {
                 )}
               </div>
 
-              {/* Dynamic Filmstrip preview row */}
               <div className="bg-neutral-950 border-t border-neutral-900 px-6 py-4 flex items-center justify-center overflow-hidden">
                 <div className="flex items-center space-x-3 overflow-x-auto scrollbar-none max-w-full">
                   {getAdjacentThumbs().map(({ item, originalIndex }) => {
@@ -442,7 +436,6 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* Floating Back to Top Button (Mobile only) */}
       <AnimatePresence>
         {showScrollTop && (
           <motion.button
