@@ -7,6 +7,7 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
+  Download,
 } from "lucide-react";
 import MinimalNav from "@/components/MinimalNav";
 import Link from "next/link";
@@ -156,6 +157,37 @@ export default function EventClient({ event }: { event: any }) {
     setTimeout(() => setCopiedFooter(false), 2000);
   };
 
+  const handleDownload = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!activeItem) return;
+    
+    const imageUrl = urlFor(activeItem).url();
+    
+    // Fire Meta Pixel custom event
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("trackCustom", "PhotoDownloaded", { photoUrl: imageUrl });
+    }
+
+    try {
+      // Fetch the image natively so we can force a download prompt
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = `kitestudios-event-${activeItem._key}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      console.error("Download failed:", err);
+      // Fallback: just open in new tab
+      window.open(imageUrl, '_blank');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
       <MinimalNav />
@@ -295,6 +327,14 @@ export default function EventClient({ event }: { event: any }) {
               className="relative max-w-4xl w-full bg-neutral-950 border border-neutral-900 text-white shadow-2xl flex flex-col overflow-hidden max-h-[90vh]"
             >
               <div className="absolute top-4 right-4 z-40 flex items-center space-x-3">
+                <button
+                  onClick={handleDownload}
+                  className="border border-white/20 p-2 bg-black/60 hover:bg-white hover:text-black hover:border-white transition-all cursor-pointer"
+                  aria-label="Download high-res photo"
+                  title="Download High-Res Photo"
+                >
+                  <Download className="h-4.5 w-4.5" />
+                </button>
                 <button
                   onClick={() => setActiveItem(null)}
                   className="border border-white/20 p-2 bg-black/60 hover:bg-white hover:text-black hover:border-white transition-all cursor-pointer"

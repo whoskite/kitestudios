@@ -1,7 +1,9 @@
 import type React from "react";
+import { Suspense } from "react";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Providers } from "./providers";
+import MetaPixel from "@/components/MetaPixel";
 
 export const metadata: Metadata = {
   title: "KITESTUDIOS",
@@ -68,6 +70,9 @@ export default function RootLayout({
       <body className="" data-oid=":u-ue_r">
         <Providers data-oid="phk1e-9">
           {children}
+          <Suspense fallback={null}>
+            <MetaPixel />
+          </Suspense>
         </Providers>
       </body>
     </html>
