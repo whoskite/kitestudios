@@ -24,9 +24,9 @@ export default function LinksPage() {
 
   const links = [
     {
-      title: "Lust In Radio Photos",
+      title: "Lust In Stereo Photos",
       description: "Download event photos from Los Globos.",
-      url: "/events/lust-in-radio-los-globos",
+      url: "/events/lust-in-stereo-los-globos",
       icon: <Camera className="h-5 w-5" />,
       highlight: true,
     },
