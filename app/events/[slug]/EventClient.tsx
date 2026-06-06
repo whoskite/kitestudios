@@ -3,18 +3,16 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Play,
   ArrowUp,
   ChevronLeft,
   ChevronRight,
   X,
 } from "lucide-react";
 import MinimalNav from "@/components/MinimalNav";
-import { portfolioItems, projectsList, MediaItem } from "@/lib/portfolio-data";
 import Link from "next/link";
-import { slugify } from "@/lib/utils";
+import { urlFor } from "@/lib/sanity";
 
-function LazyMedia({ item }: { item: MediaItem }) {
+function LazyMedia({ image }: { image: any }) {
   const ref = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -43,23 +41,12 @@ function LazyMedia({ item }: { item: MediaItem }) {
   return (
     <div ref={ref} className="relative w-full overflow-hidden bg-neutral-50 dark:bg-neutral-900/60 min-h-[220px]">
       {isInView ? (
-        item.type === "photo" ? (
-          <img
-            src={item.src}
-            alt={item.title}
-            className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-            loading="lazy"
-          />
-        ) : (
-          <video
-            src={item.src}
-            loop
-            muted
-            autoPlay
-            playsInline
-            className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-          />
-        )
+        <img
+          src={urlFor(image).width(800).url()}
+          alt="Event Photo"
+          className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+          loading="lazy"
+        />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center bg-zinc-100/30 dark:bg-zinc-900/30 backdrop-blur-sm animate-pulse min-h-[220px]">
           <div className="w-4 h-4 rounded-full border border-neutral-300 dark:border-neutral-700 border-t-neutral-800 dark:border-t-neutral-100 animate-spin" />
@@ -69,19 +56,14 @@ function LazyMedia({ item }: { item: MediaItem }) {
   );
 }
 
-export default function ProjectClient({ project }: { project: string }) {
-  const [filter, setFilter] = useState<"all" | "photo" | "video">("all");
-  const [activeItem, setActiveItem] = useState<MediaItem | null>(null);
+export default function EventClient({ event }: { event: any }) {
+  const photos = event.photos || [];
+  const [activeItem, setActiveItem] = useState<any | null>(null);
   const [copiedFooter, setCopiedFooter] = useState(false);
   const [visibleCount, setVisibleCount] = useState(18);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const loadMoreRef = useRef<HTMLDivElement>(null);
-
-  // Reset pagination when filter updates
-  useEffect(() => {
-    setVisibleCount(18);
-  }, [filter]);
 
   // Monitor scroll height to show/hide "Back to Top" trigger
   useEffect(() => {
@@ -100,35 +82,22 @@ export default function ProjectClient({ project }: { project: string }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Filter projects by active category (photos/videos) for the nav bar tags
-  const visibleProjects = projectsList.filter((p) => {
-    if (filter === "all") return true;
-    return portfolioItems.some((item) => item.project === p && item.type === filter);
-  });
-
-  // Filter items specifically for this project
-  const projectItems = portfolioItems.filter((item) => item.project === project);
-
-  const filteredItems = projectItems.filter((item) => {
-    return filter === "all" || item.type === filter;
-  });
-
-  const visibleItems = filteredItems.slice(0, visibleCount);
+  const visibleItems = photos.slice(0, visibleCount);
 
   const activeIndex = activeItem
-    ? filteredItems.findIndex((item) => item.id === activeItem.id)
+    ? photos.findIndex((item: any) => item._key === activeItem._key)
     : -1;
 
   const handleNext = () => {
     if (activeIndex === -1) return;
-    const nextIndex = (activeIndex + 1) % filteredItems.length;
-    setActiveItem(filteredItems[nextIndex]);
+    const nextIndex = (activeIndex + 1) % photos.length;
+    setActiveItem(photos[nextIndex]);
   };
 
   const handlePrev = () => {
     if (activeIndex === -1) return;
-    const prevIndex = (activeIndex - 1 + filteredItems.length) % filteredItems.length;
-    setActiveItem(filteredItems[prevIndex]);
+    const prevIndex = (activeIndex - 1 + photos.length) % photos.length;
+    setActiveItem(photos[prevIndex]);
   };
 
   // Keyboard navigation for Lightbox
@@ -145,13 +114,13 @@ export default function ProjectClient({ project }: { project: string }) {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeItem, activeIndex, filteredItems]);
+  }, [activeItem, activeIndex, photos]);
 
   // Infinite Scroll intersection observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && filteredItems.length > visibleCount) {
+        if (entry.isIntersecting && photos.length > visibleCount) {
           setVisibleCount((prev) => prev + 18);
         }
       },
@@ -167,16 +136,16 @@ export default function ProjectClient({ project }: { project: string }) {
     return () => {
       observer.disconnect();
     };
-  }, [filteredItems.length, visibleCount]);
+  }, [photos.length, visibleCount]);
 
   // Rolling Adjacent Filmstrip Window (centered on active index)
   const getAdjacentThumbs = () => {
-    if (activeIndex === -1 || filteredItems.length === 0) return [];
-    const range = 4; // Show 4 previous and 4 next items
+    if (activeIndex === -1 || photos.length === 0) return [];
+    const range = 4;
     const thumbs = [];
     for (let i = -range; i <= range; i++) {
-      const idx = (((activeIndex + i) % filteredItems.length) + filteredItems.length) % filteredItems.length;
-      thumbs.push({ item: filteredItems[idx], originalIndex: i });
+      const idx = (((activeIndex + i) % photos.length) + photos.length) % photos.length;
+      thumbs.push({ item: photos[idx], originalIndex: i });
     }
     return thumbs;
   };
@@ -189,54 +158,54 @@ export default function ProjectClient({ project }: { project: string }) {
 
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
-      <MinimalNav
-        filter={filter}
-        setFilter={setFilter}
-        projectFilter={project}
-        projects={visibleProjects}
-      />
+      <MinimalNav />
 
       <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-7xl">
         {/* Project Header Title */}
         <div className="mb-12">
           <Link
-            href="/"
+            href="/events"
             className="text-[10px] font-mono tracking-widest text-zinc-400 hover:text-black dark:hover:text-white uppercase transition-colors"
           >
-            ← Back to Archives
+            ← Back to Events
           </Link>
           <h1 className="text-3xl sm:text-4xl font-light tracking-wider uppercase mt-2">
-            {project}
+            {event.title}
           </h1>
-          <p className="text-xs font-mono text-zinc-400 dark:text-zinc-500 tracking-widest mt-1">
-            PROJECT ARCHIVE • {filteredItems.length} {filteredItems.length === 1 ? "ITEM" : "ITEMS"}
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-xs font-mono text-zinc-400 dark:text-zinc-500 tracking-widest mt-2 uppercase">
+            <span>{new Date(event.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+            {event.location && (
+              <>
+                <span className="hidden sm:inline">•</span>
+                <span>{event.location}</span>
+              </>
+            )}
+            <span className="hidden sm:inline">•</span>
+            <span>{photos.length} {photos.length === 1 ? "PHOTO" : "PHOTOS"}</span>
+          </div>
+          {event.description && (
+            <p className="mt-6 text-sm font-light leading-relaxed max-w-2xl text-zinc-600 dark:text-zinc-400">
+              {event.description}
+            </p>
+          )}
         </div>
 
-        {filteredItems.length === 0 ? (
+        {photos.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <span className="text-xs uppercase font-mono tracking-widest text-neutral-400 dark:text-neutral-500 mb-2">
-              No Assets Found
+              No Photos Found
             </span>
             <p className="text-neutral-500 dark:text-neutral-400 text-sm max-w-xs font-light">
-              No matching assets were found in this specific selection. Try resetting filters.
+              This event gallery doesn't have any photos uploaded yet.
             </p>
-            <button
-              onClick={() => {
-                setFilter("all");
-              }}
-              className="mt-6 px-4 py-2 border border-neutral-300 dark:border-neutral-800 text-[10px] tracking-wider uppercase font-mono hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
-            >
-              Reset Filters
-            </button>
           </div>
         ) : (
           <>
             <div className="columns-1 md:columns-2 lg:columns-3 gap-6 sm:gap-12">
               <AnimatePresence mode="popLayout">
-                {visibleItems.map((item, index) => (
+                {visibleItems.map((item: any, index: number) => (
                   <motion.div
-                    key={item.id}
+                    key={item._key}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.98 }}
@@ -245,30 +214,14 @@ export default function ProjectClient({ project }: { project: string }) {
                     onClick={() => setActiveItem(item)}
                   >
                     <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-900 shadow-sm">
-                      <LazyMedia item={item} />
-
-                      {item.type === "video" && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/15 group-hover:bg-black/35 transition-colors z-10">
-                          <div className="border border-white/40 p-3 bg-black/40 backdrop-blur-sm rounded-full text-white transform group-hover:scale-105 transition-transform duration-300">
-                            <Play className="h-5 w-5 fill-white" />
-                          </div>
-                        </div>
-                      )}
-
-                      <Link
-                        href={`/project/${slugify(item.project)}`}
-                        onClick={(e) => e.stopPropagation()}
-                        className="absolute top-3 left-3 bg-black/60 text-white hover:bg-white hover:text-black transition-colors backdrop-blur-sm px-2 py-0.5 text-[7px] font-mono tracking-widest uppercase font-bold z-10"
-                      >
-                        {item.project}
-                      </Link>
+                      <LazyMedia image={item} />
                     </div>
                   </motion.div>
                 ))}
               </AnimatePresence>
             </div>
 
-            {filteredItems.length > visibleCount && (
+            {photos.length > visibleCount && (
               <div ref={loadMoreRef} className="flex justify-center mt-16 py-8">
                 <div className="w-4 h-4 rounded-full border border-neutral-300 dark:border-neutral-700 border-t-neutral-800 dark:border-t-neutral-100 animate-spin opacity-50" />
               </div>
@@ -374,38 +327,20 @@ export default function ProjectClient({ project }: { project: string }) {
                   <ChevronRight className="h-5 w-5" />
                 </button>
 
-                {activeItem.type === "photo" ? (
-                  <img
-                    src={activeItem.src}
-                    alt={activeItem.title}
-                    className="object-contain w-full h-full max-h-[75vh]"
-                  />
-                ) : (
-                  <div className="relative w-full h-full aspect-video">
-                    {activeItem.videoUrl ? (
-                      <video
-                        src={activeItem.videoUrl}
-                        controls
-                        autoPlay
-                        loop
-                        className="w-full h-full object-contain"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center font-mono text-xs uppercase opacity-75">
-                        Video source unavailable
-                      </div>
-                    )}
-                  </div>
-                )}
+                <img
+                  src={urlFor(activeItem).url()}
+                  alt="Event Fullscreen Photo"
+                  className="object-contain w-full h-full max-h-[75vh]"
+                />
               </div>
 
               <div className="bg-neutral-950 border-t border-neutral-900 px-6 py-4 flex items-center justify-center overflow-hidden">
                 <div className="flex items-center space-x-3 overflow-x-auto scrollbar-none max-w-full">
                   {getAdjacentThumbs().map(({ item, originalIndex }) => {
-                    const isActive = item.id === activeItem.id;
+                    const isActive = item._key === activeItem._key;
                     return (
                       <button
-                        key={`thumb-${item.id}-${originalIndex}`}
+                        key={`thumb-${item._key}-${originalIndex}`}
                         onClick={() => setActiveItem(item)}
                         className={`relative h-10 sm:h-12 aspect-[3/2] overflow-hidden border transition-all duration-300 shrink-0 ${
                           isActive
@@ -413,19 +348,11 @@ export default function ProjectClient({ project }: { project: string }) {
                             : "border-neutral-800 opacity-35 hover:opacity-85 hover:border-neutral-600"
                         }`}
                       >
-                        {item.type === "photo" ? (
-                          <img
-                            src={item.src}
-                            alt={item.title}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <video
-                            src={item.src}
-                            muted
-                            className="w-full h-full object-cover"
-                          />
-                        )}
+                        <img
+                          src={urlFor(item).width(300).url()}
+                          alt="Thumbnail"
+                          className="w-full h-full object-cover"
+                        />
                       </button>
                     );
                   })}

@@ -49,24 +49,40 @@ export default function MinimalNav({
           KITESTUDIOS
         </a>
 
-        {/* Media Type filters (Desktop only) */}
-        {filter && setFilter && (
-          <div className="hidden sm:flex items-center space-x-1 sm:space-x-2 text-[10px] sm:text-xs font-medium tracking-widest uppercase">
-            {(["all", "photo", "video"] as const).map((type) => (
-              <button
-                key={type}
-                onClick={() => setFilter(type)}
-                className={`px-3 py-1.5 transition-all duration-200 ${
-                  filter === type
-                    ? "text-black dark:text-white border-b-2 border-black dark:border-white font-semibold"
-                    : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
-                }`}
-              >
-                {type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS"}
-              </button>
-            ))}
+        {/* Media Type filters and Event Link (Desktop only) */}
+        <div className="hidden sm:flex items-center space-x-2">
+          <div className="flex items-center space-x-1 sm:space-x-2 text-[10px] sm:text-xs font-medium tracking-widest uppercase mr-2 sm:mr-4 border-r border-zinc-200 dark:border-zinc-800 pr-2 sm:pr-4">
+            {(["all", "photo", "video"] as const).map((type) => {
+              const label = type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS";
+              const isActive = filter === type;
+              const className = `px-3 py-1.5 transition-all duration-200 ${
+                isActive
+                  ? "text-black dark:text-white border-b-2 border-black dark:border-white font-semibold"
+                  : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
+              }`;
+
+              if (setFilter) {
+                return (
+                  <button key={type} onClick={() => setFilter(type)} className={className}>
+                    {label}
+                  </button>
+                );
+              } else {
+                return (
+                  <Link key={type} href="/" className={className}>
+                    {label}
+                  </Link>
+                );
+              }
+            })}
           </div>
-        )}
+          <Link
+            href="/events"
+            className="text-[10px] sm:text-xs font-medium tracking-widest uppercase text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white transition-colors px-3 py-1.5"
+          >
+            EVENTS
+          </Link>
+        </div>
 
         {/* Action Controls (Desktop only) */}
         <div className="hidden sm:flex items-center space-x-6">
@@ -77,20 +93,6 @@ export default function MinimalNav({
           >
             Book Now
           </a>
-
-          {/* Email Quick Copy */}
-          <button
-            onClick={handleCopyEmail}
-            className="group flex items-center space-x-2 text-[10px] tracking-widest font-mono text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors"
-            title="Copy email to clipboard"
-          >
-            <span>TOMY@KITESTUDIOS.NET</span>
-            {copied ? (
-              <Check className="h-3 w-3 text-green-500 animate-scale" />
-            ) : (
-              <Copy className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-            )}
-          </button>
 
           {/* Theme Toggle */}
           {mounted && (
@@ -125,30 +127,61 @@ export default function MinimalNav({
             className="sm:hidden w-full bg-white dark:bg-black border-t border-zinc-100 dark:border-zinc-900 overflow-hidden"
           >
             <div className="px-6 py-8 flex flex-col space-y-6">
+              {/* Navigation inside mobile menu */}
+              <div className="flex flex-col space-y-3">
+                <span className="text-[8px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
+                  Pages
+                </span>
+                <Link
+                  href="/events"
+                  onClick={() => setIsOpen(false)}
+                  className="text-left text-lg font-light tracking-[0.15em] uppercase transition-colors text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
+                >
+                  EVENTS
+                </Link>
+              </div>
+
               {/* Media Type filters inside mobile menu */}
-              {filter && setFilter && (
-                <div className="flex flex-col space-y-3">
-                  <span className="text-[8px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
-                    Select Category
-                  </span>
-                  {(["all", "photo", "video"] as const).map((type) => (
-                    <button
-                      key={type}
-                      onClick={() => {
-                        setFilter(type);
-                        setIsOpen(false);
-                      }}
-                      className={`text-left text-lg font-light tracking-[0.15em] uppercase transition-colors ${
-                        filter === type
-                          ? "text-black dark:text-white font-medium"
-                          : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
-                      }`}
-                    >
-                      {type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS"}
-                    </button>
-                  ))}
-                </div>
-              )}
+              <div className="flex flex-col space-y-3 pt-4 border-t border-zinc-100 dark:border-zinc-900">
+                <span className="text-[8px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
+                  Select Category
+                </span>
+                {(["all", "photo", "video"] as const).map((type) => {
+                  const label = type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS";
+                  const isActive = filter === type;
+                  const className = `text-left text-lg font-light tracking-[0.15em] uppercase transition-colors ${
+                    isActive
+                      ? "text-black dark:text-white font-medium"
+                      : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
+                  }`;
+
+                  if (setFilter) {
+                    return (
+                      <button
+                        key={type}
+                        onClick={() => {
+                          setFilter(type);
+                          setIsOpen(false);
+                        }}
+                        className={className}
+                      >
+                        {label}
+                      </button>
+                    );
+                  } else {
+                    return (
+                      <Link
+                        key={type}
+                        href="/"
+                        onClick={() => setIsOpen(false)}
+                        className={className}
+                      >
+                        {label}
+                      </Link>
+                    );
+                  }
+                })}
+              </div>
 
               {/* Action Controls inside mobile menu */}
               <div className="border-t border-zinc-100 dark:border-zinc-900 pt-6 flex flex-col space-y-4">
@@ -164,18 +197,6 @@ export default function MinimalNav({
                 >
                   [ Book Now ]
                 </a>
-
-                <button
-                  onClick={handleCopyEmail}
-                  className="flex items-center space-x-2 text-xs tracking-widest font-mono text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors"
-                >
-                  <span>TOMY@KITESTUDIOS.NET</span>
-                  {copied ? (
-                    <Check className="h-3 w-3 text-green-500" />
-                  ) : (
-                    <Copy className="h-3 w-3 opacity-60" />
-                  )}
-                </button>
 
                 {/* Theme Toggle in mobile menu */}
                 {mounted && (

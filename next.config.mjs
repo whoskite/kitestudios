@@ -23,18 +23,24 @@ const nextConfig = {
         port: '1337',
         pathname: '/uploads/**',
       },
-      // Add your production Strapi URL when deployed
-      // {
-      //   protocol: 'https',
-      //   hostname: 'your-strapi-domain.com',
-      //   pathname: '/uploads/**',
-      // },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        pathname: '/images/**',
+      },
     ],
   },
   experimental: {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
+  },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'react/compiler-runtime': 'react-compiler-runtime',
+    }
+    return config
   },
 }
 
