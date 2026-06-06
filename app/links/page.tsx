@@ -24,6 +24,13 @@ export default function LinksPage() {
 
   const links = [
     {
+      title: "Lust In Radio Photos",
+      description: "Download event photos from Los Globos.",
+      url: "/events/lust-in-radio-los-globos",
+      icon: <Camera className="h-5 w-5" />,
+      highlight: true,
+    },
+    {
       title: "See Our Work",
       description: "Visual portfolio, photography & motion pictures.",
       url: "/",
@@ -35,15 +42,7 @@ export default function LinksPage() {
       description: "Secure your slot & request session inquiries.",
       url: "/book",
       icon: <Calendar className="h-5 w-5" />,
-      highlight: true,
-    },
-    {
-      title: "Instagram",
-      description: "Follow daily frames, behind-the-scenes & art.",
-      url: "https://instagram.com/kitestudios6",
-      icon: <Instagram className="h-5 w-5" />,
       highlight: false,
-      external: true,
     },
     {
       title: "Email Tomy",
