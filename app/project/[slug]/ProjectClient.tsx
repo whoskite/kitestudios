@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Play,
@@ -69,8 +70,9 @@ function LazyMedia({ item }: { item: MediaItem }) {
   );
 }
 
-export default function ProjectClient({ project }: { project: string }) {
-  const [filter, setFilter] = useState<"all" | "photo" | "video">("all");
+function ProjectClientContent({ project }: { project: string }) {
+  const searchParams = useSearchParams();
+  const filter = (searchParams.get("filter") as "photo" | "video") || "all";
   const [activeItem, setActiveItem] = useState<MediaItem | null>(null);
   const [copiedFooter, setCopiedFooter] = useState(false);
   const [visibleCount, setVisibleCount] = useState(18);
@@ -190,8 +192,6 @@ export default function ProjectClient({ project }: { project: string }) {
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
       <MinimalNav
-        filter={filter}
-        setFilter={setFilter}
         projectFilter={project}
         projects={visibleProjects}
       />
@@ -221,14 +221,12 @@ export default function ProjectClient({ project }: { project: string }) {
             <p className="text-neutral-500 dark:text-neutral-400 text-sm max-w-xs font-light">
               No matching assets were found in this specific selection. Try resetting filters.
             </p>
-            <button
-              onClick={() => {
-                setFilter("all");
-              }}
+            <Link
+              href={`/project/${slugify(project)}`}
               className="mt-6 px-4 py-2 border border-neutral-300 dark:border-neutral-800 text-[10px] tracking-wider uppercase font-mono hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
             >
               Reset Filters
-            </button>
+            </Link>
           </div>
         ) : (
           <>
@@ -451,5 +449,17 @@ export default function ProjectClient({ project }: { project: string }) {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+export default function ProjectClient({ project }: { project: string }) {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white dark:bg-black flex items-center justify-center">
+        <div className="w-6 h-6 rounded-full border border-neutral-300 dark:border-neutral-700 border-t-neutral-800 dark:border-t-neutral-100 animate-spin" />
+      </div>
+    }>
+      <ProjectClientContent project={project} />
+    </Suspense>
   );
 }

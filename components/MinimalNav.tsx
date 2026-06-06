@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Sun, Moon, Copy, Check, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { slugify } from "@/lib/utils";
 
 interface MinimalNavProps {
@@ -15,9 +16,7 @@ interface MinimalNavProps {
   projects?: readonly string[];
 }
 
-export default function MinimalNav({
-  filter,
-  setFilter,
+function MinimalNavContent({
   projectFilter,
   setProjectFilter,
   projects,
@@ -26,10 +25,23 @@ export default function MinimalNav({
   const [mounted, setMounted] = useState(false);
   const [copied, setCopied] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const activeFilter = (searchParams.get("filter") as "photo" | "video") || "all";
+
+  const getFilterHref = (type: "all" | "photo" | "video") => {
+    const isHomeOrProject = pathname === "/" || pathname.startsWith("/project/");
+    const base = isHomeOrProject ? pathname : "/";
+    if (type === "all") {
+      return base;
+    }
+    return `${base}?filter=${type}`;
+  };
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("tomy@kitestudios.net");
@@ -54,26 +66,18 @@ export default function MinimalNav({
           <div className="flex items-center space-x-1 sm:space-x-2 text-[10px] sm:text-xs font-medium tracking-widest uppercase mr-2 sm:mr-4 border-r border-zinc-200 dark:border-zinc-800 pr-2 sm:pr-4">
             {(["all", "photo", "video"] as const).map((type) => {
               const label = type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS";
-              const isActive = filter === type;
+              const isActive = activeFilter === type;
               const className = `px-3 py-1.5 transition-all duration-200 ${
                 isActive
                   ? "text-black dark:text-white border-b-2 border-black dark:border-white font-semibold"
                   : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
               }`;
 
-              if (setFilter) {
-                return (
-                  <button key={type} onClick={() => setFilter(type)} className={className}>
-                    {label}
-                  </button>
-                );
-              } else {
-                return (
-                  <Link key={type} href="/" className={className}>
-                    {label}
-                  </Link>
-                );
-              }
+              return (
+                <Link key={type} href={getFilterHref(type)} className={className}>
+                  {label}
+                </Link>
+              );
             })}
           </div>
           <Link
@@ -148,38 +152,23 @@ export default function MinimalNav({
                 </span>
                 {(["all", "photo", "video"] as const).map((type) => {
                   const label = type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS";
-                  const isActive = filter === type;
+                  const isActive = activeFilter === type;
                   const className = `text-left text-lg font-light tracking-[0.15em] uppercase transition-colors ${
                     isActive
                       ? "text-black dark:text-white font-medium"
                       : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
                   }`;
 
-                  if (setFilter) {
-                    return (
-                      <button
-                        key={type}
-                        onClick={() => {
-                          setFilter(type);
-                          setIsOpen(false);
-                        }}
-                        className={className}
-                      >
-                        {label}
-                      </button>
-                    );
-                  } else {
-                    return (
-                      <Link
-                        key={type}
-                        href="/"
-                        onClick={() => setIsOpen(false)}
-                        className={className}
-                      >
-                        {label}
-                      </Link>
-                    );
-                  }
+                  return (
+                    <Link
+                      key={type}
+                      href={getFilterHref(type)}
+                      onClick={() => setIsOpen(false)}
+                      className={className}
+                    >
+                      {label}
+                    </Link>
+                  );
                 })}
               </div>
 
@@ -257,5 +246,22 @@ export default function MinimalNav({
         </div>
       )}
     </header>
+  );
+}
+
+export default function MinimalNav(props: MinimalNavProps) {
+  return (
+    <Suspense fallback={
+      <header className="sticky top-0 z-50 w-full bg-white/90 dark:bg-black/90 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-900 h-[73px]">
+        <div className="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between max-w-7xl">
+          <div className="text-lg font-light tracking-[0.25em] uppercase font-sans">
+            KITESTUDIOS
+          </div>
+          <div className="w-24 h-4 bg-zinc-100 dark:bg-zinc-800 animate-pulse rounded" />
+        </div>
+      </header>
+    }>
+      <MinimalNavContent {...props} />
+    </Suspense>
   );
 }
