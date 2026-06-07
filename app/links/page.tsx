@@ -110,7 +110,7 @@ export default function LinksPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-[9px] font-mono tracking-[0.25em] text-neutral-400 dark:text-neutral-500 uppercase font-medium"
+            className="text-xs font-mono tracking-[0.25em] text-neutral-400 dark:text-neutral-500 uppercase font-medium"
           >
             Creative Platform • Production Studio
           </motion.p>
@@ -120,12 +120,13 @@ export default function LinksPage() {
         <div className="w-full flex flex-col space-y-4">
           {links.map((link, index) => {
             const isHighlight = link.highlight;
+            const isExternal = link.url.startsWith("http") || link.url.startsWith("mailto");
             return (
               <motion.a
                 key={link.title}
                 href={link.url}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noopener noreferrer" : undefined}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.08 }}
@@ -156,7 +157,7 @@ export default function LinksPage() {
                       {link.title}
                     </span>
                     <span
-                      className={`block text-[10px] font-light ${
+                      className={`block text-xs font-light ${
                         isHighlight
                           ? "text-neutral-300 dark:text-neutral-600"
                           : "text-neutral-400 dark:text-neutral-500"
@@ -170,7 +171,7 @@ export default function LinksPage() {
                 {/* Right Side: Accent Tag or Arrow */}
                 <div className="flex items-center space-x-2 z-10 shrink-0">
                   {isHighlight && (
-                    <span className="hidden sm:inline bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black border border-neutral-800 dark:border-neutral-200 px-2 py-0.5 text-[7px] font-mono font-bold tracking-widest uppercase rounded-sm">
+                    <span className="hidden sm:inline bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black border border-neutral-800 dark:border-neutral-200 px-2 py-0.5 text-xs font-mono font-bold tracking-widest uppercase rounded-sm">
                       ACTIVE
                     </span>
                   )}
@@ -184,8 +185,8 @@ export default function LinksPage() {
 
       {/* Minimal Footer */}
       <footer className="w-full py-8 text-center z-10 border-t border-neutral-50 dark:border-zinc-950">
-        <p className="text-[9px] font-mono tracking-widest text-neutral-400 dark:text-neutral-600 uppercase">
-          © 2026 KITESTUDIOS • TOMY KITE
+        <p className="text-xs font-mono tracking-widest text-neutral-400 dark:text-neutral-600 uppercase">
+          © 2026 KITESTUDIOS • PORTFOLIO
         </p>
       </footer>
     </div>

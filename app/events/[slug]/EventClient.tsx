@@ -197,7 +197,7 @@ export default function EventClient({ event }: { event: any }) {
         <div className="mb-12">
           <Link
             href="/events"
-            className="text-[10px] font-mono tracking-widest text-zinc-400 hover:text-black dark:hover:text-white uppercase transition-colors"
+            className="text-xs font-mono tracking-widest text-zinc-400 hover:text-black dark:hover:text-white uppercase transition-colors"
           >
             ← Back to Events
           </Link>
@@ -268,12 +268,12 @@ export default function EventClient({ event }: { event: any }) {
             <span className="font-light tracking-[0.2em] text-neutral-800 dark:text-neutral-200 uppercase block mb-1">
               KITESTUDIOS
             </span>
-            <span className="text-[10px] tracking-wider font-mono uppercase font-light">
-              © 2026 TOMY KITE • PORTFOLIO
+            <span className="text-xs tracking-wider font-mono uppercase font-light">
+              © 2026 KITESTUDIOS • PORTFOLIO
             </span>
           </div>
 
-          <div className="flex items-center space-x-12 font-medium tracking-widest text-[10px] uppercase">
+          <div className="flex items-center space-x-12 font-medium tracking-widest text-xs uppercase">
             <a
               href="https://instagram.com/kitestudios6"
               target="_blank"
@@ -291,15 +291,15 @@ export default function EventClient({ event }: { event: any }) {
           </div>
 
           <div className="text-center md:text-right font-mono">
-            <span className="block text-[8px] tracking-widest uppercase mb-1 opacity-80">
+            <span className="block text-xs tracking-widest uppercase mb-1 opacity-80">
               WORK ENQUIRIES
             </span>
             <button
               onClick={handleCopyEmail}
-              className="font-bold text-neutral-600 dark:text-neutral-300 hover:text-[#ffff00] transition-colors text-[11px] flex items-center justify-center md:justify-end gap-2 uppercase"
+              className="font-bold text-neutral-600 dark:text-neutral-300 hover:text-[#ffff00] transition-colors text-xs flex items-center justify-center md:justify-end gap-2 uppercase"
             >
               TOMY@KITESTUDIOS.NET
-              <span className="text-[8px] bg-neutral-100 dark:bg-neutral-900 text-neutral-500 px-1 py-0.5 border border-neutral-200 dark:border-neutral-800">
+              <span className="text-xs bg-neutral-100 dark:bg-neutral-900 text-neutral-500 px-1 py-0.5 border border-neutral-200 dark:border-neutral-800">
                 {copiedFooter ? "COPIED" : "COPY"}
               </span>
             </button>

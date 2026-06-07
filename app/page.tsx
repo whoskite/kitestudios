@@ -76,7 +76,7 @@ function LazyMedia({ item }: { item: MediaItem }) {
 
 function HomeContent() {
   const searchParams = useSearchParams();
-  const filter = (searchParams.get("filter") as "photo" | "video") || "all";
+  const filter = (searchParams.get("filter") as "photo" | "video" | "all") || "all";
   const [activeItem, setActiveItem] = useState<MediaItem | null>(null);
   const [showMetadata, setShowMetadata] = useState(true);
   const [copiedFooter, setCopiedFooter] = useState(false);
@@ -212,7 +212,7 @@ function HomeContent() {
             </p>
             <Link
               href="/"
-              className="mt-6 px-4 py-2 border border-neutral-300 dark:border-neutral-800 text-[10px] tracking-wider uppercase font-mono hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+              className="mt-6 px-4 py-2 border border-neutral-300 dark:border-neutral-800 text-xs tracking-wider uppercase font-mono hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
             >
               Reset Filters
             </Link>
@@ -248,7 +248,7 @@ function HomeContent() {
                       <Link
                         href={`/project/${slugify(item.project)}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="absolute top-3 left-3 bg-black/60 text-white hover:bg-white hover:text-black transition-colors backdrop-blur-sm px-2 py-0.5 text-[7px] font-mono tracking-widest uppercase font-bold z-10"
+                        className="absolute top-3 left-3 bg-black/60 text-white hover:bg-white hover:text-black transition-colors backdrop-blur-sm px-2 py-0.5 text-xs font-mono tracking-widest uppercase font-bold z-10"
                       >
                         {item.project}
                       </Link>
@@ -276,13 +276,13 @@ function HomeContent() {
             <span className="font-light tracking-[0.2em] text-neutral-800 dark:text-neutral-200 uppercase block mb-1">
               KITESTUDIOS
             </span>
-            <span className="text-[10px] tracking-wider font-mono uppercase font-light">
-              © 2026 TOMY KITE • PORTFOLIO
+            <span className="text-xs tracking-wider font-mono uppercase font-light">
+              © 2026 KITESTUDIOS • PORTFOLIO
             </span>
           </div>
 
           {/* Social connections */}
-          <div className="flex items-center space-x-12 font-medium tracking-widest text-[10px] uppercase">
+          <div className="flex items-center space-x-12 font-medium tracking-widest text-xs uppercase">
             <a
               href="https://instagram.com/kitestudios6"
               target="_blank"
@@ -301,15 +301,15 @@ function HomeContent() {
 
           {/* Inquiry / Mail */}
           <div className="text-center md:text-right font-mono">
-            <span className="block text-[8px] tracking-widest uppercase mb-1 opacity-80">
+            <span className="block text-xs tracking-widest uppercase mb-1 opacity-80">
               WORK ENQUIRIES
             </span>
             <button
               onClick={handleCopyEmail}
-              className="font-bold text-neutral-600 dark:text-neutral-300 hover:text-[#ffff00] transition-colors text-[11px] flex items-center justify-center md:justify-end gap-2 uppercase"
+              className="font-bold text-neutral-600 dark:text-neutral-300 hover:text-[#ffff00] transition-colors text-xs flex items-center justify-center md:justify-end gap-2 uppercase"
             >
               TOMY@KITESTUDIOS.NET
-              <span className="text-[8px] bg-neutral-100 dark:bg-neutral-900 text-neutral-500 px-1 py-0.5 border border-neutral-200 dark:border-neutral-800">
+              <span className="text-xs bg-neutral-100 dark:bg-neutral-900 text-neutral-500 px-1 py-0.5 border border-neutral-200 dark:border-neutral-800">
                 {copiedFooter ? "COPIED" : "COPY"}
               </span>
             </button>

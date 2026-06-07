@@ -32,16 +32,8 @@ function MinimalNavContent({
     setMounted(true);
   }, []);
 
-  const activeFilter = (searchParams.get("filter") as "photo" | "video") || "all";
-
-  const getFilterHref = (type: "all" | "photo" | "video") => {
-    const isHomeOrProject = pathname === "/" || pathname.startsWith("/project/");
-    const base = isHomeOrProject ? pathname : "/";
-    if (type === "all") {
-      return base;
-    }
-    return `${base}?filter=${type}`;
-  };
+  // Navigation active state
+  const isHomeOrProject = pathname === "/" || pathname.startsWith("/project/");
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("tomy@kitestudios.net");
@@ -63,28 +55,29 @@ function MinimalNavContent({
 
         {/* Media Type filters and Event Link (Desktop only) */}
         <div className="hidden sm:flex items-center space-x-2">
-          <div className="flex items-center space-x-1 sm:space-x-2 text-[10px] sm:text-xs font-medium tracking-widest uppercase mr-2 sm:mr-4 border-r border-zinc-200 dark:border-zinc-800 pr-2 sm:pr-4">
-            {(["all", "photo", "video"] as const).map((type) => {
-              const label = type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS";
-              const isActive = activeFilter === type;
-              const className = `px-3 py-1.5 transition-all duration-200 ${
-                isActive
+          <div className="flex items-center space-x-1 sm:space-x-2 text-xs font-medium tracking-widest uppercase mr-2 sm:mr-4 border-r border-zinc-200 dark:border-zinc-800 pr-2 sm:pr-4">
+            <Link 
+              href="/" 
+              className={`px-3 py-1.5 transition-all duration-200 ${
+                isHomeOrProject
                   ? "text-black dark:text-white border-b-2 border-black dark:border-white font-semibold"
                   : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
-              }`;
-
-              return (
-                <Link key={type} href={getFilterHref(type)} className={className}>
-                  {label}
-                </Link>
-              );
-            })}
+              }`}
+            >
+              HOME
+            </Link>
           </div>
           <Link
             href="/events"
-            className="text-[10px] sm:text-xs font-medium tracking-widest uppercase text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white transition-colors px-3 py-1.5"
+            className="text-xs font-medium tracking-widest uppercase text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white transition-colors px-3 py-1.5"
           >
             EVENTS
+          </Link>
+          <Link
+            href="/pricing"
+            className="text-xs font-medium tracking-widest uppercase text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white transition-colors px-3 py-1.5"
+          >
+            PRICING
           </Link>
         </div>
 
@@ -93,7 +86,7 @@ function MinimalNavContent({
           {/* Book Now Button */}
           <a
             href="/book"
-            className="px-3.5 py-1.5 border border-black dark:border-white text-[10px] tracking-widest font-mono font-bold text-black hover:bg-black hover:text-white dark:text-white dark:hover:bg-white dark:hover:text-black transition-all uppercase rounded-sm"
+            className="px-3.5 py-1.5 border border-black dark:border-white text-xs tracking-widest font-mono font-bold text-black hover:bg-black hover:text-white dark:text-white dark:hover:bg-white dark:hover:text-black transition-all uppercase rounded-sm"
           >
             Book Now
           </a>
@@ -133,9 +126,16 @@ function MinimalNavContent({
             <div className="px-6 py-8 flex flex-col space-y-6">
               {/* Navigation inside mobile menu */}
               <div className="flex flex-col space-y-3">
-                <span className="text-[8px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
+                <span className="text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
                   Pages
                 </span>
+                <Link
+                  href="/"
+                  onClick={() => setIsOpen(false)}
+                  className="text-left text-lg font-light tracking-[0.15em] uppercase transition-colors text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
+                >
+                  HOME
+                </Link>
                 <Link
                   href="/events"
                   onClick={() => setIsOpen(false)}
@@ -143,38 +143,18 @@ function MinimalNavContent({
                 >
                   EVENTS
                 </Link>
-              </div>
-
-              {/* Media Type filters inside mobile menu */}
-              <div className="flex flex-col space-y-3 pt-4 border-t border-zinc-100 dark:border-zinc-900">
-                <span className="text-[8px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
-                  Select Category
-                </span>
-                {(["all", "photo", "video"] as const).map((type) => {
-                  const label = type === "all" ? "ALL WORK" : type === "photo" ? "PHOTOS" : "VIDEOS";
-                  const isActive = activeFilter === type;
-                  const className = `text-left text-lg font-light tracking-[0.15em] uppercase transition-colors ${
-                    isActive
-                      ? "text-black dark:text-white font-medium"
-                      : "text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
-                  }`;
-
-                  return (
-                    <Link
-                      key={type}
-                      href={getFilterHref(type)}
-                      onClick={() => setIsOpen(false)}
-                      className={className}
-                    >
-                      {label}
-                    </Link>
-                  );
-                })}
+                <Link
+                  href="/pricing"
+                  onClick={() => setIsOpen(false)}
+                  className="text-left text-lg font-light tracking-[0.15em] uppercase transition-colors text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
+                >
+                  PRICING
+                </Link>
               </div>
 
               {/* Action Controls inside mobile menu */}
               <div className="border-t border-zinc-100 dark:border-zinc-900 pt-6 flex flex-col space-y-4">
-                <span className="text-[8px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
+                <span className="text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
                   Work Enquiries
                 </span>
                 
@@ -194,7 +174,7 @@ function MinimalNavContent({
                       setTheme(theme === "dark" ? "light" : "dark");
                       setIsOpen(false);
                     }}
-                    className="flex items-center space-x-3 text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors text-[10px] tracking-widest uppercase font-mono pt-2"
+                    className="flex items-center space-x-3 text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors text-xs tracking-widest uppercase font-mono pt-2"
                   >
                     {theme === "dark" ? (
                       <>
@@ -217,8 +197,8 @@ function MinimalNavContent({
 
       {/* Brand/Client/Project Scrollable Pill Filter Bar */}
       {projects && projectFilter && (
-        <div className="border-t border-zinc-100 dark:border-zinc-900 py-2.5 bg-zinc-50/50 dark:bg-neutral-950/20 overflow-x-auto scrollbar-none scroll-smooth">
-          <div className="container mx-auto px-4 sm:px-6 max-w-7xl flex items-center space-x-2.5 text-[9px] tracking-[0.15em] uppercase font-mono justify-start md:justify-center overflow-x-auto scrollbar-none">
+        <div className="border-t border-zinc-100 dark:border-zinc-900 py-2.5 bg-zinc-50/55 dark:bg-neutral-950/20 overflow-x-auto scrollbar-none scroll-smooth">
+          <div className="container mx-auto px-4 sm:px-6 max-w-7xl flex items-center space-x-2.5 text-xs tracking-[0.15em] uppercase font-mono justify-start md:justify-center overflow-x-auto scrollbar-none">
             <Link
               href="/"
               className={`px-3 py-1 border transition-all duration-300 ${

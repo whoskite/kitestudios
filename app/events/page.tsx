@@ -42,7 +42,7 @@ export default async function EventsPage() {
         <div className="mb-16">
           <Link
             href="/"
-            className="text-[10px] font-mono tracking-widest text-zinc-400 hover:text-black dark:hover:text-white uppercase transition-colors"
+            className="text-xs font-mono tracking-widest text-zinc-400 hover:text-black dark:hover:text-white uppercase transition-colors"
           >
             ← Back Home
           </Link>
@@ -93,7 +93,7 @@ export default async function EventsPage() {
                     </h2>
                   </div>
                   
-                  <div className="flex flex-col space-y-1 text-[10px] font-mono tracking-widest uppercase text-zinc-500">
+                  <div className="flex flex-col space-y-1 text-xs font-mono tracking-widest uppercase text-zinc-500">
                     <span>{new Date(event.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
                     {event.location && <span>{event.location}</span>}
                   </div>
@@ -110,12 +110,12 @@ export default async function EventsPage() {
             <span className="font-light tracking-[0.2em] text-neutral-800 dark:text-neutral-200 uppercase block mb-1">
               KITESTUDIOS
             </span>
-            <span className="text-[10px] tracking-wider font-mono uppercase font-light">
-              © 2026 TOMY KITE • PORTFOLIO
+            <span className="text-xs tracking-wider font-mono uppercase font-light">
+              © 2026 KITESTUDIOS • PORTFOLIO
             </span>
           </div>
 
-          <div className="flex items-center space-x-12 font-medium tracking-widest text-[10px] uppercase">
+          <div className="flex items-center space-x-12 font-medium tracking-widest text-xs uppercase">
             <a
               href="https://instagram.com/kitestudios6"
               target="_blank"

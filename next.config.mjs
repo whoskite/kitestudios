@@ -31,9 +31,9 @@ const nextConfig = {
     ],
   },
   experimental: {
-    webpackBuildWorker: true,
-    parallelServerBuildTraces: true,
-    parallelServerCompiles: true,
+    // webpackBuildWorker: true,
+    // parallelServerBuildTraces: true,
+    // parallelServerCompiles: true,
   },
   webpack: (config) => {
     config.resolve.alias = {

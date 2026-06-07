@@ -1,0 +1,937 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Camera,
+  Video,
+  Users,
+  Zap,
+  CheckCircle2,
+  Sliders,
+  DollarSign,
+  Plus,
+  Minus,
+  Sparkles,
+  HelpCircle,
+  FileText,
+  ChevronDown,
+  ArrowRight,
+  Package,
+  MessageCircle,
+  CalendarCheck,
+  Send
+} from "lucide-react";
+import MinimalNav from "@/components/MinimalNav";
+import Link from "next/link";
+
+// Type definitions for packages
+interface PackageTier {
+  id: string;
+  name: string;
+  price: string;
+  minPrice: number;
+  maxPrice: number;
+  includes: string;
+  bestFor: string;
+  deliverables: string[];
+  recommended?: boolean;
+}
+
+interface AddOnOption {
+  id: string;
+  name: string;
+  price: string;
+  cost: number;
+  description: string;
+}
+
+export default function PricingPage() {
+  const [activeNiche, setActiveNiche] = useState<"events" | "music-videos">("events");
+  const [selectedTier, setSelectedTier] = useState<string>("events-tier3");
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+
+  // Event Tiers
+  const eventTiers: PackageTier[] = [
+    {
+      id: "events-tier0",
+      name: "Tier 0 — Social Session",
+      price: "$200 (1hr)",
+      minPrice: 200,
+      maxPrice: 200,
+      includes: "Photo OR video, 1 operator, light session setup",
+      bestFor: "Quick social updates, headshots, or short event highlights",
+      deliverables: ["1 Hr Coverage", "Photo OR video", "10-15 edited deliverables", "48-hour turnaround", "1 revision round", "High-res digital delivery"]
+    },
+    {
+      id: "events-tier1",
+      name: "Tier 1 — Solo Photo",
+      price: "$450 (2hr) / $600 (4hr)",
+      minPrice: 450,
+      maxPrice: 600,
+      includes: "Photo only, 1 operator, dedicated photo setup",
+      bestFor: "Events where the client only needs photos — intimate gatherings, portraits, small events",
+      deliverables: ["2-4 Hrs Coverage", "Full edited photo gallery", "Professional color correction", "High-res digital delivery", "Commercial usage rights", "2 revision rounds"]
+    },
+    {
+      id: "events-tier2",
+      name: "Tier 2 — Solo Video",
+      price: "$600 (2hr) / $750 (4hr)",
+      minPrice: 600,
+      maxPrice: 750,
+      includes: "Video only, 1 operator, cinematic video setup",
+      bestFor: "Ceremonies, performances, single-angle recordings, short product highlights",
+      deliverables: ["2-4 Hrs Coverage", "Single-angle edited video coverage", "DaVinci Resolve edit & color grade", "Audio mix with ambient/lav mic", "Final export in 4K/1080p", "2 revision rounds"]
+    },
+    {
+      id: "events-tier3",
+      name: "Tier 3 — Dual Coverage",
+      price: "$900 (5hr) / $1,200 (7hr)",
+      minPrice: 900,
+      maxPrice: 1200,
+      includes: "Photo + Video, 2 operators, multi-angle coverage",
+      bestFor: "Medium events, ceremonies, receptions — anything with simultaneous key moments",
+      deliverables: ["5-7 Hrs Coverage", "Full edited photo gallery (retouched)", "Branded Watermark Gallery Images", "Multi-angle edited video wrap-up", "B-roll package from 2nd angle", "Professional audio syncing & design", "2 revision rounds"],
+      recommended: true
+    },
+    {
+      id: "events-tier4",
+      name: "Tier 4 — Premium Coverage",
+      price: "$1,400 (8hr) / $2,000 (10hr)",
+      minPrice: 1400,
+      maxPrice: 2000,
+      includes: "2 operators, photo + video, multi-location / complex event setup",
+      bestFor: "Weddings, quinceañeras, corporate events, festivals, multi-location setups",
+      deliverables: [
+        "8-10+ Hrs Coverage",
+        "Full photo sets from both shooters (retouched)",
+        "Branded Watermark Gallery Images",
+        "Cinematic multi-angle video edit (4K)",
+        "Full secondary location coverage",
+        "Behind-the-scenes social media package",
+        "Cinematic drone/aerial footage (if available)",
+        "Same-day or next-day highlight reel",
+        "Raw footage delivery",
+        "Custom branded intro/outro for video",
+        "3 revision rounds"
+      ]
+    }
+  ];
+
+  // Music Video Tiers
+  const musicVideoTiers: PackageTier[] = [
+    {
+      id: "mv-tier0",
+      name: "Tier 0 — Social Visual",
+      price: "$200 (1hr)",
+      minPrice: 200,
+      maxPrice: 200,
+      includes: "1-hour shoot, 1 vertical video, 10 promo still frames",
+      bestFor: "Quick social promo drops, TikToks, and Reels",
+      deliverables: ["1 Hr Coverage", "1 vertical video", "10 promo still frames", "3-day turnaround", "1 revision round"]
+    },
+    {
+      id: "mv-tier1",
+      name: "Tier 1 — Visualizer / Lyric Video",
+      price: "$500 (4hr)",
+      minPrice: 500,
+      maxPrice: 500,
+      includes: "Single location, basic editing, simple effects & transitions",
+      bestFor: "Independent rappers releasing singles, low-budget promo, Spotify visualizers",
+      deliverables: ["2-4 Hrs Coverage", "1 final visualizer video (1080p or 4K)", "1 revision round", "DaVinci Resolve color grading", "Fast turnaround (5-7 business days)"]
+    },
+    {
+      id: "mv-tier2",
+      name: "Tier 2 — Standard Music Video",
+      price: "$1,000 (4hr)",
+      minPrice: 1000,
+      maxPrice: 1000,
+      includes: "1-2 locations, 3-4 hour shoot, full editing, color grading, basic VFX/transitions, B-roll",
+      bestFor: "The complete single-release package",
+      deliverables: ["3-4 Hrs Coverage", "1 final music video (4K)", "2 revision rounds", "Behind-the-scenes clip (30-60 sec) for socials", "Custom color grading & pacing", "Turnaround: 7-14 business days"],
+      recommended: true
+    },
+    {
+      id: "mv-tier3",
+      name: "Tier 3 — Premium Music Video",
+      price: "$2,500 (8hr)",
+      minPrice: 2500,
+      maxPrice: 2500,
+      includes: "2-3 locations, full day shoot (6-8 hours), 2 operators, full editing suite, advanced VFX & color grading",
+      bestFor: "Established artists, label-backed releases, artists who want a complete visual campaign",
+      deliverables: ["Creative call, mood board, shot list, location scouting", "6-8 Hrs Coverage", "1 final music video (4K)", "3 revision rounds", "Behind-the-scenes mini-doc (2-3 min)", "3-5 social media clips (Reels/TikTok)", "10 promo still frames", "Turnaround: 14-21 business days"]
+    },
+    {
+      id: "mv-tier4",
+      name: "Tier 4 — Visual Campaign",
+      price: "$5,000 (2 vids) / $7,000 (3 vids)",
+      minPrice: 5000,
+      maxPrice: 7000,
+      includes: "2-3 music videos shot across 1-2 days, full editing suite, extensive social media cutdowns, full promo pack",
+      bestFor: "Artists releasing an EP or album who want a unified visual identity",
+      deliverables: ["Full pre-production: mood boards, shot lists, location scouting", "1-2 Days Coverage (Up to 16 Hrs)", "2-3 final music videos (4K)", "All social media cutdowns & promos", "Full BTS documentary content", "Dedicated promo photography sets", "Priority turnaround (21-30 business days)"]
+    }
+  ];
+
+  // Add-ons
+  const addOns: AddOnOption[] = [
+    { id: "rush", name: "Rush Delivery (48hr)", price: "+$250", cost: 250, description: "Accelerated editing and review queues (guaranteed export under 48 hours)" },
+    { id: "bts", name: "BTS Mini-Documentary", price: "+$300", cost: 300, description: "A cinematic 2-3 minute behind-the-scenes mini-doc for socials/YouTube" },
+    { id: "socials", name: "Social Media Cutdowns", price: "+$200", cost: 200, description: "3-5 highly engaging vertical crops (9:16) optimized for TikTok/Reels" },
+    { id: "stills", name: "Promo Still Frames", price: "+$150", cost: 150, description: "10-20 professional high-res photos / color-graded stills for release promo" },
+    { id: "shootday", name: "Additional Shoot Day", price: "+$400", cost: 400, description: "Add a second filming block (up to 4 hours) on a separate date" },
+    { id: "drone", name: "Cinematic Drone Footage", price: "+$300", cost: 300, description: "Stunning 4K aerial visuals shot by a licensed drone operator" },
+    { id: "graphics", name: "Custom Motion Graphics", price: "+$200", cost: 200, description: "Custom intro title card, 3D track animation, or personalized lyric overlays" }
+  ];
+
+  // Toggle add-on selection
+  const toggleAddOn = (id: string) => {
+    if (selectedAddOns.includes(id)) {
+      setSelectedAddOns(selectedAddOns.filter((item) => item !== id));
+    } else {
+      setSelectedAddOns([...selectedAddOns, id]);
+    }
+  };
+
+  // Reset selected tier when niche changes
+  useEffect(() => {
+    if (activeNiche === "events") {
+      setSelectedTier("events-tier3");
+    } else {
+      setSelectedTier("mv-tier2");
+    }
+    setSelectedAddOns([]);
+  }, [activeNiche]);
+
+  // Calculate current range
+  const currentTierData = [...eventTiers, ...musicVideoTiers].find((t) => t.id === selectedTier);
+  const baseMin = currentTierData?.minPrice || 0;
+  const baseMax = currentTierData?.maxPrice || 0;
+  const addOnsCost = selectedAddOns.reduce((total, id) => {
+    const addon = addOns.find((a) => a.id === id);
+    return total + (addon ? addon.cost : 0);
+  }, 0);
+
+  const finalMin = baseMin + addOnsCost;
+  const finalMax = baseMax + addOnsCost;
+
+  // Generate query parameters for the booking page link
+  const getBookingUrl = () => {
+    if (!currentTierData) return "/book";
+    const tierName = currentTierData.name.split(" — ").pop() || currentTierData.name;
+    const addonsNames = selectedAddOns
+      .map((id) => addOns.find((a) => a.id === id)?.name)
+      .filter(Boolean)
+      .join(", ");
+    const rangeText = finalMin === finalMax ? `$${finalMin}` : `$${finalMin} – $${finalMax}`;
+    
+    return `/book?tier=${encodeURIComponent(tierName)}&addons=${encodeURIComponent(addonsNames || "None")}&estimate=${encodeURIComponent(rangeText)}`;
+  };
+
+  // FAQs
+  const faqs = [
+    {
+      q: "Why is shooting photo AND video solo nearly impossible?",
+      a: "Constantly switching between photo and video settings on a camera causes you to miss critical, spontaneous moments. To deliver both mediums at a professional level, we bring a second camera operator. This ensures one person is dedicated to capturing photos and the other to motion video, without compromising quality."
+    },
+    {
+      q: "Who handles the editing and creative direction?",
+      a: "Our lead creative director handles the creative direction, final color grading, and edit selects. Your video and photo edits are the final product and represent the core brand. Second operators capture supplementary angles and handle file organization, culling, or syncing, but the final aesthetic remains strictly our lead's vision."
+    },
+    {
+      q: "What equipment is used for shoots?",
+      a: "For video work, we shoot on professional mirrorless full-frame cameras for cinematic high dynamic range, color-graded natively inside DaVinci Resolve. For photo work, we use professional high-resolution camera bodies with fast prime and zoom lenses, processed in Capture One to deliver high-quality digital files and retouched prints."
+    },
+    {
+      q: "How do revision rounds work?",
+      a: "Each package includes a set number of revision rounds. Once a draft is delivered, you can compile a list of feedback (cuts, color adjustments, pacing). We apply these changes and present the final version. Additional revisions outside the package scope can be added for $50/round. A revision round is a single set of consolidated feedback — not per-image or per-clip changes."
+    },
+    {
+      q: "Do you offer custom pricing for unique projects?",
+      a: "Absolutely. If you have an album campaign, a multi-day tour, or a unique corporate event, get in touch via the Book Now form. We will hop on a creative planning call and construct a custom budget proposal tailored specifically to your needs."
+    }
+  ];
+
+  // JSON-LD Schemas for SEO
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Professional Photography and Videography",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "KITESTUDIOS",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Long Beach",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      }
+    },
+    "areaServed": ["Long Beach", "Los Angeles County"],
+    "offers": [...eventTiers, ...musicVideoTiers].map((tier) => ({
+      "@type": "Offer",
+      "name": tier.name,
+      "description": tier.includes,
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "minPrice": tier.minPrice,
+        "maxPrice": tier.maxPrice,
+        "priceCurrency": "USD"
+      }
+    }))
+  };
+
+  return (
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
+      <MinimalNav />
+
+      {/* Decorative background blurs */}
+      <div className="absolute top-[-10%] left-[-5%] w-[40%] aspect-square rounded-full bg-neutral-100/40 dark:bg-zinc-950/10 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[-5%] w-[40%] aspect-square rounded-full bg-neutral-100/40 dark:bg-zinc-950/10 blur-[120px] pointer-events-none" />
+
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-12 sm:py-24 max-w-7xl relative z-10">
+        {/* Inject JSON-LD */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+        
+        {/* Header section */}
+        <div className="mb-16 text-center sm:text-left">
+          <Link
+            href="/"
+            className="text-xs font-mono tracking-widest text-zinc-400 hover:text-black dark:hover:text-white uppercase transition-colors"
+          >
+            ← Back Home
+          </Link>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mt-6">
+            <div>
+              <h1 className="text-4xl sm:text-5xl font-light tracking-[0.1em] uppercase mb-4">
+                Service Packages
+              </h1>
+              <p className="text-sm font-mono text-black dark:text-white tracking-wider mb-2">
+                Based in Long Beach, Serving LA County.
+              </p>
+              <p className="text-xs font-mono text-zinc-500 dark:text-zinc-400 tracking-widest max-w-xl uppercase leading-relaxed">
+                10 Years Behind the Lens. Professional photo and cinematic motion packages designed for impact.
+              </p>
+            </div>
+            
+            {/* Niche switcher tabs */}
+            <div className="flex bg-zinc-100 dark:bg-zinc-900/50 p-1 rounded-sm border border-zinc-200/50 dark:border-zinc-800/50 self-center sm:self-end">
+              <button
+                onClick={() => setActiveNiche("events")}
+                className={`relative px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                  activeNiche === "events"
+                    ? "text-black dark:text-white font-bold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {activeNiche === "events" && (
+                  <motion.div
+                    layoutId="activeNicheTab"
+                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <Camera className="h-3 w-3" /> Event Production
+                </span>
+              </button>
+              <button
+                onClick={() => setActiveNiche("music-videos")}
+                className={`relative px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                  activeNiche === "music-videos"
+                    ? "text-black dark:text-white font-bold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {activeNiche === "music-videos" && (
+                  <motion.div
+                    layoutId="activeNicheTab"
+                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <Video className="h-3 w-3" /> Music Production
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Niche specific packaging grids */}
+        <div className="mb-20">
+          <h2 className="sr-only">Pricing Tiers</h2>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeNiche}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.4 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
+              {(activeNiche === "events" ? eventTiers : musicVideoTiers).map((tier) => {
+                const isSelected = selectedTier === tier.id;
+                return (
+                  <div
+                    key={tier.id}
+                    onClick={() => setSelectedTier(tier.id)}
+                    className={`group relative flex flex-col justify-between p-6 border transition-all duration-300 cursor-pointer ${
+                      isSelected
+                        ? "bg-black text-white dark:bg-white dark:text-black border-black dark:border-white shadow-lg scale-[1.01]"
+                        : "bg-white dark:bg-black hover:bg-neutral-50/50 dark:hover:bg-zinc-950/30 border-neutral-100 dark:border-zinc-900/60 hover:border-zinc-400 dark:hover:border-zinc-650"
+                    }`}
+                  >
+                    {/* Recommended Banner */}
+                    {tier.recommended && (
+                      <span className={`absolute -top-3 left-4 px-2 py-0.5 text-[10px] font-mono tracking-widest uppercase font-bold rounded-sm border flex items-center gap-1 ${
+                        isSelected 
+                          ? "bg-zinc-200 text-black dark:bg-zinc-800 dark:text-white border-zinc-350 dark:border-zinc-700" 
+                          : "bg-black text-white dark:bg-white dark:text-black border-neutral-200 dark:border-zinc-800"
+                      }`}>
+                        ★ MOST POPULAR
+                      </span>
+                    )}
+
+                    <div>
+                      {/* Tier Name */}
+                      <span className={`block text-xs font-mono tracking-widest uppercase mb-1.5 ${
+                        isSelected ? "text-neutral-450 dark:text-neutral-500" : "text-neutral-500"
+                      }`}>
+                        {activeNiche === "events" ? "EVENT COVERAGE" : "MUSIC PRODUCTION"}
+                      </span>
+                      <h3 className="text-lg font-light tracking-wide uppercase mb-3">
+                        {tier.name.split(" — ").pop() || tier.name}
+                      </h3>
+                      
+                      {/* Price tag */}
+                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-6">
+                        {tier.price.includes(" / ") ? (
+                          tier.price.split(" / ").map((p, idx) => (
+                            <div key={idx} className="flex items-baseline gap-1">
+                              {idx > 0 && (
+                                <span className={`text-xs font-mono uppercase tracking-widest mr-1.5 ${
+                                  isSelected ? "text-zinc-400 dark:text-zinc-500" : "text-zinc-550 dark:text-zinc-400"
+                                }`}>
+                                  /
+                                </span>
+                              )}
+                              <span className="text-2xl font-light font-mono tracking-tighter">
+                                {p.split(" ")[0]}
+                              </span>
+                              <span className={`text-[10px] font-mono uppercase tracking-wider ${
+                                isSelected ? "text-zinc-400 dark:text-zinc-500" : "text-zinc-550 dark:text-zinc-400"
+                              }`}>
+                                {p.split(" ").slice(1).join(" ")}
+                              </span>
+                            </div>
+                          ))
+                        ) : (
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-3xl font-light font-mono tracking-tighter">
+                              {tier.price.split(" ")[0]}
+                            </span>
+                            <span className={`text-xs font-mono uppercase tracking-widest ${
+                              isSelected ? "text-zinc-400 dark:text-zinc-500" : "text-zinc-550 dark:text-zinc-400"
+                            }`}>
+                              {tier.price.split(" ").slice(1).join(" ")}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Small descriptions */}
+                      <p className={`text-sm font-light leading-relaxed mb-6 border-b pb-6 ${
+                        isSelected ? "border-neutral-800 dark:border-neutral-200 text-neutral-300 dark:text-neutral-750" : "border-neutral-100 dark:border-zinc-900/60 text-zinc-500"
+                      }`}>
+                        {tier.includes}
+                      </p>
+
+                      {/* Deliverables list */}
+                      <div className="space-y-3 mb-8">
+                        <span className={`block text-xs font-mono tracking-widest uppercase ${
+                          isSelected ? "text-neutral-400" : "text-neutral-500"
+                        }`}>
+                          DELIVERABLES:
+                        </span>
+                        <ul className="space-y-2">
+                          {tier.deliverables.map((item, idx) => (
+                            <li key={idx} className="flex items-start gap-2 text-sm leading-relaxed font-light">
+                              <CheckCircle2 className={`h-3.5 w-3.5 shrink-0 mt-0.5 ${
+                                isSelected ? "text-white dark:text-black" : "text-zinc-400 dark:text-zinc-600"
+                              }`} />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Selector Status */}
+                    <div className="pt-4 mt-auto">
+                      <div className={`w-full py-2 border text-center text-xs font-mono tracking-widest uppercase rounded-sm transition-colors duration-300 ${
+                        isSelected
+                          ? "bg-white text-black dark:bg-black dark:text-white border-white dark:border-black font-bold"
+                          : "bg-transparent text-zinc-500 hover:text-black dark:hover:text-white border-zinc-200 dark:border-zinc-850"
+                      }`}>
+                        {isSelected ? "[ SELECTED ]" : "SELECT TIER"}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Revision Policy Note */}
+        <div className="mt-8 mb-16 text-center">
+          <p className="text-xs font-mono tracking-widest text-zinc-555 dark:text-zinc-450 max-w-3xl mx-auto leading-relaxed border border-dashed border-zinc-200 dark:border-zinc-800/80 p-4 rounded-sm">
+            [ POLICY ] 2 revision rounds included. Additional revisions at $50/round. A &apos;revision round&apos; is a single set of consolidated feedback — not per-image or per-clip changes.
+          </p>
+        </div>
+
+        {/* Interactive Price Estimator Section (WOW Element) */}
+        <div className="mb-20 border border-black dark:border-white p-8 relative overflow-hidden bg-neutral-50/30 dark:bg-zinc-950/5">
+          <div className="absolute top-0 right-0 p-4 font-mono text-xs text-zinc-400 tracking-widest uppercase select-none">
+            [ ESTIMATOR v1.0 ]
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-7">
+              <span className="text-xs font-mono tracking-widest uppercase text-zinc-400">
+                CUSTOM PROJECT CALCULATOR
+              </span>
+              <h2 className="text-3xl font-light tracking-wide uppercase mt-2 mb-6">
+                Estimate Your Production
+              </h2>
+              
+              {/* Selected Base tier summary info */}
+              <div className="p-4 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/80 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                  <span className="text-xs font-mono tracking-widest uppercase text-zinc-550 block">
+                    Selected Base Package
+                  </span>
+                  <span className="text-xs uppercase tracking-wider font-semibold">
+                    {currentTierData?.name.split(" — ").pop() || currentTierData?.name}
+                  </span>
+                </div>
+                <div className="font-mono text-xs font-semibold px-2.5 py-1 bg-black text-white dark:bg-white dark:text-black uppercase">
+                  Base: {currentTierData?.price}
+                </div>
+              </div>
+
+              {/* Addons toggles */}
+              <div className="space-y-4">
+                <span className="block text-xs font-mono tracking-widest uppercase text-zinc-400 dark:text-zinc-555">
+                  Select Project Add-ons:
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {addOns.map((addon) => {
+                    const isChecked = selectedAddOns.includes(addon.id);
+                    return (
+                      <div
+                        key={addon.id}
+                        onClick={() => toggleAddOn(addon.id)}
+                        className={`p-3.5 border transition-all duration-200 cursor-pointer flex justify-between items-start gap-4 rounded-sm ${
+                          isChecked
+                            ? "bg-black text-white dark:bg-white dark:text-black border-black dark:border-white shadow-sm"
+                            : "bg-white dark:bg-black border-zinc-100 dark:border-zinc-900/80 hover:border-zinc-400 dark:hover:border-zinc-650"
+                        }`}
+                      >
+                        <div>
+                          <span className="block text-sm font-semibold uppercase tracking-wider">
+                            {addon.name}
+                          </span>
+                          <span className={`block text-xs mt-0.5 leading-relaxed font-light ${
+                            isChecked ? "text-neutral-300 dark:text-neutral-600" : "text-zinc-400"
+                          }`}>
+                            {addon.description}
+                          </span>
+                        </div>
+                        <span className="text-xs font-mono font-semibold shrink-0">
+                          {addon.price}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Total display panel */}
+            <div className="lg:col-span-5 h-full flex flex-col justify-between p-6 bg-black text-white dark:bg-white dark:text-black border border-black dark:border-white h-full">
+              <div>
+                <span className="text-xs font-mono tracking-widest uppercase text-neutral-400 dark:text-neutral-500 block mb-2">
+                  ESTIMATED INVESTMENT RANGE
+                </span>
+                
+                {/* Simulated price range gauge */}
+                <div className="mb-8 mt-4">
+                  <div className="flex justify-between items-baseline mb-2">
+                    <span className="text-xs font-mono tracking-widest uppercase opacity-75">
+                      Total Range
+                    </span>
+                    <span className="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">
+                      Est. Range
+                    </span>
+                  </div>
+                  <div className="text-4xl sm:text-5xl font-mono tracking-tighter flex items-center font-bold">
+                    ${finalMin}
+                    {finalMin !== finalMax && (
+                      <>
+                        <span className="text-lg font-light tracking-normal mx-2 opacity-50 font-sans">to</span>
+                        ${finalMax}
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Selected Checklist Details summary */}
+                <div className="space-y-4 border-t border-neutral-800 dark:border-neutral-200 pt-6">
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="opacity-70">Base Package Cost</span>
+                    <span className="font-mono">{currentTierData?.price}</span>
+                  </div>
+                  {selectedAddOns.length > 0 && (
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center text-xs uppercase font-mono tracking-wider opacity-60">
+                        <span>Selected Add-ons</span>
+                        <span>{selectedAddOns.length} added</span>
+                      </div>
+                      <div className="max-h-28 overflow-y-auto pr-1 space-y-1 scrollbar-thin scrollbar-thumb-zinc-700">
+                        {selectedAddOns.map((id) => {
+                          const addOnItem = addOns.find((a) => a.id === id);
+                          return (
+                            <div key={id} className="flex justify-between items-center text-xs opacity-75">
+                              <span className="truncate pr-2">• {addOnItem?.name}</span>
+                              <span className="font-mono font-medium">{addOnItem?.price}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div className="flex justify-between items-center text-xs border-t border-neutral-900/60 dark:border-neutral-100/60 pt-2 font-mono">
+                        <span>Total Add-ons</span>
+                        <span>+${addOnsCost}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Book now trigger */}
+              <div className="mt-12">
+                <p className="text-xs font-mono tracking-widest uppercase opacity-65 mb-4 leading-normal">
+                  All range figures serve as initial budgeting estimates. Final scope parameters will be aligned during the setup briefing.
+                </p>
+                <Link
+                  href={getBookingUrl()}
+                  className="w-full py-3 bg-[#ffff00] text-black font-mono text-xs font-bold tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-black dark:hover:text-white hover:border border-white dark:border-black transition-all flex items-center justify-center gap-2 rounded-sm"
+                >
+                  Book Session Inquiry <ArrowRight className="h-4.5 w-4.5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Production Process Panel */}
+        <div className="mb-20 relative">
+          <div className="text-center mb-12">
+            <span className="text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
+              PRODUCTION PROCESS
+            </span>
+            <h2 className="text-3xl font-light tracking-wide uppercase mt-2">
+              How It Works
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
+            {/* Horizontal connector line (desktop only) */}
+            <div className="hidden md:block absolute top-10 left-[calc(12.5%+16px)] right-[calc(12.5%+16px)] h-px bg-gradient-to-r from-zinc-200 via-zinc-300 to-zinc-200 dark:from-zinc-800 dark:via-zinc-700 dark:to-zinc-800" />
+
+            {[
+              {
+                num: "01",
+                icon: <Package className="h-4 w-4" />,
+                title: "Pick Package",
+                desc: "Browse our tiers above and select the package that fits your project scope and budget."
+              },
+              {
+                num: "02",
+                icon: <MessageCircle className="h-4 w-4" />,
+                title: "Reach Out",
+                desc: "Send us a DM or email with your date & vision. We'll get back to you within 24 hours."
+              },
+              {
+                num: "03",
+                icon: <CalendarCheck className="h-4 w-4" />,
+                title: "Secure Date",
+                desc: "We'll send a proposal + secure your date with a signed agreement and 50% deposit."
+              },
+              {
+                num: "04",
+                icon: <Send className="h-4 w-4" />,
+                title: "We Deliver",
+                desc: "We show up, capture everything, edit to perfection, and deliver your final assets."
+              }
+            ].map((step, idx) => (
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.12 }}
+                className="group relative flex flex-col items-center text-center px-6 py-8"
+              >
+                {/* Step number circle */}
+                <div className="relative z-10 w-20 h-20 rounded-full border-2 border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black flex flex-col items-center justify-center mb-6 group-hover:border-black dark:group-hover:border-white group-hover:shadow-lg transition-all duration-300">
+                  <span className="text-[10px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase leading-none mb-0.5">
+                    STEP
+                  </span>
+                  <span className="text-xl font-mono font-light tracking-tight leading-none">
+                    {step.num}
+                  </span>
+                </div>
+
+                {/* Icon pill */}
+                <div className="mb-3 p-2 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/60 text-zinc-500 dark:text-zinc-400 group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black transition-all duration-300">
+                  {step.icon}
+                </div>
+
+                <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 font-light leading-relaxed max-w-[200px]">
+                  {step.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Why KITESTUDIOS? Section */}
+        <div className="mb-20">
+          <div className="text-center sm:text-left mb-8">
+            <span className="text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
+              ABOUT US
+            </span>
+            <h2 className="text-3xl font-light tracking-wide uppercase mt-2">
+              Why KITESTUDIOS?
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-6 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 rounded-sm">
+              <span className="text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500 block mb-3">
+                [ 01 / EXPERIENCE ]
+              </span>
+              <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">10 Years Behind the Lens</h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-light">
+                Over a decade of visual storytelling. Professional photo and cinematic motion packages designed specifically for premium impact.
+              </p>
+            </div>
+            
+            <div className="p-6 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 rounded-sm">
+              <span className="text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500 block mb-3">
+                [ 02 / STANDARDS ]
+              </span>
+              <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">Professional Standards</h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-light">
+                All video projects are shot on professional full-frame cinema setups and color-graded in DaVinci Resolve. Photos are processed using industry-standard Capture One.
+              </p>
+            </div>
+            
+            <div className="p-6 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 rounded-sm">
+              <span className="text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500 block mb-3">
+                [ 03 / DELIVERY ]
+              </span>
+              <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">Fast Turnaround</h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-450 leading-relaxed font-light">
+                No endless waiting. We commit to prompt delivery timelines with clear schedules and streamlined online proofing galleries.
+              </p>
+            </div>
+            
+            <div className="p-6 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 rounded-sm">
+              <span className="text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500 block mb-3">
+                [ 04 / LICENSING ]
+              </span>
+              <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">Commercial Rights</h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-455 leading-relaxed font-light">
+                Every standard tier includes commercial usage rights. Use your high-resolution visual deliverables across all website, print, and social campaigns.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonials Section */}
+        <div className="mb-20 border-t border-neutral-100 dark:border-zinc-900/60 pt-16">
+          <div className="text-center mb-12">
+            <span className="text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
+              TESTIMONIALS
+            </span>
+            <h2 className="text-3xl font-light tracking-wide uppercase mt-2">
+              What Clients Say
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Testimonial 1 */}
+            <div className="p-6 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 flex flex-col justify-between">
+              <p className="text-sm font-light italic leading-relaxed text-zinc-650 dark:text-zinc-300 mb-6">
+                "KITESTUDIOS absolutely crushed our event coverage. The dual photo and video team was invisible on set but captured every single key moment with styling that felt cinematic and premium. The final assets completely elevated our branding."
+              </p>
+              <div>
+                <span className="block text-xs font-mono tracking-widest uppercase font-bold">
+                  DJ TJ
+                </span>
+                <span className="block text-[10px] font-mono tracking-widest uppercase text-zinc-400 mt-0.5">
+                  Artist & Producer
+                </span>
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="p-6 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 flex flex-col justify-between">
+              <p className="text-sm font-light italic leading-relaxed text-zinc-650 dark:text-zinc-350 mb-6">
+                "Tomy's eye for lighting and direction is unmatched. We shot a music video standard package and the color grading alone looked like a high-budget indie film. Professional, structured revision process, and super fast delivery."
+              </p>
+              <div>
+                <span className="block text-xs font-mono tracking-widest uppercase font-bold">
+                  Tony
+                </span>
+                <span className="block text-[10px] font-mono tracking-widest uppercase text-zinc-400 mt-0.5">
+                  Creative Lead, Sound & Motion
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQs Accordion */}
+        <div className="max-w-3xl mx-auto mb-20">
+          <div className="text-center mb-10">
+            <span className="text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
+              FAQ
+            </span>
+            <h2 className="text-3xl font-light tracking-wide uppercase mt-2">
+              Common Questions
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => {
+              const isExpanded = expandedFaq === idx;
+              return (
+                <div
+                  key={idx}
+                  className="border-b border-neutral-100 dark:border-zinc-900/60 pb-4 transition-all duration-300"
+                >
+                  <button
+                    onClick={() => setExpandedFaq(isExpanded ? null : idx)}
+                    className="w-full flex justify-between items-center text-left py-2 font-medium hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
+                  >
+                    <span className="text-sm uppercase tracking-wider font-light">
+                      {faq.q}
+                    </span>
+                    <ChevronDown className={`h-4.5 w-4.5 text-zinc-400 shrink-0 transform transition-transform duration-350 ease-out ${
+                      isExpanded ? "rotate-180 text-black dark:text-white" : ""
+                    }`} />
+                  </button>
+                  
+                  <AnimatePresence initial={false}>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 font-light mt-2 pr-6">
+                          {faq.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Final CTA Area */}
+        <div className="text-center py-12 border-t border-neutral-100 dark:border-neutral-900/60 max-w-xl mx-auto">
+          <span className="text-xs font-mono tracking-widest text-zinc-550 dark:text-zinc-450 border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded-sm uppercase font-bold mb-4 inline-block">
+            READY TO COMMENCE
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-light tracking-wide uppercase mb-4">
+            Lock In Your Shoot Date
+          </h2>
+          <p className="text-sm text-zinc-500 leading-relaxed max-w-sm mx-auto mb-8 font-light">
+            We book up to 2-3 months in advance. Reach out with your references, date ranges, and chosen packages to get started.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              href={getBookingUrl()}
+              className="px-6 py-2.5 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-100 border border-black dark:border-white transition-all text-xs font-mono font-bold tracking-widest uppercase rounded-sm"
+            >
+              [ BOOK A SESSION ]
+            </Link>
+            <a
+              href="mailto:tomy@kitestudios.net"
+              className="px-6 py-2.5 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900 border border-zinc-200 dark:border-zinc-800 text-xs font-mono tracking-widest uppercase rounded-sm"
+            >
+              Email Enquiries
+            </a>
+          </div>
+        </div>
+      </main>
+
+      <footer className="w-full border-t border-neutral-100 dark:border-neutral-900 py-16 bg-transparent">
+        <div className="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8 text-neutral-400 dark:text-neutral-500 text-xs">
+          <div className="text-center md:text-left">
+            <span className="font-light tracking-[0.2em] text-neutral-800 dark:text-neutral-200 uppercase block mb-1">
+              KITESTUDIOS
+            </span>
+            <span className="text-xs tracking-wider font-mono uppercase font-light">
+              © 2026 KITESTUDIOS • PORTFOLIO
+            </span>
+          </div>
+
+          <div className="flex items-center space-x-12 font-medium tracking-widest text-xs uppercase">
+            <a
+              href="https://instagram.com/kitestudios6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-black dark:hover:text-white transition-colors"
+            >
+              INSTAGRAM
+            </a>
+            <a
+              href="mailto:tomy@kitestudios.net"
+              className="hover:text-black dark:hover:text-white transition-colors"
+            >
+              EMAIL
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
