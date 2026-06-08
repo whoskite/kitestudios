@@ -71,7 +71,7 @@ function MinimalNavContent({
             href="/events"
             className="text-xs font-medium tracking-widest uppercase text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white transition-colors px-3 py-1.5"
           >
-            EVENTS
+            EVENT GALLERY
           </Link>
           <Link
             href="/pricing"
@@ -141,7 +141,7 @@ function MinimalNavContent({
                   onClick={() => setIsOpen(false)}
                   className="text-left text-lg font-light tracking-[0.15em] uppercase transition-colors text-zinc-400 dark:text-zinc-500 hover:text-black dark:hover:text-white"
                 >
-                  EVENTS
+                  EVENT GALLERY
                 </Link>
                 <Link
                   href="/pricing"

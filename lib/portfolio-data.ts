@@ -149,159 +149,6 @@ export const portfolioItems: MediaItem[] = [
     }
   },
   {
-    "id": "photo-ecommerce-0d1f7b25-872c-4763-8ed0-c6d7ecd427f3-rw-1920",
-    "type": "photo",
-    "title": "ECOMMERCE SHOT",
-    "category": "Product / E-commerce",
-    "project": "Ecommerce",
-    "src": "/Portfolio/Ecommerce/0d1f7b25-872c-4763-8ed0-c6d7ecd427f3_rw_1920.jpg",
-    "metadata": {
-      "camera": "Phase One XF 150MP",
-      "lens": "Schneider Kreuznach 80mm f/2.8",
-      "aperture": "f/8.0",
-      "shutter": "1/125s",
-      "iso": "50",
-      "location": "KITE STUDIOS - STUDIO C",
-      "date": "MARCH 2026"
-    }
-  },
-  {
-    "id": "photo-ecommerce-34f9863e-c1a4-4866-9493-9f47ea5d063d-rw-1920",
-    "type": "photo",
-    "title": "ECOMMERCE SHOT",
-    "category": "Product / E-commerce",
-    "project": "Ecommerce",
-    "src": "/Portfolio/Ecommerce/34f9863e-c1a4-4866-9493-9f47ea5d063d_rw_1920.jpg",
-    "metadata": {
-      "camera": "Phase One XF 150MP",
-      "lens": "Schneider Kreuznach 80mm f/2.8",
-      "aperture": "f/8.0",
-      "shutter": "1/125s",
-      "iso": "50",
-      "location": "KITE STUDIOS - STUDIO C",
-      "date": "MARCH 2026"
-    }
-  },
-  {
-    "id": "photo-ecommerce-4737399a-2610-4883-b262-062813e7abea-rw-1920",
-    "type": "photo",
-    "title": "ECOMMERCE SHOT",
-    "category": "Product / E-commerce",
-    "project": "Ecommerce",
-    "src": "/Portfolio/Ecommerce/4737399a-2610-4883-b262-062813e7abea_rw_1920.jpg",
-    "metadata": {
-      "camera": "Phase One XF 150MP",
-      "lens": "Schneider Kreuznach 80mm f/2.8",
-      "aperture": "f/8.0",
-      "shutter": "1/125s",
-      "iso": "50",
-      "location": "KITE STUDIOS - STUDIO C",
-      "date": "MARCH 2026"
-    }
-  },
-  {
-    "id": "photo-ecommerce-66dddbb2-03aa-41bf-b5a2-77a4a8c9143e-rw-1920",
-    "type": "photo",
-    "title": "ECOMMERCE SHOT",
-    "category": "Product / E-commerce",
-    "project": "Ecommerce",
-    "src": "/Portfolio/Ecommerce/66dddbb2-03aa-41bf-b5a2-77a4a8c9143e_rw_1920.jpg",
-    "metadata": {
-      "camera": "Phase One XF 150MP",
-      "lens": "Schneider Kreuznach 80mm f/2.8",
-      "aperture": "f/8.0",
-      "shutter": "1/125s",
-      "iso": "50",
-      "location": "KITE STUDIOS - STUDIO C",
-      "date": "MARCH 2026"
-    }
-  },
-  {
-    "id": "photo-ecommerce-68fe812d-1f5b-4759-a7c5-cfa69c9c1f36-rw-1920",
-    "type": "photo",
-    "title": "ECOMMERCE SHOT",
-    "category": "Product / E-commerce",
-    "project": "Ecommerce",
-    "src": "/Portfolio/Ecommerce/68fe812d-1f5b-4759-a7c5-cfa69c9c1f36_rw_1920.jpg",
-    "metadata": {
-      "camera": "Phase One XF 150MP",
-      "lens": "Schneider Kreuznach 80mm f/2.8",
-      "aperture": "f/8.0",
-      "shutter": "1/125s",
-      "iso": "50",
-      "location": "KITE STUDIOS - STUDIO C",
-      "date": "MARCH 2026"
-    }
-  },
-  {
-    "id": "photo-ecommerce-a694331a-863e-4090-8de4-4c7de75cfbcd-rw-1920",
-    "type": "photo",
-    "title": "ECOMMERCE SHOT",
-    "category": "Product / E-commerce",
-    "project": "Ecommerce",
-    "src": "/Portfolio/Ecommerce/a694331a-863e-4090-8de4-4c7de75cfbcd_rw_1920.jpg",
-    "metadata": {
-      "camera": "Phase One XF 150MP",
-      "lens": "Schneider Kreuznach 80mm f/2.8",
-      "aperture": "f/8.0",
-      "shutter": "1/125s",
-      "iso": "50",
-      "location": "KITE STUDIOS - STUDIO C",
-      "date": "MARCH 2026"
-    }
-  },
-  {
-    "id": "photo-ecommerce-b22eccad-2ed6-4535-a29d-b7087aea8cac-rw-1920",
-    "type": "photo",
-    "title": "ECOMMERCE SHOT",
-    "category": "Product / E-commerce",
-    "project": "Ecommerce",
-    "src": "/Portfolio/Ecommerce/b22eccad-2ed6-4535-a29d-b7087aea8cac_rw_1920.jpg",
-    "metadata": {
-      "camera": "Phase One XF 150MP",
-      "lens": "Schneider Kreuznach 80mm f/2.8",
-      "aperture": "f/8.0",
-      "shutter": "1/125s",
-      "iso": "50",
-      "location": "KITE STUDIOS - STUDIO C",
-      "date": "MARCH 2026"
-    }
-  },
-  {
-    "id": "photo-ecommerce-cad446f4-93ab-42b6-a6b7-65c9c8713714-rw-1920",
-    "type": "photo",
-    "title": "ECOMMERCE SHOT",
-    "category": "Product / E-commerce",
-    "project": "Ecommerce",
-    "src": "/Portfolio/Ecommerce/cad446f4-93ab-42b6-a6b7-65c9c8713714_rw_1920.jpg",
-    "metadata": {
-      "camera": "Phase One XF 150MP",
-      "lens": "Schneider Kreuznach 80mm f/2.8",
-      "aperture": "f/8.0",
-      "shutter": "1/125s",
-      "iso": "50",
-      "location": "KITE STUDIOS - STUDIO C",
-      "date": "MARCH 2026"
-    }
-  },
-  {
-    "id": "photo-ecommerce-d27a69c2-5e89-4325-aa2a-fce9fcdddeb1-rw-1920",
-    "type": "photo",
-    "title": "ECOMMERCE SHOT",
-    "category": "Product / E-commerce",
-    "project": "Ecommerce",
-    "src": "/Portfolio/Ecommerce/d27a69c2-5e89-4325-aa2a-fce9fcdddeb1_rw_1920.jpg",
-    "metadata": {
-      "camera": "Phase One XF 150MP",
-      "lens": "Schneider Kreuznach 80mm f/2.8",
-      "aperture": "f/8.0",
-      "shutter": "1/125s",
-      "iso": "50",
-      "location": "KITE STUDIOS - STUDIO C",
-      "date": "MARCH 2026"
-    }
-  },
-  {
     "id": "photo-fashion-fashion-1",
     "type": "photo",
     "title": "Fashion 1",
@@ -2172,6 +2019,159 @@ export const portfolioItems: MediaItem[] = [
     }
   },
   {
+    "id": "photo-ecommerce-0d1f7b25-872c-4763-8ed0-c6d7ecd427f3-rw-1920",
+    "type": "photo",
+    "title": "ECOMMERCE SHOT",
+    "category": "Product / E-commerce",
+    "project": "Ecommerce",
+    "src": "/Portfolio/Ecommerce/0d1f7b25-872c-4763-8ed0-c6d7ecd427f3_rw_1920.jpg",
+    "metadata": {
+      "camera": "Phase One XF 150MP",
+      "lens": "Schneider Kreuznach 80mm f/2.8",
+      "aperture": "f/8.0",
+      "shutter": "1/125s",
+      "iso": "50",
+      "location": "KITE STUDIOS - STUDIO C",
+      "date": "MARCH 2026"
+    }
+  },
+  {
+    "id": "photo-ecommerce-34f9863e-c1a4-4866-9493-9f47ea5d063d-rw-1920",
+    "type": "photo",
+    "title": "ECOMMERCE SHOT",
+    "category": "Product / E-commerce",
+    "project": "Ecommerce",
+    "src": "/Portfolio/Ecommerce/34f9863e-c1a4-4866-9493-9f47ea5d063d_rw_1920.jpg",
+    "metadata": {
+      "camera": "Phase One XF 150MP",
+      "lens": "Schneider Kreuznach 80mm f/2.8",
+      "aperture": "f/8.0",
+      "shutter": "1/125s",
+      "iso": "50",
+      "location": "KITE STUDIOS - STUDIO C",
+      "date": "MARCH 2026"
+    }
+  },
+  {
+    "id": "photo-ecommerce-4737399a-2610-4883-b262-062813e7abea-rw-1920",
+    "type": "photo",
+    "title": "ECOMMERCE SHOT",
+    "category": "Product / E-commerce",
+    "project": "Ecommerce",
+    "src": "/Portfolio/Ecommerce/4737399a-2610-4883-b262-062813e7abea_rw_1920.jpg",
+    "metadata": {
+      "camera": "Phase One XF 150MP",
+      "lens": "Schneider Kreuznach 80mm f/2.8",
+      "aperture": "f/8.0",
+      "shutter": "1/125s",
+      "iso": "50",
+      "location": "KITE STUDIOS - STUDIO C",
+      "date": "MARCH 2026"
+    }
+  },
+  {
+    "id": "photo-ecommerce-66dddbb2-03aa-41bf-b5a2-77a4a8c9143e-rw-1920",
+    "type": "photo",
+    "title": "ECOMMERCE SHOT",
+    "category": "Product / E-commerce",
+    "project": "Ecommerce",
+    "src": "/Portfolio/Ecommerce/66dddbb2-03aa-41bf-b5a2-77a4a8c9143e_rw_1920.jpg",
+    "metadata": {
+      "camera": "Phase One XF 150MP",
+      "lens": "Schneider Kreuznach 80mm f/2.8",
+      "aperture": "f/8.0",
+      "shutter": "1/125s",
+      "iso": "50",
+      "location": "KITE STUDIOS - STUDIO C",
+      "date": "MARCH 2026"
+    }
+  },
+  {
+    "id": "photo-ecommerce-68fe812d-1f5b-4759-a7c5-cfa69c9c1f36-rw-1920",
+    "type": "photo",
+    "title": "ECOMMERCE SHOT",
+    "category": "Product / E-commerce",
+    "project": "Ecommerce",
+    "src": "/Portfolio/Ecommerce/68fe812d-1f5b-4759-a7c5-cfa69c9c1f36_rw_1920.jpg",
+    "metadata": {
+      "camera": "Phase One XF 150MP",
+      "lens": "Schneider Kreuznach 80mm f/2.8",
+      "aperture": "f/8.0",
+      "shutter": "1/125s",
+      "iso": "50",
+      "location": "KITE STUDIOS - STUDIO C",
+      "date": "MARCH 2026"
+    }
+  },
+  {
+    "id": "photo-ecommerce-a694331a-863e-4090-8de4-4c7de75cfbcd-rw-1920",
+    "type": "photo",
+    "title": "ECOMMERCE SHOT",
+    "category": "Product / E-commerce",
+    "project": "Ecommerce",
+    "src": "/Portfolio/Ecommerce/a694331a-863e-4090-8de4-4c7de75cfbcd_rw_1920.jpg",
+    "metadata": {
+      "camera": "Phase One XF 150MP",
+      "lens": "Schneider Kreuznach 80mm f/2.8",
+      "aperture": "f/8.0",
+      "shutter": "1/125s",
+      "iso": "50",
+      "location": "KITE STUDIOS - STUDIO C",
+      "date": "MARCH 2026"
+    }
+  },
+  {
+    "id": "photo-ecommerce-b22eccad-2ed6-4535-a29d-b7087aea8cac-rw-1920",
+    "type": "photo",
+    "title": "ECOMMERCE SHOT",
+    "category": "Product / E-commerce",
+    "project": "Ecommerce",
+    "src": "/Portfolio/Ecommerce/b22eccad-2ed6-4535-a29d-b7087aea8cac_rw_1920.jpg",
+    "metadata": {
+      "camera": "Phase One XF 150MP",
+      "lens": "Schneider Kreuznach 80mm f/2.8",
+      "aperture": "f/8.0",
+      "shutter": "1/125s",
+      "iso": "50",
+      "location": "KITE STUDIOS - STUDIO C",
+      "date": "MARCH 2026"
+    }
+  },
+  {
+    "id": "photo-ecommerce-cad446f4-93ab-42b6-a6b7-65c9c8713714-rw-1920",
+    "type": "photo",
+    "title": "ECOMMERCE SHOT",
+    "category": "Product / E-commerce",
+    "project": "Ecommerce",
+    "src": "/Portfolio/Ecommerce/cad446f4-93ab-42b6-a6b7-65c9c8713714_rw_1920.jpg",
+    "metadata": {
+      "camera": "Phase One XF 150MP",
+      "lens": "Schneider Kreuznach 80mm f/2.8",
+      "aperture": "f/8.0",
+      "shutter": "1/125s",
+      "iso": "50",
+      "location": "KITE STUDIOS - STUDIO C",
+      "date": "MARCH 2026"
+    }
+  },
+  {
+    "id": "photo-ecommerce-d27a69c2-5e89-4325-aa2a-fce9fcdddeb1-rw-1920",
+    "type": "photo",
+    "title": "ECOMMERCE SHOT",
+    "category": "Product / E-commerce",
+    "project": "Ecommerce",
+    "src": "/Portfolio/Ecommerce/d27a69c2-5e89-4325-aa2a-fce9fcdddeb1_rw_1920.jpg",
+    "metadata": {
+      "camera": "Phase One XF 150MP",
+      "lens": "Schneider Kreuznach 80mm f/2.8",
+      "aperture": "f/8.0",
+      "shutter": "1/125s",
+      "iso": "50",
+      "location": "KITE STUDIOS - STUDIO C",
+      "date": "MARCH 2026"
+    }
+  },
+  {
     "id": "photo-platini-jeans-08cf57ba5aaf06960b7b7ea6-rw-1920",
     "type": "photo",
     "title": "PLATINI JEANS SHOT",
@@ -2769,11 +2769,11 @@ export const portfolioItems: MediaItem[] = [
 ];
 
 export const projectsList = [
-  "Ecommerce",
   "Fashion",
   "Genki Prints",
   "GLYF STUDIO",
   "Kevora",
+  "Ecommerce",
   "Platini Jeans",
   "Products",
   "Quinceanera",
