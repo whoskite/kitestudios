@@ -57,54 +57,53 @@ export default function PricingPage() {
     {
       id: "events-tier0",
       name: "Tier 0 — Social Session",
-      price: "$200 (1hr)",
+      price: "$200 Flat Rate",
       minPrice: 200,
       maxPrice: 200,
       includes: "Photo OR video, 1 operator, light session setup",
       bestFor: "Quick social updates, headshots, or short event highlights",
-      deliverables: ["1 Hr Coverage", "Photo OR video", "10-15 edited deliverables", "48-hour turnaround", "1 revision round", "High-res digital delivery"]
+      deliverables: ["Strict 1-hour session maximum", "Choice of: 10–15 edited photos OR 1 short-form highlight video (30–60s) + 5 photo stills", "48-hour turnaround", "1 revision round", "High-res digital delivery"]
     },
     {
       id: "events-tier1",
       name: "Tier 1 — Solo Photo",
-      price: "$450 (2hr) / $600 (4hr)",
-      minPrice: 450,
+      price: "$400 – $600",
+      minPrice: 400,
       maxPrice: 600,
-      includes: "Photo only, 1 operator, dedicated photo setup",
-      bestFor: "Events where the client only needs photos — intimate gatherings, portraits, small events",
-      deliverables: ["2-4 Hrs Coverage", "Full edited photo gallery", "Professional color correction", "High-res digital delivery", "Commercial usage rights", "2 revision rounds"]
+      includes: "Dedicated photo coverage, 1 operator, professional photography setup",
+      bestFor: "Intimate gatherings, portraits, and events where high-end photography is the priority",
+      deliverables: ["Full edited photo gallery", "Professional color correction & retouching", "High-res digital delivery", "Commercial usage rights", "2 revision rounds"]
     },
     {
       id: "events-tier2",
       name: "Tier 2 — Solo Video",
-      price: "$600 (2hr) / $750 (4hr)",
-      minPrice: 600,
-      maxPrice: 750,
-      includes: "Video only, 1 operator, cinematic video setup",
-      bestFor: "Ceremonies, performances, single-angle recordings, short product highlights",
-      deliverables: ["2-4 Hrs Coverage", "Single-angle edited video coverage", "DaVinci Resolve edit & color grade", "Audio mix with ambient/lav mic", "Final export in 4K/1080p", "2 revision rounds"]
+      price: "$500 – $700",
+      minPrice: 500,
+      maxPrice: 700,
+      includes: "Dedicated video coverage, 1 operator, professional cinematic video setup",
+      bestFor: "Ceremonies, performances, and events where cinematic motion is the priority",
+      deliverables: ["Single-angle edited video coverage", "DaVinci Resolve edit & color grade", "Audio mix with ambient/lav mic", "Final export in 4K/1080p", "Commercial usage rights", "2 revision rounds"]
     },
     {
       id: "events-tier3",
       name: "Tier 3 — Dual Coverage",
-      price: "$900 (5hr) / $1,200 (7hr)",
-      minPrice: 900,
+      price: "$800 – $1,200",
+      minPrice: 800,
       maxPrice: 1200,
       includes: "Photo + Video, 2 operators, multi-angle coverage",
       bestFor: "Medium events, ceremonies, receptions — anything with simultaneous key moments",
-      deliverables: ["5-7 Hrs Coverage", "Full edited photo gallery (retouched)", "Branded Watermark Gallery Images", "Multi-angle edited video wrap-up", "B-roll package from 2nd angle", "Professional audio syncing & design", "2 revision rounds"],
+      deliverables: ["Full edited photo gallery (retouched)", "Branded Watermark Gallery Images", "Multi-angle edited video wrap-up", "B-roll package from 2nd angle", "Professional audio syncing & design", "2 revision rounds"],
       recommended: true
     },
     {
       id: "events-tier4",
       name: "Tier 4 — Premium Coverage",
-      price: "$1,400 (8hr) / $2,000 (10hr)",
-      minPrice: 1400,
+      price: "$1,200 – $2,000",
+      minPrice: 1200,
       maxPrice: 2000,
       includes: "2 operators, photo + video, multi-location / complex event setup",
       bestFor: "Weddings, quinceañeras, corporate events, festivals, multi-location setups",
       deliverables: [
-        "8-10+ Hrs Coverage",
         "Full photo sets from both shooters (retouched)",
         "Branded Watermark Gallery Images",
         "Cinematic multi-angle video edit (4K)",
@@ -124,12 +123,12 @@ export default function PricingPage() {
     {
       id: "mv-tier0",
       name: "Tier 0 — Social Visual",
-      price: "$200 (1hr)",
+      price: "$200 Flat Rate",
       minPrice: 200,
       maxPrice: 200,
-      includes: "1-hour shoot, 1 vertical video, 10 promo still frames",
+      includes: "1 vertical video, 10 promo still frames, rapid setup",
       bestFor: "Quick social promo drops, TikToks, and Reels",
-      deliverables: ["1 Hr Coverage", "1 vertical video", "10 promo still frames", "3-day turnaround", "1 revision round"]
+      deliverables: ["Strict 1-hour session maximum", "1 edited vertical short-form video (15–30 seconds, 9:16 format, color-graded & synced)", "10 color-graded promo still frames (ideal for thumbnails/social posts)", "3-day turnaround", "1 revision round"]
     },
     {
       id: "mv-tier1",
@@ -144,33 +143,23 @@ export default function PricingPage() {
     {
       id: "mv-tier2",
       name: "Tier 2 — Standard Music Video",
-      price: "$1,000 (4hr)",
-      minPrice: 1000,
-      maxPrice: 1000,
-      includes: "1-2 locations, 3-4 hour shoot, full editing, color grading, basic VFX/transitions, B-roll",
-      bestFor: "The complete single-release package",
-      deliverables: ["3-4 Hrs Coverage", "1 final music video (4K)", "2 revision rounds", "Behind-the-scenes clip (30-60 sec) for socials", "Custom color grading & pacing", "Turnaround: 7-14 business days"],
+      price: "$800 – $1,500",
+      minPrice: 800,
+      maxPrice: 1500,
+      includes: "1-2 locations, full editing, cinematic color grading, basic VFX/transitions, B-roll",
+      bestFor: "Independent artists with a budget who want a real, cinematic single-release video",
+      deliverables: ["1 final music video (4K)", "2-3 revision rounds", "Behind-the-scenes clip (30-60 sec) for socials", "Custom color grading & pacing", "Turnaround: 7-14 business days"],
       recommended: true
     },
     {
       id: "mv-tier3",
       name: "Tier 3 — Premium Music Video",
-      price: "$2,500 (8hr)",
-      minPrice: 2500,
-      maxPrice: 2500,
-      includes: "2-3 locations, full day shoot (6-8 hours), 2 operators, full editing suite, advanced VFX & color grading",
-      bestFor: "Established artists, label-backed releases, artists who want a complete visual campaign",
-      deliverables: ["Creative call, mood board, shot list, location scouting", "6-8 Hrs Coverage", "1 final music video (4K)", "3 revision rounds", "Behind-the-scenes mini-doc (2-3 min)", "3-5 social media clips (Reels/TikTok)", "10 promo still frames", "Turnaround: 14-21 business days"]
-    },
-    {
-      id: "mv-tier4",
-      name: "Tier 4 — Visual Campaign",
-      price: "$5,000 (2 vids) / $7,000 (3 vids)",
-      minPrice: 5000,
-      maxPrice: 7000,
-      includes: "2-3 music videos shot across 1-2 days, full editing suite, extensive social media cutdowns, full promo pack",
-      bestFor: "Artists releasing an EP or album who want a unified visual identity",
-      deliverables: ["Full pre-production: mood boards, shot lists, location scouting", "1-2 Days Coverage (Up to 16 Hrs)", "2-3 final music videos (4K)", "All social media cutdowns & promos", "Full BTS documentary content", "Dedicated promo photography sets", "Priority turnaround (21-30 business days)"]
+      price: "$2,000 – $3,500",
+      minPrice: 2000,
+      maxPrice: 3500,
+      includes: "2-3 locations, full day shoot, 2 operators, full editing suite, advanced VFX & color grading",
+      bestFor: "Established artists, label-backed releases, or those wanting a complete visual campaign",
+      deliverables: ["Creative call, mood board, shot list, location scouting", "1 final music video (4K)", "3-5 revision rounds", "Behind-the-scenes mini-doc (2-3 min)", "3-5 social media clips (Reels/TikTok)", "10 promo still frames", "Turnaround: 14-21 business days"]
     }
   ];
 
@@ -637,7 +626,7 @@ export default function PricingPage() {
               {/* Book now trigger */}
               <div className="mt-12">
                 <p className="text-xs font-mono tracking-widest uppercase opacity-65 mb-4 leading-normal">
-                  All range figures serve as initial budgeting estimates. Final scope parameters will be aligned during the setup briefing.
+                  All range figures serve as initial budgeting estimates. Final investment is confirmed during our creative briefing. A 50% deposit is required to secure your date.
                 </p>
                 <Link
                   href={getBookingUrl()}
