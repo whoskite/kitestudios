@@ -431,7 +431,7 @@ export default function PricingPage() {
               transition={{ duration: 0.4 }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
             >
-              {(activeNiche === "events" ? eventTiers : musicVideoTiers).map((tier) => {
+              {(activeNiche === "events" ? eventTiers : activeNiche === "music-videos" ? musicVideoTiers : commercialTiers).map((tier) => {
                 const isSelected = selectedTier === tier.id;
                 return (
                   <div
