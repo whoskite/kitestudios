@@ -570,15 +570,15 @@ export default function PricingPage() {
               {/* Selected Base tier summary info */}
               <div className="p-4 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/80 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                  <span className="text-xs font-mono tracking-widest uppercase text-zinc-550 block">
-                    Selected Base Package
+                  <span className="text-xs font-mono tracking-widest uppercase text-zinc-550 dark:text-zinc-450 block mb-1">
+                    SELECTED PACKAGE
                   </span>
-                  <span className="text-xs uppercase tracking-wider font-semibold">
-                    {currentTierData?.name.split(" — ").pop() || currentTierData?.name}
+                  <span className="text-sm font-semibold uppercase tracking-wide text-black dark:text-white">
+                    {currentTierData?.name || "None Selected"}
                   </span>
                 </div>
-                <div className="font-mono text-xs font-semibold px-2.5 py-1 bg-black text-white dark:bg-white dark:text-black uppercase">
-                  Base: {currentTierData?.price}
+                <div className="font-mono text-sm font-semibold px-3 py-1.5 bg-black text-white dark:bg-white dark:text-black uppercase tracking-wider rounded-sm">
+                  {currentTierData?.price}
                 </div>
               </div>
 
@@ -651,8 +651,8 @@ export default function PricingPage() {
                 {/* Selected Checklist Details summary */}
                 <div className="space-y-4 border-t border-neutral-800 dark:border-neutral-200 pt-6">
                   <div className="flex justify-between items-center text-xs">
-                    <span className="opacity-70">Base Package Cost</span>
-                    <span className="font-mono">{currentTierData?.price}</span>
+                    <span className="font-mono uppercase tracking-wider opacity-75">{currentTierData?.name || "Base Package"}</span>
+                    <span className="font-mono font-semibold">{currentTierData?.price}</span>
                   </div>
                   {selectedAddOns.length > 0 && (
                     <div className="space-y-2">
