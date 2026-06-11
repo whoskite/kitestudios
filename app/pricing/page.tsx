@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Camera,
   Video,
+  Building,
   Users,
   Zap,
   CheckCircle2,
@@ -47,7 +48,7 @@ interface AddOnOption {
 }
 
 export default function PricingPage() {
-  const [activeNiche, setActiveNiche] = useState<"events" | "music-videos">("events");
+  const [activeNiche, setActiveNiche] = useState<"events" | "music-videos" | "commercial">("events");
   const [selectedTier, setSelectedTier] = useState<string>("events-tier3");
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -163,6 +164,41 @@ export default function PricingPage() {
     }
   ];
 
+  // Commercial & Branding Tiers
+  const commercialTiers: PackageTier[] = [
+    {
+      id: "commercial-tier1",
+      name: "Tier 1 — Social Media Refresh",
+      price: "$400 – $600",
+      minPrice: 400,
+      maxPrice: 600,
+      includes: "Solo operator, rapid on-site asset capture, professional lighting setup",
+      bestFor: "Cafes, retail shops, and real estate agents needing a quick digital presence upgrade",
+      deliverables: ["15 edited high-res photos", "2 short-form vertical videos (15-30s, 9:16, color-graded & synced)", "48-72 hour turnaround", "1 revision round", "High-res digital delivery"]
+    },
+    {
+      id: "commercial-tier2",
+      name: "Tier 2 — Brand Story Mini-Doc",
+      price: "$800 – $1,200",
+      minPrice: 800,
+      maxPrice: 1200,
+      includes: "Solo operator, structured shoot (up to 2 hours), cinematic video edit, professional photo retouching",
+      bestFor: "Business 'About Us' pages, grand openings, new menu/seasonal launches, property showcases",
+      deliverables: ["1 cinematic brand video (60-90 seconds, 4K)", "20 edited high-res photos", "3 vertical social cutdowns derived from main video", "7-10 day turnaround", "2 revision rounds", "Commercial usage rights"],
+      recommended: true
+    },
+    {
+      id: "commercial-tier3",
+      name: "Tier 3 — Full Commercial Campaign",
+      price: "$1,500 – $2,500+",
+      minPrice: 1500,
+      maxPrice: 2500,
+      includes: "1-2 operators, half/full-day shoot, multi-location or complex lighting, comprehensive post-production",
+      bestFor: "Established brands launching a new location, boutique hotels, multi-property real estate portfolios",
+      deliverables: ["1-2 cinematic brand videos (up to 2 mins)", "40+ edited high-res photos (web + print-ready)", "5 vertical social cutdowns", "Behind-the-scenes content package", "14-21 day turnaround", "3 revision rounds", "Commercial usage rights"]
+    }
+  ];
+
   // Add-ons
   const addOns: AddOnOption[] = [
     { id: "rush", name: "Rush Delivery (48hr)", price: "+$250", cost: 250, description: "Accelerated editing and review queues (guaranteed export under 48 hours)" },
@@ -187,14 +223,16 @@ export default function PricingPage() {
   useEffect(() => {
     if (activeNiche === "events") {
       setSelectedTier("events-tier3");
-    } else {
+    } else if (activeNiche === "music-videos") {
       setSelectedTier("mv-tier2");
+    } else {
+      setSelectedTier("commercial-tier2");
     }
     setSelectedAddOns([]);
   }, [activeNiche]);
 
   // Calculate current range
-  const currentTierData = [...eventTiers, ...musicVideoTiers].find((t) => t.id === selectedTier);
+  const currentTierData = [...eventTiers, ...musicVideoTiers, ...commercialTiers].find((t) => t.id === selectedTier);
   const baseMin = currentTierData?.minPrice || 0;
   const baseMax = currentTierData?.maxPrice || 0;
   const addOnsCost = selectedAddOns.reduce((total, id) => {
@@ -319,10 +357,10 @@ export default function PricingPage() {
             </div>
             
             {/* Niche switcher tabs */}
-            <div className="flex bg-zinc-100 dark:bg-zinc-900/50 p-1 rounded-sm border border-zinc-200/50 dark:border-zinc-800/50 self-center sm:self-end">
+            <div className="flex flex-wrap bg-zinc-100 dark:bg-zinc-900/50 p-1 rounded-sm border border-zinc-200/50 dark:border-zinc-800/50 self-center sm:self-end gap-1">
               <button
                 onClick={() => setActiveNiche("events")}
-                className={`relative px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                className={`relative px-3 sm:px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
                   activeNiche === "events"
                     ? "text-black dark:text-white font-bold"
                     : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
@@ -341,7 +379,7 @@ export default function PricingPage() {
               </button>
               <button
                 onClick={() => setActiveNiche("music-videos")}
-                className={`relative px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                className={`relative px-3 sm:px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
                   activeNiche === "music-videos"
                     ? "text-black dark:text-white font-bold"
                     : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
@@ -356,6 +394,25 @@ export default function PricingPage() {
                 )}
                 <span className="relative z-10 flex items-center gap-1.5">
                   <Video className="h-3 w-3" /> Music Production
+                </span>
+              </button>
+              <button
+                onClick={() => setActiveNiche("commercial")}
+                className={`relative px-3 sm:px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                  activeNiche === "commercial"
+                    ? "text-black dark:text-white font-bold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {activeNiche === "commercial" && (
+                  <motion.div
+                    layoutId="activeNicheTab"
+                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <Building className="h-3 w-3" /> Commercial & Branding
                 </span>
               </button>
             </div>
