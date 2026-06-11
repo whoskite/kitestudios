@@ -24,11 +24,18 @@ export default function LinksPage() {
 
   const links = [
     {
+      title: "Lovers & Liars Brunch Photos",
+      description: "Download event photos from Shakas Cocktail Bar.",
+      url: "/events/lovers-and-liars-brunch-shakas-cocktail-bar",
+      icon: <Camera className="h-5 w-5" />,
+      highlight: true,
+    },
+    {
       title: "Lust In Stereo Photos",
       description: "Download event photos from Los Globos.",
       url: "/events/lust-in-stereo-los-globos",
       icon: <Camera className="h-5 w-5" />,
-      highlight: true,
+      highlight: false,
     },
     {
       title: "See Our Work",
