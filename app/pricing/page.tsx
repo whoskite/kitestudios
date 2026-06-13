@@ -48,13 +48,15 @@ interface AddOnOption {
 }
 
 export default function PricingPage() {
-  const [activeNiche, setActiveNiche] = useState<"events" | "music-videos" | "commercial">("events");
+  const [activeNiche, setActiveNiche] = useState<"events" | "commercial">("events");
+  const [eventTab, setEventTab] = useState<"solo" | "dual">("dual");
+  const [commercialTab, setCommercialTab] = useState<"one-time" | "retainers">("one-time");
   const [selectedTier, setSelectedTier] = useState<string>("events-tier3");
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
-  // Event Tiers
-  const eventTiers: PackageTier[] = [
+  // Event Tiers - Solo Coverage (1 Operator)
+  const eventSoloTiers: PackageTier[] = [
     {
       id: "events-tier0",
       name: "Tier 0 — Social Session",
@@ -81,10 +83,24 @@ export default function PricingPage() {
       price: "$500 – $700",
       minPrice: 500,
       maxPrice: 700,
-      includes: "Dedicated video coverage, 1 operator, professional cinematic video setup",
-      bestFor: "Ceremonies, performances, and events where cinematic motion is the priority",
-      deliverables: ["Single-angle edited video coverage", "DaVinci Resolve edit & color grade", "Audio mix with ambient/lav mic", "Final export in 4K/1080p", "Commercial usage rights", "2 revision rounds"]
-    },
+      includes: "Dedicated video coverage with professional cinematic setup. Includes social-ready content highlights.",
+      bestFor: "Ceremonies, performances, and events wanting immediate, social-ready cinematic video cutdowns",
+      deliverables: [
+        "Single-angle edited video coverage (full event)",
+        "DaVinci Resolve edit & color grade",
+        "Audio mix with ambient/lav mic",
+        "Final export in 4K/1080p",
+        "3 vertical social cutdowns (15-30 sec, Reels/TikTok ready)",
+        "5 edited highlight photos (social-ready, color graded)",
+        "Multi-platform formatting (YouTube, Reels, TikTok, Instagram feed)",
+        "Commercial usage rights",
+        "2 revision rounds"
+      ]
+    }
+  ];
+
+  // Event Tiers - Dual Coverage (2 Operators)
+  const eventDualTiers: PackageTier[] = [
     {
       id: "events-tier3",
       name: "Tier 3 — Dual Coverage",
@@ -93,7 +109,18 @@ export default function PricingPage() {
       maxPrice: 1200,
       includes: "Photo + Video, 2 operators, multi-angle coverage",
       bestFor: "Medium events, ceremonies, receptions — anything with simultaneous key moments",
-      deliverables: ["Full edited photo gallery (retouched)", "Branded Watermark Gallery Images", "Multi-angle edited video wrap-up", "B-roll package from 2nd angle", "Professional audio syncing & design", "2 revision rounds"],
+      deliverables: [
+        "Full edited photo gallery (retouched)",
+        "Branded Watermark Gallery Images",
+        "Multi-angle edited video wrap-up",
+        "B-roll package from 2nd angle",
+        "Professional audio syncing & design",
+        "5 vertical social cutdowns (from both angles, different perspectives)",
+        "10 edited highlight photos",
+        "Behind-the-scenes clip (30-60 sec, casual, for Stories)",
+        "Multi-platform formatting",
+        "2 revision rounds"
+      ],
       recommended: true
     },
     {
@@ -109,7 +136,12 @@ export default function PricingPage() {
         "Branded Watermark Gallery Images",
         "Cinematic multi-angle video edit (4K)",
         "Full secondary location coverage",
-        "Behind-the-scenes social media package",
+        "8 vertical social cutdowns",
+        "15 edited highlight photos",
+        "Behind-the-scenes mini-doc (2-3 min)",
+        "Social media content kit (ready-to-post Reels + photos + caption suggestions)",
+        "Multi-platform formatting",
+        "Ad-ready versions (3 Reels formatted for paid ads)",
         "Cinematic drone/aerial footage (if available)",
         "Same-day or next-day highlight reel",
         "Raw footage delivery",
@@ -119,65 +151,26 @@ export default function PricingPage() {
     }
   ];
 
-  // Music Video Tiers
-  const musicVideoTiers: PackageTier[] = [
+  // Commercial & Branding - One-Time Tiers (including Content Day Option A)
+  const commercialOneTimeTiers: PackageTier[] = [
     {
-      id: "mv-tier0",
-      name: "Tier 0 — Social Visual",
-      price: "$200 Flat Rate",
-      minPrice: 200,
-      maxPrice: 200,
-      includes: "1 vertical video, 10 promo still frames, rapid setup",
-      bestFor: "Quick social promo drops, TikToks, and Reels",
-      deliverables: ["Strict 1-hour session maximum", "1 edited vertical short-form video (15–30 seconds, 9:16 format, color-graded & synced)", "10 color-graded promo still frames (ideal for thumbnails/social posts)", "3-day turnaround", "1 revision round"]
+      id: "commercial-ot1",
+      name: "Tier 1 — Content Day",
+      price: "$250 – $350",
+      minPrice: 250,
+      maxPrice: 350,
+      includes: "1-2 hours on-location, rapid setup, high-impact social assets",
+      bestFor: "Businesses wanting a low-friction entry point to test our content quality",
+      deliverables: [
+        "1-2 hours shoot time at your business",
+        "2 edited Reels/TikToks (vertical format, color-graded)",
+        "5 edited high-res photos (Capture One processed)",
+        "5-7 business days turnaround",
+        "No long-term commitment"
+      ]
     },
     {
-      id: "mv-tier1",
-      name: "Tier 1 — Visualizer / Lyric Video",
-      price: "$500 (4hr)",
-      minPrice: 500,
-      maxPrice: 500,
-      includes: "Single location, basic editing, simple effects & transitions",
-      bestFor: "Independent rappers releasing singles, low-budget promo, Spotify visualizers",
-      deliverables: ["2-4 Hrs Coverage", "1 final visualizer video (1080p or 4K)", "1 revision round", "DaVinci Resolve color grading", "Fast turnaround (5-7 business days)"]
-    },
-    {
-      id: "mv-tier2",
-      name: "Tier 2 — Standard Music Video",
-      price: "$800 – $1,500",
-      minPrice: 800,
-      maxPrice: 1500,
-      includes: "1-2 locations, full editing, cinematic color grading, basic VFX/transitions, B-roll",
-      bestFor: "Independent artists with a budget who want a real, cinematic single-release video",
-      deliverables: ["1 final music video (4K)", "2-3 revision rounds", "Behind-the-scenes clip (30-60 sec) for socials", "Custom color grading & pacing", "Turnaround: 7-14 business days"],
-      recommended: true
-    },
-    {
-      id: "mv-tier3",
-      name: "Tier 3 — Premium Music Video",
-      price: "$2,000 – $3,500",
-      minPrice: 2000,
-      maxPrice: 3500,
-      includes: "2-3 locations, full day shoot, 2 operators, full editing suite, advanced VFX & color grading",
-      bestFor: "Established artists, label-backed releases, or those wanting a complete visual campaign",
-      deliverables: ["Creative call, mood board, shot list, location scouting", "1 final music video (4K)", "3-5 revision rounds", "Behind-the-scenes mini-doc (2-3 min)", "3-5 social media clips (Reels/TikTok)", "10 promo still frames", "Turnaround: 14-21 business days"]
-    }
-  ];
-
-  // Commercial & Branding Tiers
-  const commercialTiers: PackageTier[] = [
-    {
-      id: "commercial-tier1",
-      name: "Tier 1 — Social Media Refresh",
-      price: "$400 – $600",
-      minPrice: 400,
-      maxPrice: 600,
-      includes: "Solo operator, rapid on-site asset capture, professional lighting setup",
-      bestFor: "Cafes, retail shops, and real estate agents needing a quick digital presence upgrade",
-      deliverables: ["15 edited high-res photos", "2 short-form vertical videos (15-30s, 9:16, color-graded & synced)", "48-72 hour turnaround", "1 revision round", "High-res digital delivery"]
-    },
-    {
-      id: "commercial-tier2",
+      id: "commercial-ot2",
       name: "Tier 2 — Brand Story Mini-Doc",
       price: "$800 – $1,200",
       minPrice: 800,
@@ -199,16 +192,111 @@ export default function PricingPage() {
     }
   ];
 
-  // Add-ons
-  const addOns: AddOnOption[] = [
-    { id: "rush", name: "Rush Delivery (48hr)", price: "+$250", cost: 250, description: "Accelerated editing and review queues (guaranteed export under 48 hours)" },
-    { id: "bts", name: "BTS Mini-Documentary", price: "+$300", cost: 300, description: "A cinematic 2-3 minute behind-the-scenes mini-doc for socials/YouTube" },
-    { id: "socials", name: "Social Media Cutdowns", price: "+$200", cost: 200, description: "3-5 highly engaging vertical crops (9:16) optimized for TikTok/Reels" },
-    { id: "stills", name: "Promo Still Frames", price: "+$150", cost: 150, description: "10-20 professional high-res photos / color-graded stills for release promo" },
-    { id: "shootday", name: "Additional Shoot Day", price: "+$400", cost: 400, description: "Add a second filming block (up to 4 hours) on a separate date" },
-    { id: "drone", name: "Cinematic Drone Footage", price: "+$300", cost: 300, description: "Stunning 4K aerial visuals shot by a licensed drone operator" },
-    { id: "graphics", name: "Custom Motion Graphics", price: "+$200", cost: 200, description: "Custom intro title card, 3D track animation, or personalized lyric overlays" }
+  // Commercial & Branding - Monthly Retainer Tiers
+  const commercialRetainerTiers: PackageTier[] = [
+    {
+      id: "commercial-ret1",
+      name: "Starter — Social Presence Builder",
+      price: "$500 / month",
+      minPrice: 500,
+      maxPrice: 500,
+      includes: "1 half-day shoot per month, regular vertical content updates",
+      bestFor: "Solo service providers, small cafes, and new businesses building their first social presence",
+      deliverables: [
+        "1 half-day shoot per month (2-3 hours on-location)",
+        "3 Reels/TikToks (15-30s, cinematic edit)",
+        "10 edited photos",
+        "3 caption drafts (ready to post)",
+        "5-7 business days turnaround",
+        "Month-to-month, cancel anytime"
+      ]
+    },
+    {
+      id: "commercial-ret2",
+      name: "Growth — Content Engine",
+      price: "$1,000 / month",
+      minPrice: 1000,
+      maxPrice: 1000,
+      includes: "1 half-day shoot per month, comprehensive social media presence",
+      bestFor: "Restaurants, boutiques, real estate agents, and local brands ready to grow consistently",
+      deliverables: [
+        "1 half-day shoot per month (3-4 hours on-location)",
+        "5 Reels/TikToks (15-60s, cinematic edit)",
+        "15 edited photos",
+        "5 caption drafts (ready to post)",
+        "Instagram + TikTok + Facebook optimization",
+        "3-month minimum commitment",
+      ],
+      recommended: true
+    },
+    {
+      id: "commercial-ret3",
+      name: "Premium — Full Social Video",
+      price: "$1,800 / month",
+      minPrice: 1800,
+      maxPrice: 1800,
+      includes: "2 half-day shoots per month, ultimate local market video domination",
+      bestFor: "Established local businesses, multi-location brands, and clients running social ads",
+      deliverables: [
+        "2 half-day shoots per month (6-8 hours total)",
+        "8 Reels/TikToks (cinematic edit)",
+        "25 edited photos",
+        "1 cinematic brand video (60-90s, 4K)",
+        "3 Reels formatted specifically for paid ads (hook variations)",
+        "8 caption drafts (ready to post)",
+        "3-5 business days turnaround",
+        "3-month minimum commitment"
+      ]
+    }
   ];
+
+  // Event-specific and Shared Add-ons
+  const eventAddOns: AddOnOption[] = [
+    { id: "rush", name: "Rush Delivery (48hr)", price: "+$250", cost: 250, description: "Accelerated editing and review queues (guaranteed export under 48 hours)" },
+    { id: "weekend", name: "Weekend/After-Hours Shoot", price: "+$200", cost: 200, description: "Book a shoot during weekend days or outside normal working hours" },
+    { id: "social-cutdowns", name: "3x Social Cutdowns", price: "+$150", cost: 150, description: "3 additional highly engaging vertical crops (9:16) optimized for TikTok/Reels" },
+    { id: "bts", name: "BTS Mini-Documentary", price: "+$300", cost: 300, description: "A cinematic 2-3 minute behind-the-scenes mini-doc for socials/YouTube" },
+    { id: "stills", name: "Promo Still Frames", price: "+$150", cost: 150, description: "10-20 professional high-res photos / color-graded stills for release promo" },
+    { id: "extended-highlight", name: "Extended Highlight Reel", price: "+$200", cost: 200, description: "Extend the length of your final highlight video wrap-up by 2-3 minutes" },
+    { id: "shootday", name: "Additional Shoot Day", price: "+$400", cost: 400, description: "Add a second filming block (up to 4 hours) on a separate date" },
+    { id: "dedicated-photo", name: "Dedicated Photo Operator", price: "+$250", cost: 250, description: "Add a dedicated photographer to cover high-res stills during video-only sessions" },
+    { id: "dedicated-video", name: "Dedicated Video Operator", price: "+$300", cost: 300, description: "Add a dedicated videographer to capture cinematic video during photo-only sessions" },
+    { id: "drone", name: "Cinematic Drone Footage", price: "+$300", cost: 300, description: "Stunning 4K aerial visuals shot by a licensed drone operator" },
+    { id: "graphics", name: "Custom Motion Graphics", price: "+$250", cost: 250, description: "Custom intro title card, 3D track animation, or personalized lyric overlays" },
+    { id: "voiceover", name: "Professional Voiceover", price: "+$200", cost: 200, description: "Incorporate a studio-recorded voiceover / narration tracks into your video package" },
+    { id: "retainer-bridge", name: "Monthly Retainer Bridge", price: "+$400/mo", cost: 400, description: "Lock in ongoing post-event support with a monthly retainer discount" },
+    { id: "same-day-highlights", name: "Same-Day Highlight Reel", price: "+$350", cost: 350, description: "Get a rapid-turnaround edited highlight reel delivered on the same night of the event" },
+    { id: "multi-angle-recap", name: "Multi-Angle Recap Edit", price: "+$250", cost: 250, description: "A complex multi-camera cut combining different operator perspectives" },
+    { id: "raw-footage", name: "Full Raw Footage", price: "+$150", cost: 150, description: "Delivery of all unedited high-res photo files and raw video logs via drive" },
+    { id: "second-location", name: "Second Location", price: "+$300", cost: 300, description: "Add coverage at a secondary location during the same scheduled event day" },
+    { id: "second-shooter-full", name: "Second Shooter (Full Event)", price: "+$350", cost: 350, description: "Secure a full-day secondary operator to guarantee maximum angle coverage" }
+  ];
+
+  // Commercial-specific and Shared Add-ons
+  const commercialAddOns: AddOnOption[] = [
+    { id: "rush", name: "Rush Delivery (48hr)", price: "+$250", cost: 250, description: "Accelerated editing and review queues (guaranteed export under 48 hours)" },
+    { id: "weekend", name: "Weekend/After-Hours Shoot", price: "+$200", cost: 200, description: "Book a shoot during weekend days or outside normal working hours" },
+    { id: "social-cutdowns", name: "3x Social Cutdowns", price: "+$150", cost: 150, description: "3 additional highly engaging vertical crops (9:16) optimized for TikTok/Reels" },
+    { id: "bts", name: "BTS Mini-Documentary", price: "+$300", cost: 300, description: "A cinematic 2-3 minute behind-the-scenes mini-doc for socials/YouTube" },
+    { id: "stills", name: "Promo Still Frames", price: "+$150", cost: 150, description: "10-20 professional high-res photos / color-graded stills for release promo" },
+    { id: "extended-highlight", name: "Extended Highlight Reel", price: "+$200", cost: 200, description: "Extend the length of your final highlight video wrap-up by 2-3 minutes" },
+    { id: "shootday", name: "Additional Shoot Day", price: "+$400", cost: 400, description: "Add a second filming block (up to 4 hours) on a separate date" },
+    { id: "dedicated-photo", name: "Dedicated Photo Operator", price: "+$250", cost: 250, description: "Add a dedicated photographer to cover high-res stills during video-only sessions" },
+    { id: "dedicated-video", name: "Dedicated Video Operator", price: "+$300", cost: 300, description: "Add a dedicated videographer to capture cinematic video during photo-only sessions" },
+    { id: "drone", name: "Cinematic Drone Footage", price: "+$300", cost: 300, description: "Stunning 4K aerial visuals shot by a licensed drone operator" },
+    { id: "graphics", name: "Custom Motion Graphics", price: "+$250", cost: 250, description: "Custom intro title card, 3D track animation, or personalized lyric overlays" },
+    { id: "voiceover", name: "Professional Voiceover", price: "+$200", cost: 200, description: "Incorporate a studio-recorded voiceover / narration tracks into your video package" },
+    { id: "retainer-bridge", name: "Monthly Retainer Bridge", price: "+$400/mo", cost: 400, description: "Lock in ongoing post-event support with a monthly retainer discount" },
+    { id: "reel-same-session", name: "Additional Reel (Same Session)", price: "+$100", cost: 100, description: "Edit one extra short-form vertical Reel using assets captured during the same session" },
+    { id: "reel-separate-shoot", name: "Additional Reel (Separate Shoot)", price: "+$200", cost: 200, description: "Add a separate short shooting session to capture content for an additional Reel" },
+    { id: "product-menu-shoot", name: "Product/Menu Shoot", price: "+$200", cost: 200, description: "Dedicated macro/product studio setup for high-detail menu or package styling" },
+    { id: "gbp-optimization", name: "Google Business Profile Prep", price: "+$100", cost: 100, description: "Metadata tagging, sizing, and optimization of assets for Google Maps/Business reviews" },
+    { id: "website-hero-video", name: "Website Hero Video", price: "+$250", cost: 250, description: "A high-impact cinematic loop (no audio) custom formatted for website header backgrounds" },
+    { id: "headshot-session", name: "Team Headshot Session", price: "+$150", cost: 150, description: "Add 15 minutes of dedicated corporate headshots for up to 3 team members during the shoot" },
+    { id: "testimonial-shoot", name: "Client Testimonial Shoot", price: "+$200", cost: 200, description: "Setup dedicated audio/lighting to record a client interview/testimonial recommendation" }
+  ];
+
+  const addOns = activeNiche === "events" ? eventAddOns : commercialAddOns;
 
   // Toggle add-on selection
   const toggleAddOn = (id: string) => {
@@ -219,20 +307,18 @@ export default function PricingPage() {
     }
   };
 
-  // Reset selected tier when niche changes
+  // Reset selected tier when niche, event tab, or commercial tab changes
   useEffect(() => {
     if (activeNiche === "events") {
-      setSelectedTier("events-tier3");
-    } else if (activeNiche === "music-videos") {
-      setSelectedTier("mv-tier2");
+      setSelectedTier(eventTab === "solo" ? "events-tier1" : "events-tier3");
     } else {
-      setSelectedTier("commercial-tier2");
+      setSelectedTier(commercialTab === "one-time" ? "commercial-ot2" : "commercial-ret2");
     }
     setSelectedAddOns([]);
-  }, [activeNiche]);
+  }, [activeNiche, eventTab, commercialTab]);
 
   // Calculate current range
-  const currentTierData = [...eventTiers, ...musicVideoTiers, ...commercialTiers].find((t) => t.id === selectedTier);
+  const currentTierData = [...eventSoloTiers, ...eventDualTiers, ...commercialOneTimeTiers, ...commercialRetainerTiers].find((t) => t.id === selectedTier);
   const baseMin = currentTierData?.minPrice || 0;
   const baseMax = currentTierData?.maxPrice || 0;
   const addOnsCost = selectedAddOns.reduce((total, id) => {
@@ -309,7 +395,7 @@ export default function PricingPage() {
       }
     },
     "areaServed": ["Long Beach", "Los Angeles County"],
-    "offers": [...eventTiers, ...musicVideoTiers].map((tier) => ({
+    "offers": [...eventSoloTiers, ...eventDualTiers, ...commercialOneTimeTiers, ...commercialRetainerTiers].map((tier) => ({
       "@type": "Offer",
       "name": tier.name,
       "description": tier.includes,
@@ -378,25 +464,6 @@ export default function PricingPage() {
                 </span>
               </button>
               <button
-                onClick={() => setActiveNiche("music-videos")}
-                className={`relative px-3 sm:px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
-                  activeNiche === "music-videos"
-                    ? "text-black dark:text-white font-bold"
-                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
-                }`}
-              >
-                {activeNiche === "music-videos" && (
-                  <motion.div
-                    layoutId="activeNicheTab"
-                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10 flex items-center gap-1.5">
-                  <Video className="h-3 w-3" /> Music Production
-                </span>
-              </button>
-              <button
                 onClick={() => setActiveNiche("commercial")}
                 className={`relative px-3 sm:px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
                   activeNiche === "commercial"
@@ -419,19 +486,108 @@ export default function PricingPage() {
           </div>
         </div>
 
+        {/* Secondary Switcher for Commercial Tiers */}
+        {activeNiche === "commercial" && (
+          <div className="flex justify-center mb-10">
+            <div className="flex bg-zinc-100 dark:bg-zinc-900/50 p-1 rounded-sm border border-zinc-200/50 dark:border-zinc-800/50 gap-1">
+              <button
+                onClick={() => setCommercialTab("one-time")}
+                className={`relative px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                  commercialTab === "one-time"
+                    ? "text-black dark:text-white font-bold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {commercialTab === "one-time" && (
+                  <motion.div
+                    layoutId="activeCommercialTab"
+                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">One-Time Projects</span>
+              </button>
+              <button
+                onClick={() => setCommercialTab("retainers")}
+                className={`relative px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                  commercialTab === "retainers"
+                    ? "text-black dark:text-white font-bold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {commercialTab === "retainers" && (
+                  <motion.div
+                    layoutId="activeCommercialTab"
+                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">Monthly Retainers</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Secondary Switcher for Event Tiers */}
+        {activeNiche === "events" && (
+          <div className="flex justify-center mb-10">
+            <div className="flex bg-zinc-100 dark:bg-zinc-900/50 p-1 rounded-sm border border-zinc-200/50 dark:border-zinc-800/50 gap-1">
+              <button
+                onClick={() => setEventTab("solo")}
+                className={`relative px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                  eventTab === "solo"
+                    ? "text-black dark:text-white font-bold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {eventTab === "solo" && (
+                  <motion.div
+                    layoutId="activeEventTab"
+                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">Solo Coverage (1 Shooter)</span>
+              </button>
+              <button
+                onClick={() => setEventTab("dual")}
+                className={`relative px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                  eventTab === "dual"
+                    ? "text-black dark:text-white font-bold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {eventTab === "dual" && (
+                  <motion.div
+                    layoutId="activeEventTab"
+                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">Dual Coverage (2 Shooters)</span>
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Niche specific packaging grids */}
         <div className="mb-20">
           <h2 className="sr-only">Pricing Tiers</h2>
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeNiche}
+              key={activeNiche === "events" ? `${activeNiche}-${eventTab}` : activeNiche === "commercial" ? `${activeNiche}-${commercialTab}` : activeNiche}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.4 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              className={`grid grid-cols-1 md:grid-cols-2 gap-6 justify-center ${activeNiche === "events" && eventTab === "dual" ? "lg:grid-cols-2 max-w-4xl" : "lg:grid-cols-3 max-w-6xl"} mx-auto`}
             >
-              {(activeNiche === "events" ? eventTiers : activeNiche === "music-videos" ? musicVideoTiers : commercialTiers).map((tier) => {
+              {(activeNiche === "events"
+                ? (eventTab === "solo" ? eventSoloTiers : eventDualTiers)
+                : commercialTab === "one-time"
+                ? commercialOneTimeTiers
+                : commercialRetainerTiers
+              ).map((tier) => {
                 const isSelected = selectedTier === tier.id;
                 return (
                   <div
@@ -459,7 +615,11 @@ export default function PricingPage() {
                       <span className={`block text-xs font-mono tracking-widest uppercase mb-1.5 ${
                         isSelected ? "text-neutral-450 dark:text-neutral-500" : "text-neutral-500"
                       }`}>
-                        {activeNiche === "events" ? "EVENT COVERAGE" : "MUSIC PRODUCTION"}
+                        {activeNiche === "events"
+                          ? (eventTab === "solo" ? "SOLO COVERAGE" : "DUAL COVERAGE")
+                          : commercialTab === "one-time"
+                          ? "COMMERCIAL PROJECT"
+                          : "MONTHLY RETAINER"}
                       </span>
                       <h3 className="text-lg font-light tracking-wide uppercase mb-3">
                         {tier.name.split(" — ").pop() || tier.name}
