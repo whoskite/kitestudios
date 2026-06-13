@@ -698,7 +698,7 @@ export default function PricingPage() {
             </div>
             
             {/* Niche switcher tabs */}
-            <div className="flex flex-wrap bg-zinc-100 dark:bg-zinc-900/50 p-1 rounded-sm border border-zinc-200/50 dark:border-zinc-800/50 self-center sm:self-end gap-1">
+            <div className="flex flex-wrap justify-center bg-zinc-100 dark:bg-zinc-900/50 p-1 rounded-sm border border-zinc-200/50 dark:border-zinc-800/50 self-center sm:self-end gap-1">
               <button
                 onClick={() => setActiveNiche("events")}
                 className={`relative px-3 sm:px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
