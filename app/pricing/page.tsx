@@ -51,7 +51,7 @@ export default function PricingPage() {
   const [activeNiche, setActiveNiche] = useState<"events" | "commercial" | "ecommerce">("events");
   const [eventTab, setEventTab] = useState<"solo" | "dual">("dual");
   const [commercialTab, setCommercialTab] = useState<"one-time" | "retainers">("one-time");
-  const [ecommerceTab, setEcommerceTab] = useState<"one-time" | "retainers">("one-time");
+  const [ecommerceTab, setEcommerceTab] = useState<"one-time" | "retainers" | "ai-hybrid">("one-time");
   const [selectedTier, setSelectedTier] = useState<string>("events-tier3");
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -357,6 +357,61 @@ export default function PricingPage() {
       ]
     }
   ];
+  // Ecommerce Tiers - AI & Hybrid Production
+  const ecommerceAiTiers: PackageTier[] = [
+    {
+      id: "ecommerce-ai1",
+      name: "Tier 1 — AI Background Replacements",
+      price: "$250 – $350",
+      minPrice: 250,
+      maxPrice: 350,
+      includes: "Background replacements using generative AI. Client provides or mails product for clean studio cutouts.",
+      bestFor: "Brands needing quick social content or looking to test product scenes on a budget",
+      deliverables: [
+        "10 premium AI lifestyle image generations (high-resolution)",
+        "Brand-aligned background aesthetics and prompt engineering",
+        "Capture One post-processing for seamless color blend",
+        "Commercial usage rights",
+        "2 revision rounds on environment styles"
+      ]
+    },
+    {
+      id: "ecommerce-ai2",
+      name: "Tier 2 — Hybrid Studio + AI Campaign",
+      price: "$650 – $950",
+      minPrice: 650,
+      maxPrice: 950,
+      includes: "Physical in-studio shoot for 100% product accuracy, blended with custom generative AI environmental sets.",
+      bestFor: "Launch campaigns needing premium settings (marble kitchen, beach, mountain) without high travel/styling costs",
+      deliverables: [
+        "5 physical studio cutouts (100% detail & color accurate)",
+        "25 custom AI lifestyle environmental backgrounds (e.g., luxury marble, water splash, custom settings)",
+        "Advanced compositing & lighting matching in Photoshop",
+        "PSD source file delivery with layered product masks",
+        "Commercial usage & distribution rights",
+        "3 revision rounds"
+      ],
+      recommended: true
+    },
+    {
+      id: "ecommerce-ai3",
+      name: "Tier 3 — Hyper-Volume Ad Creative Engine",
+      price: "$1,350 – $1,950",
+      minPrice: 1350,
+      maxPrice: 1950,
+      includes: "High-volume asset library and hybrid assets designed to fight ad fatigue across multiple campaigns",
+      bestFor: "Active Shopify/Amazon brands seeking continuous fresh visuals and multiple seasonal/holiday drops",
+      deliverables: [
+        "10 physical studio product cutouts",
+        "60 styled AI background placements (multiple environments, seasons, and themes)",
+        "3 stop-motion animations (AI-enhanced background loops)",
+        "Multi-platform aspect ratios (1:1 feed, 9:16 reels/tiktok, 4:5)",
+        "Ad-ready formats and high-impact CTR visual hooks",
+        "Full commercial/distribution rights",
+        "3 revision rounds"
+      ]
+    }
+  ];
 
   // Event-specific and Shared Add-ons
   const eventAddOns: AddOnOption[] = [
@@ -423,14 +478,60 @@ export default function PricingPage() {
     { id: "prop-sourcing", name: "Product Styling & Prop Sourcing", price: "+$100", cost: 100, description: "Sourcing specific backdrops, textures (sand, stone blocks), or fresh styling props" },
     { id: "stop-motion", name: "Stop-Motion Product Animation", price: "+$200", cost: 200, description: "Smooth, looping 3-5 second stop-motion video clips showing product packaging or usage" },
     { id: "hook-variations", name: "Stop-Scroll Hook Variations", price: "+$100", cost: 100, description: "3 extra variations of the first 3 seconds of vertical video to test click-through rate" },
-    { id: "shipment-logistics", name: "Shipment & Return Logistics", price: "+$50", cost: 50, description: "Receiving, checking, prepping, cleaning, repacking, and shipping back product samples" }
+    { id: "shipment-logistics", name: "Shipment & Return Logistics", price: "+$50", cost: 50, description: "Receiving, checking, prepping, cleaning, repacking, and shipping back product samples" },
+    { id: "ai-model", name: "AI Model Placement", price: "+$150", cost: 150, description: "Overlay product cutouts into framing/hands of photorealistic AI generated models" },
+    { id: "ai-refresh", name: "Seasonal AI Environment Refresh", price: "+$250", cost: 250, description: "Regenerate backgrounds in seasonal/holiday themes using existing product assets" }
   ];
 
-  const addOns = activeNiche === "events" 
-    ? eventAddOns 
-    : activeNiche === "commercial" 
-    ? commercialAddOns 
-    : ecommerceAddOns;
+  // Filter add-ons dynamically based on selected sub-category
+  const getFilteredAddOns = () => {
+    if (activeNiche === "events") {
+      if (eventTab === "dual") {
+        // Dual coverage already has 2 shooters. Remove Second Shooter and Dedicated Photo/Video Operators.
+        return eventAddOns.filter(
+          (a) => a.id !== "second-shooter-full" && a.id !== "dedicated-photo" && a.id !== "dedicated-video"
+        );
+      }
+      return eventAddOns;
+    }
+    
+    if (activeNiche === "commercial") {
+      if (commercialTab === "retainers") {
+        // Retainers don't need the retainer bridge, nor dedicated photo/video operator add-ons.
+        return commercialAddOns.filter(
+          (a) => a.id !== "retainer-bridge" && a.id !== "dedicated-photo" && a.id !== "dedicated-video"
+        );
+      }
+      return commercialAddOns;
+    }
+    
+    // activeNiche === "ecommerce"
+    if (ecommerceTab === "retainers") {
+      // Physical retainers: no retainer-bridge, and no dedicated photo/video operators.
+      return ecommerceAddOns.filter(
+        (a) => a.id !== "retainer-bridge" && a.id !== "dedicated-photo" && a.id !== "dedicated-video"
+      );
+    } else if (ecommerceTab === "ai-hybrid") {
+      // AI & Hybrid: remove physical-only set/crew options.
+      return ecommerceAddOns.filter(
+        (a) =>
+          a.id !== "weekend" &&
+          a.id !== "shootday" &&
+          a.id !== "prop-sourcing" &&
+          a.id !== "bts" &&
+          a.id !== "drone" &&
+          a.id !== "dedicated-photo" &&
+          a.id !== "dedicated-video"
+      );
+    } else {
+      // One-time physical: no dedicated photo/video operators.
+      return ecommerceAddOns.filter(
+        (a) => a.id !== "dedicated-photo" && a.id !== "dedicated-video"
+      );
+    }
+  };
+
+  const addOns = getFilteredAddOns();
 
   // Toggle add-on selection
   const toggleAddOn = (id: string) => {
@@ -448,19 +549,25 @@ export default function PricingPage() {
     } else if (activeNiche === "commercial") {
       setSelectedTier(commercialTab === "one-time" ? "commercial-ot2" : "commercial-ret2");
     } else {
-      setSelectedTier(ecommerceTab === "one-time" ? "ecommerce-ot2" : "ecommerce-ret2");
+      setSelectedTier(
+        ecommerceTab === "one-time"
+          ? "ecommerce-ot2"
+          : ecommerceTab === "retainers"
+          ? "ecommerce-ret2"
+          : "ecommerce-ai2"
+      );
     }
     setSelectedAddOns([]);
   }, [activeNiche, eventTab, commercialTab, ecommerceTab]);
 
-  // Calculate current range
   const currentTierData = [
     ...eventSoloTiers, 
     ...eventDualTiers, 
     ...commercialOneTimeTiers, 
     ...commercialRetainerTiers,
     ...ecommerceOneTimeTiers,
-    ...ecommerceRetainerTiers
+    ...ecommerceRetainerTiers,
+    ...ecommerceAiTiers
   ].find((t) => t.id === selectedTier);
   const baseMin = currentTierData?.minPrice || 0;
   const baseMax = currentTierData?.maxPrice || 0;
@@ -544,7 +651,8 @@ export default function PricingPage() {
       ...commercialOneTimeTiers, 
       ...commercialRetainerTiers,
       ...ecommerceOneTimeTiers,
-      ...ecommerceRetainerTiers
+      ...ecommerceRetainerTiers,
+      ...ecommerceAiTiers
     ].map((tier) => ({
       "@type": "Offer",
       "name": tier.name,
@@ -777,6 +885,23 @@ export default function PricingPage() {
                 )}
                 <span className="relative z-10">Monthly Retainers</span>
               </button>
+              <button
+                onClick={() => setEcommerceTab("ai-hybrid")}
+                className={`relative px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                  ecommerceTab === "ai-hybrid"
+                    ? "text-black dark:text-white font-bold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {ecommerceTab === "ai-hybrid" && (
+                  <motion.div
+                    layoutId="activeEcommerceTab"
+                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">AI & Hybrid</span>
+              </button>
             </div>
           </div>
         )}
@@ -797,7 +922,7 @@ export default function PricingPage() {
                 ? (eventTab === "solo" ? eventSoloTiers : eventDualTiers)
                 : activeNiche === "commercial"
                 ? (commercialTab === "one-time" ? commercialOneTimeTiers : commercialRetainerTiers)
-                : (ecommerceTab === "one-time" ? ecommerceOneTimeTiers : ecommerceRetainerTiers)
+                : (ecommerceTab === "one-time" ? ecommerceOneTimeTiers : ecommerceTab === "retainers" ? ecommerceRetainerTiers : ecommerceAiTiers)
               ).map((tier) => {
                 const isSelected = selectedTier === tier.id;
                 return (
@@ -830,7 +955,7 @@ export default function PricingPage() {
                           ? (eventTab === "solo" ? "SOLO COVERAGE" : "DUAL COVERAGE")
                           : activeNiche === "commercial"
                           ? (commercialTab === "one-time" ? "COMMERCIAL PROJECT" : "MONTHLY RETAINER")
-                          : (ecommerceTab === "one-time" ? "PRODUCT CAMPAIGN" : "ECOMMERCE RETAINER")}
+                          : (ecommerceTab === "one-time" ? "PRODUCT CAMPAIGN" : ecommerceTab === "retainers" ? "ECOMMERCE RETAINER" : "AI & HYBRID CAMPAIGN")}
                       </span>
                       <h3 className="text-lg font-light tracking-wide uppercase mb-3">
                         {tier.name.split(" — ").pop() || tier.name}
@@ -1227,7 +1352,7 @@ export default function PricingPage() {
                   DJ TJ
                 </span>
                 <span className="block text-[10px] font-mono tracking-widest uppercase text-zinc-400 mt-0.5">
-                  Artist & Producer
+                  Event Manager & DJ
                 </span>
               </div>
             </div>
