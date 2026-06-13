@@ -48,9 +48,10 @@ interface AddOnOption {
 }
 
 export default function PricingPage() {
-  const [activeNiche, setActiveNiche] = useState<"events" | "commercial">("events");
+  const [activeNiche, setActiveNiche] = useState<"events" | "commercial" | "ecommerce">("events");
   const [eventTab, setEventTab] = useState<"solo" | "dual">("dual");
   const [commercialTab, setCommercialTab] = useState<"one-time" | "retainers">("one-time");
+  const [ecommerceTab, setEcommerceTab] = useState<"one-time" | "retainers">("one-time");
   const [selectedTier, setSelectedTier] = useState<string>("events-tier3");
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -250,6 +251,113 @@ export default function PricingPage() {
     }
   ];
 
+  // Ecommerce Tiers - One-Time Projects (Product Launches & Website Refresh)
+  const ecommerceOneTimeTiers: PackageTier[] = [
+    {
+      id: "ecommerce-ot1",
+      name: "Tier 1 — Listing Essentials",
+      price: "$300 – $500",
+      minPrice: 300,
+      maxPrice: 500,
+      includes: "Clean white studio listing shots, styled group layouts, infographics",
+      bestFor: "New brands launching on Shopify, Amazon, or Etsy needing professional storefront listings",
+      deliverables: [
+        "5 styled white-background studio shots (clean listing images)",
+        "3 flat-lay / stylized group product layouts",
+        "2 custom infographics (feature callouts or dimension overlays)",
+        "Capture One color-accurate processing & retouching (dust removal)",
+        "Commercial usage rights"
+      ]
+    },
+    {
+      id: "ecommerce-ot2",
+      name: "Tier 2 — Brand Launch Campaign",
+      price: "$800 – $1,200",
+      minPrice: 800,
+      maxPrice: 1200,
+      includes: "Lifestyle product shoots, website background header loop, social-ready videos",
+      bestFor: "New collection drops, storefront updates, and complete product launches",
+      deliverables: [
+        "15 high-res lifestyle product photos (on-location or styled studio set)",
+        "5 styled studio photos (white/colored backgrounds)",
+        "1 cinematic website header video (15-30s seamless loop, 4K, no audio)",
+        "3 social-ready vertical videos (ASMR texture, unboxing, or product-in-use)",
+        "Capture One + DaVinci Resolve color-graded selects",
+        "Commercial usage rights"
+      ],
+      recommended: true
+    },
+    {
+      id: "ecommerce-ot3",
+      name: "Tier 3 — Full Ecom Ad Creative Suite",
+      price: "$1,500 – $2,500+",
+      minPrice: 1500,
+      maxPrice: 2500,
+      includes: "Large product/lifestyle asset library, vertical video ads, hook tests, promo video",
+      bestFor: "Established brands running paid advertising (Meta/TikTok ads) looking to maximize CTR",
+      deliverables: [
+        "30 lifestyle & styled studio product photos",
+        "5 vertical ad-ready video creatives (with text hook overlays & CTA cards)",
+        "3 variations of main hooks (different first 3 seconds to test CTR)",
+        "1 master product demonstration video (60s, 4K, voiceover optimized)",
+        "Full commercial/distribution rights"
+      ]
+    }
+  ];
+
+  // Ecommerce Tiers - Monthly Retainers (Ongoing drops & ad creative refresh)
+  const ecommerceRetainerTiers: PackageTier[] = [
+    {
+      id: "ecommerce-ret1",
+      name: "Starter — Monthly Drop",
+      price: "$600 / month",
+      minPrice: 600,
+      maxPrice: 600,
+      includes: "1 styled shooting block per month, steady stream of social assets",
+      bestFor: "Brands launching 1-2 new SKUs monthly or needing consistent organic social updates",
+      deliverables: [
+        "1 styled shooting block per month (2 hours)",
+        "10 edited product/lifestyle photos",
+        "2 short-form vertical videos (product spotlight / unboxing)",
+        "Month-to-month, cancel anytime"
+      ]
+    },
+    {
+      id: "ecommerce-ret2",
+      name: "Growth — Ecom Creative Engine",
+      price: "$1,200 / month",
+      minPrice: 1200,
+      maxPrice: 1200,
+      includes: "1 half-day shoot per month, ongoing ad creative refresh against ad fatigue",
+      bestFor: "Brands running paid social ads who need new hooks and fresh asset libraries monthly",
+      deliverables: [
+        "1 half-day shoot per month (4 hours on-location or custom studio setup)",
+        "20 lifestyle and product-in-use photos",
+        "5 vertical video ads (with 3 hook variations for ad tests)",
+        "High-detail texture macro shots & ASMR audio capturing",
+        "3-month minimum commitment"
+      ],
+      recommended: true
+    },
+    {
+      id: "ecommerce-ret3",
+      name: "Scale — High-Volume Studio",
+      price: "$2,200 / month",
+      minPrice: 2200,
+      maxPrice: 2200,
+      includes: "2 shoot blocks per month, outsource all social video & ad asset production",
+      bestFor: "Active product brands with broad catalogs needing constant refreshes",
+      deliverables: [
+        "2 shoot blocks per month (full day coverage)",
+        "40 lifestyle and studio product photos",
+        "10 vertical video ads (formatted for Instagram, TikTok, YouTube Shorts)",
+        "1 main lifestyle brand video (60-90s, cinematic, color-graded)",
+        "Dedicated prop styling & model scouting assistance",
+        "3-month minimum commitment"
+      ]
+    }
+  ];
+
   // Event-specific and Shared Add-ons
   const eventAddOns: AddOnOption[] = [
     { id: "rush", name: "Rush Delivery (48hr)", price: "+$250", cost: 250, description: "Accelerated editing and review queues (guaranteed export under 48 hours)" },
@@ -296,7 +404,33 @@ export default function PricingPage() {
     { id: "testimonial-shoot", name: "Client Testimonial Shoot", price: "+$200", cost: 200, description: "Setup dedicated audio/lighting to record a client interview/testimonial recommendation" }
   ];
 
-  const addOns = activeNiche === "events" ? eventAddOns : commercialAddOns;
+  // Ecommerce-specific and Shared Add-ons
+  const ecommerceAddOns: AddOnOption[] = [
+    { id: "rush", name: "Rush Delivery (48hr)", price: "+$250", cost: 250, description: "Accelerated editing and review queues (guaranteed export under 48 hours)" },
+    { id: "weekend", name: "Weekend/After-Hours Shoot", price: "+$200", cost: 200, description: "Book a shoot during weekend days or outside normal working hours" },
+    { id: "social-cutdowns", name: "3x Social Cutdowns", price: "+$150", cost: 150, description: "3 additional highly engaging vertical crops (9:16) optimized for TikTok/Reels" },
+    { id: "bts", name: "BTS Mini-Documentary", price: "+$300", cost: 300, description: "A cinematic 2-3 minute behind-the-scenes mini-doc for socials/YouTube" },
+    { id: "stills", name: "Promo Still Frames", price: "+$150", cost: 150, description: "10-20 professional high-res photos / color-graded stills for release promo" },
+    { id: "extended-highlight", name: "Extended Highlight Reel", price: "+$200", cost: 200, description: "Extend the length of your final highlight video wrap-up by 2-3 minutes" },
+    { id: "shootday", name: "Additional Shoot Day", price: "+$400", cost: 400, description: "Add a second filming block (up to 4 hours) on a separate date" },
+    { id: "dedicated-photo", name: "Dedicated Photo Operator", price: "+$250", cost: 250, description: "Add a dedicated photographer to cover high-res stills during video-only sessions" },
+    { id: "dedicated-video", name: "Dedicated Video Operator", price: "+$300", cost: 300, description: "Add a dedicated videographer to capture cinematic video during photo-only sessions" },
+    { id: "drone", name: "Cinematic Drone Footage", price: "+$300", cost: 300, description: "Stunning 4K aerial visuals shot by a licensed drone operator" },
+    { id: "graphics", name: "Custom Motion Graphics", price: "+$250", cost: 250, description: "Custom intro title card, 3D track animation, or personalized lyric overlays" },
+    { id: "voiceover", name: "Professional Voiceover", price: "+$200", cost: 200, description: "Incorporate a studio-recorded voiceover / narration tracks into your video package" },
+    { id: "retainer-bridge", name: "Monthly Retainer Bridge", price: "+$400/mo", cost: 400, description: "Lock in ongoing post-event support with a monthly retainer discount" },
+    { id: "hand-modeling", name: "Hand Modeling", price: "+$150", cost: 150, description: "Add a model's hands in-frame to demonstrate product texture, scale, application, or styling" },
+    { id: "prop-sourcing", name: "Product Styling & Prop Sourcing", price: "+$100", cost: 100, description: "Sourcing specific backdrops, textures (sand, stone blocks), or fresh styling props" },
+    { id: "stop-motion", name: "Stop-Motion Product Animation", price: "+$200", cost: 200, description: "Smooth, looping 3-5 second stop-motion video clips showing product packaging or usage" },
+    { id: "hook-variations", name: "Stop-Scroll Hook Variations", price: "+$100", cost: 100, description: "3 extra variations of the first 3 seconds of vertical video to test click-through rate" },
+    { id: "shipment-logistics", name: "Shipment & Return Logistics", price: "+$50", cost: 50, description: "Receiving, checking, prepping, cleaning, repacking, and shipping back product samples" }
+  ];
+
+  const addOns = activeNiche === "events" 
+    ? eventAddOns 
+    : activeNiche === "commercial" 
+    ? commercialAddOns 
+    : ecommerceAddOns;
 
   // Toggle add-on selection
   const toggleAddOn = (id: string) => {
@@ -307,18 +441,27 @@ export default function PricingPage() {
     }
   };
 
-  // Reset selected tier when niche, event tab, or commercial tab changes
+  // Reset selected tier when niche, event tab, commercial tab, or ecommerce tab changes
   useEffect(() => {
     if (activeNiche === "events") {
       setSelectedTier(eventTab === "solo" ? "events-tier1" : "events-tier3");
-    } else {
+    } else if (activeNiche === "commercial") {
       setSelectedTier(commercialTab === "one-time" ? "commercial-ot2" : "commercial-ret2");
+    } else {
+      setSelectedTier(ecommerceTab === "one-time" ? "ecommerce-ot2" : "ecommerce-ret2");
     }
     setSelectedAddOns([]);
-  }, [activeNiche, eventTab, commercialTab]);
+  }, [activeNiche, eventTab, commercialTab, ecommerceTab]);
 
   // Calculate current range
-  const currentTierData = [...eventSoloTiers, ...eventDualTiers, ...commercialOneTimeTiers, ...commercialRetainerTiers].find((t) => t.id === selectedTier);
+  const currentTierData = [
+    ...eventSoloTiers, 
+    ...eventDualTiers, 
+    ...commercialOneTimeTiers, 
+    ...commercialRetainerTiers,
+    ...ecommerceOneTimeTiers,
+    ...ecommerceRetainerTiers
+  ].find((t) => t.id === selectedTier);
   const baseMin = currentTierData?.minPrice || 0;
   const baseMax = currentTierData?.maxPrice || 0;
   const addOnsCost = selectedAddOns.reduce((total, id) => {
@@ -395,7 +538,14 @@ export default function PricingPage() {
       }
     },
     "areaServed": ["Long Beach", "Los Angeles County"],
-    "offers": [...eventSoloTiers, ...eventDualTiers, ...commercialOneTimeTiers, ...commercialRetainerTiers].map((tier) => ({
+    "offers": [
+      ...eventSoloTiers, 
+      ...eventDualTiers, 
+      ...commercialOneTimeTiers, 
+      ...commercialRetainerTiers,
+      ...ecommerceOneTimeTiers,
+      ...ecommerceRetainerTiers
+    ].map((tier) => ({
       "@type": "Offer",
       "name": tier.name,
       "description": tier.includes,
@@ -480,6 +630,25 @@ export default function PricingPage() {
                 )}
                 <span className="relative z-10 flex items-center gap-1.5">
                   <Building className="h-3 w-3" /> Commercial & Branding
+                </span>
+              </button>
+              <button
+                onClick={() => setActiveNiche("ecommerce")}
+                className={`relative px-3 sm:px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                  activeNiche === "ecommerce"
+                    ? "text-black dark:text-white font-bold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {activeNiche === "ecommerce" && (
+                  <motion.div
+                    layoutId="activeNicheTab"
+                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <Sparkles className="h-3 w-3" /> Ecommerce Production
                 </span>
               </button>
             </div>
@@ -570,12 +739,54 @@ export default function PricingPage() {
           </div>
         )}
 
+        {/* Secondary Switcher for Ecommerce Tiers */}
+        {activeNiche === "ecommerce" && (
+          <div className="flex justify-center mb-10">
+            <div className="flex bg-zinc-100 dark:bg-zinc-900/50 p-1 rounded-sm border border-zinc-200/50 dark:border-zinc-800/50 gap-1">
+              <button
+                onClick={() => setEcommerceTab("one-time")}
+                className={`relative px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                  ecommerceTab === "one-time"
+                    ? "text-black dark:text-white font-bold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {ecommerceTab === "one-time" && (
+                  <motion.div
+                    layoutId="activeEcommerceTab"
+                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">One-Time Projects</span>
+              </button>
+              <button
+                onClick={() => setEcommerceTab("retainers")}
+                className={`relative px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                  ecommerceTab === "retainers"
+                    ? "text-black dark:text-white font-bold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {ecommerceTab === "retainers" && (
+                  <motion.div
+                    layoutId="activeEcommerceTab"
+                    className="absolute inset-0 bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 shadow-sm rounded-sm"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">Monthly Retainers</span>
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Niche specific packaging grids */}
         <div className="mb-20">
           <h2 className="sr-only">Pricing Tiers</h2>
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeNiche === "events" ? `${activeNiche}-${eventTab}` : activeNiche === "commercial" ? `${activeNiche}-${commercialTab}` : activeNiche}
+              key={activeNiche === "events" ? `${activeNiche}-${eventTab}` : activeNiche === "commercial" ? `${activeNiche}-${commercialTab}` : `${activeNiche}-${ecommerceTab}`}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
@@ -584,9 +795,9 @@ export default function PricingPage() {
             >
               {(activeNiche === "events"
                 ? (eventTab === "solo" ? eventSoloTiers : eventDualTiers)
-                : commercialTab === "one-time"
-                ? commercialOneTimeTiers
-                : commercialRetainerTiers
+                : activeNiche === "commercial"
+                ? (commercialTab === "one-time" ? commercialOneTimeTiers : commercialRetainerTiers)
+                : (ecommerceTab === "one-time" ? ecommerceOneTimeTiers : ecommerceRetainerTiers)
               ).map((tier) => {
                 const isSelected = selectedTier === tier.id;
                 return (
@@ -617,9 +828,9 @@ export default function PricingPage() {
                       }`}>
                         {activeNiche === "events"
                           ? (eventTab === "solo" ? "SOLO COVERAGE" : "DUAL COVERAGE")
-                          : commercialTab === "one-time"
-                          ? "COMMERCIAL PROJECT"
-                          : "MONTHLY RETAINER"}
+                          : activeNiche === "commercial"
+                          ? (commercialTab === "one-time" ? "COMMERCIAL PROJECT" : "MONTHLY RETAINER")
+                          : (ecommerceTab === "one-time" ? "PRODUCT CAMPAIGN" : "ECOMMERCE RETAINER")}
                       </span>
                       <h3 className="text-lg font-light tracking-wide uppercase mb-3">
                         {tier.name.split(" — ").pop() || tier.name}
@@ -704,6 +915,15 @@ export default function PricingPage() {
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* Ad Fatigue Insight Note (for Ecommerce) */}
+        {activeNiche === "ecommerce" && (
+          <div className="mt-8 mb-6 text-center">
+            <p className="text-xs font-mono tracking-widest text-[#ffff00] dark:text-[#ffff00] max-w-3xl mx-auto leading-relaxed border border-dashed border-[#ffff00]/30 p-4 rounded-sm bg-[#ffff00]/5 uppercase">
+              ★ [ INSIGHT ] Ad fatigue is the #1 killer of ecommerce margins. Our Growth and Scale retainers are structured specifically to deliver fresh video hooks, product textures, and lifestyle variations every 30 days so your ad campaigns stay highly profitable.
+            </p>
+          </div>
+        )}
 
         {/* Revision Policy Note */}
         <div className="mt-8 mb-16 text-center">
