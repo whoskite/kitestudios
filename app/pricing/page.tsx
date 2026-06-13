@@ -512,16 +512,13 @@ export default function PricingPage() {
         (a) => a.id !== "retainer-bridge" && a.id !== "dedicated-photo" && a.id !== "dedicated-video"
       );
     } else if (ecommerceTab === "ai-hybrid") {
-      // AI & Hybrid: remove physical-only set/crew options.
+      // AI & Hybrid: Only show Rush Delivery, Monthly Retainer Bridge, Seasonal AI Environment Refresh, AI Model Placement.
       return ecommerceAddOns.filter(
         (a) =>
-          a.id !== "weekend" &&
-          a.id !== "shootday" &&
-          a.id !== "prop-sourcing" &&
-          a.id !== "bts" &&
-          a.id !== "drone" &&
-          a.id !== "dedicated-photo" &&
-          a.id !== "dedicated-video"
+          a.id === "rush" ||
+          a.id === "retainer-bridge" ||
+          a.id === "ai-refresh" ||
+          a.id === "ai-model"
       );
     } else {
       // One-time physical: no dedicated photo/video operators.
@@ -1341,7 +1338,7 @@ export default function PricingPage() {
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {/* Testimonial 1 */}
             <div className="p-6 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 flex flex-col justify-between">
               <p className="text-sm font-light italic leading-relaxed text-zinc-650 dark:text-zinc-300 mb-6">
@@ -1359,15 +1356,30 @@ export default function PricingPage() {
 
             {/* Testimonial 2 */}
             <div className="p-6 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 flex flex-col justify-between">
-              <p className="text-sm font-light italic leading-relaxed text-zinc-650 dark:text-zinc-350 mb-6">
-                "Tomy's eye for lighting and direction is unmatched. We shot a music video standard package and the color grading alone looked like a high-budget indie film. Professional, structured revision process, and super fast delivery."
+              <p className="text-sm font-light italic leading-relaxed text-zinc-650 dark:text-zinc-300 mb-6">
+                "We booked the premium coverage for our wedding reception and the dual photo/video team was absolutely phenomenal. Every detail, from the ceremony to the party, was captured with cinematic styling. Best investment we made."
               </p>
               <div>
                 <span className="block text-xs font-mono tracking-widest uppercase font-bold">
                   Tony
                 </span>
                 <span className="block text-[10px] font-mono tracking-widest uppercase text-zinc-400 mt-0.5">
-                  Creative Lead, Sound & Motion
+                  Electrical Engineer
+                </span>
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="p-6 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 flex flex-col justify-between">
+              <p className="text-sm font-light italic leading-relaxed text-zinc-650 dark:text-zinc-300 mb-6">
+                "The lookbook campaign assets we shot with KITESTUDIOS completely transformed our brand presence. The photos look incredible on our Shopify storefront, and the vertical social cuts generated huge engagement on our launch."
+              </p>
+              <div>
+                <span className="block text-xs font-mono tracking-widest uppercase font-bold">
+                  Glyf
+                </span>
+                <span className="block text-[10px] font-mono tracking-widest uppercase text-zinc-400 mt-0.5">
+                  Founder, Glyf Studio
                 </span>
               </div>
             </div>
