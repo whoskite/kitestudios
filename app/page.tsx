@@ -13,6 +13,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import MinimalNav from "@/components/MinimalNav";
+import IntroAnimation from "@/components/IntroAnimation";
 import { portfolioItems, projectsList, MediaItem } from "@/lib/portfolio-data";
 import Link from "next/link";
 import { slugify } from "@/lib/utils";
@@ -82,8 +83,28 @@ function HomeContent() {
   const [copiedFooter, setCopiedFooter] = useState(false);
   const [visibleCount, setVisibleCount] = useState(18);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showIntro, setShowIntro] = useState(false);
 
   const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Session-based gate to only run the intro animation once per session
+    const hasSeenIntro = sessionStorage.getItem("hasSeenKitestudiosIntro");
+    if (!hasSeenIntro) {
+      setShowIntro(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (showIntro) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showIntro]);
 
   // Filter projects by active category (photos/videos) for the nav bar tags
   const visibleProjects = projectsList.filter((project) => {
@@ -193,12 +214,24 @@ function HomeContent() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
-      {/* Sleek Navigation passing double filter controls */}
-      <MinimalNav
-        projectFilter="all"
-        projects={visibleProjects}
-      />
+    <>
+      <AnimatePresence>
+        {showIntro && (
+          <IntroAnimation
+            onComplete={() => {
+              setShowIntro(false);
+              sessionStorage.setItem("hasSeenKitestudiosIntro", "true");
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
+        {/* Sleek Navigation passing double filter controls */}
+        <MinimalNav
+          projectFilter="all"
+          projects={visibleProjects}
+        />
 
       {/* Main Content Area - Landing directly into visual archives */}
       <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-7xl">
@@ -279,6 +312,15 @@ function HomeContent() {
             <span className="text-xs tracking-wider font-mono uppercase font-light">
               © 2026 KITESTUDIOS • PORTFOLIO
             </span>
+            <button
+              onClick={() => {
+                sessionStorage.removeItem("hasSeenKitestudiosIntro");
+                setShowIntro(true);
+              }}
+              className="text-[10px] tracking-widest font-mono uppercase text-zinc-400 hover:text-black dark:hover:text-white mt-2 block transition-colors underline decoration-dotted"
+            >
+              [ Replay Intro Film ]
+            </button>
           </div>
 
           {/* Social connections */}
@@ -455,7 +497,8 @@ function HomeContent() {
           </motion.button>
         )}
       </AnimatePresence>
-    </div>
+      </div>
+    </>
   );
 }
 
