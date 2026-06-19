@@ -28,3 +28,11 @@ next-env.d.ts
 
 # local backend pricing docs
 /docs/
+
+# videos and hyperframes
+/videos/
+/hyperframes/
+*hyperframes*
+
+# local leads backup data
+/data/
