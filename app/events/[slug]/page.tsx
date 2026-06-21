@@ -17,9 +17,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!event) return {};
 
+  const title = `${event.title} | KITESTUDIOS Events`;
+  const description = event.description || `Explore ${event.title} event gallery by Tomy Kite at KITESTUDIOS.`;
+  const imageUrl = `/events/${params.slug}/opengraph-image`;
+
   return {
-    title: `${event.title} | KITESTUDIOS Events`,
-    description: event.description || `Explore ${event.title} event gallery by Tomy Kite at KITESTUDIOS.`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: event.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
+    },
   };
 }
 
