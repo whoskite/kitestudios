@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "KITESTUDIOS",
   description:
     "A creative platform exploring the intersection of design, technology, and community.",
-  metadataBase: new URL("https://kitestudios.vercel.app"),
+  metadataBase: new URL("https://www.kitestudios.net"),
   icons: {
     icon: "/KITESTUDIOS_ICON.ico",
     shortcut: "/KITESTUDIOS_ICON.ico",
