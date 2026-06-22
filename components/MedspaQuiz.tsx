@@ -74,13 +74,30 @@ export default function MedspaQuiz() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
+    // Generate a unique event ID for deduplication
+    const eventId = `lead_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+
     try {
+      // Trigger Meta Pixel conversion tracking for Ads Manager with eventID
+      if (typeof window !== "undefined" && window.fbq) {
+        window.fbq("track", "Lead", {
+          content_name: "Medspa Curation Trial Application",
+          content_category: "Lead Acquisition",
+          value: 0.00,
+          currency: "USD"
+        }, { eventID: eventId });
+      }
+
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          eventId,
+        }),
       });
 
       if (response.ok) {
@@ -128,7 +145,7 @@ export default function MedspaQuiz() {
 
 
 
-  const slideVariants = {
+  const slideVariants: any = {
     enter: (dir: number) => ({
       x: dir > 0 ? 30 : -30,
       opacity: 0,

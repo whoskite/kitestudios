@@ -2,11 +2,25 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import nodemailer from "nodemailer";
+import crypto from "crypto";
+
+function hashData(value: string | undefined): string | null {
+  if (!value) return null;
+  return crypto.createHash("sha256").update(value.trim().toLowerCase()).digest("hex");
+}
+
+function hashPhone(phone: string | undefined): string | null {
+  if (!phone) return null;
+  // Clean phone number to digits only (e.g. +1 (310) 555-0199 -> 13105550199)
+  const cleaned = phone.replace(/\D/g, "");
+  return crypto.createHash("sha256").update(cleaned).digest("hex");
+}
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const {
+      eventId,
       location,
       treatments = [],
       revenue,
@@ -84,6 +98,74 @@ Qualification Status: ${isQualified ? "PRE-QUALIFIED / HIGH PRIORITY" : "STANDAR
       console.log(`[Lead API] Lead saved locally to ${filePath}`);
     } catch (fsErr) {
       console.error("[Lead API] Failed to write backup lead to local file:", fsErr);
+    }
+
+    // 3.2 Send to Meta Conversions API (CAPI) if credentials are configured
+    const metaPixelId = process.env.META_PIXEL_ID;
+    const metaAccessToken = process.env.META_ACCESS_TOKEN;
+
+    if (metaPixelId && metaAccessToken) {
+      const userAgent = request.headers.get("user-agent") || "";
+      const ipAddress = request.headers.get("x-forwarded-for")?.split(",")[0].trim() 
+        || request.headers.get("x-real-ip") 
+        || "127.0.0.1";
+      const referer = request.headers.get("referer") || "https://kitestudios.net/medspa";
+
+      const hashedEmail = hashData(email);
+      const hashedPhone = hashPhone(phone);
+      const hashedFirstName = hashData(firstName);
+      const hashedLastName = hashData(lastName);
+
+      const capiPayload = {
+        data: [
+          {
+            event_name: "Lead",
+            event_time: Math.floor(Date.now() / 1000), // Unix timestamp in seconds
+            event_id: eventId || `lead_fallback_${Date.now()}`, // Fallback if client eventId is missing
+            action_source: "website",
+            event_source_url: referer,
+            user_data: {
+              em: hashedEmail ? [hashedEmail] : [],
+              ph: hashedPhone ? [hashedPhone] : [],
+              fn: hashedFirstName ? [hashedFirstName] : [],
+              ln: hashedLastName ? [hashedLastName] : [],
+              client_ip_address: ipAddress,
+              client_user_agent: userAgent,
+            },
+            custom_data: {
+              content_name: "Medspa Curation Trial Application",
+              content_category: "Lead Acquisition",
+              value: 0.00,
+              currency: "USD",
+            },
+          },
+        ],
+      };
+
+      console.log(`[Lead API] Submitting to Meta Conversions API for eventID: ${eventId}`);
+      try {
+        const capiResponse = await fetch(
+          `https://graph.facebook.com/v20.0/${metaPixelId}/events?access_token=${metaAccessToken}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(capiPayload),
+          }
+        );
+
+        const capiResult = await capiResponse.json();
+        if (capiResponse.ok) {
+          console.log("[Lead API] Conversions API event sent successfully:", capiResult);
+        } else {
+          console.error("[Lead API] Conversions API responded with error:", capiResult);
+        }
+      } catch (capiErr) {
+        console.error("[Lead API] Failed sending to Meta Conversions API:", capiErr);
+      }
+    } else {
+      console.warn("[Lead API] Meta Pixel credentials missing in .env.local. Skipping CAPI event submission.");
     }
 
     // 3.5 Send Email Notification if SMTP credentials are configured in .env.local
