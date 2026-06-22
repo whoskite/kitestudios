@@ -4,11 +4,14 @@ export const metadata: Metadata = {
   title: "KiteStudios | Cinematic Web Production for Premier Aesthetic Clinics",
   description:
     "Apply for our exclusive local medical spa cohort. Get a cinema-grade website video walkthrough produced completely at zero upfront cost. Verify your clinic's eligibility.",
+  alternates: {
+    canonical: "https://kitestudios.net/medspa",
+  },
   openGraph: {
     title: "KiteStudios | Cinematic Web Production for Premier Aesthetic Clinics",
     description:
       "Apply for our exclusive local medical spa cohort. Get a cinema-grade website video walkthrough produced completely at zero upfront cost. Verify your clinic's eligibility.",
-    url: "https://kitestudios.vercel.app/medspa",
+    url: "https://kitestudios.net/medspa",
     siteName: "KiteStudios",
     images: [
       {

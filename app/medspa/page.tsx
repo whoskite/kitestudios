@@ -96,12 +96,11 @@ export default function MedspaLandingPage() {
           </div>
           
           <h1 className="text-4xl sm:text-6xl font-serif-luxury font-bold tracking-wide uppercase leading-[1.15] text-[#2E2C29]">
-            Cinematic Web Production <br className="hidden sm:inline" />
-            For Premier <span className="italic font-bold text-[#C5A880]">Aesthetic</span> Clinics.
-          </h1>
+            Claim your Medspa <br className="hidden sm:inline" />
+            <span className="italic font-bold text-[#C5A880]">Film Trial </span>          </h1>
           
           <p className="text-sm sm:text-base text-stone-500 font-light leading-relaxed max-w-2xl mx-auto">
-            Build patient trust instantly. We script, film, and edit a tailored visual walkthrough for your website completely on our dime. Eligible local clinics pay nothing upfront.
+            Build patient trust instantly. We script, film, and edit a tailored visual walkthrough for your platform completely on our dime. Eligible local clinics pay nothing upfront.
           </p>
 
           <div className="flex justify-center pt-2 w-full max-w-xs">
@@ -134,6 +133,16 @@ export default function MedspaLandingPage() {
               className="absolute inset-0 w-full h-full rounded-2xl"
               title="VSL Briefing"
             />
+          </div>
+
+          {/* Mirrored Call-To-Action for VSL Video Section */}
+          <div className="flex justify-center w-full max-w-xs mx-auto pt-2">
+            <button
+              onClick={scrollToQuiz}
+              className="px-8 py-3.5 bg-stone-900 text-white hover:bg-stone-850 font-mono font-semibold tracking-wider text-xs uppercase transition-all duration-300 rounded-lg shadow-lg flex items-center justify-center gap-2 cursor-pointer w-full animate-pulse"
+            >
+              Verify Eligibility
+            </button>
           </div>
 
           <div className="flex justify-between items-center text-[10px] font-mono text-stone-400 px-2">
@@ -218,8 +227,8 @@ export default function MedspaLandingPage() {
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-[9px] font-mono tracking-wider text-[#C5A880]">SLOT 01</span>
-                  <span className="text-[9px] font-mono bg-[#C5A880]/20 text-[#C5A880] px-2 py-0.5 rounded font-medium uppercase animate-pulse">
-                    OPEN
+                  <span className="text-[9px] font-mono bg-amber-500/15 text-amber-750 px-2 py-0.5 rounded font-semibold uppercase">
+                    APPLICATION PENDING
                   </span>
                 </div>
                 <h3 className="text-base font-serif-luxury font-bold uppercase tracking-wider text-stone-850">
@@ -229,8 +238,8 @@ export default function MedspaLandingPage() {
                   Accepting local applications. Fill out the eligibility form below to apply.
                 </p>
               </div>
-              <div className="border-t border-[#C5A880]/20 pt-3 text-[10px] font-mono text-[#C5A880]">
-                STATUS: ACCEPTING INTAKE
+              <div className="border-t border-[#C5A880]/20 pt-3 text-[10px] font-mono text-[#C5A880]/80">
+                STATUS: CREATIVE REVIEW
               </div>
             </div>
 
@@ -369,13 +378,16 @@ export default function MedspaLandingPage() {
             {/* Spec 1 */}
             <div className="relative rounded-2xl overflow-hidden aspect-[3/2] border border-[#EBE8E2] bg-neutral-900 group shadow-sm">
               <video
-                src="/Portfolio/GLYF STUDIO/Video/glyfstudio_documentary.mp4"
                 loop
                 muted
                 autoPlay
                 playsInline
+                poster="/images/placeholder-thumb.jpg"
                 className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-              />
+              >
+                <source src="/Portfolio/GLYF STUDIO/Video/glyfstudio_documentary.webm" type="video/webm" />
+                <source src="/Portfolio/GLYF STUDIO/Video/glyfstudio_documentary.mp4" type="video/mp4" />
+              </video>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4">
                 <span className="text-[9px] font-mono text-[#C5A880] uppercase">BRAND DOCUMENTARY</span>
                 <h4 className="text-xs font-semibold text-white uppercase tracking-wider mt-0.5">Cinematic Brand Storytelling</h4>
@@ -385,13 +397,16 @@ export default function MedspaLandingPage() {
             {/* Spec 2 */}
             <div className="relative rounded-2xl overflow-hidden aspect-[3/2] border border-[#EBE8E2] bg-neutral-900 group shadow-sm">
               <video
-                src="/Portfolio/TOANDME/TEST.mp4"
                 loop
                 muted
                 autoPlay
                 playsInline
+                poster="/images/placeholder-thumb.jpg"
                 className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-              />
+              >
+                <source src="/Portfolio/TOANDME/TEST.webm" type="video/webm" />
+                <source src="/Portfolio/TOANDME/TEST.mp4" type="video/mp4" />
+              </video>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4">
                 <span className="text-[9px] font-mono text-[#C5A880] uppercase">AESTHETIC REALISM</span>
                 <h4 className="text-xs font-semibold text-white uppercase tracking-wider mt-0.5">Cinematic Textures & Walkthroughs</h4>
@@ -401,13 +416,16 @@ export default function MedspaLandingPage() {
             {/* Spec 3 */}
             <div className="relative rounded-2xl overflow-hidden aspect-[3/2] border border-[#EBE8E2] bg-neutral-900 group shadow-sm">
               <video
-                src="/Portfolio/Genki Prints/Event/comiccon_recap.mp4"
                 loop
                 muted
                 autoPlay
                 playsInline
+                poster="/images/placeholder-thumb.jpg"
                 className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-              />
+              >
+                <source src="/Portfolio/Genki Prints/Event/comiccon_recap.webm" type="video/webm" />
+                <source src="/Portfolio/Genki Prints/Event/comiccon_recap.mp4" type="video/mp4" />
+              </video>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4">
                 <span className="text-[9px] font-mono text-[#C5A880] uppercase">DYNAMIC MOTION</span>
                 <h4 className="text-xs font-semibold text-white uppercase tracking-wider mt-0.5">Stabilized Gimbal Walkthroughs</h4>
