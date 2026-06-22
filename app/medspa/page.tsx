@@ -108,7 +108,7 @@ export default function MedspaLandingPage() {
               onClick={scrollToQuiz}
               className="px-8 py-3.5 bg-stone-900 text-white hover:bg-stone-850 font-mono font-semibold tracking-wider text-xs uppercase transition-all duration-300 rounded-lg shadow-lg flex items-center justify-center gap-2 cursor-pointer w-full animate-pulse"
             >
-              Verify Eligibility
+              Claim Your Trial Shoot
             </button>
           </div>
         </section>
@@ -141,7 +141,7 @@ export default function MedspaLandingPage() {
               onClick={scrollToQuiz}
               className="px-8 py-3.5 bg-stone-900 text-white hover:bg-stone-850 font-mono font-semibold tracking-wider text-xs uppercase transition-all duration-300 rounded-lg shadow-lg flex items-center justify-center gap-2 cursor-pointer w-full animate-pulse"
             >
-              Verify Eligibility
+              Claim Your Trial Shoot
             </button>
           </div>
 

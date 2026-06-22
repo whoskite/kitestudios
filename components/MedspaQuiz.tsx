@@ -236,7 +236,6 @@ export default function MedspaQuiz() {
                     onChange={(e) => updateField({ location: e.target.value })}
                     placeholder="Enter city & state (e.g., Newport Beach, CA)"
                     className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E3DFD5] rounded-lg focus:outline-none focus:border-[#C5A880] text-stone-900 placeholder-stone-400 transition-all font-light"
-                    autoFocus
                   />
                 </div>
               </div>
