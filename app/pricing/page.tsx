@@ -138,7 +138,7 @@ export default function PricingPage() {
             Production Directory
           </h1>
           <p className="text-sm font-mono text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-4">
-            Long Beach, CA — Serving LA County
+            Paramount, CA — Serving LA County
           </p>
           <p className="text-base sm:text-lg text-zinc-650 dark:text-zinc-300 font-light leading-relaxed max-w-2xl">
             A decade of specialized visual storytelling. We operate across three core creative pillars, offering straightforward starting rates and fully custom, project-based proposals.
