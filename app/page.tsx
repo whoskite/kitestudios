@@ -204,7 +204,7 @@ function HomeContent() {
         {/* Corporate Hero Section */}
         <div className="max-w-4xl mx-auto text-center mt-16 mb-20 px-6">
           <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-900 mb-6 leading-tight font-sans">
-            The Dedicated Visual Production Partner for Scaling Brands
+            Visual Production Partner <br /> for Scaling Brands
           </h1>
           <p className="text-base sm:text-lg text-zinc-500 font-normal leading-relaxed max-w-2xl mx-auto mb-8 font-sans">
             We collaborate closely with marketers, brand directors, and entrepreneurs to produce cinematic video campaigns, high-impact digital content, and commercial photography built to engage audiences and drive results.

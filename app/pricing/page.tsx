@@ -27,52 +27,52 @@ export default function PricingPage() {
       num: "01",
       niche: "events",
       title: "Event Production & Live Coverage",
-      headline: "Capturing fleeting key moments with cinematic precision.",
-      description: "High-fidelity, multi-angle coverage tailored for music festivals, DJ sets, receptions, corporate showcases, and private events.",
+      headline: "Capturing key corporate moments with cinematic precision.",
+      description: "High-fidelity, multi-angle coverage tailored for corporate events, annual conferences, panel presentations, and keynote summits.",
       capabilities: [
-        "Solo & Dual Operator setups",
-        "4K Multi-angle cinematic camera logs",
-        "Professional ambient & synced lavalier audio",
-        "Social-ready vertical cutdowns (TikTok/Reels)",
-        "High-res edited photo galleries (Capture One processed)",
-        "Watermark-free delivery & commercial rights"
+        "Solo & Multi-Operator setups",
+        "4K Multi-angle cinematic logs & camera arrays",
+        "Professional synced audio acquisition & lavalier mixes",
+        "Social-ready vertical reels and highlights",
+        "High-resolution clean edited photo catalogs",
+        "Commercial usage rights & full delivery"
       ],
-      investment: "Packages starting at $400 — $1,200+",
-      bookingUrl: "/book?tier=Event+Production&estimate=Starting+at+%24400"
+      investment: "Custom Quoted per Event Scale",
+      bookingUrl: "/book?tier=Event+Production"
     },
     {
       num: "02",
       niche: "commercial",
       title: "Commercial Branding & Storytelling",
-      headline: "Translating business identity into premium visual assets.",
-      description: "Strategic brand documentaries, corporate showcases, property walkthroughs, and custom marketing assets built to establish trust.",
+      headline: "Translating brand vision into premium corporate assets.",
+      description: "Cinematic brand anthems, culture showcases, property walkthroughs, and custom recruitment assets built to establish market authority.",
       capabilities: [
-        "Structured pre-production (storyboards & scripting)",
-        "Core 'Brand Story' mini-documentaries (60-90s)",
-        "High-res corporate & lifestyle headshots",
-        "Multi-platform format optimization (YouTube, Socials, GBP)",
-        "Full commercial usage & distribution rights",
-        "Flexible monthly content retainers"
+        "Pre-production storyboards, scripts, and target alignment",
+        "Core brand storytelling mini-documentaries",
+        "Premium corporate interviews & founder profiles",
+        "Multi-platform horizontal and vertical optimization",
+        "Full commercial advertising rights & licensing",
+        "Ongoing monthly content partner options"
       ],
-      investment: "Projects starting at $800 • Retainers from $500/mo",
-      bookingUrl: "/book?tier=Commercial+Branding&estimate=Starting+at+%24800"
+      investment: "Custom Quoted per Creative Brief",
+      bookingUrl: "/book?tier=Commercial+Branding"
     },
     {
       num: "03",
       niche: "ecommerce",
       title: "Ecommerce & Hybrid Production",
-      headline: "High-performance product pipelines built to convert.",
-      description: "Color-accurate studio catalog listings, styled lifestyle campaigns, and hybrid AI environmental placements to combat ad fatigue.",
+      headline: "High-performance product campaigns built to scale.",
+      description: "Color-accurate studio catalog sets, styled lifestyle listings, and hybrid assets designed to boost conversion rates and engagement.",
       capabilities: [
-        "Shopify, Amazon, and Etsy studio listing shots",
-        "ASMR texture captures and stop-motion loops",
-        "AI-composite environmental backgrounds (marble, luxury sets)",
+        "Standardized e-commerce listing photos & product video loops",
+        "ASMR texture highlights, unboxing, and macro captures",
+        "Premium lifestyle styling and active campaign reels",
         "High-intent vertical video ad creatives",
-        "Continuous monthly refresh retainers for active ad spend",
-        "Product shipment & return logistics support"
+        "Monthly content refresh packages for paid campaigns",
+        "Full product shipment & logistics support"
       ],
-      investment: "Assets starting at $300 • Retainers from $600/mo",
-      bookingUrl: "/book?tier=Ecommerce+Production&estimate=Starting+at+%24300"
+      investment: "Custom Quoted per Asset Volume",
+      bookingUrl: "/book?tier=Ecommerce+Production"
     }
   ];
 
@@ -142,7 +142,7 @@ export default function PricingPage() {
             Paramount, CA — Serving LA County
           </p>
           <p className="text-base sm:text-lg text-zinc-600 font-normal leading-relaxed max-w-2xl">
-            A decade of specialized visual storytelling. We operate across three core creative pillars, offering straightforward starting rates and fully custom, project-based proposals.
+            A decade of specialized visual storytelling. We operate across three core creative pillars, partnering with corporate brands to deliver fully tailored, project-based video and photographic solutions.
           </p>
         </div>
 
@@ -200,7 +200,7 @@ export default function PricingPage() {
               <div className="border-t border-zinc-250 pt-6 mt-8">
                 <div className="mb-4">
                   <span className="block text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">
-                    ESTIMATED RATE
+                    PRICING MODEL
                   </span>
                   <span className="text-sm font-sans font-bold text-zinc-900">
                     {svc.investment}
@@ -375,29 +375,20 @@ export default function PricingPage() {
         </div>
 
         {/* Final CTA */}
-        <div className="text-center py-16 border-t border-zinc-200 max-w-2xl mx-auto">
-          <span className="text-[10px] font-semibold tracking-widest text-accent border border-accent/20 bg-accent/5 px-2.5 py-1 rounded-md uppercase mb-6 inline-block font-sans">
-            READY TO COLLABORATE
-          </span>
-          <h2 className="text-3xl font-bold tracking-tight uppercase mb-4 text-zinc-900 font-sans">
-            Start Your Creative Brief
+        <div className="text-center py-20 border-t border-zinc-200 max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight uppercase mb-6 text-zinc-900 font-sans">
+            Want to learn more?
           </h2>
           <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed max-w-md mx-auto mb-8 font-normal font-sans">
-            We book production dates up to 2-3 months in advance. Share your project references, timeline, and goals to secure a session.
+            Let’s discuss your upcoming project requirements. Connect with us to get a custom quotation tailored to your target audience.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex justify-center">
             <Link
               href="/book"
-              className="px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 border border-accent transition-all text-xs font-sans font-semibold tracking-widest uppercase rounded-md shadow-md flex items-center gap-1.5"
+              className="px-10 py-3.5 bg-accent text-accent-foreground hover:bg-accent/90 border border-accent transition-all text-xs font-sans font-semibold tracking-widest uppercase rounded-md shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
             >
-              Book a Session Inquiry
+              Contact Us
             </Link>
-            <a
-              href="mailto:tomy@kitestudios.net"
-              className="px-8 py-3 bg-transparent hover:bg-slate-50 border border-zinc-200 text-xs font-sans tracking-widest uppercase rounded-md text-zinc-700 font-semibold shadow-sm"
-            >
-              Email Enquiries
-            </a>
           </div>
         </div>
       </main>
