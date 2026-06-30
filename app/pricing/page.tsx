@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import MinimalNav from "@/components/MinimalNav";
 import Link from "next/link";
+import Footer from "@/components/Footer";
 
 export default function PricingPage() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -401,35 +402,7 @@ export default function PricingPage() {
         </div>
       </main>
 
-      <footer className="w-full border-t border-zinc-200 py-16 bg-slate-50/50 mt-16">
-        <div className="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8 text-zinc-500 text-xs">
-          <div className="text-center md:text-left">
-            <span className="font-semibold tracking-[0.2em] text-zinc-900 uppercase block mb-1 font-sans">
-              KITESTUDIOS
-            </span>
-            <span className="text-xs tracking-wider font-mono uppercase font-light">
-              © 2026 KITESTUDIOS • PORTFOLIO
-            </span>
-          </div>
-
-          <div className="flex items-center space-x-12 font-medium tracking-widest text-xs uppercase">
-            <a
-              href="https://instagram.com/kitestudios6"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent text-zinc-650 transition-colors"
-            >
-              INSTAGRAM
-            </a>
-            <a
-              href="mailto:tomy@kitestudios.net"
-              className="hover:text-accent text-zinc-650 transition-colors"
-            >
-              EMAIL
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

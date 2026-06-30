@@ -32,7 +32,7 @@ function MinimalNavContent({
         {/* Logo */}
         <a
           href="/"
-          className="text-lg font-semibold tracking-[0.25em] text-zinc-900 hover:text-zinc-700 transition-colors uppercase font-sans"
+          className="text-lg font-bold tracking-[0.25em] text-zinc-900 hover:text-zinc-700 transition-colors uppercase font-sans"
         >
           KITESTUDIOS
         </a>
@@ -63,6 +63,12 @@ function MinimalNavContent({
           >
             PRICING
           </Link>
+          <Link
+            href="/about"
+            className="text-xs font-semibold tracking-widest uppercase text-zinc-500 hover:text-zinc-900 transition-colors px-3 py-1.5"
+          >
+            ABOUT
+          </Link>
         </div>
 
         {/* Action Controls (Desktop only) */}
@@ -72,7 +78,7 @@ function MinimalNavContent({
             href="/book"
             className="px-4 py-2 bg-accent text-accent-foreground hover:bg-accent/90 text-xs tracking-widest font-sans font-semibold transition-all uppercase rounded-md shadow-sm"
           >
-            Book Now
+            Contact
           </a>
         </div>
 
@@ -123,6 +129,13 @@ function MinimalNavContent({
                 >
                   PRICING
                 </Link>
+                <Link
+                  href="/about"
+                  onClick={() => setIsOpen(false)}
+                  className="text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors text-zinc-500 hover:text-zinc-900"
+                >
+                  ABOUT
+                </Link>
               </div>
 
               {/* Action Controls inside mobile menu */}
@@ -137,7 +150,7 @@ function MinimalNavContent({
                   onClick={() => setIsOpen(false)}
                   className="text-left text-xs tracking-widest font-sans font-bold text-accent hover:text-accent/80 uppercase py-1 transition-colors"
                 >
-                  [ Book Now ]
+                  Contact
                 </a>
               </div>
             </div>
@@ -184,7 +197,7 @@ export default function MinimalNav(props: MinimalNavProps) {
     <Suspense fallback={
       <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-zinc-200 h-[73px] shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between max-w-7xl">
-          <div className="text-lg font-semibold tracking-[0.25em] text-zinc-900 uppercase font-sans">
+          <div className="text-lg font-bold tracking-[0.25em] text-zinc-900 uppercase font-sans">
             KITESTUDIOS
           </div>
           <div className="w-24 h-4 bg-zinc-100 animate-pulse rounded" />

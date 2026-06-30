@@ -17,6 +17,7 @@ import IntroAnimation from "@/components/IntroAnimation";
 import { portfolioItems, projectsList, MediaItem } from "@/lib/portfolio-data";
 import Link from "next/link";
 import { slugify } from "@/lib/utils";
+import Footer from "@/components/Footer";
 import { useSearchParams } from "next/navigation";
 
 function LazyMedia({ item }: { item: MediaItem }) {
@@ -80,17 +81,13 @@ function HomeContent() {
   const filter = (searchParams.get("filter") as "photo" | "video" | "all") || "all";
   const [activeItem, setActiveItem] = useState<MediaItem | null>(null);
   const [showMetadata, setShowMetadata] = useState(true);
-  const [copiedFooter, setCopiedFooter] = useState(false);
   const [visibleCount, setVisibleCount] = useState(18);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [showIntro, setShowIntro] = useState(false);
 
+  // Intro animation is disabled for now to avoid confusion
   useEffect(() => {
-    // Session-based gate to only run the intro animation once per session
-    const hasSeenIntro = sessionStorage.getItem("hasSeenKitestudiosIntro");
-    if (!hasSeenIntro) {
-      setShowIntro(true);
-    }
+    setShowIntro(false);
   }, []);
 
   useEffect(() => {
@@ -183,11 +180,6 @@ function HomeContent() {
     return thumbs;
   };
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("tomy@kitestudios.net");
-    setCopiedFooter(true);
-    setTimeout(() => setCopiedFooter(false), 2000);
-  };
 
   return (
     <>
@@ -212,26 +204,14 @@ function HomeContent() {
         {/* Corporate Hero Section */}
         <div className="max-w-4xl mx-auto text-center mt-16 mb-20 px-6">
           <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-900 mb-6 leading-tight font-sans">
-            Cinematic Video Production for Events, Training, and Brands
+            The Dedicated Visual Production Partner for Scaling Brands
           </h1>
           <p className="text-base sm:text-lg text-zinc-500 font-normal leading-relaxed max-w-2xl mx-auto mb-8 font-sans">
-            We script, film, and edit high-impact corporate event coverage, internal training platforms, and strategic brand documentaries. Professional media assets built to drive engagement and trust.
+            We collaborate closely with marketers, brand directors, and entrepreneurs to produce cinematic video campaigns, high-impact digital content, and commercial photography built to engage audiences and drive results.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/book"
-              className="px-6 py-3 bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-300 font-sans font-semibold tracking-wider text-xs uppercase rounded-md shadow-md flex items-center justify-center gap-2 cursor-pointer"
-            >
-              Book Corporate Consultation
-            </Link>
-            <Link
-              href="/pricing"
-              className="px-6 py-3 border border-zinc-200 text-zinc-700 hover:bg-slate-50 transition-all duration-300 font-sans font-semibold tracking-wider text-xs uppercase rounded-md shadow-sm flex items-center justify-center gap-2 cursor-pointer"
-            >
-              View Investment Options
-            </Link>
-          </div>
         </div>
+
+
 
       {/* Main Content Area - Landing directly into visual archives */}
       <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-7xl">
@@ -306,63 +286,71 @@ function HomeContent() {
         )}
       </main>
 
-      {/* Sleek Minimal Sign-off Footer */}
-      <footer className="w-full border-t border-zinc-200 py-16 bg-slate-50/50 mt-16">
-        <div className="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8 text-zinc-500 text-xs">
-          {/* Copyright signature */}
-          <div className="text-center md:text-left">
-            <span className="font-semibold tracking-[0.2em] text-zinc-900 uppercase block mb-1 font-sans">
-              KITESTUDIOS
+      {/* Agency Profile / Who We Serve Section */}
+      <section className="border-t border-b border-zinc-200 bg-slate-50/30 py-16 sm:py-20 relative z-10">
+        <div className="container mx-auto px-6 max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+          
+          {/* Column 1 & 2: Who We Are */}
+          <div className="lg:col-span-2 space-y-6">
+            <span className="text-[10px] font-bold tracking-[0.25em] text-accent uppercase block font-sans">
+              01 / AGENCY PROFILE
             </span>
-            <span className="text-xs tracking-wider font-mono uppercase font-light">
-              © 2026 KITESTUDIOS • PORTFOLIO
-            </span>
-            <button
-              onClick={() => {
-                sessionStorage.removeItem("hasSeenKitestudiosIntro");
-                setShowIntro(true);
-              }}
-              className="text-[10px] tracking-widest font-sans uppercase text-zinc-500 hover:text-accent mt-2 block transition-colors underline decoration-dotted"
-            >
-              [ Replay Intro Film ]
-            </button>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-sans leading-tight">
+              Who We Are
+            </h2>
+            <p className="text-zinc-650 leading-relaxed font-sans text-sm sm:text-base max-w-2xl">
+              KITESTUDIOS is a premium video production company and full-service creative agency. We partner closely with marketers, brand directors, and entrepreneurs to produce cinematic videos, high-performance content, and professional commercial photography built to engage audiences and elevate brand presence.
+            </p>
           </div>
 
-          {/* Social connections */}
-          <div className="flex items-center space-x-12 font-medium tracking-widest text-xs uppercase">
-            <a
-              href="https://instagram.com/kitestudios6"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent text-zinc-650 transition-colors"
-            >
-              INSTAGRAM
-            </a>
-            <a
-              href="mailto:tomy@kitestudios.net"
-              className="hover:text-accent text-zinc-650 transition-colors"
-            >
-              EMAIL
-            </a>
+          {/* Column 3: Who We Serve */}
+          <div className="space-y-6">
+            <span className="text-[10px] font-bold tracking-[0.25em] text-accent uppercase block font-sans">
+              02 / WHO WE SERVE
+            </span>
+            <div className="space-y-4 font-sans">
+              <div className="flex items-start gap-3">
+                <div className="h-5 w-5 rounded-full bg-sky-100 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="h-2 w-2 rounded-full bg-accent" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-zinc-800 uppercase tracking-wider">Startups</h3>
+                  <p className="text-zinc-500 text-xs leading-relaxed mt-0.5">
+                    Establishing trust and visual identity with cinematic keynotes, founder origin stories, and product demos.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="h-5 w-5 rounded-full bg-sky-100 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="h-2 w-2 rounded-full bg-accent" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-zinc-800 uppercase tracking-wider">E-commerce Companies</h3>
+                  <p className="text-zinc-500 text-xs leading-relaxed mt-0.5">
+                    Driving conversion and scaling ads with scroll-stopping product highlights and campaign assets.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="h-5 w-5 rounded-full bg-sky-100 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="h-2 w-2 rounded-full bg-accent" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-zinc-800 uppercase tracking-wider">Mid-Sized Companies</h3>
+                  <p className="text-zinc-500 text-xs leading-relaxed mt-0.5">
+                    Streamlining communications with internal training videos, company town halls, and recruitment content.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Inquiry / Mail */}
-          <div className="text-center md:text-right font-mono">
-            <span className="block text-xs tracking-widest uppercase mb-1 opacity-80">
-              WORK ENQUIRIES
-            </span>
-            <button
-              onClick={handleCopyEmail}
-              className="font-bold text-zinc-700 hover:text-accent transition-colors text-xs flex items-center justify-center md:justify-end gap-2 uppercase"
-            >
-              TOMY@KITESTUDIOS.NET
-              <span className="text-xs bg-white text-zinc-500 px-1 py-0.5 border border-zinc-200 rounded-sm shadow-sm ml-2">
-                {copiedFooter ? "COPIED" : "COPY"}
-              </span>
-            </button>
-          </div>
         </div>
-      </footer>
+      </section>
+
+      <Footer />
 
       {/* Gorgeous Immersive Lightbox & Theater Video Overlays */}
       <AnimatePresence>

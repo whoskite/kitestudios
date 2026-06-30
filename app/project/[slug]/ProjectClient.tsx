@@ -14,6 +14,7 @@ import MinimalNav from "@/components/MinimalNav";
 import { portfolioItems, projectsList, MediaItem } from "@/lib/portfolio-data";
 import Link from "next/link";
 import { slugify } from "@/lib/utils";
+import Footer from "@/components/Footer";
 
 function LazyMedia({ item }: { item: MediaItem }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -74,11 +75,10 @@ function ProjectClientContent({ project }: { project: string }) {
   const searchParams = useSearchParams();
   const filter = (searchParams.get("filter") as "photo" | "video" | "all") || "all";
   const [activeItem, setActiveItem] = useState<MediaItem | null>(null);
-  const [copiedFooter, setCopiedFooter] = useState(false);
   const [visibleCount, setVisibleCount] = useState(18);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const loadMoreRef = useRef<HTMLDivElement>(null);
+  // Pagination count
 
   // Reset pagination when filter updates
   useEffect(() => {
@@ -149,27 +149,7 @@ function ProjectClientContent({ project }: { project: string }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeItem, activeIndex, filteredItems]);
 
-  // Infinite Scroll intersection observer
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && filteredItems.length > visibleCount) {
-          setVisibleCount((prev) => prev + 18);
-        }
-      },
-      {
-        rootMargin: "400px",
-      }
-    );
-
-    if (loadMoreRef.current) {
-      observer.observe(loadMoreRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [filteredItems.length, visibleCount]);
+  // Reset page count helper
 
   // Rolling Adjacent Filmstrip Window (centered on active index)
   const getAdjacentThumbs = () => {
@@ -183,11 +163,6 @@ function ProjectClientContent({ project }: { project: string }) {
     return thumbs;
   };
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("tomy@kitestudios.net");
-    setCopiedFooter(true);
-    setTimeout(() => setCopiedFooter(false), 2000);
-  };
 
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
@@ -201,14 +176,14 @@ function ProjectClientContent({ project }: { project: string }) {
         <div className="mb-12">
           <Link
             href="/"
-            className="text-xs font-mono tracking-widest text-zinc-400 hover:text-black dark:hover:text-white uppercase transition-colors"
+            className="text-xs font-sans font-semibold tracking-widest text-zinc-500 hover:text-accent uppercase transition-colors"
           >
             ← Back to Archives
           </Link>
-          <h1 className="text-3xl sm:text-4xl font-light tracking-wider uppercase mt-2">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 uppercase mt-2 font-sans">
             {project}
           </h1>
-          <p className="text-xs font-mono text-zinc-400 dark:text-zinc-500 tracking-widest mt-1">
+          <p className="text-xs font-sans text-zinc-500 tracking-wider mt-1 font-semibold">
             PROJECT ARCHIVE • {filteredItems.length} {filteredItems.length === 1 ? "ITEM" : "ITEMS"}
           </p>
         </div>
@@ -242,7 +217,7 @@ function ProjectClientContent({ project }: { project: string }) {
                     className="group break-inside-avoid relative cursor-pointer flex flex-col bg-transparent mb-6 sm:mb-12"
                     onClick={() => setActiveItem(item)}
                   >
-                    <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-900 shadow-sm">
+                    <div className="relative overflow-hidden bg-slate-50 border border-zinc-200 shadow-sm rounded-md hover:shadow-md transition-shadow duration-300">
                       <LazyMedia item={item} />
 
                       {item.type === "video" && (
@@ -256,7 +231,7 @@ function ProjectClientContent({ project }: { project: string }) {
                       <Link
                         href={`/project/${slugify(item.project)}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="absolute top-3 left-3 bg-black/60 text-white hover:bg-white hover:text-black transition-colors backdrop-blur-sm px-2 py-0.5 text-xs font-mono tracking-widest uppercase font-bold z-10"
+                        className="absolute top-3 left-3 bg-white/95 text-zinc-800 hover:bg-accent hover:text-white transition-all shadow-sm px-2.5 py-1 text-[10px] font-sans tracking-widest uppercase font-bold z-10 rounded-md"
                       >
                         {item.project}
                       </Link>
@@ -266,59 +241,22 @@ function ProjectClientContent({ project }: { project: string }) {
               </AnimatePresence>
             </div>
 
+            {/* See More Button */}
             {filteredItems.length > visibleCount && (
-              <div ref={loadMoreRef} className="flex justify-center mt-16 py-8">
-                <div className="w-4 h-4 rounded-full border border-neutral-300 dark:border-neutral-700 border-t-neutral-800 dark:border-t-neutral-100 animate-spin opacity-50" />
+              <div className="flex justify-center mt-12 mb-8">
+                <button
+                  onClick={() => setVisibleCount((prev) => prev + 12)}
+                  className="px-8 py-3.5 border border-zinc-200 hover:border-zinc-800 text-zinc-700 hover:text-zinc-900 transition-all font-sans font-semibold tracking-wider text-xs uppercase rounded-md shadow-sm bg-white cursor-pointer"
+                >
+                  See More
+                </button>
               </div>
             )}
           </>
         )}
       </main>
 
-      <footer className="w-full border-t border-neutral-100 dark:border-neutral-900 py-16 bg-transparent">
-        <div className="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8 text-neutral-400 dark:text-neutral-500 text-xs">
-          <div className="text-center md:text-left">
-            <span className="font-light tracking-[0.2em] text-neutral-800 dark:text-neutral-200 uppercase block mb-1">
-              KITESTUDIOS
-            </span>
-            <span className="text-xs tracking-wider font-mono uppercase font-light">
-              © 2026 KITESTUDIOS • PORTFOLIO
-            </span>
-          </div>
-
-          <div className="flex items-center space-x-12 font-medium tracking-widest text-xs uppercase">
-            <a
-              href="https://instagram.com/kitestudios6"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-black dark:hover:text-white transition-colors"
-            >
-              INSTAGRAM
-            </a>
-            <a
-              href="mailto:tomy@kitestudios.net"
-              className="hover:text-black dark:hover:text-white transition-colors"
-            >
-              EMAIL
-            </a>
-          </div>
-
-          <div className="text-center md:text-right font-mono">
-            <span className="block text-xs tracking-widest uppercase mb-1 opacity-80">
-              WORK ENQUIRIES
-            </span>
-            <button
-              onClick={handleCopyEmail}
-              className="font-bold text-neutral-600 dark:text-neutral-300 hover:text-[#ffff00] transition-colors text-xs flex items-center justify-center md:justify-end gap-2 uppercase"
-            >
-              TOMY@KITESTUDIOS.NET
-              <span className="text-xs bg-neutral-100 dark:bg-neutral-900 text-neutral-500 px-1 py-0.5 border border-neutral-200 dark:border-neutral-800">
-                {copiedFooter ? "COPIED" : "COPY"}
-              </span>
-            </button>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       <AnimatePresence>
         {activeItem && (
