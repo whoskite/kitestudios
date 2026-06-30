@@ -194,7 +194,7 @@ function HomeContent() {
         )}
       </AnimatePresence>
 
-      <div className="min-h-screen bg-white text-zinc-900 transition-all duration-300 flex flex-col justify-between selection:bg-sky-100">
+      <div className="min-h-screen bg-zinc-950 text-zinc-100 transition-all duration-300 flex flex-col justify-between selection:bg-sky-500/20">
         {/* Sleek Navigation passing double filter controls */}
         <MinimalNav
           projectFilter="all"
@@ -203,10 +203,10 @@ function HomeContent() {
 
         {/* Corporate Hero Section */}
         <div className="max-w-4xl mx-auto text-center mt-16 mb-20 px-6">
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-900 mb-6 leading-tight font-sans">
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight font-sans">
             Visual Production Partner <br /> for Scaling Brands
           </h1>
-          <p className="text-base sm:text-lg text-zinc-500 font-normal leading-relaxed max-w-2xl mx-auto mb-8 font-sans">
+          <p className="text-base sm:text-lg text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto mb-8 font-sans">
             We collaborate closely with marketers, brand directors, and entrepreneurs to produce cinematic video campaigns, high-impact digital content, and commercial photography built to engage audiences and drive results.
           </p>
         </div>
@@ -225,7 +225,7 @@ function HomeContent() {
             </p>
             <Link
               href="/"
-              className="mt-6 px-4 py-2 border border-zinc-200 text-xs tracking-wider uppercase font-sans font-semibold rounded-md hover:bg-zinc-50 text-zinc-600 transition-colors"
+              className="mt-6 px-4 py-2 border border-zinc-800 text-xs tracking-wider uppercase font-sans font-semibold rounded-md hover:bg-zinc-900 text-zinc-400 bg-zinc-950 transition-colors"
             >
               Reset Filters
             </Link>
@@ -245,7 +245,7 @@ function HomeContent() {
                     onClick={() => setActiveItem(item)}
                   >
                     {/* Media Container - Borderless minimal frame */}
-                    <div className="relative overflow-hidden bg-slate-50 border border-zinc-200 shadow-sm rounded-md hover:shadow-md transition-shadow duration-300">
+                    <div className="relative overflow-hidden bg-zinc-900/40 border border-zinc-900 shadow-xl rounded-md hover:shadow-2xl transition-all duration-300">
                       <LazyMedia item={item} />
 
                       {/* Play overlay for video posts */}
@@ -261,7 +261,7 @@ function HomeContent() {
                       <Link
                         href={`/project/${slugify(item.project)}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="absolute top-3 left-3 bg-white/95 text-zinc-800 hover:bg-accent hover:text-white transition-all shadow-sm px-2.5 py-1 text-[10px] font-sans tracking-widest uppercase font-bold z-10 rounded-md"
+                        className="absolute top-3 left-3 bg-zinc-950/90 text-zinc-300 hover:bg-sky-500 hover:text-zinc-950 transition-all border border-zinc-900 shadow-md px-2.5 py-1 text-[10px] font-sans tracking-widest uppercase font-bold z-10 rounded-md"
                       >
                         {item.project}
                       </Link>
@@ -276,7 +276,7 @@ function HomeContent() {
               <div className="flex justify-center mt-12 mb-8">
                 <button
                   onClick={() => setVisibleCount((prev) => prev + 12)}
-                  className="px-8 py-3.5 border border-zinc-200 hover:border-zinc-800 text-zinc-700 hover:text-zinc-900 transition-all font-sans font-semibold tracking-wider text-xs uppercase rounded-md shadow-sm bg-white cursor-pointer"
+                  className="px-8 py-3.5 border border-zinc-850 hover:border-zinc-700 text-zinc-400 hover:text-white transition-all font-sans font-semibold tracking-wider text-xs uppercase rounded-md shadow-lg bg-zinc-900/60 cursor-pointer"
                 >
                   See More
                 </button>
@@ -287,59 +287,59 @@ function HomeContent() {
       </main>
 
       {/* Agency Profile / Who We Serve Section */}
-      <section className="border-t border-b border-zinc-200 bg-slate-50/30 py-16 sm:py-20 relative z-10">
+      <section className="border-t border-b border-zinc-900 bg-zinc-900/10 py-16 sm:py-20 relative z-10">
         <div className="container mx-auto px-6 max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
           
           {/* Column 1 & 2: Who We Are */}
           <div className="lg:col-span-2 space-y-6">
-            <span className="text-[10px] font-bold tracking-[0.25em] text-accent uppercase block font-sans">
+            <span className="text-[10px] font-bold tracking-[0.25em] text-sky-400 uppercase block font-sans">
               01 / AGENCY PROFILE
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-sans leading-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-sans leading-tight">
               Who We Are
             </h2>
-            <p className="text-zinc-650 leading-relaxed font-sans text-sm sm:text-base max-w-2xl">
+            <p className="text-zinc-400 leading-relaxed font-sans text-sm sm:text-base max-w-2xl font-light">
               KITESTUDIOS is a premium video production company and full-service creative agency. We partner closely with marketers, brand directors, and entrepreneurs to produce cinematic videos, high-performance content, and professional commercial photography built to engage audiences and elevate brand presence.
             </p>
           </div>
 
           {/* Column 3: Who We Serve */}
           <div className="space-y-6">
-            <span className="text-[10px] font-bold tracking-[0.25em] text-accent uppercase block font-sans">
+            <span className="text-[10px] font-bold tracking-[0.25em] text-sky-400 uppercase block font-sans">
               02 / WHO WE SERVE
             </span>
             <div className="space-y-4 font-sans">
               <div className="flex items-start gap-3">
-                <div className="h-5 w-5 rounded-full bg-sky-100 flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="h-2 w-2 rounded-full bg-accent" />
+                <div className="h-5 w-5 rounded-full bg-sky-950/50 border border-sky-900/40 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="h-2 w-2 rounded-full bg-sky-400" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-zinc-800 uppercase tracking-wider">Startups</h3>
-                  <p className="text-zinc-500 text-xs leading-relaxed mt-0.5">
+                  <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wider">Startups</h3>
+                  <p className="text-zinc-400 text-xs leading-relaxed mt-0.5 font-light">
                     Establishing trust and visual identity with cinematic keynotes, founder origin stories, and product demos.
                   </p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="h-5 w-5 rounded-full bg-sky-100 flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="h-2 w-2 rounded-full bg-accent" />
+                <div className="h-5 w-5 rounded-full bg-sky-950/50 border border-sky-900/40 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="h-2 w-2 rounded-full bg-sky-400" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-zinc-800 uppercase tracking-wider">E-commerce Companies</h3>
-                  <p className="text-zinc-500 text-xs leading-relaxed mt-0.5">
+                  <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wider">E-commerce Companies</h3>
+                  <p className="text-zinc-400 text-xs leading-relaxed mt-0.5 font-light">
                     Driving conversion and scaling ads with scroll-stopping product highlights and campaign assets.
                   </p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="h-5 w-5 rounded-full bg-sky-100 flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="h-2 w-2 rounded-full bg-accent" />
+                <div className="h-5 w-5 rounded-full bg-sky-950/50 border border-sky-900/40 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="h-2 w-2 rounded-full bg-sky-400" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-zinc-800 uppercase tracking-wider">Mid-Sized Companies</h3>
-                  <p className="text-zinc-500 text-xs leading-relaxed mt-0.5">
+                  <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wider">Mid-Sized Companies</h3>
+                  <p className="text-zinc-400 text-xs leading-relaxed mt-0.5 font-light">
                     Streamlining communications with internal training videos, company town halls, and recruitment content.
                   </p>
                 </div>
@@ -483,7 +483,7 @@ function HomeContent() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
             onClick={scrollToTop}
-            className="sm:hidden fixed bottom-6 right-6 z-40 p-3 bg-white/80 dark:bg-black/80 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 rounded-full shadow-lg text-black dark:text-white cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
+            className="sm:hidden fixed bottom-6 right-6 z-40 p-3 bg-zinc-900/80 backdrop-blur-md border border-zinc-800 rounded-full shadow-lg text-white cursor-pointer hover:bg-zinc-850 transition-colors"
             aria-label="Back to top"
           >
             <ArrowUp className="h-4 w-4" />
@@ -498,8 +498,8 @@ function HomeContent() {
 export default function Home() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-white dark:bg-black flex items-center justify-center">
-        <div className="w-6 h-6 rounded-full border border-neutral-300 dark:border-neutral-700 border-t-neutral-800 dark:border-t-neutral-100 animate-spin" />
+      <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
+        <div className="w-6 h-6 rounded-full border border-zinc-800 border-t-sky-500 animate-spin" />
       </div>
     }>
       <HomeContent />

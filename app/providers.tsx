@@ -6,8 +6,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="light"
-      forcedTheme="light"
+      defaultTheme="dark"
+      forcedTheme="dark"
       enableSystem={false}
       data-oid="x0-d_pd"
     >

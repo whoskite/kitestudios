@@ -165,7 +165,7 @@ function ProjectClientContent({ project }: { project: string }) {
 
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 transition-all duration-300 flex flex-col justify-between selection:bg-sky-500/20">
       <MinimalNav
         projectFilter={project}
         projects={visibleProjects}
@@ -176,14 +176,14 @@ function ProjectClientContent({ project }: { project: string }) {
         <div className="mb-12">
           <Link
             href="/"
-            className="text-xs font-sans font-semibold tracking-widest text-zinc-500 hover:text-accent uppercase transition-colors"
+            className="text-xs font-sans font-semibold tracking-widest text-zinc-400 hover:text-sky-400 uppercase transition-colors"
           >
             ← Back to Archives
           </Link>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 uppercase mt-2 font-sans">
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase mt-2 font-sans">
             {project}
           </h1>
-          <p className="text-xs font-sans text-zinc-500 tracking-wider mt-1 font-semibold">
+          <p className="text-xs font-sans text-zinc-400 tracking-wider mt-1 font-semibold font-light">
             PROJECT ARCHIVE • {filteredItems.length} {filteredItems.length === 1 ? "ITEM" : "ITEMS"}
           </p>
         </div>
