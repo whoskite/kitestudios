@@ -1,27 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import {
   Grid,
   Calendar,
-  Instagram,
   Mail,
   ArrowUpRight,
-  Sun,
-  Moon,
   Camera,
 } from "lucide-react";
 
 export default function LinksPage() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const links = [
     {
       title: "Kaitlin's Graduation Party Photos",
@@ -54,29 +42,20 @@ export default function LinksPage() {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-white dark:bg-black text-black dark:text-white transition-all duration-500 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800 font-sans antialiased relative overflow-hidden">
+    <div className="min-h-screen w-full bg-white text-zinc-900 transition-all duration-500 flex flex-col justify-between selection:bg-sky-100 font-sans antialiased relative overflow-hidden">
       
       {/* Background Decorative Gradients */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] aspect-square rounded-full bg-neutral-100/40 dark:bg-zinc-950/10 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] aspect-square rounded-full bg-neutral-100/40 dark:bg-zinc-950/10 blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] aspect-square rounded-full bg-slate-50 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] aspect-square rounded-full bg-slate-50 blur-[120px] pointer-events-none" />
 
-      {/* Quick Theme Toggle Header */}
+      {/* Clean Brand Header */}
       <header className="w-full max-w-xl mx-auto px-6 pt-8 flex justify-between items-center z-10">
         <a 
           href="/" 
-          className="text-xs font-light tracking-[0.3em] uppercase hover:opacity-75 transition-opacity font-mono"
+          className="text-xs font-semibold tracking-[0.3em] uppercase hover:opacity-75 transition-opacity font-sans text-zinc-900"
         >
-          [ KITESTUDIOS ]
+          KITESTUDIOS
         </a>
-        {mounted && (
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2.5 border border-neutral-100 dark:border-zinc-900 rounded-full hover:bg-neutral-50 dark:hover:bg-zinc-900/50 hover:border-black dark:hover:border-white transition-all duration-300"
-            aria-label="Toggle Theme"
-          >
-            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </button>
-        )}
       </header>
 
       {/* Main Container */}
@@ -90,9 +69,9 @@ export default function LinksPage() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative w-20 h-20 rounded-full border border-neutral-200 dark:border-neutral-800 flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 shadow-md mb-5 group overflow-hidden"
+            className="relative w-20 h-20 rounded-full border border-zinc-200 flex items-center justify-center bg-zinc-50 shadow-md mb-5 group overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-neutral-200/0 via-neutral-200/50 to-neutral-200/0 dark:from-zinc-900/0 dark:via-zinc-800/20 dark:to-zinc-900/0 animate-[spin_8s_linear_infinite]" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-zinc-200/0 via-zinc-200/50 to-zinc-200/0 animate-[spin_8s_linear_infinite]" />
             <img
               src="/KITESTUDIOS_ICON.png"
               alt="Tomy Kite"
@@ -105,7 +84,7 @@ export default function LinksPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-2xl font-light tracking-[0.15em] uppercase mb-2"
+            className="text-2xl font-semibold tracking-[0.1em] uppercase mb-2 text-zinc-900"
           >
             Tomy Kite
           </motion.h1>
@@ -114,7 +93,7 @@ export default function LinksPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xs font-mono tracking-[0.25em] text-neutral-400 dark:text-neutral-500 uppercase font-medium"
+            className="text-xs font-mono tracking-[0.25em] text-zinc-500 uppercase font-semibold"
           >
             Creative Platform • Production Studio
           </motion.p>
@@ -136,35 +115,35 @@ export default function LinksPage() {
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.08 }}
                 className={`group relative w-full p-4.5 rounded-lg border text-left flex items-center justify-between transition-all duration-300 overflow-hidden ${
                   isHighlight
-                    ? "bg-black text-white dark:bg-white dark:text-black border-[#d4af37] shadow-[0_0_20px_rgba(212,175,55,0.35)] dark:shadow-[0_0_25px_rgba(212,175,55,0.45)] hover:shadow-[0_0_30px_rgba(212,175,55,0.65)]"
-                    : "bg-neutral-50/40 hover:bg-neutral-50 dark:bg-zinc-950/20 dark:hover:bg-zinc-950/60 border-neutral-100 dark:border-zinc-900/60 hover:border-black dark:hover:border-white"
+                    ? "bg-accent text-accent-foreground border-accent shadow-[0_4px_12px_rgba(2,132,199,0.15)] hover:bg-accent/90"
+                    : "bg-slate-50/50 hover:bg-slate-50 border-zinc-200 hover:border-accent hover:shadow-sm"
                 }`}
               >
                 {/* Highlight Pulse Outline */}
                 {isHighlight && (
-                  <div className="absolute inset-0 border border-[#d4af37] rounded-lg animate-ping opacity-35 scale-102 pointer-events-none" />
+                  <div className="absolute inset-0 border border-accent rounded-lg animate-ping opacity-25 scale-102 pointer-events-none" />
                 )}
 
                 {/* Left Side: Icon & Content */}
                 <div className="flex items-center space-x-4 z-10">
                   <div
-                    className={`p-2.5 rounded-sm border shrink-0 ${
+                    className={`p-2.5 rounded-md border shrink-0 ${
                       isHighlight
-                        ? "border-neutral-800 dark:border-neutral-200 bg-neutral-900 dark:bg-neutral-100"
-                        : "border-neutral-200 dark:border-zinc-800/80 bg-white dark:bg-neutral-950"
+                        ? "border-white/20 bg-white/10 text-white"
+                        : "border-zinc-200 bg-white text-zinc-700"
                     }`}
                   >
                     {link.icon}
                   </div>
                   <div>
-                    <span className={`block text-xs font-semibold tracking-wider uppercase mb-0.5`}>
+                    <span className="block text-xs font-semibold tracking-wider uppercase mb-0.5">
                       {link.title}
                     </span>
                     <span
-                      className={`block text-xs font-light ${
+                      className={`block text-[11px] font-normal ${
                         isHighlight
-                          ? "text-neutral-300 dark:text-neutral-600"
-                          : "text-neutral-400 dark:text-neutral-500"
+                          ? "text-sky-100"
+                          : "text-zinc-500"
                       }`}
                     >
                       {link.description}
@@ -175,11 +154,15 @@ export default function LinksPage() {
                 {/* Right Side: Accent Tag or Arrow */}
                 <div className="flex items-center space-x-2 z-10 shrink-0">
                   {isHighlight && (
-                    <span className="hidden sm:inline bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black border border-neutral-800 dark:border-neutral-200 px-2 py-0.5 text-xs font-mono font-bold tracking-widest uppercase rounded-sm">
+                    <span className="hidden sm:inline bg-white/20 text-white border border-white/20 px-2 py-0.5 text-[10px] font-mono font-bold tracking-widest uppercase rounded-sm">
                       ACTIVE
                     </span>
                   )}
-                  <ArrowUpRight className="h-4 w-4 text-neutral-400 group-hover:text-black dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                  <ArrowUpRight className={`h-4 w-4 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+                    isHighlight
+                      ? "text-sky-100 group-hover:text-white"
+                      : "text-zinc-400 group-hover:text-accent"
+                  }`} />
                 </div>
               </motion.a>
             );
@@ -188,8 +171,8 @@ export default function LinksPage() {
       </main>
 
       {/* Minimal Footer */}
-      <footer className="w-full py-8 text-center z-10 border-t border-neutral-50 dark:border-zinc-950">
-        <p className="text-xs font-mono tracking-widest text-neutral-400 dark:text-neutral-600 uppercase">
+      <footer className="w-full py-8 text-center z-10 border-t border-zinc-100 bg-zinc-50/50">
+        <p className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
           © 2026 KITESTUDIOS • PORTFOLIO
         </p>
       </footer>

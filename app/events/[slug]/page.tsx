@@ -11,7 +11,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const event = await client.fetch(
-    `*[_type == "event" && slug.current == $slug][0]{ title, description }`,
+    `*[_type == "event" && slug.current == $slug && disabled != true][0]{ title, description }`,
     { slug: params.slug }
   );
 
@@ -50,7 +50,7 @@ export const revalidate = 60;
 
 export default async function EventPage({ params }: Props) {
   const event = await client.fetch(
-    `*[_type == "event" && slug.current == $slug][0]{
+    `*[_type == "event" && slug.current == $slug && disabled != true][0]{
       _id,
       title,
       date,

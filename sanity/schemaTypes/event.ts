@@ -12,6 +12,13 @@ export const eventType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'disabled',
+      title: 'Disabled',
+      description: 'Toggle to disable and hide this event from the public website.',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',

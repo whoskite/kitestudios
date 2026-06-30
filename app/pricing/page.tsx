@@ -109,12 +109,12 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
+    <div className="min-h-screen bg-white text-zinc-900 transition-all duration-300 flex flex-col justify-between selection:bg-sky-100">
       <MinimalNav />
 
       {/* Subtle modern blurs */}
-      <div className="absolute top-[-5%] left-[-5%] w-[35%] aspect-square rounded-full bg-neutral-100/30 dark:bg-zinc-950/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[-5%] w-[35%] aspect-square rounded-full bg-neutral-100/30 dark:bg-zinc-950/5 blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-5%] left-[-5%] w-[35%] aspect-square rounded-full bg-slate-50/50 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[-5%] w-[35%] aspect-square rounded-full bg-slate-50/50 blur-[120px] pointer-events-none" />
 
       <main className="flex-1 container mx-auto px-4 sm:px-6 py-12 sm:py-24 max-w-7xl relative z-10">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -123,7 +123,7 @@ export default function PricingPage() {
         <div className="mb-12">
           <Link
             href="/"
-            className="text-xs font-mono tracking-widest text-zinc-400 hover:text-black dark:hover:text-white uppercase transition-colors"
+            className="text-xs font-sans font-semibold tracking-widest text-zinc-500 hover:text-accent uppercase transition-colors"
           >
             ← Back Home
           </Link>
@@ -131,16 +131,16 @@ export default function PricingPage() {
 
         {/* Hero Header */}
         <div className="max-w-3xl mb-20 text-left">
-          <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-zinc-400 dark:text-zinc-500 block mb-3">
+          <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-accent block mb-3">
             [ SERVICES & INVESTMENT ]
           </span>
-          <h1 className="text-4xl sm:text-6xl font-light tracking-[0.05em] uppercase mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight uppercase mb-6 leading-tight text-zinc-900 font-sans">
             Production Directory
           </h1>
-          <p className="text-sm font-mono text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-4">
+          <p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-4">
             Paramount, CA — Serving LA County
           </p>
-          <p className="text-base sm:text-lg text-zinc-650 dark:text-zinc-300 font-light leading-relaxed max-w-2xl">
+          <p className="text-base sm:text-lg text-zinc-600 font-normal leading-relaxed max-w-2xl">
             A decade of specialized visual storytelling. We operate across three core creative pillars, offering straightforward starting rates and fully custom, project-based proposals.
           </p>
         </div>
@@ -154,40 +154,40 @@ export default function PricingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: parseInt(svc.num) * 0.1 }}
-              className="group flex flex-col justify-between p-8 border border-neutral-100 dark:border-zinc-900/80 bg-zinc-50/20 dark:bg-zinc-950/10 hover:border-black dark:hover:border-white transition-all duration-350 rounded-sm relative"
+              className="group flex flex-col justify-between p-8 border border-zinc-200 bg-slate-50/50 hover:border-accent hover:shadow-md transition-all duration-350 rounded-md relative"
             >
               <div>
-                {/* Monospace Indicator */}
+                {/* Custom Indicator */}
                 <div className="flex justify-between items-center mb-8">
-                  <span className="text-xs font-mono tracking-widest text-zinc-400">
+                  <span className="text-xs font-semibold tracking-widest text-zinc-400 font-mono">
                     [ {svc.num} / {svc.niche.toUpperCase()} ]
                   </span>
-                  {svc.niche === "events" && <Camera className="h-4 w-4 text-zinc-400 group-hover:text-black dark:group-hover:text-white transition-colors" />}
-                  {svc.niche === "commercial" && <Building className="h-4 w-4 text-zinc-400 group-hover:text-black dark:group-hover:text-white transition-colors" />}
-                  {svc.niche === "ecommerce" && <Sparkles className="h-4 w-4 text-zinc-400 group-hover:text-black dark:group-hover:text-white transition-colors" />}
+                  {svc.niche === "events" && <Camera className="h-4 w-4 text-zinc-400 group-hover:text-accent transition-colors" />}
+                  {svc.niche === "commercial" && <Building className="h-4 w-4 text-zinc-400 group-hover:text-accent transition-colors" />}
+                  {svc.niche === "ecommerce" && <Sparkles className="h-4 w-4 text-zinc-400 group-hover:text-accent transition-colors" />}
                 </div>
 
-                <h2 className="text-xl font-light tracking-wide uppercase mb-3 text-black dark:text-white">
+                <h2 className="text-xl font-bold tracking-wide uppercase mb-3 text-zinc-900 font-sans">
                   {svc.title}
                 </h2>
                 
-                <p className="text-xs font-mono tracking-wider text-zinc-450 dark:text-zinc-500 uppercase mb-4">
+                <p className="text-xs font-semibold tracking-wider text-zinc-500 uppercase mb-4 font-sans">
                   {svc.headline}
                 </p>
                 
-                <p className="text-sm font-light leading-relaxed text-zinc-500 dark:text-zinc-400 mb-8 border-b border-neutral-100 dark:border-zinc-900/60 pb-6">
+                <p className="text-sm font-normal leading-relaxed text-zinc-500 mb-8 border-b border-zinc-150 pb-6 font-sans">
                   {svc.description}
                 </p>
 
                 {/* Capabilities list */}
                 <div className="space-y-4 mb-8">
-                  <span className="block text-xs font-mono tracking-widest uppercase text-zinc-400 dark:text-zinc-500">
+                  <span className="block text-xs font-semibold tracking-widest uppercase text-zinc-400">
                     Capabilities:
                   </span>
                   <ul className="space-y-2.5">
                     {svc.capabilities.map((cap, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm leading-relaxed font-light text-zinc-650 dark:text-zinc-350">
-                        <CheckCircle2 className="h-3.5 w-3.5 shrink-0 mt-0.5 text-zinc-400 dark:text-zinc-600" />
+                      <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm leading-relaxed font-normal text-zinc-600 font-sans">
+                        <CheckCircle2 className="h-4 w-4 shrink-0 mt-0.5 text-accent animate-pulse" />
                         <span>{cap}</span>
                       </li>
                     ))}
@@ -196,18 +196,18 @@ export default function PricingPage() {
               </div>
 
               {/* Bottom Investment & CTA */}
-              <div className="border-t border-neutral-100 dark:border-zinc-900/60 pt-6 mt-8">
+              <div className="border-t border-zinc-250 pt-6 mt-8">
                 <div className="mb-4">
-                  <span className="block text-[10px] font-mono tracking-widest uppercase text-zinc-400 mb-1">
+                  <span className="block text-[10px] font-semibold tracking-widest uppercase text-zinc-400 mb-1">
                     ESTIMATED RATE
                   </span>
-                  <span className="text-sm font-mono font-semibold text-black dark:text-white">
+                  <span className="text-sm font-sans font-bold text-zinc-900">
                     {svc.investment}
                   </span>
                 </div>
                 <Link
                   href={svc.bookingUrl}
-                  className="w-full py-2.5 border border-black dark:border-white text-center text-xs font-mono tracking-widest uppercase rounded-sm transition-all duration-300 block bg-transparent text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black font-semibold"
+                  className="w-full py-2.5 bg-accent text-accent-foreground hover:bg-accent/90 text-center text-xs font-sans tracking-widest uppercase rounded-md transition-all duration-300 block font-semibold shadow-sm"
                 >
                   Request Briefing
                 </Link>
@@ -217,12 +217,12 @@ export default function PricingPage() {
         </div>
 
         {/* Workflow steps */}
-        <div className="mb-24 relative border-t border-neutral-100 dark:border-zinc-900/80 pt-20">
+        <div className="mb-24 relative border-t border-zinc-200 pt-20">
           <div className="max-w-3xl mb-12">
-            <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-zinc-400 dark:text-zinc-500 block mb-2">
+            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-accent block mb-2">
               [ THE PIPELINE ]
             </span>
-            <h2 className="text-2xl sm:text-3xl font-light tracking-wide uppercase text-black dark:text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight uppercase text-zinc-900 font-sans">
               Production Workflow
             </h2>
           </div>
@@ -251,13 +251,13 @@ export default function PricingPage() {
               }
             ].map((step, idx) => (
               <div key={step.num} className="space-y-4">
-                <div className="text-xl font-mono font-light text-zinc-300 dark:text-zinc-800 border-b border-neutral-100 dark:border-zinc-900 pb-3">
+                <div className="text-2xl font-semibold text-accent border-b border-zinc-150 pb-3 font-mono">
                   {step.num}
                 </div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-black dark:text-white">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-900">
                   {step.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-light leading-relaxed">
+                <p className="text-xs sm:text-sm text-zinc-500 font-normal leading-relaxed font-sans">
                   {step.desc}
                 </p>
               </div>
@@ -266,54 +266,54 @@ export default function PricingPage() {
         </div>
 
         {/* Testimonials */}
-        <div className="mb-24 border-t border-neutral-100 dark:border-zinc-900/80 pt-20">
+        <div className="mb-24 border-t border-zinc-200 pt-20">
           <div className="text-center mb-16">
-            <span className="text-[10px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase block mb-2">
+            <span className="text-[10px] font-bold tracking-widest text-accent uppercase block mb-2">
               [ CLIENT VERDICTS ]
             </span>
-            <h2 className="text-2xl sm:text-3xl font-light tracking-wide uppercase text-black dark:text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight uppercase text-zinc-900 font-sans">
               Creative Proof
             </h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="p-8 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 flex flex-col justify-between rounded-sm">
-              <p className="text-xs sm:text-sm font-light italic leading-relaxed text-zinc-650 dark:text-zinc-300 mb-8">
+            <div className="p-8 border border-zinc-200 bg-slate-50/40 flex flex-col justify-between rounded-md">
+              <p className="text-xs sm:text-sm font-normal italic leading-relaxed text-zinc-600 mb-8 font-sans">
                 &ldquo;KITESTUDIOS absolutely crushed our event coverage. The dual photo and video team was invisible on set but captured every single key moment with styling that felt cinematic and premium. The final assets completely elevated our branding.&rdquo;
               </p>
               <div>
-                <span className="block text-xs font-mono tracking-widest uppercase font-bold text-black dark:text-white">
+                <span className="block text-xs font-semibold tracking-widest uppercase text-zinc-900 font-sans">
                   DJ TJ
                 </span>
-                <span className="block text-[10px] font-mono tracking-widest uppercase text-zinc-450 mt-1">
+                <span className="block text-[10px] font-sans tracking-widest uppercase text-zinc-500 mt-1">
                   Event Manager & DJ
                 </span>
               </div>
             </div>
 
-            <div className="p-8 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 flex flex-col justify-between rounded-sm">
-              <p className="text-xs sm:text-sm font-light italic leading-relaxed text-zinc-650 dark:text-zinc-300 mb-8">
+            <div className="p-8 border border-zinc-200 bg-slate-50/40 flex flex-col justify-between rounded-md">
+              <p className="text-xs sm:text-sm font-normal italic leading-relaxed text-zinc-600 mb-8 font-sans">
                 &ldquo;We booked the premium coverage for our wedding reception and the dual photo/video team was absolutely phenomenal. Every detail, from the ceremony to the party, was captured with cinematic styling. Best investment we made.&rdquo;
               </p>
               <div>
-                <span className="block text-xs font-mono tracking-widest uppercase font-bold text-black dark:text-white">
+                <span className="block text-xs font-semibold tracking-widest uppercase text-zinc-900 font-sans">
                   Tony
                 </span>
-                <span className="block text-[10px] font-mono tracking-widest uppercase text-zinc-450 mt-1">
+                <span className="block text-[10px] font-sans tracking-widest uppercase text-zinc-500 mt-1">
                   Electrical Engineer
                 </span>
               </div>
             </div>
 
-            <div className="p-8 border border-neutral-100 dark:border-zinc-900/60 bg-zinc-50/10 dark:bg-neutral-950/5 flex flex-col justify-between rounded-sm">
-              <p className="text-xs sm:text-sm font-light italic leading-relaxed text-zinc-650 dark:text-zinc-300 mb-8">
+            <div className="p-8 border border-zinc-200 bg-slate-50/40 flex flex-col justify-between rounded-md">
+              <p className="text-xs sm:text-sm font-normal italic leading-relaxed text-zinc-600 mb-8 font-sans">
                 &ldquo;The lookbook campaign assets we shot with KITESTUDIOS completely transformed our brand presence. The photos look incredible on our Shopify storefront, and the vertical social cuts generated huge engagement on our launch.&rdquo;
               </p>
               <div>
-                <span className="block text-xs font-mono tracking-widest uppercase font-bold text-black dark:text-white">
+                <span className="block text-xs font-semibold tracking-widest uppercase text-zinc-900 font-sans">
                   Glyf
                 </span>
-                <span className="block text-[10px] font-mono tracking-widest uppercase text-zinc-450 mt-1">
+                <span className="block text-[10px] font-sans tracking-widest uppercase text-zinc-500 mt-1">
                   Founder, Glyf Studio
                 </span>
               </div>
@@ -322,12 +322,12 @@ export default function PricingPage() {
         </div>
 
         {/* FAQs */}
-        <div className="max-w-3xl mx-auto mb-24 border-t border-neutral-100 dark:border-zinc-900/80 pt-20">
+        <div className="max-w-3xl mx-auto mb-24 border-t border-zinc-200 pt-20">
           <div className="text-center mb-12">
-            <span className="text-[10px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase block mb-2">
+            <span className="text-[10px] font-bold tracking-widest text-accent uppercase block mb-2">
               [ FAQ ]
             </span>
-            <h2 className="text-2xl sm:text-3xl font-light tracking-wide uppercase text-black dark:text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight uppercase text-zinc-900 font-sans">
               Common Questions
             </h2>
           </div>
@@ -338,17 +338,17 @@ export default function PricingPage() {
               return (
                 <div
                   key={idx}
-                  className="border-b border-neutral-100 dark:border-zinc-900/60 pb-4 transition-all duration-300"
+                  className="border-b border-zinc-200 pb-4 transition-all duration-300"
                 >
                   <button
                     onClick={() => setExpandedFaq(isExpanded ? null : idx)}
-                    className="w-full flex justify-between items-center text-left py-2 font-medium hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
+                    className="w-full flex justify-between items-center text-left py-2 font-semibold hover:text-accent transition-colors"
                   >
-                    <span className="text-xs sm:text-sm uppercase tracking-wider font-light text-black dark:text-white">
+                    <span className="text-xs sm:text-sm uppercase tracking-wider font-semibold text-zinc-800 font-sans">
                       {faq.q}
                     </span>
                     <ChevronDown className={`h-4 w-4 text-zinc-400 shrink-0 transform transition-transform duration-300 ${
-                      isExpanded ? "rotate-180 text-black dark:text-white" : ""
+                      isExpanded ? "rotate-180 text-zinc-900" : ""
                     }`} />
                   </button>
                   
@@ -361,7 +361,7 @@ export default function PricingPage() {
                         transition={{ duration: 0.25 }}
                         className="overflow-hidden"
                       >
-                        <p className="text-xs sm:text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 font-light mt-2 pr-6">
+                        <p className="text-xs sm:text-sm leading-relaxed text-zinc-500 font-normal mt-2 pr-6 font-sans">
                           {faq.a}
                         </p>
                       </motion.div>
@@ -374,26 +374,26 @@ export default function PricingPage() {
         </div>
 
         {/* Final CTA */}
-        <div className="text-center py-16 border-t border-neutral-100 dark:border-neutral-900/80 max-w-2xl mx-auto">
-          <span className="text-[10px] font-mono tracking-widest text-zinc-550 dark:text-zinc-450 border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 rounded-sm uppercase font-bold mb-6 inline-block">
+        <div className="text-center py-16 border-t border-zinc-200 max-w-2xl mx-auto">
+          <span className="text-[10px] font-semibold tracking-widest text-accent border border-accent/20 bg-accent/5 px-2.5 py-1 rounded-md uppercase mb-6 inline-block font-sans">
             READY TO COLLABORATE
           </span>
-          <h2 className="text-3xl font-light tracking-wide uppercase mb-4 text-black dark:text-white">
+          <h2 className="text-3xl font-bold tracking-tight uppercase mb-4 text-zinc-900 font-sans">
             Start Your Creative Brief
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-450 leading-relaxed max-w-md mx-auto mb-8 font-light">
+          <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed max-w-md mx-auto mb-8 font-normal font-sans">
             We book production dates up to 2-3 months in advance. Share your project references, timeline, and goals to secure a session.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href="/book"
-              className="px-8 py-3 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-zinc-100 border border-black dark:border-white transition-all text-xs font-mono font-bold tracking-widest uppercase rounded-sm flex items-center gap-1.5"
+              className="px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 border border-accent transition-all text-xs font-sans font-semibold tracking-widest uppercase rounded-md shadow-md flex items-center gap-1.5"
             >
-              [ Book a Session Inquiry ]
+              Book a Session Inquiry
             </Link>
             <a
               href="mailto:tomy@kitestudios.net"
-              className="px-8 py-3 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900 border border-zinc-200 dark:border-zinc-800 text-xs font-mono tracking-widest uppercase rounded-sm text-black dark:text-white"
+              className="px-8 py-3 bg-transparent hover:bg-slate-50 border border-zinc-200 text-xs font-sans tracking-widest uppercase rounded-md text-zinc-700 font-semibold shadow-sm"
             >
               Email Enquiries
             </a>
@@ -401,10 +401,10 @@ export default function PricingPage() {
         </div>
       </main>
 
-      <footer className="w-full border-t border-neutral-100 dark:border-neutral-900 py-16 bg-transparent">
-        <div className="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8 text-zinc-400 dark:text-zinc-500 text-xs">
+      <footer className="w-full border-t border-zinc-200 py-16 bg-slate-50/50 mt-16">
+        <div className="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8 text-zinc-500 text-xs">
           <div className="text-center md:text-left">
-            <span className="font-light tracking-[0.2em] text-neutral-800 dark:text-neutral-200 uppercase block mb-1">
+            <span className="font-semibold tracking-[0.2em] text-zinc-900 uppercase block mb-1 font-sans">
               KITESTUDIOS
             </span>
             <span className="text-xs tracking-wider font-mono uppercase font-light">
@@ -417,13 +417,13 @@ export default function PricingPage() {
               href="https://instagram.com/kitestudios6"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-black dark:hover:text-white transition-colors"
+              className="hover:text-accent text-zinc-650 transition-colors"
             >
               INSTAGRAM
             </a>
             <a
               href="mailto:tomy@kitestudios.net"
-              className="hover:text-black dark:hover:text-white transition-colors"
+              className="hover:text-accent text-zinc-650 transition-colors"
             >
               EMAIL
             </a>

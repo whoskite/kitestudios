@@ -17,74 +17,39 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --foreground: 222.2 47.4% 11.2%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card-foreground: 222.2 47.4% 11.2%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover-foreground: 222.2 47.4% 11.2%;
 
-    --primary: 0 0% 0%;
+    --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 60 100% 50%; /* Off-White yellow */
-    --accent-foreground: 0 0% 0%;
+    --accent: 200.5 94.3% 39.2%; /* Corporate Steel Blue */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 89%;
-    --input: 0 0% 89%;
-    --ring: 0 0% 0%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 200.5 94.3% 39.2%;
 
-    --radius: 0rem;
+    --radius: 0.375rem;
 
-    /* Futuristic AI colors */
-    --ai-blue: 210 100% 50%;
-    --ai-purple: 270 100% 60%;
-    --ai-cyan: 180 100% 50%;
-  }
-
-  .dark {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 100%;
-
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 100%;
-
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 100%;
-
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-
-    --accent: 60 100% 50%; /* Off-White yellow */
-    --accent-foreground: 0 0% 0%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 100%;
-
-    /* Futuristic AI colors - brighter in dark mode */
-    --ai-blue: 210 100% 65%;
-    --ai-purple: 270 100% 75%;
-    --ai-cyan: 180 100% 65%;
+    /* Futuristic AI colors - updated to match light corporate palette */
+    --ai-blue: 200.5 94.3% 39.2%;
+    --ai-purple: 262.1 83.3% 57.8%;
+    --ai-cyan: 187.2 92.4% 42.7%;
   }
 }
 
@@ -93,8 +58,8 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 }
 
@@ -120,16 +85,6 @@
   );
   z-index: 0;
   pointer-events: none;
-}
-
-.dark .off-white-stripes::before {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 10px,
-    rgba(255, 255, 255, 0.05) 10px,
-    rgba(255, 255, 255, 0.05) 20px
-  );
 }
 
 /* Industrial Text Style */
@@ -246,16 +201,6 @@
   z-index: 10;
 }
 
-.dark .off-white-caution::before {
-  background-image: repeating-linear-gradient(
-    90deg,
-    #ffff00,
-    #ffff00 10px,
-    #ffffff 10px,
-    #ffffff 20px
-  );
-}
-
 /* Off-White Grid */
 .off-white-grid {
   background-image: 
@@ -264,12 +209,7 @@
   background-size: 20px 20px;
 }
 
-.dark .off-white-grid {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
+
 
 /* AI-Inspired Styles */
 

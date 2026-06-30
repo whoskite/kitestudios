@@ -221,7 +221,7 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
                   transition={{ duration: 0.3 }}
                   className="space-y-4 font-mono text-xs text-zinc-500 uppercase tracking-[0.2em]"
                 >
-                  <p className="animate-pulse">Loading System Archives...</p>
+                  <p className="animate-pulse font-sans">Loading System Archives...</p>
                   <div className="w-32 h-[1px] bg-zinc-800 mx-auto relative overflow-hidden">
                     <motion.div
                       initial={{ left: "-100%" }}
@@ -245,13 +245,13 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
                 >
                   <motion.h1
                     initial={{ letterSpacing: "0.2em" }}
-                    animate={{ letterSpacing: "0.6em" }}
+                    animate={{ letterSpacing: "0.4em" }}
                     transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="text-3xl sm:text-6xl font-light uppercase text-white tracking-[0.5em] leading-none"
+                    className="text-3xl sm:text-6xl font-bold uppercase text-white tracking-[0.4em] leading-none font-sans"
                   >
                     KITESTUDIOS
                   </motion.h1>
-                  <p className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.3em] text-zinc-500">
+                  <p className="text-[10px] sm:text-xs font-sans uppercase tracking-[0.3em] text-zinc-500 font-semibold">
                     Creative Production Studio & Visual Directory
                   </p>
                 </motion.div>
@@ -274,10 +274,10 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
                     transition={{ duration: 0.15 }}
                     className="space-y-2"
                   >
-                    <span className="px-3 py-1 border border-white/20 bg-black/40 backdrop-blur-md rounded-sm text-xs font-mono tracking-widest text-white uppercase inline-block">
+                    <span className="px-3 py-1 border border-white/20 bg-black/40 backdrop-blur-md rounded-md text-xs font-sans tracking-widest text-white uppercase inline-block font-semibold">
                       {activeNicheText}
                     </span>
-                    <h2 className="text-2xl sm:text-4xl font-mono uppercase font-bold tracking-tight text-white drop-shadow-md">
+                    <h2 className="text-2xl sm:text-4xl font-sans uppercase font-bold tracking-tight text-white drop-shadow-md">
                       DIRECTOR CUT
                     </h2>
                   </motion.div>
@@ -293,10 +293,10 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
                   transition={{ duration: 0.4 }}
                   className="space-y-6"
                 >
-                  <h1 className="text-4xl sm:text-7xl font-light uppercase text-white tracking-[0.4em] leading-none">
+                  <h1 className="text-4xl sm:text-7xl font-bold uppercase text-white tracking-[0.3em] leading-none font-sans">
                     ENTER KITESTUDIOS
                   </h1>
-                  <p className="text-xs font-mono uppercase tracking-[0.3em] text-zinc-400">
+                  <p className="text-xs font-sans uppercase tracking-[0.3em] text-zinc-400 font-semibold">
                     EST. 2016 // LONG BEACH, CALIFORNIA
                   </p>
                 </motion.div>
@@ -314,9 +314,9 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
             {/* Skip Button */}
             <button
               onClick={handleSkip}
-              className="px-5 py-2 border border-zinc-800 hover:border-white text-[10px] font-mono tracking-widest uppercase text-zinc-400 hover:text-white rounded-sm transition-all duration-300 bg-black/40 backdrop-blur-sm"
+              className="px-5 py-2 border border-zinc-800 hover:border-white text-[10px] font-sans tracking-widest uppercase text-zinc-400 hover:text-white rounded-md transition-all duration-300 bg-black/40 backdrop-blur-sm font-semibold"
             >
-              [ Skip Intro ]
+              Skip Intro
             </button>
 
             <div className="text-[9px] font-mono tracking-widest text-zinc-650 dark:text-zinc-500 text-right">

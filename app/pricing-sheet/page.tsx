@@ -447,41 +447,41 @@ export default function PricingSheetPage() {
   // Get accent class names
   const getAccentClasses = () => {
     switch (data.accentColor) {
-      case "orange":
+      case "slate":
         return {
-          text: "text-orange-600 dark:text-orange-500",
-          bg: "bg-orange-50 dark:bg-orange-950/20",
-          border: "border-orange-500/30 hover:border-orange-500 focus-within:border-orange-500",
-          fill: "bg-orange-600 dark:bg-orange-500",
-          outline: "focus:outline-orange-500",
-          gradient: "from-orange-500/10 via-transparent to-transparent"
-        };
-      case "yellow":
-        return {
-          text: "text-yellow-600 dark:text-yellow-400",
-          bg: "bg-yellow-50 dark:bg-yellow-950/15",
-          border: "border-yellow-500/30 hover:border-yellow-500 focus-within:border-yellow-500",
-          fill: "bg-yellow-500 dark:bg-yellow-450",
-          outline: "focus:outline-yellow-500",
-          gradient: "from-yellow-500/10 via-transparent to-transparent"
-        };
-      case "blue":
-        return {
-          text: "text-blue-600 dark:text-blue-400",
-          bg: "bg-blue-50 dark:bg-blue-950/20",
-          border: "border-blue-500/30 hover:border-blue-500 focus-within:border-blue-500",
-          fill: "bg-blue-600 dark:bg-blue-500",
-          outline: "focus:outline-blue-500",
-          gradient: "from-blue-500/10 via-transparent to-transparent"
-        };
-      default: // default black / white / neutral
-        return {
-          text: "text-black dark:text-white",
-          bg: "bg-zinc-50 dark:bg-zinc-900/30",
-          border: "border-zinc-200 dark:border-zinc-800 hover:border-black dark:hover:border-white focus-within:border-black dark:focus-within:border-white",
-          fill: "bg-black dark:bg-white",
-          outline: "focus:outline-black dark:focus:outline-white",
+          text: "text-zinc-700",
+          bg: "bg-zinc-50",
+          border: "border-zinc-300 hover:border-zinc-700 focus-within:border-zinc-700",
+          fill: "bg-zinc-700",
+          outline: "focus:outline-zinc-700",
           gradient: "from-zinc-500/5 via-transparent to-transparent"
+        };
+      case "indigo":
+        return {
+          text: "text-indigo-600",
+          bg: "bg-indigo-50/50",
+          border: "border-indigo-500/30 hover:border-indigo-500 focus-within:border-indigo-500",
+          fill: "bg-indigo-600",
+          outline: "focus:outline-indigo-500",
+          gradient: "from-indigo-500/10 via-transparent to-transparent"
+        };
+      case "teal":
+        return {
+          text: "text-teal-600",
+          bg: "bg-teal-50/50",
+          border: "border-teal-500/30 hover:border-teal-500 focus-within:border-teal-500",
+          fill: "bg-teal-600",
+          outline: "focus:outline-teal-500",
+          gradient: "from-teal-500/10 via-transparent to-transparent"
+        };
+      default: // default Steel Blue (Corporate Accent)
+        return {
+          text: "text-accent",
+          bg: "bg-sky-50/50",
+          border: "border-accent/30 hover:border-accent focus-within:border-accent",
+          fill: "bg-accent",
+          outline: "focus:outline-accent",
+          gradient: "from-accent/10 via-transparent to-transparent"
         };
     }
   };
@@ -489,7 +489,7 @@ export default function PricingSheetPage() {
   const accent = getAccentClasses();
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
+    <div className="min-h-screen bg-white text-zinc-900 flex flex-col justify-between selection:bg-sky-100 antialiased">
       
       {/* Navigation header (hidden on print) */}
       <div className="no-print w-full relative z-30">
@@ -497,24 +497,24 @@ export default function PricingSheetPage() {
       </div>
 
       {/* Floating Control Panel (hidden on print) */}
-      <div className="no-print sticky top-0 z-40 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-neutral-100 dark:border-zinc-900 px-4 py-3 sm:px-6">
+      <div className="no-print sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-250 px-4 py-3 sm:px-6 shadow-sm">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
           
           {/* Header left details */}
           <div className="flex items-center gap-3">
             <Link
               href="/pricing"
-              className="p-1.5 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-800 dark:hover:border-zinc-200 rounded-sm text-zinc-500 hover:text-black dark:hover:text-white transition-colors"
+              className="p-1.5 border border-zinc-200 hover:border-zinc-800 rounded-md text-zinc-500 hover:text-zinc-900 transition-colors bg-white shadow-sm"
               title="Back to general pricing"
             >
               <ArrowLeft className="h-4 w-4" />
             </Link>
             <div>
-              <h1 className="text-xs font-mono font-bold tracking-widest uppercase flex items-center gap-1.5">
+              <h1 className="text-xs font-sans font-bold tracking-widest uppercase flex items-center gap-1.5 text-zinc-800">
                 <span>Pricing Proposal Builder</span>
                 <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
               </h1>
-              <p className="text-[10px] text-zinc-500 dark:text-zinc-400 font-mono tracking-wider">
+              <p className="text-[10px] text-zinc-500 font-sans font-semibold tracking-wider uppercase">
                 KITESTUDIOS • CUSTOM INVOICE GENERATOR
               </p>
             </div>
@@ -523,27 +523,27 @@ export default function PricingSheetPage() {
           {/* Builder Controls */}
           <div className="flex flex-wrap items-center gap-2.5">
             {/* Color Accent Picker */}
-            <div className="flex items-center gap-1.5 border border-zinc-200 dark:border-zinc-850 px-2.5 py-1 rounded-sm">
-              <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase mr-1">Theme:</span>
+            <div className="flex items-center gap-1.5 border border-zinc-200 px-2.5 py-1 rounded-sm bg-white">
+              <span className="text-[10px] font-sans font-semibold tracking-widest text-zinc-400 uppercase mr-1">Theme:</span>
               <button
                 onClick={() => updateField("accentColor", "default")}
-                className={`h-3 w-3 rounded-full bg-zinc-700 dark:bg-zinc-300 ring-offset-2 dark:ring-offset-black ${data.accentColor === "default" ? "ring-2 ring-zinc-500" : ""}`}
-                title="Monochrome"
+                className={`h-3 w-3 rounded-full bg-sky-500 ring-offset-2 ${data.accentColor === "default" ? "ring-2 ring-sky-500" : ""}`}
+                title="Steel Blue (Default)"
               />
               <button
-                onClick={() => updateField("accentColor", "orange")}
-                className={`h-3 w-3 rounded-full bg-orange-500 ring-offset-2 dark:ring-offset-black ${data.accentColor === "orange" ? "ring-2 ring-orange-500" : ""}`}
-                title="Sunset Orange"
+                onClick={() => updateField("accentColor", "slate")}
+                className={`h-3 w-3 rounded-full bg-zinc-650 ring-offset-2 ${data.accentColor === "slate" ? "ring-2 ring-zinc-500" : ""}`}
+                title="Slate Charcoal"
               />
               <button
-                onClick={() => updateField("accentColor", "yellow")}
-                className={`h-3 w-3 rounded-full bg-yellow-400 ring-offset-2 dark:ring-offset-black ${data.accentColor === "yellow" ? "ring-2 ring-yellow-400" : ""}`}
-                title="Acid Yellow"
+                onClick={() => updateField("accentColor", "indigo")}
+                className={`h-3 w-3 rounded-full bg-indigo-500 ring-offset-2 ${data.accentColor === "indigo" ? "ring-2 ring-indigo-500" : ""}`}
+                title="Corporate Indigo"
               />
               <button
-                onClick={() => updateField("accentColor", "blue")}
-                className={`h-3 w-3 rounded-full bg-blue-500 ring-offset-2 dark:ring-offset-black ${data.accentColor === "blue" ? "ring-2 ring-blue-500" : ""}`}
-                title="Deep Blue"
+                onClick={() => updateField("accentColor", "teal")}
+                className={`h-3 w-3 rounded-full bg-teal-500 ring-offset-2 ${data.accentColor === "teal" ? "ring-2 ring-teal-500" : ""}`}
+                title="Modern Teal"
               />
             </div>
 
