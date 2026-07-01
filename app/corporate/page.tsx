@@ -128,7 +128,7 @@ export default function CorporateLandingPage() {
             {/* Ambient background glow underneath video player */}
             <div className="absolute inset-0 bg-sky-500/5 blur-xl group-hover:bg-sky-500/10 transition-all duration-500 pointer-events-none" />
             <iframe
-              src="https://player.vimeo.com/video/1202862874?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
+              src="https://player.vimeo.com/video/1205970612?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
               frameBorder="0"
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
               className="absolute inset-0 w-full h-full rounded-2xl z-10"
