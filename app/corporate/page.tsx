@@ -94,7 +94,7 @@ export default function CorporateLandingPage() {
           </h1>
           
           <p className="text-sm sm:text-base text-zinc-400 font-light leading-relaxed max-w-3xl mx-auto">
-            We are selecting 3 high-growth corporate brands to receive a fully sponsored, cinema-grade Brand Film or Executive Profile. Establish market authority, earn trust, and accelerate conversions. <span className="font-semibold text-zinc-200">100% Sponsor Co-Invested (Zero Upfront Production Cost).</span>
+            We are selecting 3 high-growth corporate brands to receive a fully sponsored, cinema-grade Brand Film or Executive Profile. Establish market authority, earn trust, and accelerate conversions. <span className="font-semibold text-zinc-200"><br/>100% Sponsor Co-Invested (Zero Upfront Production Cost).</span>
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4 w-full max-w-md mx-auto">
@@ -102,7 +102,7 @@ export default function CorporateLandingPage() {
               onClick={scrollToQuiz}
               className="px-8 py-4 bg-sky-500 hover:bg-sky-600 text-zinc-950 font-mono font-bold tracking-wider text-xs uppercase transition-all duration-300 rounded-lg shadow-lg shadow-sky-500/10 flex items-center justify-center gap-2 w-full cursor-pointer animate-pulse"
             >
-              Apply For Sponsor Placement
+              Apply for Trial Program
             </button>
           </div>
           
@@ -120,7 +120,7 @@ export default function CorporateLandingPage() {
               [ COHORT BRIEFING ]
             </span>
             <h2 className="text-lg sm:text-xl font-bold uppercase tracking-wider text-white">
-              Vetting Parameters & Offer Value Exchange
+              Showreel
             </h2>
           </div>
 
@@ -141,7 +141,7 @@ export default function CorporateLandingPage() {
               onClick={scrollToQuiz}
               className="px-8 py-4 bg-zinc-900 hover:bg-zinc-850 text-white border border-zinc-800 font-mono font-bold tracking-wider text-xs uppercase transition-all duration-300 rounded-lg shadow-lg flex items-center justify-center gap-2 w-full cursor-pointer"
             >
-              Apply For Sponsor Placement
+              Apply for Trial Program
             </button>
           </div>
         </section>
