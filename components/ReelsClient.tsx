@@ -520,7 +520,7 @@ function ReelCard({ reel, onClick }: { reel: ReelType; onClick: () => void }) {
       {/* Video element - preloaded to show first frame as cover if no coverImage is set */}
       <video
         ref={videoRef}
-        src={reel.videoUrl}
+        src={posterUrl ? reel.videoUrl : `${reel.videoUrl}#t=0.001`}
         loop
         muted
         playsInline
