@@ -31,12 +31,11 @@ export const reelType = defineType({
     defineField({
       name: 'coverImage',
       title: 'Cover Image',
-      description: 'Used as the thumbnail before video playback starts. Highly recommended for speed loading.',
+      description: 'Used as the thumbnail before video playback starts. Recommended for speed loading.',
       type: 'image',
       options: {
         hotspot: true,
       },
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'category',
@@ -49,7 +48,9 @@ export const reelType = defineType({
           { title: 'Fashion / Commercial', value: 'fashion' },
           { title: 'Product Showcase', value: 'product' },
           { title: 'Event Highlights', value: 'event' },
-          { title: 'Fitness / Lifestyle', value: 'fitness' },
+          { title: 'Fitness', value: 'fitness' },
+          { title: 'Lifestyle', value: 'lifestyle' },
+          { title: 'How-To & Food', value: 'howto-food' },
         ],
       },
     }),

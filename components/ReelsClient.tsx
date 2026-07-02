@@ -16,7 +16,8 @@ import {
   Check,
   PhoneCall,
   Instagram,
-  ArrowRight
+  ArrowRight,
+  Video
 } from "lucide-react";
 import { urlFor } from "@/lib/sanity";
 import Link from "next/link";
@@ -30,6 +31,17 @@ export interface ReelType {
   videoUrl: string;
   coverImage: any;
 }
+
+const CATEGORY_MAP: Record<string, string> = {
+  corporate: "Corporate / Brand",
+  medspa: "Medspa / Wellness",
+  fashion: "Fashion / Commercial",
+  product: "Product Showcase",
+  event: "Event Highlights",
+  fitness: "Fitness",
+  lifestyle: "Lifestyle",
+  "howto-food": "How-To & Food",
+};
 
 interface ReelsClientProps {
   reels: ReelType[];
@@ -58,9 +70,7 @@ export default function ReelsClient({ reels }: ReelsClientProps) {
   const categories = [
     { label: "All Work", value: "all" },
     ...Array.from(new Set(reels.map((r) => r.category).filter(Boolean))).map((cat) => {
-      const displayLabel = cat
-        ? cat.charAt(0).toUpperCase() + cat.slice(1)
-        : "";
+      const displayLabel = CATEGORY_MAP[cat as string] || (cat ? cat.charAt(0).toUpperCase() + cat.slice(1) : "");
       return { label: displayLabel, value: cat as string };
     }),
   ];
@@ -420,7 +430,7 @@ export default function ReelsClient({ reels }: ReelsClientProps) {
                 {/* Reel Metadata */}
                 <div className="space-y-2">
                   <span className="text-[9px] font-mono tracking-widest text-sky-400 uppercase font-semibold bg-sky-950/60 border border-sky-900/30 px-2 py-0.5 rounded w-fit block">
-                    {activeReel.category || "Showcase"}
+                    {CATEGORY_MAP[activeReel.category || ""] || activeReel.category || "Showcase"}
                   </span>
                   <h2 className="text-base font-extrabold text-white tracking-tight uppercase leading-snug">
                     {activeReel.title}
@@ -483,6 +493,23 @@ function ReelCard({ reel, onClick }: { reel: ReelType; onClick: () => void }) {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isHovered) {
+        videoRef.current.play().catch((err) => {
+          console.warn("Autoplay preview block:", err);
+        });
+      } else {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    }
+  }, [isHovered]);
+
+  const posterUrl = reel.coverImage
+    ? urlFor(reel.coverImage).width(500).height(889).fit("crop").url()
+    : undefined;
+
   return (
     <div
       className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden border border-zinc-900 bg-zinc-950 shadow-xl cursor-pointer group transition-all duration-500 hover:scale-[1.01] hover:border-sky-500/30 hover:shadow-sky-500/5 flex flex-col justify-end"
@@ -490,34 +517,17 @@ function ReelCard({ reel, onClick }: { reel: ReelType; onClick: () => void }) {
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
     >
-      {/* Cover Image Placeholder */}
-      {reel.coverImage ? (
-        <img
-          src={urlFor(reel.coverImage).width(500).height(889).fit("crop").url()}
-          alt={reel.title}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-            isHovered ? "opacity-0" : "opacity-100"
-          }`}
-          loading="lazy"
-        />
-      ) : (
-        <div className="absolute inset-0 w-full h-full bg-zinc-900 flex items-center justify-center text-zinc-500 font-mono text-xs uppercase">
-          No Thumbnail
-        </div>
-      )}
-
-      {/* Lazy Video element on hover */}
-      {isHovered && (
-        <video
-          ref={videoRef}
-          src={reel.videoUrl}
-          loop
-          muted
-          autoPlay
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      )}
+      {/* Video element - preloaded to show first frame as cover if no coverImage is set */}
+      <video
+        ref={videoRef}
+        src={reel.videoUrl}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        poster={posterUrl}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+      />
 
       {/* Subtle overlay styling */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none z-10" />
@@ -525,7 +535,7 @@ function ReelCard({ reel, onClick }: { reel: ReelType; onClick: () => void }) {
       {/* Information Overlay */}
       <div className="relative z-20 p-6 space-y-2 pointer-events-none">
         <span className="text-[9px] font-mono tracking-widest text-sky-400 uppercase font-semibold bg-sky-950/60 px-2 py-0.5 rounded border border-sky-900/30 w-fit block">
-          {reel.category || "Showcase"}
+          {CATEGORY_MAP[reel.category || ""] || reel.category || "Showcase"}
         </span>
         <h3 className="text-sm font-bold text-white tracking-tight uppercase line-clamp-1">
           {reel.title}
