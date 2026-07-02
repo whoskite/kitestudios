@@ -52,20 +52,34 @@ function MinimalNavContent({
             </Link>
           </div>
           <Link
+            href="/reels"
+            className={`text-xs font-semibold tracking-widest uppercase transition-colors px-3 py-1.5 ${
+              pathname === "/reels" ? "text-sky-400" : "text-zinc-400 hover:text-white"
+            }`}
+          >
+            REELS
+          </Link>
+          <Link
             href="/events"
-            className="text-xs font-semibold tracking-widest uppercase text-zinc-400 hover:text-white transition-colors px-3 py-1.5"
+            className={`text-xs font-semibold tracking-widest uppercase transition-colors px-3 py-1.5 ${
+              pathname === "/events" ? "text-sky-400" : "text-zinc-400 hover:text-white"
+            }`}
           >
             EVENT GALLERY
           </Link>
           <Link
             href="/pricing"
-            className="text-xs font-semibold tracking-widest uppercase text-zinc-400 hover:text-white transition-colors px-3 py-1.5"
+            className={`text-xs font-semibold tracking-widest uppercase transition-colors px-3 py-1.5 ${
+              pathname === "/pricing" ? "text-sky-400" : "text-zinc-400 hover:text-white"
+            }`}
           >
             PRICING
           </Link>
           <Link
             href="/about"
-            className="text-xs font-semibold tracking-widest uppercase text-zinc-400 hover:text-white transition-colors px-3 py-1.5"
+            className={`text-xs font-semibold tracking-widest uppercase transition-colors px-3 py-1.5 ${
+              pathname === "/about" ? "text-sky-400" : "text-zinc-400 hover:text-white"
+            }`}
           >
             ABOUT
           </Link>
@@ -111,28 +125,45 @@ function MinimalNavContent({
                 <Link
                   href="/"
                   onClick={() => setIsOpen(false)}
-                  className="text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors text-zinc-400 hover:text-white"
+                  className={`text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors ${
+                    pathname === "/" ? "text-sky-400" : "text-zinc-400 hover:text-white"
+                  }`}
                 >
                   HOME
                 </Link>
                 <Link
+                  href="/reels"
+                  onClick={() => setIsOpen(false)}
+                  className={`text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors ${
+                    pathname === "/reels" ? "text-sky-400" : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  REELS
+                </Link>
+                <Link
                   href="/events"
                   onClick={() => setIsOpen(false)}
-                  className="text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors text-zinc-400 hover:text-white"
+                  className={`text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors ${
+                    pathname === "/events" ? "text-sky-400" : "text-zinc-400 hover:text-white"
+                  }`}
                 >
                   EVENT GALLERY
                 </Link>
                 <Link
                   href="/pricing"
                   onClick={() => setIsOpen(false)}
-                  className="text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors text-zinc-400 hover:text-white"
+                  className={`text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors ${
+                    pathname === "/pricing" ? "text-sky-400" : "text-zinc-400 hover:text-white"
+                  }`}
                 >
                   PRICING
                 </Link>
                 <Link
                   href="/about"
                   onClick={() => setIsOpen(false)}
-                  className="text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors text-zinc-400 hover:text-white"
+                  className={`text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors ${
+                    pathname === "/about" ? "text-sky-400" : "text-zinc-400 hover:text-white"
+                  }`}
                 >
                   ABOUT
                 </Link>

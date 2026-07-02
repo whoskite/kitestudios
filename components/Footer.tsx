@@ -17,6 +17,12 @@ export default function Footer() {
         {/* Footer Navigation Links */}
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 font-semibold tracking-widest text-[10px] uppercase font-sans">
           <Link
+            href="/reels"
+            className="hover:text-sky-400 text-zinc-300 transition-colors"
+          >
+            REELS
+          </Link>
+          <Link
             href="/about"
             className="hover:text-sky-400 text-zinc-300 transition-colors"
           >

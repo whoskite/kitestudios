@@ -38,6 +38,18 @@ export default function AboutPage() {
           </p>
         </div>
 
+        {/* Showreel Video */}
+        <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-zinc-900 bg-zinc-950 shadow-2xl group mb-16">
+          <div className="absolute inset-0 bg-sky-500/5 blur-xl group-hover:bg-sky-500/10 transition-all duration-500 pointer-events-none" />
+          <iframe
+            src="https://player.vimeo.com/video/1205970612?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+            className="absolute inset-0 w-full h-full rounded-2xl z-10"
+            title="KITESTUDIOS Showreel"
+          />
+        </div>
+
         {/* Two-Column Detail Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16 border-t border-zinc-900 pt-12">
           {/* Left Column: Core Info */}

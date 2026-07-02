@@ -201,14 +201,31 @@ function HomeContent() {
           projects={visibleProjects}
         />
 
-        {/* Corporate Hero Section */}
-        <div className="max-w-4xl mx-auto text-center mt-16 mb-20 px-6">
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight font-sans">
-            Visual Production Partner <br /> for Scaling Brands
-          </h1>
-          <p className="text-base sm:text-lg text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto mb-8 font-sans">
-            We collaborate closely with marketers, brand directors, and entrepreneurs to produce cinematic video campaigns, high-impact digital content, and commercial photography built to engage audiences and drive results.
-          </p>
+        {/* Corporate Hero Section with Background Video Loop */}
+        <div className="relative w-full overflow-hidden border-b border-zinc-900/60 py-24 sm:py-36 flex flex-col items-center justify-center text-center px-6 min-h-[60vh] bg-zinc-950/80">
+          {/* Background Vimeo Video Container */}
+          <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
+            <iframe
+              src="https://player.vimeo.com/video/1205970612?background=1&autoplay=1&loop=1&muted=1&autopause=0&badge=0&player_id=0&app_id=58479"
+              frameBorder="0"
+              allow="autoplay; fullscreen"
+              className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 aspect-video object-cover scale-[1.35] opacity-25"
+              title="KITESTUDIOS Showreel Loop"
+            />
+            {/* Cinematic Gradients & Dark Overlays to ensure text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-zinc-950/80 z-10" />
+            <div className="absolute inset-0 bg-zinc-950/40 z-10" />
+          </div>
+
+          {/* Hero Content on top of background video */}
+          <div className="relative z-20 max-w-4xl mx-auto space-y-6">
+            <h1 className="text-3xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1] font-sans uppercase">
+              Visual Production Partner <br /> for Scaling Brands
+            </h1>
+            <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed max-w-2xl mx-auto font-sans">
+              We collaborate closely with marketers, brand directors, and entrepreneurs to produce cinematic video campaigns, high-impact digital content, and commercial photography built to engage audiences and drive results.
+            </p>
+          </div>
         </div>
 
 
