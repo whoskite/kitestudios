@@ -9,6 +9,8 @@ export interface MediaItem {
   project: string;
   src: string;
   videoUrl?: string;
+  externalVideoUrl?: string;
+  coverImage?: string;
   metadata: {
     camera: string;
     lens: string;
@@ -22,42 +24,6 @@ export interface MediaItem {
 }
 
 export const portfolioItems: MediaItem[] = [
-  {
-    "id": "video-genki-prints-comiccon-recap",
-    "type": "video",
-    "title": "Comiccon Recap",
-    "category": "Event / Documentary",
-    "project": "Genki Prints",
-    "src": "/Portfolio/Genki Prints/Event/comiccon_recap.mp4",
-    "videoUrl": "/Portfolio/Genki Prints/Event/comiccon_recap.mp4",
-    "metadata": {
-      "camera": "Sony FX6 Cinema",
-      "lens": "FE 24-70mm f/2.8 GM II",
-      "aperture": "f/2.8",
-      "shutter": "1/120s",
-      "iso": "800",
-      "location": "COMIC-CON, SAN DIEGO",
-      "date": "JULY 2025"
-    }
-  },
-  {
-    "id": "video-glyf-studio-glyfstudio-documentary",
-    "type": "video",
-    "title": "Glyfstudio Documentary",
-    "category": "Campaign / Brand Film",
-    "project": "GLYF STUDIO",
-    "src": "/Portfolio/GLYF STUDIO/Video/glyfstudio_documentary.mp4",
-    "videoUrl": "/Portfolio/GLYF STUDIO/Video/glyfstudio_documentary.mp4",
-    "metadata": {
-      "camera": "RED V-Raptor 8K",
-      "lens": "Cooke Anamorphic /i 2x",
-      "aperture": "T2.3",
-      "shutter": "180 deg",
-      "iso": "800",
-      "location": "GLYF HARAJUKU STAGE",
-      "date": "NOVEMBER 2025"
-    }
-  },
   {
     "id": "video-quinceanera-kitestudios6-1552332668-1997433444191352927-3895010458",
     "type": "video",

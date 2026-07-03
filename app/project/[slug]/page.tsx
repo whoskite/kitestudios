@@ -15,7 +15,17 @@ async function getAllProjects(): Promise<string[]> {
   try {
     const sanityData = await client.fetch(`*[_type == "project"] { name }`);
     const sanityProjects = (sanityData || []).map((p: any) => p.name);
-    return Array.from(new Set([...sanityProjects, ...projectsList]));
+    const merged = [...sanityProjects, ...projectsList];
+    const seen = new Set<string>();
+    const unique: string[] = [];
+    for (const p of merged) {
+      const slug = slugify(p);
+      if (!seen.has(slug)) {
+        seen.add(slug);
+        unique.push(p);
+      }
+    }
+    return unique;
   } catch (err) {
     console.error("Error fetching projects from Sanity on server:", err);
     return projectsList;

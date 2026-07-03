@@ -60,6 +60,14 @@ function MinimalNavContent({
             REELS
           </Link>
           <Link
+            href="/videos"
+            className={`text-xs font-semibold tracking-widest uppercase transition-colors px-3 py-1.5 ${
+              pathname === "/videos" ? "text-sky-400" : "text-zinc-400 hover:text-white"
+            }`}
+          >
+            VIDEOS
+          </Link>
+          <Link
             href="/projects"
             className={`text-xs font-semibold tracking-widest uppercase transition-colors px-3 py-1.5 ${
               pathname === "/projects" || pathname.startsWith("/project/") ? "text-sky-400" : "text-zinc-400 hover:text-white"
@@ -139,7 +147,7 @@ function MinimalNavContent({
                 >
                   HOME
                 </Link>
-                <Link
+                 <Link
                   href="/reels"
                   onClick={() => setIsOpen(false)}
                   className={`text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors ${
@@ -147,6 +155,15 @@ function MinimalNavContent({
                   }`}
                 >
                   REELS
+                </Link>
+                <Link
+                  href="/videos"
+                  onClick={() => setIsOpen(false)}
+                  className={`text-left text-lg font-medium tracking-[0.15em] uppercase transition-colors ${
+                    pathname === "/videos" ? "text-sky-400" : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  VIDEOS
                 </Link>
                 <Link
                   href="/projects"

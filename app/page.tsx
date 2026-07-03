@@ -21,9 +21,48 @@ import { slugify } from "@/lib/utils";
 import Footer from "@/components/Footer";
 import { useSearchParams } from "next/navigation";
 import { client, urlFor } from "@/lib/sanity";
-import { getEmbedUrl } from "@/lib/video-utils";
+import { getEmbedUrl, getYouTubeThumbnail, getVimeoId } from "@/lib/video-utils";
+
+/** Filmstrip/Grid thumbnail that resolves YouTube and Vimeo covers automatically. */
+function VideoThumb({ item, className = "w-full h-full object-cover" }: { item: MediaItem, className?: string }) {
+  const ytThumb = item.coverImage || getYouTubeThumbnail(item.externalVideoUrl);
+  const vimeoId = !ytThumb ? getVimeoId(item.externalVideoUrl) : null;
+  const [vimeoThumb, setVimeoThumb] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!vimeoId) return;
+    fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${vimeoId}&width=480`)
+      .then((r) => r.json())
+      .then((d) => { if (d.thumbnail_url) setVimeoThumb(d.thumbnail_url); })
+      .catch(() => {/* silent — falls back to <video> */});
+  }, [vimeoId]);
+
+  const thumb = ytThumb || vimeoThumb;
+  if (thumb) {
+    return <img src={thumb} alt={item.title} className={className} />;
+  }
+  if (item.src && !item.externalVideoUrl) {
+    return (
+      <video
+        src={item.src}
+        loop
+        muted
+        autoPlay
+        playsInline
+        className={className}
+      />
+    );
+  }
+  // While Vimeo thumb is loading, show a dark placeholder with a play icon
+  return (
+    <div className="w-full h-full min-h-[220px] bg-neutral-900 flex items-center justify-center">
+      <Play className="w-6 h-6 text-white/40" />
+    </div>
+  );
+}
 
 function LazyMedia({ item }: { item: MediaItem }) {
+
   const ref = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -50,7 +89,12 @@ function LazyMedia({ item }: { item: MediaItem }) {
   }, []);
 
   return (
-    <div ref={ref} className="relative w-full overflow-hidden bg-neutral-50 dark:bg-neutral-900/60 min-h-[220px]">
+    <div 
+      ref={ref} 
+      className={`relative w-full overflow-hidden bg-neutral-50 dark:bg-neutral-900/60 ${
+        item.type === "video" ? "aspect-video" : "min-h-[220px]"
+      }`}
+    >
       {isInView ? (
         item.type === "photo" ? (
           <img
@@ -60,13 +104,9 @@ function LazyMedia({ item }: { item: MediaItem }) {
             loading="lazy"
           />
         ) : (
-          <video
-            src={item.src}
-            loop
-            muted
-            autoPlay
-            playsInline
-            className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+          <VideoThumb
+            item={item}
+            className="w-full h-full object-cover transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
           />
         )
       ) : (
@@ -149,9 +189,12 @@ function HorizontalVideoCard({ video, onClick }: { video: MediaItem; onClick: ()
     }
   }, [isHovered]);
 
-  const posterUrl = video.videoUrl && (video as any).coverImage
-    ? urlFor((video as any).coverImage).width(640).height(360).fit("crop").url()
-    : undefined;
+  const isExternal = !!video.externalVideoUrl;
+  const ytThumb = getYouTubeThumbnail(video.externalVideoUrl);
+  // For uploaded videos: use Sanity cover image if available, else seek frame
+  const posterUrl = video.coverImage
+    ? video.coverImage  // already resolved to a URL string in the mapping
+    : ytThumb || undefined;
 
   return (
     <div
@@ -160,16 +203,31 @@ function HorizontalVideoCard({ video, onClick }: { video: MediaItem; onClick: ()
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <video
-        ref={videoRef}
-        src={posterUrl ? video.videoUrl : `${video.videoUrl}#t=0.001`}
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        poster={posterUrl}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-      />
+      {isExternal ? (
+        /* External YouTube/Vimeo — show thumbnail image, no broken <video> */
+        posterUrl ? (
+          <img
+            src={posterUrl}
+            alt={video.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-zinc-900 flex items-center justify-center">
+            <Play className="w-8 h-8 text-white/20" />
+          </div>
+        )
+      ) : (
+        <video
+          ref={videoRef}
+          src={posterUrl ? video.videoUrl : `${video.videoUrl}#t=0.001`}
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster={posterUrl}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+        />
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 to-transparent pointer-events-none z-10" />
 
       {/* Info */}
@@ -249,6 +307,8 @@ function HomeContent() {
             project: v.project || "KITESTUDIOS",
             src: finalSrc,
             videoUrl: finalSrc,
+            externalVideoUrl: v.externalVideoUrl || undefined,
+            coverImage: v.coverImage ? urlFor(v.coverImage).width(480).url() : undefined,
             metadata: {
               camera: "",
               lens: "",
@@ -671,7 +731,7 @@ function HomeContent() {
                     className="object-contain w-full h-full max-h-[75vh]"
                   />
                 ) : (
-                  <div className="relative w-full h-full aspect-video flex items-center justify-center">
+                  <div className="relative w-full aspect-video max-h-[75vh] flex items-center justify-center">
                     {(() => {
                       const embedUrl = getEmbedUrl(activeItem.src);
                       if (embedUrl) {
@@ -680,7 +740,7 @@ function HomeContent() {
                             src={embedUrl}
                             allow="autoplay; fullscreen; picture-in-picture"
                             allowFullScreen
-                            className="w-full h-full aspect-video max-h-[75vh] object-contain border-0"
+                            className="absolute inset-0 w-full h-full border-0"
                           />
                         );
                       }
@@ -696,7 +756,7 @@ function HomeContent() {
                         );
                       }
                       return (
-                        <div className="w-full h-full flex items-center justify-center font-mono text-xs uppercase opacity-75">
+                        <div className="absolute inset-0 w-full h-full flex items-center justify-center font-mono text-xs uppercase opacity-75">
                           Video source unavailable
                         </div>
                       );
@@ -708,9 +768,11 @@ function HomeContent() {
               {/* Dynamic Filmstrip preview row */}
               <div className="bg-neutral-950 border-t border-neutral-900 px-6 py-4 flex items-center justify-center overflow-hidden">
                 <div className="flex items-center space-x-3 overflow-x-auto scrollbar-none max-w-full">
-                  {getAdjacentThumbs().map(({ item, originalIndex }) => {
-                    if (!activeItem) return null;
-                    const isActive = item.id === activeItem.id;
+                  {(() => {
+                    const currentItem = activeItem;
+                    if (!currentItem) return null;
+                    return getAdjacentThumbs().map(({ item, originalIndex }) => {
+                    const isActive = item.id === currentItem.id;
                     return (
                       <button
                         key={`thumb-${item.id}-${originalIndex}`}
@@ -728,15 +790,11 @@ function HomeContent() {
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <video
-                            src={item.src}
-                            muted
-                            className="w-full h-full object-cover"
-                          />
+                          <VideoThumb item={item} />
                         )}
                       </button>
                     );
-                  })}
+                  })})})()
                 </div>
               </div>
             </motion.div>

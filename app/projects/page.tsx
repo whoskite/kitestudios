@@ -7,11 +7,66 @@ import Link from "next/link";
 import { slugify } from "@/lib/utils";
 import Footer from "@/components/Footer";
 import { client, urlFor } from "@/lib/sanity";
-import { getEmbedUrl } from "@/lib/video-utils";
+import { getEmbedUrl, getYouTubeThumbnail, getVimeoId } from "@/lib/video-utils";
+import { Play } from "lucide-react";
+
+function ProjectCardMedia({ asset }: { asset: MediaItem }) {
+  const [vimeoThumb, setVimeoThumb] = useState<string | null>(null);
+  const ytThumb = asset.coverImage || getYouTubeThumbnail(asset.externalVideoUrl);
+  const vimeoId = !ytThumb ? getVimeoId(asset.externalVideoUrl) : null;
+
+  useEffect(() => {
+    if (!vimeoId) return;
+    fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${vimeoId}&width=640`)
+      .then((r) => r.json())
+      .then((d) => { if (d.thumbnail_url) setVimeoThumb(d.thumbnail_url); })
+      .catch(() => {});
+  }, [vimeoId]);
+
+  if (asset.type === "photo") {
+    return (
+      <img
+        src={asset.src}
+        alt={asset.title}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        loading="lazy"
+      />
+    );
+  }
+
+  const thumbUrl = ytThumb || vimeoThumb;
+  if (thumbUrl) {
+    return (
+      <img
+        src={thumbUrl}
+        alt={asset.title}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+      />
+    );
+  }
+
+  if (asset.src && !asset.externalVideoUrl) {
+    return (
+      <video
+        src={asset.src}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+      />
+    );
+  }
+
+  return (
+    <div className="absolute inset-0 bg-zinc-900 flex items-center justify-center">
+      <Play className="w-8 h-8 text-white/20" />
+    </div>
+  );
+}
 
 function ProjectCard({ project, assets }: { project: string; assets: MediaItem[] }) {
   const [isHovered, setIsHovered] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const firstAsset = assets[0];
   const photoCount = assets.filter((item) => item.type === "photo").length;
@@ -26,21 +81,6 @@ function ProjectCard({ project, assets }: { project: string; assets: MediaItem[]
     countString = `${photoCount} Photo${photoCount === 1 ? "" : "s"}`;
   }
 
-  useEffect(() => {
-    if (videoRef.current && firstAsset.type === "video") {
-      if (isHovered) {
-        videoRef.current.play().catch(() => {});
-      } else {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
-      }
-    }
-  }, [isHovered, firstAsset.type]);
-
-  const posterUrl = firstAsset.type === "video" && (firstAsset as any).coverImage
-    ? urlFor((firstAsset as any).coverImage).width(640).height(480).fit("crop").url()
-    : undefined;
-
   return (
     <Link
       href={`/project/${slugify(project)}`}
@@ -48,25 +88,7 @@ function ProjectCard({ project, assets }: { project: string; assets: MediaItem[]
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {firstAsset.type === "photo" ? (
-        <img
-          src={firstAsset.src}
-          alt={project}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          loading="lazy"
-        />
-      ) : (
-        <video
-          ref={videoRef}
-          src={posterUrl ? firstAsset.src : `${firstAsset.src}#t=0.001`}
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          poster={posterUrl}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-        />
-      )}
+      <ProjectCardMedia asset={firstAsset} />
       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 to-transparent pointer-events-none z-10" />
 
       {/* Info Overlay */}
@@ -124,6 +146,8 @@ function ProjectsContent() {
             project: v.project || "KITESTUDIOS",
             src: finalSrc,
             videoUrl: finalSrc,
+            externalVideoUrl: v.externalVideoUrl || undefined,
+            coverImage: v.coverImage ? urlFor(v.coverImage).width(480).url() : undefined,
             metadata: {
               camera: "",
               lens: "",
@@ -149,7 +173,21 @@ function ProjectsContent() {
   }, []);
 
   const combinedItems = [...sanityVideos, ...portfolioItems];
-  const uniqueProjects = Array.from(new Set([...sanityProjects, ...projectsList]));
+  
+  // Deduplicate uniqueProjects case-insensitively using slugify to prevent duplicate project cards
+  const uniqueProjects = (() => {
+    const merged = [...sanityProjects, ...projectsList];
+    const seen = new Set<string>();
+    const result: string[] = [];
+    for (const p of merged) {
+      const slug = slugify(p);
+      if (!seen.has(slug)) {
+        seen.add(slug);
+        result.push(p);
+      }
+    }
+    return result;
+  })();
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 transition-all duration-300 flex flex-col justify-between selection:bg-sky-500/20 relative overflow-hidden">
@@ -187,7 +225,7 @@ function ProjectsContent() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
             {uniqueProjects.map((project) => {
-              const projectAssets = combinedItems.filter((item) => item.project === project);
+              const projectAssets = combinedItems.filter((item) => item.project.toLowerCase() === project.toLowerCase());
               if (projectAssets.length === 0) return null;
               return (
                 <ProjectCard

@@ -348,6 +348,8 @@ export interface MediaItem {
   project: string;
   src: string;
   videoUrl?: string;
+  externalVideoUrl?: string;
+  coverImage?: string;
   metadata: {
     camera: string;
     lens: string;
