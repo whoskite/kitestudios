@@ -21,6 +21,7 @@ import { slugify } from "@/lib/utils";
 import Footer from "@/components/Footer";
 import { useSearchParams } from "next/navigation";
 import { client, urlFor } from "@/lib/sanity";
+import { getEmbedUrl } from "@/lib/video-utils";
 
 function LazyMedia({ item }: { item: MediaItem }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -233,28 +234,32 @@ function HomeContent() {
           category,
           description,
           "videoUrl": videoFile.asset->url,
+          externalVideoUrl,
           coverImage
         }`
       )
       .then((data: any[]) => {
-        const mappedVideos: MediaItem[] = (data || []).map((v) => ({
-          id: v._id,
-          type: "video",
-          title: v.title,
-          category: v.category || "Videography",
-          project: v.project || "KITESTUDIOS",
-          src: v.videoUrl,
-          videoUrl: v.videoUrl,
-          metadata: {
-            camera: "",
-            lens: "",
-            aperture: "",
-            shutter: "",
-            iso: "",
-            location: v.project || "",
-            date: ""
-          }
-        }));
+        const mappedVideos: MediaItem[] = (data || []).map((v) => {
+          const finalSrc = v.externalVideoUrl || v.videoUrl || "";
+          return {
+            id: v._id,
+            type: "video",
+            title: v.title,
+            category: v.category || "Videography",
+            project: v.project || "KITESTUDIOS",
+            src: finalSrc,
+            videoUrl: finalSrc,
+            metadata: {
+              camera: "",
+              lens: "",
+              aperture: "",
+              shutter: "",
+              iso: "",
+              location: v.project || "",
+              date: ""
+            }
+          };
+        });
         setHomepageVideos(mappedVideos);
       })
       .catch((err) => {
@@ -666,20 +671,36 @@ function HomeContent() {
                     className="object-contain w-full h-full max-h-[75vh]"
                   />
                 ) : (
-                  <div className="relative w-full h-full aspect-video">
-                    {activeItem.videoUrl ? (
-                      <video
-                        src={activeItem.videoUrl}
-                        controls
-                        autoPlay
-                        loop
-                        className="w-full h-full object-contain"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center font-mono text-xs uppercase opacity-75">
-                        Video source unavailable
-                      </div>
-                    )}
+                  <div className="relative w-full h-full aspect-video flex items-center justify-center">
+                    {(() => {
+                      const embedUrl = getEmbedUrl(activeItem.src);
+                      if (embedUrl) {
+                        return (
+                          <iframe
+                            src={embedUrl}
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowFullScreen
+                            className="w-full h-full aspect-video max-h-[75vh] object-contain border-0"
+                          />
+                        );
+                      }
+                      if (activeItem.videoUrl) {
+                        return (
+                          <video
+                            src={activeItem.videoUrl}
+                            controls
+                            autoPlay
+                            loop
+                            className="w-full h-full object-contain"
+                          />
+                        );
+                      }
+                      return (
+                        <div className="w-full h-full flex items-center justify-center font-mono text-xs uppercase opacity-75">
+                          Video source unavailable
+                        </div>
+                      );
+                    })()}
                   </div>
                 )}
               </div>
@@ -688,6 +709,7 @@ function HomeContent() {
               <div className="bg-neutral-950 border-t border-neutral-900 px-6 py-4 flex items-center justify-center overflow-hidden">
                 <div className="flex items-center space-x-3 overflow-x-auto scrollbar-none max-w-full">
                   {getAdjacentThumbs().map(({ item, originalIndex }) => {
+                    if (!activeItem) return null;
                     const isActive = item.id === activeItem.id;
                     return (
                       <button

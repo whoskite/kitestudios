@@ -7,6 +7,7 @@ import Link from "next/link";
 import { slugify } from "@/lib/utils";
 import Footer from "@/components/Footer";
 import { client, urlFor } from "@/lib/sanity";
+import { getEmbedUrl } from "@/lib/video-utils";
 
 function ProjectCard({ project, assets }: { project: string; assets: MediaItem[] }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -102,6 +103,7 @@ function ProjectsContent() {
         category,
         description,
         "videoUrl": videoFile.asset->url,
+        externalVideoUrl,
         coverImage
       }`
     );
@@ -112,24 +114,27 @@ function ProjectsContent() {
 
     Promise.all([videosPromise, projectsPromise])
       .then(([videosData, projectsData]) => {
-        const mappedVideos: MediaItem[] = (videosData || []).map((v: any) => ({
-          id: v._id,
-          type: "video",
-          title: v.title,
-          category: v.category || "Videography",
-          project: v.project || "KITESTUDIOS",
-          src: v.videoUrl,
-          videoUrl: v.videoUrl,
-          metadata: {
-            camera: "",
-            lens: "",
-            aperture: "",
-            shutter: "",
-            iso: "",
-            location: v.project || "",
-            date: ""
-          }
-        }));
+        const mappedVideos: MediaItem[] = (videosData || []).map((v: any) => {
+          const finalSrc = v.externalVideoUrl || v.videoUrl || "";
+          return {
+            id: v._id,
+            type: "video",
+            title: v.title,
+            category: v.category || "Videography",
+            project: v.project || "KITESTUDIOS",
+            src: finalSrc,
+            videoUrl: finalSrc,
+            metadata: {
+              camera: "",
+              lens: "",
+              aperture: "",
+              shutter: "",
+              iso: "",
+              location: v.project || "",
+              date: ""
+            }
+          };
+        });
         setSanityVideos(mappedVideos);
 
         const projectNames = (projectsData || []).map((p: any) => p.name);

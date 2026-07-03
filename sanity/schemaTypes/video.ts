@@ -31,12 +31,17 @@ export const videoType = defineType({
     defineField({
       name: 'videoFile',
       title: 'Video File',
-      description: 'Upload the portfolio video file.',
+      description: 'Upload the portfolio video file (Optional if using YouTube/Vimeo link below).',
       type: 'file',
       options: {
         accept: 'video/*',
       },
-      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'externalVideoUrl',
+      title: 'External Video URL (YouTube / Vimeo)',
+      description: 'Paste a link to a YouTube or Vimeo video (e.g. https://www.youtube.com/watch?v=...). If provided, this will be used instead of the uploaded file.',
+      type: 'url',
     }),
     defineField({
       name: 'coverImage',
