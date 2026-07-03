@@ -11,6 +11,7 @@ import {
   ArrowUp,
   ChevronLeft,
   ChevronRight,
+  Sparkles,
 } from "lucide-react";
 import MinimalNav from "@/components/MinimalNav";
 import IntroAnimation from "@/components/IntroAnimation";
@@ -19,6 +20,7 @@ import Link from "next/link";
 import { slugify } from "@/lib/utils";
 import Footer from "@/components/Footer";
 import { useSearchParams } from "next/navigation";
+import { client, urlFor } from "@/lib/sanity";
 
 function LazyMedia({ item }: { item: MediaItem }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -76,6 +78,119 @@ function LazyMedia({ item }: { item: MediaItem }) {
   );
 }
 
+function FeaturedReelCard({ reel }: { reel: any }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isHovered) {
+        videoRef.current.play().catch(() => {});
+      } else {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    }
+  }, [isHovered]);
+
+  const posterUrl = reel.coverImage
+    ? urlFor(reel.coverImage).width(400).height(711).fit("crop").url()
+    : undefined;
+
+  return (
+    <Link
+      href={`/reels?reel=${reel._id}`}
+      className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden border border-zinc-900 bg-zinc-950 shadow-xl cursor-pointer group transition-all duration-500 hover:scale-[1.01] hover:border-sky-500/30 hover:shadow-sky-500/5 flex flex-col justify-end"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <video
+        ref={videoRef}
+        src={posterUrl ? reel.videoUrl : `${reel.videoUrl}#t=0.001`}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        poster={posterUrl}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none z-10" />
+
+      {/* Info */}
+      <div className="relative z-20 p-5 space-y-1.5 pointer-events-none text-left">
+        <span className="text-[8px] font-mono tracking-widest text-sky-400 uppercase font-semibold bg-sky-950/60 px-2 py-0.5 rounded border border-sky-900/30 w-fit block">
+          {reel.category ? (reel.category.charAt(0).toUpperCase() + reel.category.slice(1)) : "Reel"}
+        </span>
+        <h3 className="text-xs font-bold text-white tracking-tight uppercase line-clamp-1">
+          {reel.title}
+        </h3>
+      </div>
+
+      <div className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-zinc-950/85 backdrop-blur-sm border border-zinc-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <Play className="h-3 w-3 text-sky-400 fill-sky-400/20 translate-x-0.5" />
+      </div>
+    </Link>
+  );
+}
+
+function HorizontalVideoCard({ video, onClick }: { video: MediaItem; onClick: () => void }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isHovered) {
+        videoRef.current.play().catch(() => {});
+      } else {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    }
+  }, [isHovered]);
+
+  const posterUrl = video.videoUrl && (video as any).coverImage
+    ? urlFor((video as any).coverImage).width(640).height(360).fit("crop").url()
+    : undefined;
+
+  return (
+    <div
+      onClick={onClick}
+      className="relative aspect-video w-full rounded-xl overflow-hidden border border-zinc-900 bg-zinc-950 shadow-xl cursor-pointer group transition-all duration-500 hover:scale-[1.01] hover:border-sky-500/30 hover:shadow-sky-500/5 flex flex-col justify-end"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <video
+        ref={videoRef}
+        src={posterUrl ? video.videoUrl : `${video.videoUrl}#t=0.001`}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        poster={posterUrl}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 to-transparent pointer-events-none z-10" />
+
+      {/* Info */}
+      <div className="relative z-20 p-5 space-y-1 pointer-events-none text-left">
+        <span className="text-[8px] font-mono tracking-widest text-sky-400 uppercase font-semibold bg-sky-950/60 px-2 py-0.5 rounded border border-sky-900/30 w-fit block">
+          {video.category}
+        </span>
+        <h3 className="text-xs font-bold text-white tracking-tight uppercase line-clamp-1">
+          {video.title}
+        </h3>
+        <p className="text-[9px] text-zinc-400 font-mono uppercase tracking-wider">
+          {video.project}
+        </p>
+      </div>
+
+      <div className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-zinc-950/85 backdrop-blur-sm border border-zinc-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <Play className="h-3 w-3 text-sky-400 fill-sky-400/20 translate-x-0.5" />
+      </div>
+    </div>
+  );
+}
+
 function HomeContent() {
   const searchParams = useSearchParams();
   const filter = (searchParams.get("filter") as "photo" | "video" | "all") || "all";
@@ -84,6 +199,68 @@ function HomeContent() {
   const [visibleCount, setVisibleCount] = useState(18);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [showIntro, setShowIntro] = useState(false);
+  const [featuredReels, setFeaturedReels] = useState<any[]>([]);
+  const [homepageVideos, setHomepageVideos] = useState<MediaItem[]>([]);
+  const [lightboxContext, setLightboxContext] = useState<MediaItem[]>([]);
+
+  // Fetch featured reels and horizontal videos client-side on mount
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "reel" && disabled != true] | order(order asc, _createdAt desc)[0..2] {
+          _id,
+          title,
+          category,
+          description,
+          "videoUrl": videoFile.asset->url,
+          coverImage,
+          "project": coalesce(project->name, "KITESTUDIOS")
+        }`
+      )
+      .then((data) => {
+        setFeaturedReels(data || []);
+      })
+      .catch((err) => {
+        console.error("Error fetching featured reels:", err);
+      });
+
+    client
+      .fetch(
+        `*[_type == "portfolioVideo" && disabled != true] | order(order asc, _createdAt desc) {
+          _id,
+          title,
+          "project": coalesce(project->name, "KITESTUDIOS"),
+          category,
+          description,
+          "videoUrl": videoFile.asset->url,
+          coverImage
+        }`
+      )
+      .then((data: any[]) => {
+        const mappedVideos: MediaItem[] = (data || []).map((v) => ({
+          id: v._id,
+          type: "video",
+          title: v.title,
+          category: v.category || "Videography",
+          project: v.project || "KITESTUDIOS",
+          src: v.videoUrl,
+          videoUrl: v.videoUrl,
+          metadata: {
+            camera: "",
+            lens: "",
+            aperture: "",
+            shutter: "",
+            iso: "",
+            location: v.project || "",
+            date: ""
+          }
+        }));
+        setHomepageVideos(mappedVideos);
+      })
+      .catch((err) => {
+        console.error("Error fetching homepage videos:", err);
+      });
+  }, []);
 
   // Intro animation is disabled for now to avoid confusion
   useEffect(() => {
@@ -101,18 +278,9 @@ function HomeContent() {
     };
   }, [showIntro]);
 
-  // Filter projects by active category (photos/videos) for the nav bar tags
-  const visibleProjects = projectsList.filter((project) => {
-    if (filter === "all") return true;
-    return portfolioItems.some((item) => item.project === project && item.type === filter);
-  });
-
-  // Combine filters
-  const filteredItems = portfolioItems.filter((item) => {
-    return filter === "all" || item.type === filter;
-  });
-
-  const visibleItems = filteredItems.slice(0, visibleCount);
+  // Section 03 Display: Filter for local photo assets only
+  const photoItems = portfolioItems.filter((item) => item.type === "photo");
+  const visibleItems = photoItems.slice(0, visibleCount);
 
   // Reset pagination when filter updates
   useEffect(() => {
@@ -137,19 +305,19 @@ function HomeContent() {
   };
 
   const activeIndex = activeItem
-    ? filteredItems.findIndex((item) => item.id === activeItem.id)
+    ? lightboxContext.findIndex((item) => item.id === activeItem.id)
     : -1;
 
   const handleNext = () => {
-    if (activeIndex === -1) return;
-    const nextIndex = (activeIndex + 1) % filteredItems.length;
-    setActiveItem(filteredItems[nextIndex]);
+    if (activeIndex === -1 || lightboxContext.length === 0) return;
+    const nextIndex = (activeIndex + 1) % lightboxContext.length;
+    setActiveItem(lightboxContext[nextIndex]);
   };
 
   const handlePrev = () => {
-    if (activeIndex === -1) return;
-    const prevIndex = (activeIndex - 1 + filteredItems.length) % filteredItems.length;
-    setActiveItem(filteredItems[prevIndex]);
+    if (activeIndex === -1 || lightboxContext.length === 0) return;
+    const prevIndex = (activeIndex - 1 + lightboxContext.length) % lightboxContext.length;
+    setActiveItem(lightboxContext[prevIndex]);
   };
 
   // Keyboard navigation for Lightbox
@@ -166,16 +334,16 @@ function HomeContent() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeItem, activeIndex, filteredItems]);
+  }, [activeItem, activeIndex, lightboxContext]);
 
   // Rolling Adjacent Filmstrip Window (centered on active index)
   const getAdjacentThumbs = () => {
-    if (activeIndex === -1) return [];
+    if (activeIndex === -1 || lightboxContext.length === 0) return [];
     const range = 4; // Show 4 previous and 4 next items
     const thumbs = [];
     for (let i = -range; i <= range; i++) {
-      const idx = (activeIndex + i + filteredItems.length) % filteredItems.length;
-      thumbs.push({ item: filteredItems[idx], originalIndex: idx });
+      const idx = (activeIndex + i + lightboxContext.length) % lightboxContext.length;
+      thumbs.push({ item: lightboxContext[idx], originalIndex: idx });
     }
     return thumbs;
   };
@@ -195,11 +363,7 @@ function HomeContent() {
       </AnimatePresence>
 
       <div className="min-h-screen bg-zinc-950 text-zinc-100 transition-all duration-300 flex flex-col justify-between selection:bg-sky-500/20">
-        {/* Sleek Navigation passing double filter controls */}
-        <MinimalNav
-          projectFilter="all"
-          projects={visibleProjects}
-        />
+        <MinimalNav />
 
         {/* Corporate Hero Section with Background Video Loop */}
         <div className="relative w-full overflow-hidden border-b border-zinc-900/60 py-24 sm:py-36 flex flex-col items-center justify-center text-center px-6 min-h-[60vh] bg-zinc-950/80">
@@ -220,7 +384,7 @@ function HomeContent() {
           {/* Hero Content on top of background video */}
           <div className="relative z-20 max-w-4xl mx-auto space-y-6">
             <h1 className="text-3xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1] font-sans uppercase">
-              Visual Production Partner <br /> for Scaling Brands
+              Visual Partner <br /> for Scaling Brands
             </h1>
             <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed max-w-2xl mx-auto font-sans">
               We collaborate closely with marketers, brand directors, and entrepreneurs to produce cinematic video campaigns, high-impact digital content, and commercial photography built to engage audiences and drive results.
@@ -230,77 +394,143 @@ function HomeContent() {
 
 
 
-      {/* Main Content Area - Landing directly into visual archives */}
-      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-7xl">
-        {filteredItems.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-32 text-center">
-            <span className="text-xs uppercase font-sans tracking-widest text-zinc-400 mb-2">
-              No Archives Found
-            </span>
-            <p className="text-zinc-500 text-sm max-w-xs font-light font-sans">
-              No matching assets were found in this specific selection. Try resetting filters.
-            </p>
-            <Link
-              href="/"
-              className="mt-6 px-4 py-2 border border-zinc-800 text-xs tracking-wider uppercase font-sans font-semibold rounded-md hover:bg-zinc-900 text-zinc-400 bg-zinc-950 transition-colors"
-            >
-              Reset Filters
-            </Link>
-          </div>
-        ) : (
-          <>
-            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 sm:gap-12">
-              <AnimatePresence mode="popLayout">
-                {visibleItems.map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.4, delay: Math.min(index * 0.03, 0.3) }}
-                    className="group break-inside-avoid relative cursor-pointer flex flex-col bg-transparent mb-6 sm:mb-12"
-                    onClick={() => setActiveItem(item)}
-                  >
-                    {/* Media Container - Borderless minimal frame */}
-                    <div className="relative overflow-hidden bg-zinc-900/40 border border-zinc-900 shadow-xl rounded-md hover:shadow-2xl transition-all duration-300">
-                      <LazyMedia item={item} />
-
-                      {/* Play overlay for video posts */}
-                      {item.type === "video" && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/15 group-hover:bg-black/35 transition-colors z-10">
-                          <div className="border border-white/40 p-3 bg-black/40 backdrop-blur-sm rounded-full text-white transform group-hover:scale-105 transition-transform duration-300">
-                            <Play className="h-5 w-5 fill-white" />
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Project Tag */}
-                      <Link
-                        href={`/project/${slugify(item.project)}`}
-                        onClick={(e) => e.stopPropagation()}
-                        className="absolute top-3 left-3 bg-zinc-950/90 text-zinc-300 hover:bg-sky-500 hover:text-zinc-950 transition-all border border-zinc-900 shadow-md px-2.5 py-1 text-[10px] font-sans tracking-widest uppercase font-bold z-10 rounded-md"
-                      >
-                        {item.project}
-                      </Link>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+      {/* Main Content Area */}
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-12 sm:py-16 max-w-7xl space-y-24">
+        
+        {/* Featured Reels Section */}
+        {featuredReels.length > 0 && (
+          <section className="space-y-8 pb-12 border-b border-zinc-900/60">
+            <div className="flex items-end justify-between">
+              <div>
+                <span className="text-[10px] font-mono tracking-[0.25em] text-sky-400 uppercase block mb-1">
+                  01 / Social Content
+                </span>
+                <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-wider text-white">
+                  Featured Reels
+                </h2>
+              </div>
+              <Link
+                href="/reels"
+                className="text-xs font-mono font-semibold tracking-widest text-zinc-400 hover:text-sky-400 uppercase transition-colors flex items-center gap-1 group"
+              >
+                View All Reels <span className="text-sky-400 transform group-hover:translate-x-1 transition-transform">→</span>
+              </Link>
             </div>
 
-            {/* See More Button */}
-            {filteredItems.length > visibleCount && (
-              <div className="flex justify-center mt-12 mb-8">
-                <button
-                  onClick={() => setVisibleCount((prev) => prev + 12)}
-                  className="px-8 py-3.5 border border-zinc-850 hover:border-zinc-700 text-zinc-400 hover:text-white transition-all font-sans font-semibold tracking-wider text-xs uppercase rounded-md shadow-lg bg-zinc-900/60 cursor-pointer"
-                >
-                  See More
-                </button>
-              </div>
-            )}
-          </>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
+              {featuredReels.map((reel) => (
+                <FeaturedReelCard key={reel._id} reel={reel} />
+              ))}
+            </div>
+          </section>
         )}
+
+        {/* Section 02 / Videos */}
+        {homepageVideos.length > 0 && (
+          <section className="space-y-8 pb-12 border-b border-zinc-900/60">
+            <div className="flex items-end justify-between">
+              <div>
+                <span className="text-[10px] font-mono tracking-[0.25em] text-sky-400 uppercase block mb-1">
+                  02 / Videos
+                </span>
+                <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-wider text-white">
+                  Videos
+                </h2>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {homepageVideos.map((video) => (
+                <HorizontalVideoCard
+                  key={video.id}
+                  video={video}
+                  onClick={() => {
+                    setActiveItem(video);
+                    setLightboxContext(homepageVideos);
+                  }}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Section 03 / Photography */}
+        <section className="space-y-8">
+          <div className="flex items-end justify-between">
+            <div>
+              <span className="text-[10px] font-mono tracking-[0.25em] text-sky-400 uppercase block mb-1">
+                03 / Photography
+              </span>
+              <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-wider text-white">
+                Photography
+              </h2>
+            </div>
+          </div>
+
+          {photoItems.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-32 text-center">
+              <span className="text-xs uppercase font-sans tracking-widest text-zinc-400 mb-2">
+                No Archives Found
+              </span>
+              <p className="text-zinc-500 text-sm max-w-xs font-light font-sans">
+                No matching assets were found in this specific selection. Try resetting filters.
+              </p>
+              <Link
+                href="/"
+                className="mt-6 px-4 py-2 border border-zinc-800 text-xs tracking-wider uppercase font-sans font-semibold rounded-md hover:bg-zinc-900 text-zinc-400 bg-zinc-950 transition-colors"
+              >
+                Reset Filters
+              </Link>
+            </div>
+          ) : (
+            <>
+              <div className="columns-1 md:columns-2 lg:columns-3 gap-6 sm:gap-12">
+                <AnimatePresence mode="popLayout">
+                  {visibleItems.map((item, index) => (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.4, delay: Math.min(index * 0.03, 0.3) }}
+                      className="group break-inside-avoid relative cursor-pointer flex flex-col bg-transparent mb-6 sm:mb-12"
+                      onClick={() => {
+                        setActiveItem(item);
+                        setLightboxContext(photoItems);
+                      }}
+                    >
+                      {/* Media Container - Borderless minimal frame */}
+                      <div className="relative overflow-hidden bg-zinc-900/40 border border-zinc-900 shadow-xl rounded-md hover:shadow-2xl transition-all duration-300">
+                        <LazyMedia item={item} />
+
+                        {/* Project Tag */}
+                        <Link
+                          href={`/project/${slugify(item.project)}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="absolute top-3 left-3 bg-zinc-950/90 text-zinc-300 hover:bg-sky-500 hover:text-zinc-950 transition-all border border-zinc-900 shadow-md px-2.5 py-1 text-[10px] font-sans tracking-widest uppercase font-bold z-10 rounded-md"
+                        >
+                          {item.project}
+                        </Link>
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+
+              {/* See More Button */}
+              {photoItems.length > visibleCount && (
+                <div className="flex justify-center mt-12 mb-8">
+                  <button
+                    onClick={() => setVisibleCount((prev) => prev + 12)}
+                    className="px-8 py-3.5 border border-zinc-850 hover:border-zinc-700 text-zinc-400 hover:text-white transition-all font-sans font-semibold tracking-wider text-xs uppercase rounded-md shadow-lg bg-zinc-900/60 cursor-pointer"
+                  >
+                    See More
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </section>
       </main>
 
       {/* Agency Profile / Who We Serve Section */}

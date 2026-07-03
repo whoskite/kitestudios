@@ -15,6 +15,7 @@ import { portfolioItems, projectsList, MediaItem } from "@/lib/portfolio-data";
 import Link from "next/link";
 import { slugify } from "@/lib/utils";
 import Footer from "@/components/Footer";
+import { client } from "@/lib/sanity";
 
 function LazyMedia({ item }: { item: MediaItem }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -77,13 +78,53 @@ function ProjectClientContent({ project }: { project: string }) {
   const [activeItem, setActiveItem] = useState<MediaItem | null>(null);
   const [visibleCount, setVisibleCount] = useState(18);
   const [showScrollTop, setShowScrollTop] = useState(false);
-
-  // Pagination count
+  const [sanityVideos, setSanityVideos] = useState<MediaItem[]>([]);
 
   // Reset pagination when filter updates
   useEffect(() => {
     setVisibleCount(18);
   }, [filter]);
+
+  // Fetch Sanity videos for this specific project
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "portfolioVideo" && disabled != true && project->name == $projectName] | order(order asc, _createdAt desc) {
+          _id,
+          title,
+          "project": coalesce(project->name, "KITESTUDIOS"),
+          category,
+          description,
+          "videoUrl": videoFile.asset->url,
+          coverImage
+        }`,
+        { projectName: project }
+      )
+      .then((data: any[]) => {
+        const mappedVideos: MediaItem[] = (data || []).map((v) => ({
+          id: v._id,
+          type: "video",
+          title: v.title,
+          category: v.category || "Videography",
+          project: v.project || "KITESTUDIOS",
+          src: v.videoUrl,
+          videoUrl: v.videoUrl,
+          metadata: {
+            camera: "",
+            lens: "",
+            aperture: "",
+            shutter: "",
+            iso: "",
+            location: v.project || "",
+            date: ""
+          }
+        }));
+        setSanityVideos(mappedVideos);
+      })
+      .catch((err) => {
+        console.error("Error fetching project videos:", err);
+      });
+  }, [project]);
 
   // Monitor scroll height to show/hide "Back to Top" trigger
   useEffect(() => {
@@ -111,7 +152,9 @@ function ProjectClientContent({ project }: { project: string }) {
   // Filter items specifically for this project
   const projectItems = portfolioItems.filter((item) => item.project === project);
 
-  const filteredItems = projectItems.filter((item) => {
+  const combinedItems = [...sanityVideos, ...projectItems];
+
+  const filteredItems = combinedItems.filter((item) => {
     return filter === "all" || item.type === filter;
   });
 

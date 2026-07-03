@@ -23,6 +23,12 @@ export default function Footer() {
             REELS
           </Link>
           <Link
+            href="/projects"
+            className="hover:text-sky-400 text-zinc-300 transition-colors"
+          >
+            PROJECTS
+          </Link>
+          <Link
             href="/about"
             className="hover:text-sky-400 text-zinc-300 transition-colors"
           >

@@ -23,7 +23,8 @@ export default async function ReelsPage() {
       category,
       description,
       "videoUrl": videoFile.asset->url,
-      coverImage
+      coverImage,
+      "project": coalesce(project->name, "KITESTUDIOS")
     }
   `);
 

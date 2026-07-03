@@ -30,6 +30,7 @@ export interface ReelType {
   description?: string;
   videoUrl: string;
   coverImage: any;
+  project?: string;
 }
 
 const CATEGORY_MAP: Record<string, string> = {

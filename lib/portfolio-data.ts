@@ -149,23 +149,6 @@ export const portfolioItems: MediaItem[] = [
     }
   },
   {
-    "id": "photo-fashion-fashion-1",
-    "type": "photo",
-    "title": "Fashion 1",
-    "category": "Fashion / Editorial",
-    "project": "Fashion",
-    "src": "/Portfolio/Fashion/fashion_1.jpg",
-    "metadata": {
-      "camera": "Leica M11",
-      "lens": "Summilux-M 50mm f/1.4",
-      "aperture": "f/1.8",
-      "shutter": "1/250s",
-      "iso": "64",
-      "location": "PARIS STUDIO B",
-      "date": "DECEMBER 2025"
-    }
-  },
-  {
     "id": "photo-fashion-fashion-10",
     "type": "photo",
     "title": "Fashion 10",
@@ -342,40 +325,6 @@ export const portfolioItems: MediaItem[] = [
     "category": "Fashion / Editorial",
     "project": "Fashion",
     "src": "/Portfolio/Fashion/fashion_2.jpg",
-    "metadata": {
-      "camera": "Leica M11",
-      "lens": "Summilux-M 50mm f/1.4",
-      "aperture": "f/1.8",
-      "shutter": "1/250s",
-      "iso": "64",
-      "location": "PARIS STUDIO B",
-      "date": "DECEMBER 2025"
-    }
-  },
-  {
-    "id": "photo-fashion-fashion-20",
-    "type": "photo",
-    "title": "Fashion 20",
-    "category": "Fashion / Editorial",
-    "project": "Fashion",
-    "src": "/Portfolio/Fashion/fashion_20.jpg",
-    "metadata": {
-      "camera": "Leica M11",
-      "lens": "Summilux-M 50mm f/1.4",
-      "aperture": "f/1.8",
-      "shutter": "1/250s",
-      "iso": "64",
-      "location": "PARIS STUDIO B",
-      "date": "DECEMBER 2025"
-    }
-  },
-  {
-    "id": "photo-fashion-fashion-21",
-    "type": "photo",
-    "title": "Fashion 21",
-    "category": "Fashion / Editorial",
-    "project": "Fashion",
-    "src": "/Portfolio/Fashion/fashion_21.jpg",
     "metadata": {
       "camera": "Leica M11",
       "lens": "Summilux-M 50mm f/1.4",
@@ -2169,142 +2118,6 @@ export const portfolioItems: MediaItem[] = [
       "iso": "50",
       "location": "KITE STUDIOS - STUDIO C",
       "date": "MARCH 2026"
-    }
-  },
-  {
-    "id": "photo-platini-jeans-08cf57ba5aaf06960b7b7ea6-rw-1920",
-    "type": "photo",
-    "title": "PLATINI JEANS SHOT",
-    "category": "Product / E-commerce",
-    "project": "Platini Jeans",
-    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/08cf57ba5aaf06960b7b7ea6_rw_1920.jpg",
-    "metadata": {
-      "camera": "Sony A7R V",
-      "lens": "FE 24-70mm f/2.8 GM II",
-      "aperture": "f/5.6",
-      "shutter": "1/125s",
-      "iso": "100",
-      "location": "DOWNTOWN LA STUDIO",
-      "date": "AUGUST 2025"
-    }
-  },
-  {
-    "id": "photo-platini-jeans-4bd3dd45c58dc04fdec57950-rw-1920",
-    "type": "photo",
-    "title": "PLATINI JEANS SHOT",
-    "category": "Product / E-commerce",
-    "project": "Platini Jeans",
-    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/4bd3dd45c58dc04fdec57950_rw_1920.jpg",
-    "metadata": {
-      "camera": "Sony A7R V",
-      "lens": "FE 24-70mm f/2.8 GM II",
-      "aperture": "f/5.6",
-      "shutter": "1/125s",
-      "iso": "100",
-      "location": "DOWNTOWN LA STUDIO",
-      "date": "AUGUST 2025"
-    }
-  },
-  {
-    "id": "photo-platini-jeans-807ee5f2aaf0e95218cc19f3-rw-1920",
-    "type": "photo",
-    "title": "PLATINI JEANS SHOT",
-    "category": "Product / E-commerce",
-    "project": "Platini Jeans",
-    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/807ee5f2aaf0e95218cc19f3_rw_1920.jpg",
-    "metadata": {
-      "camera": "Sony A7R V",
-      "lens": "FE 24-70mm f/2.8 GM II",
-      "aperture": "f/5.6",
-      "shutter": "1/125s",
-      "iso": "100",
-      "location": "DOWNTOWN LA STUDIO",
-      "date": "AUGUST 2025"
-    }
-  },
-  {
-    "id": "photo-platini-jeans-9a41446150e6fbfa857631af-rw-1920",
-    "type": "photo",
-    "title": "PLATINI JEANS SHOT",
-    "category": "Product / E-commerce",
-    "project": "Platini Jeans",
-    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/9a41446150e6fbfa857631af_rw_1920.jpg",
-    "metadata": {
-      "camera": "Sony A7R V",
-      "lens": "FE 24-70mm f/2.8 GM II",
-      "aperture": "f/5.6",
-      "shutter": "1/125s",
-      "iso": "100",
-      "location": "DOWNTOWN LA STUDIO",
-      "date": "AUGUST 2025"
-    }
-  },
-  {
-    "id": "photo-platini-jeans-9f7d049f6b213314374ede51-rw-1920",
-    "type": "photo",
-    "title": "PLATINI JEANS SHOT",
-    "category": "Product / E-commerce",
-    "project": "Platini Jeans",
-    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/9f7d049f6b213314374ede51_rw_1920.jpg",
-    "metadata": {
-      "camera": "Sony A7R V",
-      "lens": "FE 24-70mm f/2.8 GM II",
-      "aperture": "f/5.6",
-      "shutter": "1/125s",
-      "iso": "100",
-      "location": "DOWNTOWN LA STUDIO",
-      "date": "AUGUST 2025"
-    }
-  },
-  {
-    "id": "photo-platini-jeans-b20a38200650d249fedc749b-rw-1920",
-    "type": "photo",
-    "title": "PLATINI JEANS SHOT",
-    "category": "Product / E-commerce",
-    "project": "Platini Jeans",
-    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/b20a38200650d249fedc749b_rw_1920.jpg",
-    "metadata": {
-      "camera": "Sony A7R V",
-      "lens": "FE 24-70mm f/2.8 GM II",
-      "aperture": "f/5.6",
-      "shutter": "1/125s",
-      "iso": "100",
-      "location": "DOWNTOWN LA STUDIO",
-      "date": "AUGUST 2025"
-    }
-  },
-  {
-    "id": "photo-platini-jeans-b2917169b4681344feded67d-rw-1920",
-    "type": "photo",
-    "title": "PLATINI JEANS SHOT",
-    "category": "Product / E-commerce",
-    "project": "Platini Jeans",
-    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/b2917169b4681344feded67d_rw_1920.jpg",
-    "metadata": {
-      "camera": "Sony A7R V",
-      "lens": "FE 24-70mm f/2.8 GM II",
-      "aperture": "f/5.6",
-      "shutter": "1/125s",
-      "iso": "100",
-      "location": "DOWNTOWN LA STUDIO",
-      "date": "AUGUST 2025"
-    }
-  },
-  {
-    "id": "photo-platini-jeans-da243c3af7beed92b491308c-rw-1920",
-    "type": "photo",
-    "title": "PLATINI JEANS SHOT",
-    "category": "Product / E-commerce",
-    "project": "Platini Jeans",
-    "src": "/Portfolio/Platini Jeans/Ecommerce Photography/da243c3af7beed92b491308c_rw_1920.jpg",
-    "metadata": {
-      "camera": "Sony A7R V",
-      "lens": "FE 24-70mm f/2.8 GM II",
-      "aperture": "f/5.6",
-      "shutter": "1/125s",
-      "iso": "100",
-      "location": "DOWNTOWN LA STUDIO",
-      "date": "AUGUST 2025"
     }
   },
   {

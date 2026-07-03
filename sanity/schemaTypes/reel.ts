@@ -55,6 +55,13 @@ export const reelType = defineType({
       },
     }),
     defineField({
+      name: 'project',
+      title: 'Project / Client',
+      type: 'reference',
+      to: [{ type: 'project' }],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'text',

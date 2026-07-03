@@ -73,13 +73,6 @@
     "type": "directory",
     "children": [
       {
-        "name": "fashion_1.jpg",
-        "type": "file",
-        "extension": ".jpg",
-        "size": 980245,
-        "relativePath": "portfolio/Fashion/fashion_1.jpg"
-      },
-      {
         "name": "fashion_10.jpg",
         "type": "file",
         "extension": ".jpg",
@@ -155,20 +148,6 @@
         "extension": ".jpg",
         "size": 222774,
         "relativePath": "portfolio/Fashion/fashion_2.jpg"
-      },
-      {
-        "name": "fashion_20.jpg",
-        "type": "file",
-        "extension": ".jpg",
-        "size": 95754,
-        "relativePath": "portfolio/Fashion/fashion_20.jpg"
-      },
-      {
-        "name": "fashion_21.jpg",
-        "type": "file",
-        "extension": ".jpg",
-        "size": 149932,
-        "relativePath": "portfolio/Fashion/fashion_21.jpg"
       },
       {
         "name": "fashion_22.jpg",
@@ -911,68 +890,6 @@
     "type": "directory",
     "children": [
       {
-        "name": "Ecommerce Photography",
-        "type": "directory",
-        "children": [
-          {
-            "name": "08cf57ba5aaf06960b7b7ea6_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1452589,
-            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/08cf57ba5aaf06960b7b7ea6_rw_1920.jpg"
-          },
-          {
-            "name": "4bd3dd45c58dc04fdec57950_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1084049,
-            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/4bd3dd45c58dc04fdec57950_rw_1920.jpg"
-          },
-          {
-            "name": "807ee5f2aaf0e95218cc19f3_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1977731,
-            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/807ee5f2aaf0e95218cc19f3_rw_1920.jpg"
-          },
-          {
-            "name": "9a41446150e6fbfa857631af_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 842023,
-            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/9a41446150e6fbfa857631af_rw_1920.jpg"
-          },
-          {
-            "name": "9f7d049f6b213314374ede51_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1415901,
-            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/9f7d049f6b213314374ede51_rw_1920.jpg"
-          },
-          {
-            "name": "b20a38200650d249fedc749b_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1145852,
-            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/b20a38200650d249fedc749b_rw_1920.jpg"
-          },
-          {
-            "name": "b2917169b4681344feded67d_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 968524,
-            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/b2917169b4681344feded67d_rw_1920.jpg"
-          },
-          {
-            "name": "da243c3af7beed92b491308c_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1182669,
-            "relativePath": "portfolio/Platini Jeans/Ecommerce Photography/da243c3af7beed92b491308c_rw_1920.jpg"
-          }
-        ]
-      },
-      {
         "name": "Lifestyle Photography",
         "type": "directory",
         "children": [
@@ -1047,184 +964,184 @@
             "relativePath": "portfolio/Platini Jeans/Lifestyle Photography/kitestudios6_22857611_2042022399412019_909932394100817920_n.jpg"
           }
         ]
+      }
+    ]
+  },
+  {
+    "name": "Products",
+    "type": "directory",
+    "children": [
+      {
+        "name": "1fb6ce96-5d1b-476b-aa32-643f8b94d95d_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 624485,
+        "relativePath": "portfolio/Products/1fb6ce96-5d1b-476b-aa32-643f8b94d95d_rw_1920.jpg"
       },
       {
-        "name": "Products",
-        "type": "directory",
-        "children": [
-          {
-            "name": "1fb6ce96-5d1b-476b-aa32-643f8b94d95d_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 624485,
-            "relativePath": "portfolio/Platini Jeans/Products/1fb6ce96-5d1b-476b-aa32-643f8b94d95d_rw_1920.jpg"
-          },
-          {
-            "name": "3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1176306,
-            "relativePath": "portfolio/Platini Jeans/Products/3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg"
-          },
-          {
-            "name": "4e258022a09102117577c468_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 2256130,
-            "relativePath": "portfolio/Platini Jeans/Products/4e258022a09102117577c468_rw_1920.jpg"
-          },
-          {
-            "name": "518d0d2471c414178e5d65ee_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 803646,
-            "relativePath": "portfolio/Platini Jeans/Products/518d0d2471c414178e5d65ee_rw_1920.jpg"
-          },
-          {
-            "name": "950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 775795,
-            "relativePath": "portfolio/Platini Jeans/Products/950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg"
-          },
-          {
-            "name": "96e464de25a3566d9fb0d107_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1151285,
-            "relativePath": "portfolio/Platini Jeans/Products/96e464de25a3566d9fb0d107_rw_1920.jpg"
-          },
-          {
-            "name": "f0fc67b4bd4ef7331f5a3473_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1999433,
-            "relativePath": "portfolio/Platini Jeans/Products/f0fc67b4bd4ef7331f5a3473_rw_1920.jpg"
-          },
-          {
-            "name": "fca30fc1a2370c9e8d4e86d0_rw_1920.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1186724,
-            "relativePath": "portfolio/Platini Jeans/Products/fca30fc1a2370c9e8d4e86d0_rw_1920.jpg"
-          }
-        ]
+        "name": "3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 1176306,
+        "relativePath": "portfolio/Products/3bdef4d5e19ecc0d7e5f74c9_rw_1920.jpg"
       },
       {
-        "name": "Quinceanera",
-        "type": "directory",
-        "children": [
-          {
-            "name": "kitestudios6_1552332668_1997433444191352927_3895010458.mp4",
-            "type": "file",
-            "extension": ".mp4",
-            "size": 11121987,
-            "relativePath": "portfolio/Platini Jeans/Quinceanera/kitestudios6_1552332668_1997433444191352927_3895010458.mp4"
-          },
-          {
-            "name": "Quinceanera Cover.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 212820,
-            "relativePath": "portfolio/Platini Jeans/Quinceanera/Quinceanera Cover.jpg"
-          },
-          {
-            "name": "quinceanera_146278770_110576184371294_8053248095299769303_n.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 211465,
-            "relativePath": "portfolio/Platini Jeans/Quinceanera/quinceanera_146278770_110576184371294_8053248095299769303_n.jpg"
-          }
-        ]
+        "name": "4e258022a09102117577c468_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 2256130,
+        "relativePath": "portfolio/Products/4e258022a09102117577c468_rw_1920.jpg"
       },
       {
-        "name": "TDM",
-        "type": "directory",
-        "children": [
-          {
-            "name": "Redroom.mp4",
-            "type": "file",
-            "extension": ".mp4",
-            "size": 9971511,
-            "relativePath": "portfolio/Platini Jeans/TDM/Redroom.mp4"
-          },
-          {
-            "name": "SaveClip.App_AQOTN44FFv_GibzOXplW4J0JWpKvaRqRKVnLeAt95w4wfhUi0Tq5VI4-UHnEeGq-aZk7u14ELe0ZxqfE2_2awRNYWYJXBE-npGaiW_o.mp4",
-            "type": "file",
-            "extension": ".mp4",
-            "size": 7610151,
-            "relativePath": "portfolio/Platini Jeans/TDM/SaveClip.App_AQOTN44FFv_GibzOXplW4J0JWpKvaRqRKVnLeAt95w4wfhUi0Tq5VI4-UHnEeGq-aZk7u14ELe0ZxqfE2_2awRNYWYJXBE-npGaiW_o.mp4"
-          }
-        ]
+        "name": "518d0d2471c414178e5d65ee_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 803646,
+        "relativePath": "portfolio/Products/518d0d2471c414178e5d65ee_rw_1920.jpg"
       },
       {
-        "name": "TOANDME",
-        "type": "directory",
-        "children": [
-          {
-            "name": "Photo 2022-06-30 07.45.52 PM.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 2182889,
-            "relativePath": "portfolio/Platini Jeans/TOANDME/Photo 2022-06-30 07.45.52 PM.jpg"
-          },
-          {
-            "name": "SnapInsta.to_649244578_18094838306079035_4988156940014173278_n.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 223670,
-            "relativePath": "portfolio/Platini Jeans/TOANDME/SnapInsta.to_649244578_18094838306079035_4988156940014173278_n.jpg"
-          },
-          {
-            "name": "SnapInsta.to_651273480_18094455428047759_5856402615153129018_n (1).jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 116093,
-            "relativePath": "portfolio/Platini Jeans/TOANDME/SnapInsta.to_651273480_18094455428047759_5856402615153129018_n (1).jpg"
-          },
-          {
-            "name": "TEST.mp4",
-            "type": "file",
-            "extension": ".mp4",
-            "size": 5741203,
-            "relativePath": "portfolio/Platini Jeans/TOANDME/TEST.mp4"
-          },
-          {
-            "name": "TOANDME_1x1-5312.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1109539,
-            "relativePath": "portfolio/Platini Jeans/TOANDME/TOANDME_1x1-5312.jpg"
-          },
-          {
-            "name": "TOANDME_1x1-5330.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1836953,
-            "relativePath": "portfolio/Platini Jeans/TOANDME/TOANDME_1x1-5330.jpg"
-          },
-          {
-            "name": "TOANDME_1x1-5356.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1454913,
-            "relativePath": "portfolio/Platini Jeans/TOANDME/TOANDME_1x1-5356.jpg"
-          },
-          {
-            "name": "TOANDME_1x1-5358.jpg",
-            "type": "file",
-            "extension": ".jpg",
-            "size": 1533290,
-            "relativePath": "portfolio/Platini Jeans/TOANDME/TOANDME_1x1-5358.jpg"
-          },
-          {
-            "name": "To_and_Me_Advertisement_2.mp4",
-            "type": "file",
-            "extension": ".mp4",
-            "size": 2544747,
-            "relativePath": "portfolio/Platini Jeans/TOANDME/To_and_Me_Advertisement_2.mp4"
-          }
-        ]
+        "name": "950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 775795,
+        "relativePath": "portfolio/Products/950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg"
+      },
+      {
+        "name": "96e464de25a3566d9fb0d107_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 1151285,
+        "relativePath": "portfolio/Products/96e464de25a3566d9fb0d107_rw_1920.jpg"
+      },
+      {
+        "name": "f0fc67b4bd4ef7331f5a3473_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 1999433,
+        "relativePath": "portfolio/Products/f0fc67b4bd4ef7331f5a3473_rw_1920.jpg"
+      },
+      {
+        "name": "fca30fc1a2370c9e8d4e86d0_rw_1920.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 1186724,
+        "relativePath": "portfolio/Products/fca30fc1a2370c9e8d4e86d0_rw_1920.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Quinceanera",
+    "type": "directory",
+    "children": [
+      {
+        "name": "kitestudios6_1552332668_1997433444191352927_3895010458.mp4",
+        "type": "file",
+        "extension": ".mp4",
+        "size": 11121987,
+        "relativePath": "portfolio/Quinceanera/kitestudios6_1552332668_1997433444191352927_3895010458.mp4"
+      },
+      {
+        "name": "Quinceanera Cover.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 212820,
+        "relativePath": "portfolio/Quinceanera/Quinceanera Cover.jpg"
+      },
+      {
+        "name": "quinceanera_146278770_110576184371294_8053248095299769303_n.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 211465,
+        "relativePath": "portfolio/Quinceanera/quinceanera_146278770_110576184371294_8053248095299769303_n.jpg"
+      }
+    ]
+  },
+  {
+    "name": "TDM",
+    "type": "directory",
+    "children": [
+      {
+        "name": "Redroom.mp4",
+        "type": "file",
+        "extension": ".mp4",
+        "size": 9971511,
+        "relativePath": "portfolio/TDM/Redroom.mp4"
+      },
+      {
+        "name": "SaveClip.App_AQOTN44FFv_GibzOXplW4J0JWpKvaRqRKVnLeAt95w4wfhUi0Tq5VI4-UHnEeGq-aZk7u14ELe0ZxqfE2_2awRNYWYJXBE-npGaiW_o.mp4",
+        "type": "file",
+        "extension": ".mp4",
+        "size": 7610151,
+        "relativePath": "portfolio/TDM/SaveClip.App_AQOTN44FFv_GibzOXplW4J0JWpKvaRqRKVnLeAt95w4wfhUi0Tq5VI4-UHnEeGq-aZk7u14ELe0ZxqfE2_2awRNYWYJXBE-npGaiW_o.mp4"
+      }
+    ]
+  },
+  {
+    "name": "TOANDME",
+    "type": "directory",
+    "children": [
+      {
+        "name": "Photo 2022-06-30 07.45.52 PM.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 2182889,
+        "relativePath": "portfolio/TOANDME/Photo 2022-06-30 07.45.52 PM.jpg"
+      },
+      {
+        "name": "SnapInsta.to_649244578_18094838306079035_4988156940014173278_n.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 223670,
+        "relativePath": "portfolio/TOANDME/SnapInsta.to_649244578_18094838306079035_4988156940014173278_n.jpg"
+      },
+      {
+        "name": "SnapInsta.to_651273480_18094455428047759_5856402615153129018_n (1).jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 116093,
+        "relativePath": "portfolio/TOANDME/SnapInsta.to_651273480_18094455428047759_5856402615153129018_n (1).jpg"
+      },
+      {
+        "name": "TEST.mp4",
+        "type": "file",
+        "extension": ".mp4",
+        "size": 5741203,
+        "relativePath": "portfolio/TOANDME/TEST.mp4"
+      },
+      {
+        "name": "TOANDME_1x1-5312.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 1109539,
+        "relativePath": "portfolio/TOANDME/TOANDME_1x1-5312.jpg"
+      },
+      {
+        "name": "TOANDME_1x1-5330.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 1836953,
+        "relativePath": "portfolio/TOANDME/TOANDME_1x1-5330.jpg"
+      },
+      {
+        "name": "TOANDME_1x1-5356.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 1454913,
+        "relativePath": "portfolio/TOANDME/TOANDME_1x1-5356.jpg"
+      },
+      {
+        "name": "TOANDME_1x1-5358.jpg",
+        "type": "file",
+        "extension": ".jpg",
+        "size": 1533290,
+        "relativePath": "portfolio/TOANDME/TOANDME_1x1-5358.jpg"
+      },
+      {
+        "name": "To_and_Me_Advertisement_2.mp4",
+        "type": "file",
+        "extension": ".mp4",
+        "size": 2544747,
+        "relativePath": "portfolio/TOANDME/To_and_Me_Advertisement_2.mp4"
       }
     ]
   }

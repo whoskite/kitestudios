@@ -36,27 +36,31 @@ export default async function EventsPage() {
   `);
 
   return (
-    <div className="min-h-screen bg-white text-zinc-900 transition-all duration-300 flex flex-col justify-between selection:bg-sky-100 antialiased">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 transition-all duration-300 flex flex-col justify-between selection:bg-sky-500/20 antialiased relative overflow-hidden">
+      {/* Background blurs */}
+      <div className="absolute top-[-5%] left-[-5%] w-[35%] aspect-square rounded-full bg-sky-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[-5%] w-[35%] aspect-square rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none" />
+
       <MinimalNav />
 
-      <main className="flex-1 container mx-auto px-4 sm:px-6 py-12 sm:py-24 max-w-7xl">
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-12 sm:py-24 max-w-7xl relative z-10">
         <div className="mb-16">
           <Link
             href="/"
-            className="text-xs font-sans font-semibold tracking-widest text-zinc-500 hover:text-accent uppercase transition-colors"
+            className="text-xs font-sans font-semibold tracking-widest text-zinc-400 hover:text-sky-400 uppercase transition-colors"
           >
             ← Back Home
           </Link>
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-900 uppercase mt-4 mb-4 font-sans">
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white uppercase mt-4 mb-4 font-sans">
             Events Archive
           </h1>
-          <p className="text-sm text-zinc-500 tracking-normal max-w-md leading-relaxed mt-2 font-sans">
+          <p className="text-sm text-zinc-450 tracking-normal max-w-md leading-relaxed mt-2 font-sans">
             Exclusive coverage, photo galleries, and highlights from recent events.
           </p>
         </div>
 
         {events.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-32 text-center border border-zinc-200 bg-slate-50/50 rounded-md">
+          <div className="flex flex-col items-center justify-center py-32 text-center border border-zinc-900 bg-zinc-950/60 rounded-md">
             <span className="text-xs uppercase font-sans tracking-widest text-zinc-400 mb-2 font-semibold">
               No Events Found
             </span>
@@ -72,7 +76,7 @@ export default async function EventsPage() {
                 href={`/events/${event.slug.current}`}
                 className="group flex flex-col cursor-pointer"
               >
-                <div className="relative overflow-hidden bg-slate-50 aspect-[4/5] mb-6 shadow-sm border border-zinc-200 rounded-md">
+                <div className="relative overflow-hidden bg-zinc-950 aspect-[4/5] mb-6 shadow-xl border border-zinc-900 rounded-md">
                   {event.coverImage ? (
                     <img
                       src={urlFor(event.coverImage).width(800).url()}
@@ -80,7 +84,7 @@ export default async function EventsPage() {
                       className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-zinc-100 text-zinc-400 font-sans text-xs uppercase">
+                    <div className="w-full h-full flex items-center justify-center bg-zinc-900 text-zinc-500 font-sans text-xs uppercase">
                       No Cover
                     </div>
                   )}
@@ -89,12 +93,12 @@ export default async function EventsPage() {
                 
                 <div className="flex flex-col">
                   <div className="flex items-start justify-between gap-4 mb-2">
-                    <h2 className="text-lg font-bold tracking-tight text-zinc-800 group-hover:text-accent transition-colors line-clamp-2 font-sans">
+                    <h2 className="text-lg font-bold tracking-tight text-zinc-100 group-hover:text-sky-400 transition-colors line-clamp-2 font-sans uppercase">
                       {event.title}
                     </h2>
                   </div>
                   
-                  <div className="flex flex-col space-y-1 text-xs tracking-wide text-zinc-500 font-sans mt-1">
+                  <div className="flex flex-col space-y-1 text-xs tracking-wide text-zinc-450 font-sans mt-1">
                     <span>{new Date(event.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
                     {event.location && <span className="opacity-80">{event.location}</span>}
                   </div>

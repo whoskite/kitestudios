@@ -40,7 +40,7 @@ function LazyMedia({ image }: { image: any }) {
   }, []);
 
   return (
-    <div ref={ref} className="relative w-full overflow-hidden bg-neutral-50 dark:bg-neutral-900/60 min-h-[220px]">
+    <div ref={ref} className="relative w-full overflow-hidden bg-zinc-950 min-h-[220px]">
       {isInView ? (
         <img
           src={urlFor(image).width(800).url()}
@@ -49,8 +49,8 @@ function LazyMedia({ image }: { image: any }) {
           loading="lazy"
         />
       ) : (
-        <div className="absolute inset-0 flex items-center justify-center bg-zinc-100/30 dark:bg-zinc-900/30 backdrop-blur-sm animate-pulse min-h-[220px]">
-          <div className="w-4 h-4 rounded-full border border-neutral-300 dark:border-neutral-700 border-t-neutral-800 dark:border-t-neutral-100 animate-spin" />
+        <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/20 backdrop-blur-sm animate-pulse min-h-[220px]">
+          <div className="w-4 h-4 rounded-full border border-zinc-800 border-t-sky-400 animate-spin" />
         </div>
       )}
     </div>
@@ -189,22 +189,26 @@ export default function EventClient({ event }: { event: any }) {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-300 flex flex-col justify-between selection:bg-neutral-200 dark:selection:bg-neutral-800">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 transition-all duration-300 flex flex-col justify-between selection:bg-sky-500/20 relative overflow-hidden antialiased">
+      {/* Background blurs */}
+      <div className="absolute top-[-5%] left-[-5%] w-[35%] aspect-square rounded-full bg-sky-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[-5%] w-[35%] aspect-square rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none" />
+
       <MinimalNav />
 
-      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-7xl">
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-12 sm:py-24 max-w-7xl relative z-10">
         {/* Project Header Title */}
         <div className="mb-12">
           <Link
             href="/events"
-            className="text-xs font-mono tracking-widest text-zinc-400 hover:text-black dark:hover:text-white uppercase transition-colors"
+            className="text-xs font-mono tracking-widest text-zinc-400 hover:text-sky-400 uppercase transition-colors"
           >
             ← Back to Events
           </Link>
-          <h1 className="text-3xl sm:text-4xl font-light tracking-wider uppercase mt-2">
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase mt-2 font-sans">
             {event.title}
           </h1>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-xs font-mono text-zinc-400 dark:text-zinc-500 tracking-widest mt-2 uppercase">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-xs font-mono text-zinc-400 tracking-widest mt-2 uppercase">
             <span>{new Date(event.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
             {event.location && (
               <>
@@ -216,18 +220,18 @@ export default function EventClient({ event }: { event: any }) {
             <span>{photos.length} {photos.length === 1 ? "PHOTO" : "PHOTOS"}</span>
           </div>
           {event.description && (
-            <p className="mt-6 text-sm font-light leading-relaxed max-w-2xl text-zinc-600 dark:text-zinc-400">
+            <p className="mt-6 text-sm font-light leading-relaxed max-w-2xl text-zinc-400 font-sans">
               {event.description}
             </p>
           )}
         </div>
 
         {photos.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20 text-center">
-            <span className="text-xs uppercase font-mono tracking-widest text-neutral-400 dark:text-neutral-500 mb-2">
+          <div className="flex flex-col items-center justify-center py-20 text-center border border-zinc-900 bg-zinc-950/60 rounded-md">
+            <span className="text-xs uppercase font-mono tracking-widest text-zinc-500 mb-2">
               No Photos Found
             </span>
-            <p className="text-neutral-500 dark:text-neutral-400 text-sm max-w-xs font-light">
+            <p className="text-zinc-500 text-sm max-w-xs font-light">
               This event gallery doesn't have any photos uploaded yet.
             </p>
           </div>
@@ -245,7 +249,7 @@ export default function EventClient({ event }: { event: any }) {
                     className="group break-inside-avoid relative cursor-pointer flex flex-col bg-transparent mb-6 sm:mb-12"
                     onClick={() => setActiveItem(item)}
                   >
-                    <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-900 shadow-sm">
+                    <div className="relative overflow-hidden bg-zinc-950 border border-zinc-900 shadow-xl rounded-md">
                       <LazyMedia image={item} />
                     </div>
                   </motion.div>
@@ -255,17 +259,17 @@ export default function EventClient({ event }: { event: any }) {
 
             {photos.length > visibleCount && (
               <div ref={loadMoreRef} className="flex justify-center mt-16 py-8">
-                <div className="w-4 h-4 rounded-full border border-neutral-300 dark:border-neutral-700 border-t-neutral-800 dark:border-t-neutral-100 animate-spin opacity-50" />
+                <div className="w-4 h-4 rounded-full border border-zinc-800 border-t-sky-400 animate-spin opacity-50" />
               </div>
             )}
           </>
         )}
       </main>
 
-      <footer className="w-full border-t border-neutral-100 dark:border-neutral-900 py-16 bg-transparent">
-        <div className="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8 text-neutral-400 dark:text-neutral-500 text-xs">
+      <footer className="w-full border-t border-zinc-900 py-16 bg-transparent relative z-10">
+        <div className="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8 text-zinc-500 text-xs">
           <div className="text-center md:text-left">
-            <span className="font-light tracking-[0.2em] text-neutral-800 dark:text-neutral-200 uppercase block mb-1">
+            <span className="font-light tracking-[0.2em] text-zinc-200 uppercase block mb-1">
               KITESTUDIOS
             </span>
             <span className="text-xs tracking-wider font-mono uppercase font-light">
@@ -273,33 +277,33 @@ export default function EventClient({ event }: { event: any }) {
             </span>
           </div>
 
-          <div className="flex items-center space-x-12 font-medium tracking-widest text-xs uppercase">
+          <div className="flex items-center space-x-12 font-semibold tracking-widest text-[10px] uppercase font-sans">
             <a
               href="https://instagram.com/kitestudios6"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-black dark:hover:text-white transition-colors"
+              className="hover:text-sky-400 text-zinc-300 transition-colors"
             >
               INSTAGRAM
             </a>
             <a
               href="mailto:tomy@kitestudios.net"
-              className="hover:text-black dark:hover:text-white transition-colors"
+              className="hover:text-sky-400 text-zinc-300 transition-colors"
             >
               EMAIL
             </a>
           </div>
 
           <div className="text-center md:text-right font-mono">
-            <span className="block text-xs tracking-widest uppercase mb-1 opacity-80">
+            <span className="block text-[10px] tracking-widest text-zinc-600 uppercase mb-1 font-semibold">
               WORK ENQUIRIES
             </span>
             <button
               onClick={handleCopyEmail}
-              className="font-bold text-neutral-600 dark:text-neutral-300 hover:text-[#ffff00] transition-colors text-xs flex items-center justify-center md:justify-end gap-2 uppercase"
+              className="font-bold text-zinc-300 hover:text-sky-400 transition-colors text-xs flex items-center justify-center md:justify-end gap-2 uppercase"
             >
               TOMY@KITESTUDIOS.NET
-              <span className="text-xs bg-neutral-100 dark:bg-neutral-900 text-neutral-500 px-1 py-0.5 border border-neutral-200 dark:border-neutral-800">
+              <span className="text-[9px] bg-zinc-900 text-zinc-400 px-1 py-0.5 border border-zinc-800 rounded">
                 {copiedFooter ? "COPIED" : "COPY"}
               </span>
             </button>
