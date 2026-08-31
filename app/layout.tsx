@@ -6,9 +6,9 @@ import { Providers } from "./providers";
 import MetaPixel from "@/components/MetaPixel";
 
 export const metadata: Metadata = {
-  title: "KITESTUDIOS",
+  title: "KITESTUDIOS — Venture Product Studio",
   description:
-    "A creative platform exploring the intersection of design, technology, and community.",
+    "An independent venture product studio building ambitious products, useful software, and ideas worth keeping.",
   metadataBase: new URL("https://www.kitestudios.net"),
   icons: {
     icon: "/KITESTUDIOS_ICON.ico",
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     apple: "/KITESTUDIOS_ICON.png",
   },
   openGraph: {
-    title: "KITESTUDIOS",
+    title: "KITESTUDIOS — Venture Product Studio",
     description:
-      "A creative platform exploring the intersection of design, technology, and community.",
+      "An independent venture product studio building ambitious products, useful software, and ideas worth keeping.",
     url: "https://kitestudios.vercel.app",
     siteName: "KITESTUDIOS",
     images: [
