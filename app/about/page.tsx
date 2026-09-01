@@ -1,152 +1,104 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowLeft, ArrowUpRight, Boxes, Check, Lightbulb, Rocket, Sparkles } from "lucide-react";
 import MinimalNav from "@/components/MinimalNav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "About | KITESTUDIOS",
-  description: "Learn more about KITESTUDIOS, our production philosophy, and our capabilities.",
+  title: "About KITESTUDIOS — Independent Venture Product Studio",
+  description: "KITESTUDIOS is an independent venture product studio in Los Angeles, building useful software, original products, and ambitious ideas worth keeping.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About KITESTUDIOS — Independent Venture Product Studio",
+    description: "We turn promising ideas into useful products—from first principle to first customer.",
+    url: "/about",
+    siteName: "KITESTUDIOS",
+    type: "website",
+    images: [{ url: "/KITESTUDIOS_1x1.png", width: 1200, height: 1200, alt: "KITESTUDIOS" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About KITESTUDIOS — Independent Venture Product Studio",
+    description: "We turn promising ideas into useful products—from first principle to first customer.",
+    images: ["/KITESTUDIOS_1x1.png"],
+  },
 };
+
+const capabilities = [
+  { number: "01", title: "Find the sharp idea", description: "We pressure-test the problem, audience, and opportunity until the product has a reason to exist.", icon: Lightbulb },
+  { number: "02", title: "Shape the product", description: "Positioning, product strategy, identity, interface, and technical decisions become one coherent system.", icon: Boxes },
+  { number: "03", title: "Build and launch", description: "We turn the concept into working software, ship it into the world, and learn from what people actually use.", icon: Rocket },
+];
+
+const partnershipTypes = ["Studio-owned ventures", "Founder partnerships", "Selected product commissions"];
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 transition-all duration-300 flex flex-col justify-between selection:bg-sky-500/20 antialiased relative overflow-hidden">
+    <div className="site-shell venture-about-page">
       <MinimalNav />
-
-      {/* Subtle modern background blurs */}
-      <div className="absolute top-[-5%] left-[-5%] w-[35%] aspect-square rounded-full bg-sky-500/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[-5%] w-[35%] aspect-square rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none" />
-
-      <main className="flex-1 container mx-auto px-4 sm:px-6 py-12 sm:py-24 max-w-4xl relative z-10">
-        {/* Back navigation */}
-        <div className="mb-12">
-          <Link
-            href="/"
-            className="text-xs font-sans font-semibold tracking-widest text-zinc-400 hover:text-sky-400 uppercase transition-colors"
-          >
-            ← Back Home
-          </Link>
-        </div>
-
-        {/* Hero Header */}
-        <div className="mb-16">
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white uppercase font-sans mb-4">
-            About KITESTUDIOS
-          </h1>
-          <p className="text-sm font-sans text-zinc-450 tracking-normal leading-relaxed max-w-2xl font-light">
-            Established in 2016 in Paramount, California, KITESTUDIOS specializes in corporate cinematography, high-impact event coverage, and strategic digital media assets.
-          </p>
-        </div>
-
-        {/* Showreel Video */}
-        <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-zinc-900 bg-zinc-950 shadow-2xl group mb-16">
-          <div className="absolute inset-0 bg-sky-500/5 blur-xl group-hover:bg-sky-500/10 transition-all duration-500 pointer-events-none" />
-          <iframe
-            src="https://player.vimeo.com/video/1205970612?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-            className="absolute inset-0 w-full h-full rounded-2xl z-10"
-            title="KITESTUDIOS Showreel"
-          />
-        </div>
-
-        {/* Two-Column Detail Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16 border-t border-zinc-900 pt-12">
-          {/* Left Column: Core Info */}
-          <div className="md:col-span-2 space-y-8">
-            <section className="space-y-4">
-              <h2 className="text-lg font-bold font-sans text-white uppercase tracking-wider">
-                Our Production Philosophy
-              </h2>
-              <p className="text-zinc-400 leading-relaxed text-sm font-sans font-light">
-                We believe that corporate video shouldn't feel corporate. Every piece of media we craft whether it's a multi-camera event highlight reel, an internal training platform, or a brand documentary is produced with cinematic composition, professional pacing, and strict attention to detail.
-              </p>
-              <p className="text-zinc-400 leading-relaxed text-sm font-sans font-light">
-                By focusing on high production value and engaging storytelling, we create assets that help businesses drive trust, build engagement, and communicate their message with clarity.
-              </p>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-lg font-bold font-sans text-white uppercase tracking-wider">
-                Production Capabilities
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-5 border border-zinc-900 rounded-md bg-zinc-900/40 shadow-xl hover:shadow-2xl hover:border-zinc-800 transition-all duration-300">
-                  <h3 className="text-sm font-bold text-white mb-1 font-sans">Corporate Training Videos</h3>
-                  <p className="text-zinc-450 text-xs font-sans leading-relaxed font-light">
-                    Interactive onboarding pipelines, team training databases, educational series, and software guides built to scale your organization's skills.
-                  </p>
-                </div>
-                <div className="p-5 border border-zinc-900 rounded-md bg-zinc-900/40 shadow-xl hover:shadow-2xl hover:border-zinc-800 transition-all duration-300">
-                  <h3 className="text-sm font-bold text-white mb-1 font-sans">Corporate Marketing Videos</h3>
-                  <p className="text-zinc-450 text-xs font-sans leading-relaxed font-light">
-                    High-impact promotional reels, product launches, B2B case studies, and strategic campaign video assets optimized to drive client acquisition.
-                  </p>
-                </div>
-                <div className="p-5 border border-zinc-900 rounded-md bg-zinc-900/40 shadow-xl hover:shadow-2xl hover:border-zinc-800 transition-all duration-300">
-                  <h3 className="text-sm font-bold text-white mb-1 font-sans">Internal Communications</h3>
-                  <p className="text-zinc-450 text-xs font-sans leading-relaxed font-light">
-                    Engaging executive announcements, quarterly reviews, town halls, and internal company summaries to keep your workforce aligned and inspired.
-                  </p>
-                </div>
-                <div className="p-5 border border-zinc-900 rounded-md bg-zinc-900/40 shadow-xl hover:shadow-2xl hover:border-zinc-800 transition-all duration-300">
-                  <h3 className="text-sm font-bold text-white mb-1 font-sans">CEO & Founder Profiles</h3>
-                  <p className="text-zinc-450 text-xs font-sans leading-relaxed font-light">
-                    Cinematic profiles, thought leadership features, keynotes, and deep-dive documentaries telling the visionaries' story behind the enterprise.
-                  </p>
-                </div>
-                <div className="p-5 border border-zinc-900 rounded-md bg-zinc-900/40 shadow-xl hover:shadow-2xl hover:border-zinc-800 transition-all duration-300 sm:col-span-2">
-                  <h3 className="text-sm font-bold text-white mb-1 font-sans">Corporate Branding Videos</h3>
-                  <p className="text-zinc-450 text-xs font-sans leading-relaxed font-light">
-                    Premium brand anthems, culture showcases, recruitment commercials, and mission-driven films that shape and define your corporate brand identity.
-                  </p>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          {/* Right Column: Key Details */}
-          <div className="space-y-8 font-sans">
-            <div className="space-y-2">
-              <h3 className="text-xs font-bold tracking-widest text-zinc-500 uppercase">
-                Location
-              </h3>
-              <p className="text-sm font-semibold text-zinc-305 font-light">
-                Paramount, CA<br />
-                Los Angeles County
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <h3 className="text-xs font-bold tracking-widest text-zinc-500 uppercase">
-                Founded
-              </h3>
-              <p className="text-sm font-semibold text-zinc-305 font-light">
-                2016
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <h3 className="text-xs font-bold tracking-widest text-zinc-500 uppercase">
-                Owner & Producer
-              </h3>
-              <p className="text-sm font-semibold text-zinc-305 font-light">
-                Tomy Lim
-              </p>
-            </div>
-
-            <div className="pt-4 border-t border-zinc-900">
-              <Link
-                href="/book"
-                className="inline-block px-5 py-3 bg-sky-500 text-zinc-950 hover:bg-sky-600 transition-all font-bold tracking-wider text-xs uppercase rounded-md shadow-lg shadow-sky-500/10 text-center w-full cursor-pointer"
-              >
-                Start a Project
-              </Link>
+      <main>
+        <section className="venture-about-hero">
+          <div className="venture-about-grid" aria-hidden="true" />
+          <div className="venture-about-orbit" aria-hidden="true"><span /></div>
+          <div className="content-width venture-about-hero-inner">
+            <Link href="/" className="venture-about-back"><ArrowLeft size={14} /> Back home</Link>
+            <p className="eyebrow venture-about-kicker"><Sparkles size={14} /> Independent venture product studio</p>
+            <h1>We build what<br /><em>we wish existed.</em></h1>
+            <div className="venture-about-hero-copy">
+              <p>KITESTUDIOS turns promising ideas into useful products—from first principle to first customer.</p>
+              <span>Los Angeles / Founded 2016</span>
             </div>
           </div>
-        </div>
+          <div className="venture-about-hero-meta"><span>Ideas → systems → products</span><span>Independent by design</span></div>
+        </section>
+
+        <section className="venture-about-statement content-width">
+          <div className="section-marker">[ 01 ]</div>
+          <p>We are a small, founder-led studio for ambitious products, useful software, and ideas that deserve a real shot at becoming<span> something people keep.</span></p>
+        </section>
+
+        <section className="venture-about-story content-width">
+          <div><p className="eyebrow">[ 02 ] / Why we exist</p><h2>The space between<br /><em>idea and real.</em></h2></div>
+          <div className="venture-about-story-copy">
+            <p>Good ideas are common. Clear decisions, sustained craft, and the nerve to ship are not. KITESTUDIOS exists to close that gap.</p>
+            <p>We work across strategy, design, and technology because products rarely fail inside one neat discipline. The name, interface, business model, and build all need to point in the same direction.</p>
+            <p>Some ventures begin here. Others begin with a founder who sees a problem worth solving. Either way, we stay close to the work and build toward something useful, distinct, and durable.</p>
+          </div>
+        </section>
+
+        <section className="venture-about-capabilities">
+          <div className="content-width">
+            <div className="venture-about-section-heading">
+              <div><p className="eyebrow">[ 03 ] / What we do</p><h2>One studio.<br /><em>The whole leap.</em></h2></div>
+              <p>We move from an early opportunity to a clear, working product without handing the idea between disconnected teams.</p>
+            </div>
+            <div className="venture-capability-grid">
+              {capabilities.map((capability) => {
+                const Icon = capability.icon;
+                return <article key={capability.number}><div className="venture-capability-top"><span>{capability.number}</span><Icon size={22} /></div><h3>{capability.title}</h3><p>{capability.description}</p></article>;
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="venture-about-model content-width">
+          <div className="venture-about-model-title"><p className="eyebrow">[ 04 ] / How we partner</p><h2>Built close.<br /><em>Built to last.</em></h2></div>
+          <div className="venture-about-model-copy">
+            <p>We keep the studio intentionally focused. That means fewer projects, direct collaboration, and no layers between the idea and the people making it real.</p>
+            <ul>{partnershipTypes.map((item) => <li key={item}><Check size={15} /> {item}</li>)}</ul>
+          </div>
+          <aside><span>Founder / Studio lead</span><strong>Tomy Lim</strong><p>Paramount, California<br />Los Angeles County</p></aside>
+        </section>
+
+        <section className="venture-about-note">
+          <div className="content-width"><p className="eyebrow">[ Studio note ]</p><blockquote>“The best products feel a little inevitable<span> after they exist.”</span></blockquote><p className="venture-about-signature">— KITE / 2026</p></div>
+        </section>
+
+        <section className="venture-about-cta content-width">
+          <div><p className="eyebrow">[ 05 ] / Open door</p><h2>Have an idea<br /><em>with gravity?</em></h2></div>
+          <div><p>Tell us what you see, what is missing, and why you cannot leave it alone.</p><a href="mailto:tomy@kitestudios.net" className="venture-about-email">Start a conversation <ArrowUpRight size={18} /></a></div>
+        </section>
       </main>
-
       <Footer />
     </div>
   );
