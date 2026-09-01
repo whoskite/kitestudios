@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Download, Github, Mail, MoveDown, Sparkles } from "lucide-react";
+import { ArrowUpRight, Download, Github, MoveDown, Sparkles } from "lucide-react";
 import MinimalNav from "@/components/MinimalNav";
 import Footer from "@/components/Footer";
 
@@ -18,7 +18,7 @@ function ProductCard({ product }: { product: Product }) {
   return <article className="product-card">
     <div className="product-image-wrap"><img src={product.image} alt="" className="product-image" /><span className="product-index">{product.number}</span><span className="product-status">{product.status}</span></div>
     <div className="product-copy"><div><p className="eyebrow">{product.type}</p><h3>{product.name}</h3></div><p className="product-description">{product.description}</p><div className="product-actions">
-      {product.downloadPage ? <Link href={product.downloadPage} className="text-link accent-link"><Download size={15} /> Download</Link> : product.download ? <a href={product.download} download className="text-link accent-link"><Download size={15} /> Download</a> : <a href="mailto:tomy@kitestudios.net?subject=KITESTUDIOS%20product%20access" className="text-link accent-link"><Mail size={15} /> Request access</a>}
+      {product.downloadPage ? <Link href={product.downloadPage} className="text-link accent-link"><Download size={15} /> Download</Link> : product.download ? <a href={product.download} download className="text-link accent-link"><Download size={15} /> Download</a> : null}
       {product.href && <a href={product.href} target="_blank" rel="noreferrer" className="text-link">Open product <ArrowUpRight size={15} /></a>}
     </div></div>
   </article>;
