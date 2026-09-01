@@ -5,20 +5,20 @@ import { ArrowUpRight, Download, Github, Mail, MoveDown, Sparkles } from "lucide
 import MinimalNav from "@/components/MinimalNav";
 import Footer from "@/components/Footer";
 
-type Product = { number: string; type: string; name: string; description: string; status: string; image: string; href?: string; download?: string };
+type Product = { number: string; type: string; name: string; description: string; status: string; image: string; href?: string; download?: string; downloadPage?: string };
 
 const products: Product[] = [
   { number: "01", type: "Web app / utility", name: "SnapRename", description: "Bulk rename and organize image files without the busywork.", status: "Live now", image: "/Portfolio/Products/fca30fc1a2370c9e8d4e86d0_rw_1920.jpg", href: "https://snaprename.vercel.app/" },
   { number: "02", type: "Mobile app / playful", name: "FunQuotes", description: "A small daily prompt for finding the right words, whenever you need them.", status: "Live now", image: "/Portfolio/GLYF STUDIO/Lookbook/Hero Banner_Clone_1.JPG", href: "https://www.funquotes.xyz/" },
   { number: "03", type: "Brand site / hospitality", name: "Chester & Loki", description: "A warm digital home for a matcha cafe with a point of view.", status: "Live now", image: "/Portfolio/Products/518d0d2471c414178e5d65ee_rw_1920.jpg", href: "https://chesterandloki-website.vercel.app/" },
-  { number: "04", type: "Creative tool / generative", name: "NFT Art Generator", description: "A new generative art tool for turning an idea into a collectible visual system.", status: "New / 2026", image: "/Portfolio/Products/950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg" },
+  { number: "04", type: "Creative tool / generative", name: "NFT Art Generator", description: "Build layered collections, tune rarity, set pairing rules, and export launch-ready artwork.", status: "Download / v0.1", image: "/Portfolio/Products/950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg", downloadPage: "/downloads/nft-art-generator" },
 ];
 
 function ProductCard({ product }: { product: Product }) {
   return <article className="product-card">
     <div className="product-image-wrap"><img src={product.image} alt="" className="product-image" /><span className="product-index">{product.number}</span><span className="product-status">{product.status}</span></div>
     <div className="product-copy"><div><p className="eyebrow">{product.type}</p><h3>{product.name}</h3></div><p className="product-description">{product.description}</p><div className="product-actions">
-      {product.download ? <a href={product.download} download className="text-link accent-link"><Download size={15} /> Download</a> : <a href="mailto:tomy@kitestudios.net?subject=KITESTUDIOS%20product%20access" className="text-link accent-link"><Mail size={15} /> Request access</a>}
+      {product.downloadPage ? <Link href={product.downloadPage} className="text-link accent-link"><Download size={15} /> Download</Link> : product.download ? <a href={product.download} download className="text-link accent-link"><Download size={15} /> Download</a> : <a href="mailto:tomy@kitestudios.net?subject=KITESTUDIOS%20product%20access" className="text-link accent-link"><Mail size={15} /> Request access</a>}
       {product.href && <a href={product.href} target="_blank" rel="noreferrer" className="text-link">Open product <ArrowUpRight size={15} /></a>}
     </div></div>
   </article>;
