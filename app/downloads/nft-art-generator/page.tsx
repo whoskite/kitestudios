@@ -17,14 +17,14 @@ import MinimalNav from "@/components/MinimalNav";
 import Footer from "@/components/Footer";
 
 const releaseBase =
-  "https://github.com/whoskite/NFT-ART-GENERATOR-LIVE/releases/download/v0.1.0";
+  "https://github.com/whoskite/NFT-ART-GENERATOR-LIVE/releases/download/v0.2.0";
 
 const downloads = [
   {
     platform: "Windows",
     format: "64-bit installer",
     detail: "Windows 10 / 11",
-    size: "2.1 MB",
+    size: "3.2 MB",
     href: `${releaseBase}/NFT-Art-Generator-Windows-x64.exe`,
     primary: true,
     icon: Download,
@@ -33,7 +33,7 @@ const downloads = [
     platform: "Linux",
     format: "AppImage",
     detail: "Portable · x86_64",
-    size: "78 MB",
+    size: "80 MB",
     href: `${releaseBase}/NFT-Art-Generator-Linux-x86_64.AppImage`,
     primary: false,
     icon: Package,
@@ -42,7 +42,7 @@ const downloads = [
     platform: "Ubuntu / Debian",
     format: ".deb package",
     detail: "amd64",
-    size: "4.1 MB",
+    size: "5.9 MB",
     href: `${releaseBase}/NFT-Art-Generator-Linux-amd64.deb`,
     primary: false,
     icon: FileArchive,
@@ -115,7 +115,7 @@ export default function NftArtGeneratorDownloadPage() {
                 <ArrowLeft size={14} /> All products
               </Link>
               <p className="eyebrow nft-release-kicker">
-                <span /> Desktop app · v0.1.0
+                <span /> Desktop app · v0.2.0
               </p>
               <h1>
                 NFT Art
@@ -133,7 +133,7 @@ export default function NftArtGeneratorDownloadPage() {
                 </a>
                 <a
                   className="button button-quiet"
-                  href="https://github.com/whoskite/NFT-ART-GENERATOR-LIVE/releases/tag/v0.1.0"
+                  href="https://github.com/whoskite/NFT-ART-GENERATOR-LIVE/releases/tag/v0.2.0"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -147,7 +147,7 @@ export default function NftArtGeneratorDownloadPage() {
               <div className="nft-app-titlebar">
                 <span className="nft-window-dots"><i /><i /><i /></span>
                 <b>NFT ART GENERATOR</b>
-                <span>V0.1</span>
+                <span>V0.2</span>
               </div>
               <div className="nft-app-body">
                 <div className="nft-app-sidebar">
@@ -183,7 +183,7 @@ export default function NftArtGeneratorDownloadPage() {
               <p className="eyebrow">[ 01 ] / Choose your build</p>
               <h2>Ready when<br /><em>you are.</em></h2>
             </div>
-            <p>Version 0.1.0 · Released August 2026. Select the package that fits your computer.</p>
+            <p>Version 0.2.0 · Released August 2026. Select the package that fits your computer.</p>
           </div>
           <div className="nft-download-options">
             {downloads.map((item) => {
@@ -259,7 +259,7 @@ export default function NftArtGeneratorDownloadPage() {
 
         <section className="nft-final-cta">
           <div className="content-width">
-            <p className="eyebrow">NFT Art Generator / v0.1.0</p>
+            <p className="eyebrow">NFT Art Generator / v0.2.0</p>
             <h2>Build the collection<br /><em>you pictured.</em></h2>
             <a className="button nft-light-button" href={downloads[0].href}>
               Download for Windows <Download size={17} />

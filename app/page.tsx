@@ -11,7 +11,7 @@ const products: Product[] = [
   { number: "01", type: "Web app / utility", name: "SnapRename", description: "Bulk rename and organize image files without the busywork.", status: "Live now", image: "/images/snaprename.png", href: "https://snaprename.vercel.app/" },
   { number: "02", type: "Mobile app / playful", name: "FunQuotes", description: "A small daily prompt for finding the right words, whenever you need them.", status: "Live now", image: "/images/funquotes.png", href: "https://www.funquotes.xyz/" },
   { number: "03", type: "Brand site / hospitality", name: "Chester & Loki", description: "A warm digital home for a matcha cafe with a point of view.", status: "Live now", image: "/images/chesaterandloki.png", href: "https://chesterandloki-website.vercel.app/" },
-  { number: "04", type: "Creative tool / generative", name: "NFT Art Generator", description: "Build layered collections, tune rarity, set pairing rules, and export launch-ready artwork.", status: "Download / v0.1", image: "/Portfolio/Products/950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg", downloadPage: "/downloads/nft-art-generator" },
+  { number: "04", type: "Creative tool / generative", name: "NFT Art Generator", description: "Build layered collections, tune rarity, set pairing rules, and export launch-ready artwork.", status: "Download / v0.2", image: "/Portfolio/Products/950fcf2e-ae7c-40c6-afc6-2fc2e4e1797c_rw_1920.jpg", downloadPage: "/downloads/nft-art-generator" },
 ];
 
 function ProductCard({ product }: { product: Product }) {
