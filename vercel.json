@@ -5,7 +5,7 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "outputDirectory": ".next",
-  "ignoreCommand": "git diff HEAD^ HEAD --quiet ./",
+  "ignoreCommand": "if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then git diff HEAD^ HEAD --quiet ./; else exit 1; fi",
   "git": {
     "deploymentEnabled": {
       "main": true
@@ -14,4 +14,4 @@
   "env": {
     "NEXT_PUBLIC_STRAPI_URL": "https://your-production-strapi-url.com"
   }
-} 
+}
