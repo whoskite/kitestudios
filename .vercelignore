@@ -1,0 +1,9 @@
+videos/
+docs/
+.agents/
+node_modules/
+.next/
+.git/
+*.tsbuildinfo
+.DS_Store
+.env.local
