@@ -3,9 +3,9 @@ import MinimalNav from "@/components/MinimalNav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "X Bulk Delete Privacy Policy — KITESTUDIOS",
-  description: "X Bulk Delete does not collect, transmit, or sell any data.",
-  alternates: { canonical: "/x-bulk-delete/privacy" },
+  title: "Sweepr Privacy Policy — KITESTUDIOS",
+  description: "Sweepr does not collect, transmit, or sell any data.",
+  alternates: { canonical: "/sweepr/privacy" },
 };
 
 export default function XBulkDeletePrivacyPage() {
@@ -15,10 +15,10 @@ export default function XBulkDeletePrivacyPage() {
       <main className="content-width" style={{ maxWidth: 760, paddingBlock: "140px 100px" }}>
         <p className="eyebrow">KITESTUDIOS / Privacy</p>
         <h1 className="mt-4 mb-8 text-4xl font-bold tracking-tight md:text-5xl">
-          X Bulk Delete privacy policy
+          Sweepr privacy policy
         </h1>
         <p className="mb-6 text-base leading-relaxed">
-          X Bulk Delete does not collect, transmit, or sell any data.
+          Sweepr does not collect, transmit, or sell any data.
         </p>
         <ul className="mb-6 list-disc space-y-3 pl-6 text-base leading-relaxed">
           <li>
@@ -39,6 +39,9 @@ export default function XBulkDeletePrivacyPage() {
         </ul>
         <p className="mb-6 text-base leading-relaxed">
           Removing the extension deletes its stored settings.
+        </p>
+        <p className="mb-6 text-base leading-relaxed">
+          Sweepr is made by KITESTUDIOS and is not affiliated with or endorsed by X Corp.
         </p>
         <p className="text-base leading-relaxed">
           Contact: <a className="underline" href="mailto:tomy@kitestudios.net">tomy@kitestudios.net</a>

@@ -30,6 +30,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/x-bulk-delete/privacy',
+        destination: '/sweepr/privacy',
+        permanent: true,
+      },
+    ]
+  },
   experimental: {
     // webpackBuildWorker: true,
     // parallelServerBuildTraces: true,
