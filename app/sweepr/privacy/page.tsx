@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Sweepr Privacy Policy — KITESTUDIOS",
   description: "Sweepr does not collect, transmit, or sell any data.",
   alternates: { canonical: "/sweepr/privacy" },
+  icons: { icon: "/sweepr/logo.png" },
 };
 
 export default function XBulkDeletePrivacyPage() {
@@ -14,9 +15,11 @@ export default function XBulkDeletePrivacyPage() {
       <MinimalNav />
       <main className="content-width" style={{ maxWidth: 760, paddingBlock: "140px 100px" }}>
         <p className="eyebrow">KITESTUDIOS / Privacy</p>
-        <h1 className="mt-4 mb-8 text-4xl font-bold tracking-tight md:text-5xl">
-          Sweepr privacy policy
-        </h1>
+        <div className="mt-4 mb-8 flex items-center gap-5">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/sweepr/logo.png" alt="Sweepr logo" width={72} height={72} className="h-14 w-14 md:h-[72px] md:w-[72px]" />
+          <h1 className="text-4xl font-bold tracking-tight md:text-5xl">Sweepr privacy policy</h1>
+        </div>
         <p className="mb-6 text-base leading-relaxed">
           Sweepr does not collect, transmit, or sell any data.
         </p>
